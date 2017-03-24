@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TranslatePageComponent } from './translate-page.component';
+import {AppModule} from '../app.module';
 
 describe('TranslatePageComponent', () => {
   let component: TranslatePageComponent;
@@ -8,7 +9,8 @@ describe('TranslatePageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TranslatePageComponent ]
+      declarations: [],
+      imports: [AppModule]
     })
     .compileComponents();
   }));

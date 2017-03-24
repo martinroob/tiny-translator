@@ -2,6 +2,7 @@ import { TestBed, async } from '@angular/core/testing';
 
 import { AppComponent } from './app.component';
 import {NO_ERRORS_SCHEMA} from '@angular/core';
+import {APP_CONFIG, APP_CONFIG_VALUE} from './app.config';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -9,7 +10,8 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent
       ],
-      schemas: [NO_ERRORS_SCHEMA]
+      schemas: [NO_ERRORS_SCHEMA],
+      providers: [{provide: APP_CONFIG, useValue: APP_CONFIG_VALUE}]
     }).compileComponents();
   }));
 
@@ -19,16 +21,18 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   }));
 
-  it(`should have as title 'app works!'`, async(() => {
+  it(`should have a build version`, async(() => {
     const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('app works!');
+    const app: AppComponent = fixture.debugElement.componentInstance;
+    expect(app.buildversion()).toEqual('0.0.1'); // TODO
   }));
 
-  it('should render title in a h1 tag', async(() => {
+  it('should render md-toolbar', async(() => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('app works!');
+    expect(compiled.querySelector('md-toolbar')).toBeTruthy();
+    expect(compiled.querySelector('#apptitle').textContent).toBe('Tiny Translator');
   }));
+
 });

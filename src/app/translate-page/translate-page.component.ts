@@ -20,6 +20,7 @@ export class TranslatePageComponent implements OnInit {
   }
 
   transUnit(): ITransUnit {
-    return this.translationService.currentFile().currentTransUnit();
+    const currentFile = this.translationService.currentFile();
+    return currentFile ? currentFile.currentTransUnit() : null;
   }
 }

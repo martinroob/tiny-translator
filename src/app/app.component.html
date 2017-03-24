@@ -1,6 +1,6 @@
 <div id="container" fxLayout="column">
   <md-toolbar color="primary">
-    Tiny Translator
+    <span id="apptitle">Tiny Translator</span>
     <md-toolbar-row>
       <button md-icon-button><md-icon>menu</md-icon></button>
     </md-toolbar-row>
@@ -9,7 +9,7 @@
     <router-outlet></router-outlet>
   </div>
   <div id="footer">
-    Version {{buildversion()}}; buildtime {{buildtime()}}
+    Version <span id="buildversion">{{buildversion()}}</span>; buildtime <span id="buildtime">{{buildtime()}}</span>
   </div>
 
 </div>
