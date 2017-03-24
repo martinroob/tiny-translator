@@ -1,0 +1,10 @@
+<p i18n>Upload the file(s) you want to translate</p>
+<form>
+  <input type="file" multiple (change)="fileSelectionChange(input)" #input />
+</form>
+<ul>
+  <li *ngFor="let translationFile of selectedFilesInfo()">
+    <app-translation-file-status [translationFile]="translationFile"></app-translation-file-status>
+    <button *ngIf="translationFile.canTranslate()" (click)="startWork(translationFile)" i18n>Start Translation</button>
+  </li>
+</ul>

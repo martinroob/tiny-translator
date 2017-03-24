@@ -1,0 +1,30 @@
+@import '~@angular/material/core/theming/theming';
+
+@import '../styles.scss';
+
+md-toolbar .md-toolbar-layout md-toolbar-row {
+  flex-direction: column;
+  align-content: flex-start;
+  align-items: flex-start;
+  min-height: 40px;
+}
+
+.content {
+  margin-top: 40px;
+}
+
+#container {
+  min-height: 100vh;
+}
+
+#header {
+}
+
+#main {
+  overflow: auto;
+  margin: 8px;
+}
+
+#footer {
+  background-color: mat-color($dit-app-primary);
+}

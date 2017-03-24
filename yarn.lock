@@ -89,6 +89,10 @@
   version "4.0.0-rc.4"
   resolved "https://registry.yarnpkg.com/@angular/core/-/core-4.0.0-rc.4.tgz#e2eb34dcaed9c2929cf5df8853590c4e2809e01c"
 
+"@angular/flex-layout@^2.0.0-rc.1":
+  version "2.0.0-rc.1"
+  resolved "https://registry.yarnpkg.com/@angular/flex-layout/-/flex-layout-2.0.0-rc.1.tgz#96fa7f85b2c4bacf2784913a2d607e2ed23dc7f1"
+
 "@angular/forms@>=4.0.0-beta <5.0.0":
   version "4.0.0-rc.4"
   resolved "https://registry.yarnpkg.com/@angular/forms/-/forms-4.0.0-rc.4.tgz#407404e50965d3a94216615a898096c5cbca3f1e"
@@ -4815,9 +4819,13 @@ type-is@~1.6.14:
     media-typer "0.3.0"
     mime-types "~2.1.13"
 
-"typescript@>=2.0.0 <2.2.0", typescript@~2.1.0:
+"typescript@>=2.0.0 <2.2.0":
   version "2.1.6"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.1.6.tgz#40c7e6e9e5da7961b7718b55505f9cac9487a607"
+
+typescript@^2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.2.1.tgz#4862b662b988a4c8ff691cc7969622d24db76ae9"
 
 uglify-js@2.8.x, uglify-js@^2.6, uglify-js@^2.7.5:
   version "2.8.13"

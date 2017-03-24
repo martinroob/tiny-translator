@@ -4,7 +4,13 @@
     "outDir": "../out-tsc/app",
     "module": "es2015",
     "baseUrl": "",
-    "types": []
+    "types": [],
+    "baseUrl": "",
+    "paths": {
+      "@app/*": ["src/app/*"],
+      "@ngx-i18nsupport": ["../../../ngx-i18nsupport/src/"],
+      "@ngx-i18nsupport/*": ["../../../ngx-i18nsupport/src/*"]
+    }
   },
   "exclude": [
     "test.ts",
