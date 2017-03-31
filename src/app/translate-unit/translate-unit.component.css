@@ -1,0 +1,15 @@
+md-card {
+  min-width: 400px;
+}
+
+md-card-header {
+  min-height: 50px;
+}
+
+md-input-container {
+  min-width: 350px;
+}
+
+#translation {
+  border: 2px solid;
+}

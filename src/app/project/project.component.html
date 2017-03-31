@@ -1,0 +1,4 @@
+<div>
+  <p i18n><b>Name</b> {{project?.name}}</p>
+  <app-translation-file-status [translationFile]="project?.translationFile" (onSave)="save($event)"></app-translation-file-status>
+</div>

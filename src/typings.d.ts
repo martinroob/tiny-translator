@@ -2,3 +2,5 @@
 declare var module: {
   id: string;
 };
+
+declare module "file-saver";

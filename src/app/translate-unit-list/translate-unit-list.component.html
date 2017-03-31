@@ -1,0 +1,10 @@
+<div>
+  <button md-button (click)="showAll()" i18n>All</button>
+  <button md-button (click)="showUntranslated()" i18n>Untranslated</button>
+</div>
+<md-list>
+  <h3 md-subheader i18n>Translation Units</h3>
+  <md-list-item *ngFor="let tu of transUnits()" (click)="selectTransUnit(tu)" selected>
+    <h4 md-line>{{tu.sourceContent() | abbreviate}}</h4>
+  </md-list-item>
+</md-list>

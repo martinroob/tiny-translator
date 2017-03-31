@@ -1,11 +1,23 @@
 <div id="container" fxLayout="column">
   <md-toolbar color="primary">
     <span id="apptitle">Tiny Translator</span>
+    <span>&nbsp;</span>
+    <div fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="10px">
+      <app-language code="en" [showCode]="false"></app-language>
+      <app-language code="de" [showCode]="false"></app-language>
+      <app-language code="fr" [showCode]="false"></app-language>
+      <app-language code="en-us" [showCode]="false"></app-language>
+      <app-language code="ru" [showCode]="false"></app-language>
+      <app-language code="zh" [showCode]="false"></app-language>
+      <app-language code="ar" [showCode]="false"></app-language>
+      <app-language code="in" [showCode]="false"></app-language>
+      <app-language code="pt-br" [showCode]="false"></app-language>
+    </div>
     <md-toolbar-row>
-      <button md-icon-button><md-icon>menu</md-icon></button>
+      <a md-icon-button routerLink="/home" routerLinkActive="active"><md-icon>home</md-icon></a>
     </md-toolbar-row>
   </md-toolbar>
-  <div id="main" fxFlex="1" fxLayout="column" fxLayoutAlign="start start">
+  <div id="main" fxFlex="1 1 auto" fxLayout="column" fxLayoutAlign="start start">
     <router-outlet></router-outlet>
   </div>
   <div id="footer">

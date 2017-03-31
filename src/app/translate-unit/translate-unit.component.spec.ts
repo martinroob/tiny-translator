@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TranslateUnitComponent } from './translate-unit.component';
+import {NO_ERRORS_SCHEMA} from '@angular/core';
 
 describe('TranslateUnitComponent', () => {
   let component: TranslateUnitComponent;
@@ -8,7 +9,8 @@ describe('TranslateUnitComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TranslateUnitComponent ]
+      declarations: [ TranslateUnitComponent ],
+      schemas: [NO_ERRORS_SCHEMA],
     })
     .compileComponents();
   }));

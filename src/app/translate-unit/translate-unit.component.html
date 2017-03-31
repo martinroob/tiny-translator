@@ -1,4 +1,21 @@
-<p>Source</p>
-<p>{{transUnit?.sourceContent()}}</p>
-<p>Target</p>
-<p>{{transUnit?.targetContent()}}</p>
+<md-card>
+  <md-card-header>
+    <md-card-title i18n>Translation Unit {{transUnitID()}}</md-card-title>
+    <md-card-subtitle><span i18n>State {{targetState()}}</span></md-card-subtitle>
+  </md-card-header>
+  <md-card-content>
+    <p><span i18n>Source: </span><app-language [code]="sourceLanguage()"></app-language>{{sourceContent()}}</p>
+    <p *ngIf="sourceDescription()"><b i18n>Description</b> {{sourceDescription()}}</p>
+    <p *ngIf="sourceMeaning()"><b i18n>Meaning</b> {{sourceMeaning()}}</p>
+    <form id="translation">
+      <p i18n>Translation to <app-language [code]="targetLanguage()"></app-language></p>
+      <md-input-container>
+        <textarea mdInput [(ngModel)]="_editedTargetText" name="_editedTargetText"></textarea>
+      </md-input-container>
+    </form>
+  </md-card-content>
+  <md-card-actions>
+    <button md-button i18n (click)="prev()" [disabled]="!hasPrev()">Previous</button>
+    <button md-button i18n (click)="next()" [disabled]="!hasNext()">Next</button>
+  </md-card-actions>
+</md-card>

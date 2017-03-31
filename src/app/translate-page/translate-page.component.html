@@ -1,2 +1,7 @@
-<app-translation-file-status [translationFile]="currentFile()"></app-translation-file-status>
-<app-translate-unit [transUnit]="transUnit()"></app-translate-unit>
+<div fxLayout="column" fxFlex="1 1 auto">
+  <app-project [project]="currentProject()" (onSave)="save()"></app-project>
+  <div fxLayout="row" fxFill>
+    <app-translate-unit-list [translationFile]="currentFile()" fxFlex="20"></app-translate-unit-list>
+    <app-translate-unit [translationUnit]="currentTranslationUnit()" (translationChanged)="commitChanges()" fxFlex="80"></app-translate-unit>
+  </div>
+</div>

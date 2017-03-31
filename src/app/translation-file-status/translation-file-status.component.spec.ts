@@ -1,8 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import {TranslationFile} from '../translation-file';
+import {TranslationFile} from '../model/translation-file';
 
 import { TranslationFileStatusComponent } from './translation-file-status.component';
 import {NO_ERRORS_SCHEMA} from '@angular/core';
+import {DownloaderService} from '../model/downloader.service';
 
 describe('TranslationFileStatusComponent', () => {
   let component: TranslationFileStatusComponent;
@@ -11,6 +12,7 @@ describe('TranslationFileStatusComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ TranslationFileStatusComponent ],
+      providers: [DownloaderService],
       schemas: [NO_ERRORS_SCHEMA]
     })
     .compileComponents();
@@ -19,7 +21,7 @@ describe('TranslationFileStatusComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TranslationFileStatusComponent);
     component = fixture.componentInstance;
-    component.translationFile = new TranslationFile(new File([], 'dummy'));
+    component.translationFile = new TranslationFile();
     fixture.detectChanges();
   });
 

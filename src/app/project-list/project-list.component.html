@@ -1,0 +1,7 @@
+<ul>
+  <li *ngFor="let project of projects">
+    <app-project [project]="project" (onSave)="saveProject($event)"></app-project>
+    <button md-button *ngIf="project.canTranslate()" (click)="startWork(project)" i18n>Start Translation</button>
+    <button md-icon-button *ngIf="!project?.translationFile?.isDirty()" (click)="deleteProject(project)" i18n><md-icon>delete</md-icon></button>
+  </li>
+</ul>

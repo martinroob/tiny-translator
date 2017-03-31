@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {TinyTranslatorService} from '../tiny-translator.service';
-import {TranslationFile} from '../translation-file';
+import {TinyTranslatorService} from '../model/tiny-translator.service';
+import {TranslationFile} from '../model/translation-file';
 import {Router} from '@angular/router';
+import {TranslationProject} from '../model/translation-project';
 
 interface FileInfo {
   name: string;
@@ -20,9 +21,8 @@ interface FileInfo {
 })
 export class ProjectStarterComponent implements OnInit {
 
+  private projectName: string; // set via input field
   private selectedFiles: FileList;
-
-  private isSelectionDone = false;
 
   constructor(private translatorService: TinyTranslatorService, private router: Router) { }
 
@@ -31,23 +31,12 @@ export class ProjectStarterComponent implements OnInit {
 
   public fileSelectionChange(input: HTMLInputElement) {
     this.selectedFiles = input.files;
-    if (this.selectedFiles.length > 0) {
-      this.isSelectionDone = true;
-    }
-    this.translatorService.startProject(this.selectedFiles);
   }
 
-  public canStartWork(): boolean {
-    return this.isSelectionDone && this.translatorService.canStartWork();
+  public addProject() {
+    this.translatorService.createProject(this.projectName, this.selectedFiles).map((newProject: TranslationProject) => {
+      this.translatorService.addProject(newProject);
+    }).subscribe();
   }
 
-  public startWork(translationFile: TranslationFile) {
-    console.log('Set current file to ', translationFile.name);
-    this.translatorService.setCurrentFile(translationFile);
-    this.router.navigateByUrl('translate');
-  }
-
-  public selectedFilesInfo(): TranslationFile[] {
-    return this.translatorService.translationFiles();
-  }
 }

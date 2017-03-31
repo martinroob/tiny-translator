@@ -1,6 +1,10 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {TranslationFile} from '../translation-file';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {TranslationFile} from '../model/translation-file';
 
+/**
+ * Component to show the current status of a loaded translation file.
+ * It shows the size, number of translations, wether it is changed etc.
+ */
 @Component({
   selector: 'app-translation-file-status',
   templateUrl: './translation-file-status.component.html',
@@ -10,9 +14,32 @@ export class TranslationFileStatusComponent implements OnInit {
 
   @Input() translationFile: TranslationFile;
 
+  @Output() onSave: EventEmitter<TranslationFile> = new EventEmitter();
+
   constructor() { }
 
   ngOnInit() {
   }
 
+  /**
+   * percentage translated rounded to 0 digits.
+   * @return {any}
+   */
+  public percentageTranslated(): string {
+    if (this.translationFile) {
+      let result: number = this.translationFile.percentageTranslated();
+      return result.toFixed(0);
+    } else {
+      return '0';
+    }
+  }
+
+  /**
+   * Save the changed file.
+   */
+  public save() {
+    if (this.translationFile) {
+      this.onSave.emit(this.translationFile);
+    }
+  }
 }

@@ -1,10 +1,8 @@
 <p i18n>Upload the file(s) you want to translate</p>
 <form>
+  <md-input-container>
+    <input placeholder="Project name" i18n-placeholder mdInput [(ngModel)]="projectName" name="projectName"/>
+  </md-input-container>
   <input type="file" multiple (change)="fileSelectionChange(input)" #input />
+  <button md-button (click)="addProject()" i18n>Add</button>
 </form>
-<ul>
-  <li *ngFor="let translationFile of selectedFilesInfo()">
-    <app-translation-file-status [translationFile]="translationFile"></app-translation-file-status>
-    <button *ngIf="translationFile.canTranslate()" (click)="startWork(translationFile)" i18n>Start Translation</button>
-  </li>
-</ul>
