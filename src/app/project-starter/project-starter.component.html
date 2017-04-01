@@ -1,8 +1,9 @@
-<p i18n>Upload the file(s) you want to translate</p>
+<p i18n>Open a new project</p>
 <form>
   <md-input-container>
     <input placeholder="Project name" i18n-placeholder mdInput [(ngModel)]="projectName" name="projectName"/>
   </md-input-container>
-  <input type="file" multiple (change)="fileSelectionChange(input)" #input />
-  <button md-button (click)="addProject()" i18n>Add</button>
+  <p i18n>Upload the file (xliff or xmb) you want to translate</p>
+  <input type="file" (change)="fileSelectionChange(input)" #input />
+  <button md-icon-button color="primary" (click)="addProject()" md-tooltip="add as new project and start working" i18n-md-tooltip i18n><md-icon>add</md-icon></button>
 </form>

@@ -4,7 +4,7 @@
 </div>
 <md-list>
   <h3 md-subheader i18n>Translation Units</h3>
-  <md-list-item *ngFor="let tu of transUnits()" (click)="selectTransUnit(tu)" selected>
-    <h4 md-line>{{tu.sourceContent() | abbreviate}}</h4>
+  <md-list-item *ngFor="let tu of transUnits()" (click)="selectTransUnit(tu)">
+    <h4 md-line [ngStyle]="selectedStyle(tu)">{{tu.sourceContent() | abbreviate}}</h4>
   </md-list-item>
 </md-list>

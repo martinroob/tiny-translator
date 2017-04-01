@@ -1,4 +1,14 @@
-<div>
-  <p i18n><b>Name</b> {{project?.name}}</p>
-  <app-translation-file-status [translationFile]="project?.translationFile" (onSave)="save($event)"></app-translation-file-status>
-</div>
+<md-card>
+  <md-card-header>
+    <md-card-title>
+      <p i18n><b>Project </b> {{project?.name}}</p>
+    </md-card-title>
+  </md-card-header>
+  <md-card-content>
+    <app-translation-file-status [translationFile]="project?.translationFile" (onSave)="save($event)"></app-translation-file-status>
+  </md-card-content>
+  <md-card-actions *ngIf="showActions">
+    <button md-icon-button *ngIf="!project?.translationFile?.isDirty()" (click)="deleteProject()"  mdTooltip="Delete Project" i18n-mdTooltip><md-icon>delete</md-icon></button>
+    <button md-fab *ngIf="project.canTranslate()" (click)="startWork()" mdTooltip="Start Translation" i18n-mdTooltip><md-icon>translate</md-icon></button>
+  </md-card-actions>
+</md-card>

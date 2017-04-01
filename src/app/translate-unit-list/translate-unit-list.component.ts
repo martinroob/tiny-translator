@@ -45,4 +45,18 @@ export class TranslateUnitListComponent implements OnInit {
   public selectTransUnit(tu: TranslationUnit) {
     this.translationFile.selectTransUnit(tu);
   }
+
+  isSelected(tu: TranslationUnit): boolean {
+    return tu && tu === this.translationFile.currentTransUnit();
+  }
+
+  selectedStyle(tu: TranslationUnit): any {
+    if (!tu || !this.isSelected(tu)) {
+      return {};
+    } else {
+      return {
+        'background-color': 'pink'
+      }
+    }
+  }
 }

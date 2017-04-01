@@ -1,4 +1,3 @@
-<p i18n>Start a new translation project...</p>
+<p i18n>{projects().length, plural, =0 {Currently there is no open project.} =1 {Currently there is <b>1</b> open project.} other {Currently there are <b>{{projects().length}}</b> open projects.}}</p>
 <app-project-starter></app-project-starter>
-<p>Projects</p>
 <app-project-list [projects]="projects()" (onStartProject)="startProject($event)" (onDeleteProject)="deleteProject($event)" (onSaveProject)="saveProject($event)"></app-project-list>

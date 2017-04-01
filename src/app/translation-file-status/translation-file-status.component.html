@@ -11,10 +11,10 @@
     <span i18n>Source language</span>&nbsp;<app-language [code]="translationFile?.sourceLanguage()"></app-language>
     &nbsp;<span i18n>Target language</span>&nbsp;<app-language [code]="translationFile?.targetLanguage()"></app-language>
   </div>
-  <div fxLayout="row" fxLayout="start center">
-    <md-progress-bar mode="determinate" [value]="translationFile?.percentageTranslated()"></md-progress-bar>
+  <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
+    <md-progress-bar mode="determinate" [value]="translationFile?.percentageTranslated()" color="accent"></md-progress-bar>
     <span i18n>{{percentageTranslated()}} % translated</span>
   </div>
   <p *ngIf="translationFile?.hasErrors()" class="warn">{{translationFile?.error}}</p>
-  <p>current transunit {{translationFile?.currentTransUnitIndex()}} of {{translationFile?.scrollabeTransUnitsLength()}}</p>
+  <p *ngIf="translationFile?.currentTransUnitIndex() > 0">current transunit {{translationFile?.currentTransUnitIndex()}} of {{translationFile?.scrollabeTransUnitsLength()}}</p>
 </div>

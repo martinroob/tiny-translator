@@ -10,7 +10,10 @@ import {TranslationFile} from '../model/translation-file';
 export class ProjectComponent implements OnInit {
 
   @Input() project: TranslationProject;
+  @Input() showActions: boolean = true;
 
+  @Output() onStartWork: EventEmitter<TranslationProject> = new EventEmitter();
+  @Output() onDeleteProject: EventEmitter<TranslationProject> = new EventEmitter();
   @Output() onSave: EventEmitter<TranslationProject> = new EventEmitter();
 
   constructor() { }
@@ -20,5 +23,13 @@ export class ProjectComponent implements OnInit {
 
   save(translationFile: TranslationFile) {
     this.onSave.emit(this.project);
+  }
+
+  startWork() {
+    this.onStartWork.emit(this.project);
+  }
+
+  deleteProject() {
+    this.onDeleteProject.emit(this.project);
   }
 }
