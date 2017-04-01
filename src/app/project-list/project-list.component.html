@@ -1,7 +1,3 @@
-<ul>
-  <li *ngFor="let project of projects">
-    <div fxLayout="row" fxLayoutAlign="start start">
-      <app-project [project]="project" (onSave)="saveProject($event)" (onStartWork)="startWork($event)" (onDeleteProject)="deleteProject($event)"></app-project>
-    </div>
-  </li>
-</ul>
+<div *ngFor="let project of projects">
+  <app-project [project]="project" (onSave)="saveProject($event)" (onStartWork)="startWork($event)" (onDeleteProject)="deleteProject($event)"></app-project>
+</div>

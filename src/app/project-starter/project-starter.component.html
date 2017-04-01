@@ -1,9 +1,23 @@
 <p i18n>Open a new project</p>
-<form>
-  <md-input-container>
-    <input placeholder="Project name" i18n-placeholder mdInput [(ngModel)]="projectName" name="projectName"/>
-  </md-input-container>
-  <p i18n>Upload the file (xliff or xmb) you want to translate</p>
-  <input type="file" (change)="fileSelectionChange(input)" #input />
-  <button md-icon-button color="primary" (click)="addProject()" md-tooltip="add as new project and start working" i18n-md-tooltip i18n><md-icon>add</md-icon></button>
+<form fxLayout="column">
+  <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="end center">
+    <md-input-container>
+      <input placeholder="Project name" i18n-placeholder mdInput [(ngModel)]="projectName" name="projectName"/>
+    </md-input-container>
+    <div fxLayout="column">
+      <input type="file" id="fileupload" (change)="fileSelectionChange(input)" class="inputfile" #input />
+      <label for="fileupload" i18n><md-icon>open_in_browser</md-icon>&nbsp;<span i18n>Upload a translation file (xlf, xmb)</span></label>
+      <div>{{selectedFilesFormatted()}}</div>
+    </div>
+  </div>
+  <app-translation-file-status *ngIf="isFileSelected()" [translationFile]="createdProject?.translationFile"></app-translation-file-status>
+  <p></p>
+  <button fxFlexAlign="end"
+          md-raised-button
+          color="primary"
+          (click)="addProject()"
+          md-tooltip="add as new project and start working" i18n-md-tooltip
+          [disabled]="!isInputComplete()">
+    <md-icon>add</md-icon>&nbsp;<span i18n>Add project</span>
+  </button>
 </form>

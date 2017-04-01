@@ -1,4 +1,12 @@
-<md-card>
+<md-card *ngIf="!translationUnit">
+  <md-card-header>
+    <md-card-title i18n>No Translation Unit</md-card-title>
+  </md-card-header>
+  <md-card-content>
+    <p i18n>no content</p>
+  </md-card-content>
+</md-card>
+<md-card *ngIf="translationUnit">
   <md-card-header>
     <md-card-title i18n>Translation Unit {{transUnitID()}}</md-card-title>
     <md-card-subtitle><span i18n>State {{targetState()}}</span></md-card-subtitle>
@@ -12,6 +20,7 @@
       <md-input-container>
         <textarea mdInput [(ngModel)]="_editedTargetText" name="_editedTargetText"></textarea>
       </md-input-container>
+      <button md-button (click)="markTranslated()" i18n mdTooltip="press to accept the given translation" i18n-mdTooltip>mark as translated</button>
     </form>
   </md-card-content>
   <md-card-actions>

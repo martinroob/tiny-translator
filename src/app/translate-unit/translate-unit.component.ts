@@ -17,6 +17,7 @@ export class TranslateUnitComponent implements OnInit, OnChanges {
   @Output() translationChanged: EventEmitter<TranslationUnit> = new EventEmitter();
 
   private _editedTargetText: string;
+  private isMarkedAsTranslated = false;
 
   constructor() { }
 
@@ -92,7 +93,7 @@ export class TranslateUnitComponent implements OnInit, OnChanges {
 
   public commitChanges() {
     if (this.translationUnit) {
-      if (this.isTranslationChanged()) {
+      if (this.isTranslationChanged() || this.isMarkedAsTranslated) {
         this.translationUnit.translate(this._editedTargetText);
         this.translationChanged.emit(this.translationUnit);
       }
@@ -102,6 +103,10 @@ export class TranslateUnitComponent implements OnInit, OnChanges {
   public isTranslationChanged(): boolean {
     const original = this.translationUnit.targetContent();
     return original !== this._editedTargetText;
+  }
+
+  markTranslated() {
+    this.isMarkedAsTranslated = true;
   }
 
   /**

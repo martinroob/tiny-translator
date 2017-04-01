@@ -1,0 +1,7 @@
+@import '~@angular/material/core/theming/theming';
+
+@import '../../styles.scss';
+
+.selected {
+  background-color: mat-color($dit-app-accent);
+}

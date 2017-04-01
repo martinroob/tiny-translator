@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {TinyTranslatorService} from '../model/tiny-translator.service';
 import {TranslationFile} from '../model/translation-file';
-import {Router} from '@angular/router';
 import {TranslationProject} from '../model/translation-project';
+import {Observable} from 'rxjs';
 
 interface FileInfo {
   name: string;
@@ -17,26 +17,56 @@ interface FileInfo {
 @Component({
   selector: 'app-project-starter',
   templateUrl: './project-starter.component.html',
-  styleUrls: ['./project-starter.component.css']
+  styleUrls: ['./project-starter.component.scss']
 })
 export class ProjectStarterComponent implements OnInit {
 
+  @Output() onAddProject: EventEmitter<TranslationProject> = new EventEmitter();
+
   private projectName: string; // set via input field
   private selectedFiles: FileList;
+  private createdProject: TranslationProject;
 
-  constructor(private translatorService: TinyTranslatorService, private router: Router) { }
+  constructor(private translatorService: TinyTranslatorService) { }
 
   ngOnInit() {
   }
 
-  public fileSelectionChange(input: HTMLInputElement) {
+  fileSelectionChange(input: HTMLInputElement) {
     this.selectedFiles = input.files;
+    this.translatorService.createProject(this.projectName, this.selectedFiles).subscribe((newProject) => {
+      this.createdProject = newProject;
+    });
   }
 
-  public addProject() {
-    this.translatorService.createProject(this.projectName, this.selectedFiles).map((newProject: TranslationProject) => {
-      this.translatorService.addProject(newProject);
-    }).subscribe();
+  addProject() {
+      this.onAddProject.emit(new TranslationProject(this.projectName, this.createdProject.translationFile));
   }
 
+  selectedFilesFormatted(): string {
+    if (this.selectedFiles) {
+      let result = '';
+      for (let i = 0; i < this.selectedFiles.length; i++) {
+        if (i > 0) {
+          result = result + ', ';
+        }
+        result = result + this.selectedFiles.item(i).name;
+      }
+      return result;
+    } else {
+      return '';
+    }
+  }
+
+  /**
+   * Check, wether all needed is typed in.
+   * Enables the add button.
+   */
+  isInputComplete(): boolean {
+    return this.projectName && this.isFileSelected();
+  }
+
+  isFileSelected(): boolean {
+    return this.selectedFiles && this.selectedFiles.length > 0 && !!this.createdProject;
+  }
 }

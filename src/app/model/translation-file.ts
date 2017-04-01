@@ -42,7 +42,7 @@ export class TranslationFile {
 
   private _translationFile: ITranslationMessagesFile;
 
-  private scrollMode: ScrollMode = ScrollMode.UNTRANSLATED;
+  private _scrollMode: ScrollMode = ScrollMode.UNTRANSLATED;
 
   /**
    * all TransUnits read from file.
@@ -159,8 +159,12 @@ export class TranslationFile {
     return this._error;
   }
 
+  public scrollMode(): ScrollMode {
+    return this._scrollMode;
+  }
+
   public setScrollModeAll() {
-    this.scrollMode = ScrollMode.ALL;
+    this._scrollMode = ScrollMode.ALL;
     let oldCurrent = (this._currentTransUnitIndex >= 0) ? this.currentTransUnit() : null;
     this._scrollableTransUnits = this._allTransUnits;
     if (oldCurrent) {
@@ -169,7 +173,7 @@ export class TranslationFile {
   }
 
   public setScrollModeUntranslated() {
-    this.scrollMode = ScrollMode.UNTRANSLATED;
+    this._scrollMode = ScrollMode.UNTRANSLATED;
     let oldCurrent = (this._currentTransUnitIndex >= 0) ? this.currentTransUnit() : null;
     this._scrollableTransUnits = this._allTransUnits.filter(tu => !tu.isTranslated());
     if (oldCurrent) {
@@ -182,7 +186,7 @@ export class TranslationFile {
    * @return {boolean}
    */
   public isDirty(): boolean {
-    return this.fileContent !== this.editedContent();
+    return this._translationFile && this.fileContent !== this.editedContent();
     // return this._allTransUnits.find(tu => tu.isDirty()) != null;
   }
 

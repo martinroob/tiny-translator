@@ -1,15 +1,17 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {TranslationFile} from '../model/translation-file';
+import {ScrollMode, TranslationFile} from '../model/translation-file';
 import {TranslationUnit} from '../model/translation-unit';
+import {MdRadioChange} from '@angular/material';
 
 @Component({
   selector: 'app-translate-unit-list',
   templateUrl: './translate-unit-list.component.html',
-  styleUrls: ['./translate-unit-list.component.css']
+  styleUrls: ['./translate-unit-list.component.scss']
 })
 export class TranslateUnitListComponent implements OnInit {
 
   private _translationFile: TranslationFile;
+  private _selectedFilter: string = 'all';
 
   constructor() {
     this.translationFile = new TranslationFile();
@@ -24,6 +26,17 @@ export class TranslateUnitListComponent implements OnInit {
       this._translationFile = file;
     } else {
       this._translationFile = new TranslationFile();
+    }
+    this._selectedFilter = this.scrollModeToString(this._translationFile.scrollMode());
+  }
+
+  private scrollModeToString(scrollMode: ScrollMode) {
+    switch (scrollMode) {
+      case ScrollMode.ALL:
+        return 'all';
+      case ScrollMode.UNTRANSLATED:
+        return 'untranslated';
+      default:return '';
     }
   }
 
@@ -40,6 +53,19 @@ export class TranslateUnitListComponent implements OnInit {
 
   public showUntranslated() {
     this.translationFile.setScrollModeUntranslated();
+  }
+
+  filterChanged(changeEvent: MdRadioChange) {
+    switch (changeEvent.value) {
+      case 'all':
+        this.showAll();
+        break;
+      case 'untranslated':
+        this.showUntranslated();
+        break;
+      default:
+        // do nothing
+    }
   }
 
   public selectTransUnit(tu: TranslationUnit) {
