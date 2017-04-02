@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="d04085c5069d49c88f924e788121d4161ffc5bc8" datatype="html">
+        <source/>
+        <target/>
+      </trans-unit>
+      <trans-unit id="f540f05dc71be88e226a3920dbf1140b2658e5ea" datatype="html">
+        <source>Create a new project</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="84972a39ee3484b97abdfe3863284af16564f9b2" datatype="html">
+        <source>Open a new project</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="c660f51d0a809bdffb6939f4c4459858abc2288b" datatype="html">
+        <source>Project name</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="be9c6db96d9e48a21ffe719f820e9c0c9e4aa6c3" datatype="html">
+        <source>Upload a translation file (xlf, xmb)</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="12cd052fa3e0ea8ec8457daaa98d549057c40179" datatype="html">
+        <source>Add project</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="4fd0a9dfdb0cd2e905ea22770ab54449cbeb8585" datatype="html">
+        <source>add as new project and start working</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="92c7024852ec03b5fd29a5e7ecd58ba8b39f5cb3" datatype="html">
+        <source>Translate <x id="START_BOLD_TEXT" ctype="x-b"/>from<x id="CLOSE_BOLD_TEXT" ctype="x-b"/></source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="0f00b1615388646b985be70cbd27f0e94f093976" datatype="html">
+        <source><x id="START_BOLD_TEXT" ctype="x-b"/>to<x id="CLOSE_BOLD_TEXT" ctype="x-b"/></source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="17cb0e566c8ae68d987c74444b0ab259f783ee0c" datatype="html">
+        <source><x id="INTERPOLATION"/> bytes, </source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="12470b9fe142a72111de02bb045de9c841bce64a" datatype="html">
+        <source><x id="INTERPOLATION"/> entries</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="b0a601002055bb07b804db00cda9cc209f54b5a5" datatype="html">
+        <source>There are unpublished changes</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="25c34b740fa0303c3e31e35d944d73ffa7e534dd" datatype="html">
+        <source>save current state to file (download)</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="2b5754331bc53b5fed19b7945e81e7dea1fc8221" datatype="html">
+        <source><x id="INTERPOLATION"/> % translated</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="9d306bade90ca878105dfc2772851c5d0fa5fcf2" datatype="html">
+        <source>No Translation Unit</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="4fed4d6e136107910939242db3d4c0f98e800116" datatype="html">
+        <source>no content</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="09082a94d48b3f14be9ea6d942b34654020157d3" datatype="html">
+        <source>Translation Unit <x id="INTERPOLATION"/></source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="95f5a0d1979da3f0b092ffa96e7307e02cc4baee" datatype="html">
+        <source>State <x id="INTERPOLATION"/></source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="bedc5ed58bd4e79f9abd4880323ad46cf4fcbbcc" datatype="html">
+        <source>Source: </source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="eec715de352a6b114713b30b640d319fa78207a0" datatype="html">
+        <source>Description</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="f2081dbd0b230b2e61d03f870d85af5b54aed1ba" datatype="html">
+        <source>Meaning</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="c4a05f0fcb307b9203be9ad5ebc6e37f726801d1" datatype="html">
+        <source>Your translation to</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="b4922e891f1039e26f004f3a89fd0eb9a97ec6e8" datatype="html">
+        <source>
+        mark as translated
+      </source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="c1ac90520acbce71ffbf35f3b693ae5119944726" datatype="html">
+        <source>press to accept the given translation</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="5b117cf9fb2eb651ee9e22bc57a141005f3212ab" datatype="html">
+        <source>
+      Previous
+    </source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="3e37d6e24a88996f88c1d9b14e210fc29bae3b74" datatype="html">
+        <source>accept translation and go to provious unit</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="c9702419b173fe7ab2aeee4ec1f5857fca1135a1" datatype="html">
+        <source>
+      Next
+    </source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="c7d43f1354429a28b43c8e301dd65d838d9fd31d" datatype="html">
+        <source>accept translation and go to next unit</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="2aba1e87039819aca3b70faa9aa848c12bf139ca" datatype="html">
+        <source>Show</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="7a7631b3b2eb2c15755552f86ceaa17d1a85a55b" datatype="html">
+        <source>All units</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="241c6acffa51499f0c35686c02ead21abae22d76" datatype="html">
+        <source>Untranslated units</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="53f473744534bc153bce1f04cd8c5b32c9ef1650" datatype="html">
+        <source>Translation Units</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="c6b1933d51bc90ad9e1380949873bb09932d448b" datatype="html">
+        <source><x id="START_BOLD_TEXT" ctype="x-b"/>Project <x id="CLOSE_BOLD_TEXT" ctype="x-b"/> <x id="INTERPOLATION"/></source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="d9d8be77cf88cf6bfb0cd5bdfdd3290c58380422" datatype="html">
+        <source>Delete Project</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="a482c047b860aa5b83f81d46390c3357925d8e8a" datatype="html">
+        <source>Start Translation</source>
+        <target/>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

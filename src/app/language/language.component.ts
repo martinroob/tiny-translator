@@ -12,9 +12,9 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class LanguageComponent implements OnInit {
 
-  @Input() private code: string; // the ISO 639-1 code
+  @Input() public code: string; // the ISO 639-1 code
 
-  @Input() private showCode = true; // if false, just show a flag, otherwise flag + code as text
+  @Input() public showCode = true; // if false, just show a flag, otherwise flag + code as text
 
   constructor() { }
 
@@ -25,7 +25,7 @@ export class LanguageComponent implements OnInit {
    * Classes used by flag-icon-css
    * @return {{flag-icon: boolean}}
    */
-  private flagClasses(): any {
+  public flagClasses(): any {
     const countryCode = this.languageCodeToCountryCode(this.code);
     if (!countryCode) {
       return {

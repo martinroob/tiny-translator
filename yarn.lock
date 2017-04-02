@@ -3108,9 +3108,9 @@ negotiator@0.6.1:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/negotiator/-/negotiator-0.6.1.tgz#2b327184e8992101177b28563fb5e7102acd0ca9"
 
-ngx-i18nsupport@^0.2.0:
-  version "0.2.2"
-  resolved "https://registry.yarnpkg.com/ngx-i18nsupport/-/ngx-i18nsupport-0.2.2.tgz#72dff1ba2acc79ab5b29af343e0daa3fe0b1e6a0"
+ngx-i18nsupport@^0.2.3:
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/ngx-i18nsupport/-/ngx-i18nsupport-0.2.3.tgz#8ec6487ce7eb5a0da86b0cb0590d6b66cfa065b9"
   dependencies:
     chalk "^1.1.3"
     cheerio "^0.22.0"

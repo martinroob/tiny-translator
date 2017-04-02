@@ -11,7 +11,7 @@ import {MdRadioChange} from '@angular/material';
 export class TranslateUnitListComponent implements OnInit {
 
   private _translationFile: TranslationFile;
-  private _selectedFilter: string = 'all';
+  public _selectedFilter: string = 'all';
 
   constructor() {
     this.translationFile = new TranslationFile();

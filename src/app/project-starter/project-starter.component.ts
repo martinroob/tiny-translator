@@ -23,7 +23,7 @@ export class ProjectStarterComponent implements OnInit {
 
   @Output() onAddProject: EventEmitter<TranslationProject> = new EventEmitter();
 
-  private projectName: string; // set via input field
+  public projectName: string; // set via input field
   private selectedFiles: FileList;
   private createdProject: TranslationProject;
 

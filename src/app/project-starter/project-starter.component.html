@@ -6,7 +6,7 @@
     </md-input-container>
     <div fxLayout="column">
       <input type="file" id="fileupload" (change)="fileSelectionChange(input)" class="inputfile" #input />
-      <label for="fileupload" i18n><md-icon>open_in_browser</md-icon>&nbsp;<span i18n>Upload a translation file (xlf, xmb)</span></label>
+      <label for="fileupload"><md-icon>open_in_browser</md-icon>&nbsp;<span i18n>Upload a translation file (xlf, xmb)</span></label>
       <div>{{selectedFilesFormatted()}}</div>
     </div>
   </div>
