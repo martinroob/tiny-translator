@@ -2,6 +2,12 @@
 
 @import '../../styles.scss';
 
+div {
+  /* 170px = Height of toolbar plus footer */
+  max-height: calc(100vh - 170px);
+  overflow: auto;
+}
+
 .selected {
   background-color: mat-color($dit-app-accent);
 }

@@ -1,10 +1,15 @@
-<md-radio-group (change)="filterChanged($event)" [(ngModel)]="_selectedFilter">
-  <md-radio-button value="all" i18n>All</md-radio-button>
-  <md-radio-button value="untranslated" i18n>Untranslated</md-radio-button>
-</md-radio-group>
-<md-list>
-  <h3 md-subheader i18n>Translation Units</h3>
-  <md-list-item *ngFor="let tu of transUnits()" (click)="selectTransUnit(tu)">
-    <h4 md-line [ngClass]="{'selected': isSelected(tu)}">{{tu.sourceContent() | abbreviate}}</h4>
-  </md-list-item>
-</md-list>
+<div fxLayout="column">
+  <p i18n>Show</p>
+  <md-radio-group (change)="filterChanged($event)" [(ngModel)]="_selectedFilter">
+    <md-radio-button value="all" i18n>All units</md-radio-button><br>
+    <md-radio-button value="untranslated" i18n>Untranslated units</md-radio-button>
+  </md-radio-group>
+  <md-list>
+    <h3 md-subheader i18n>Translation Units</h3>
+    <md-list-item *ngFor="let tu of transUnits()" (click)="selectTransUnit(tu)">
+      <md-icon md-list-avatar *ngIf="tu.isTranslated()">done</md-icon>
+      <md-icon md-list-avatar *ngIf="!tu.isTranslated()">translate</md-icon>
+      <h4 md-line [ngClass]="{'selected': isSelected(tu)}">{{tu.sourceContent() | abbreviate}}</h4>
+    </md-list-item>
+  </md-list>
+</div>

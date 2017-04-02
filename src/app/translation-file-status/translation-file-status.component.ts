@@ -13,6 +13,7 @@ import {TranslationFile} from '../model/translation-file';
 export class TranslationFileStatusComponent implements OnInit {
 
   @Input() translationFile: TranslationFile;
+  @Input() shortInfo = false;
 
   @Output() onSave: EventEmitter<TranslationFile> = new EventEmitter();
 

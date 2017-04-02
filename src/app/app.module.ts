@@ -28,6 +28,7 @@ import { ProjectComponent } from './project/project.component';
 import { ProjectListComponent } from './project-list/project-list.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { CreateProjectPageComponent } from './create-project-page/create-project-page.component';
+import { ProjectStatusComponent } from './project-status/project-status.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { CreateProjectPageComponent } from './create-project-page/create-project
     AbbreviatePipe,
     ProjectComponent,
     ProjectListComponent,
-    CreateProjectPageComponent
+    CreateProjectPageComponent,
+    ProjectStatusComponent
   ],
   imports: [
     BrowserModule,

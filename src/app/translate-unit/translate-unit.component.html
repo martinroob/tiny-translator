@@ -15,16 +15,31 @@
     <p><span i18n>Source: </span><app-language [code]="sourceLanguage()"></app-language>{{sourceContent()}}</p>
     <p *ngIf="sourceDescription()"><b i18n>Description</b> {{sourceDescription()}}</p>
     <p *ngIf="sourceMeaning()"><b i18n>Meaning</b> {{sourceMeaning()}}</p>
-    <form id="translation">
-      <p i18n>Translation to <app-language [code]="targetLanguage()"></app-language></p>
-      <md-input-container>
-        <textarea mdInput [(ngModel)]="_editedTargetText" name="_editedTargetText"></textarea>
+    <form id="translation" fxLayout="column">
+      <p fxLayout="row"><span i18n>Your translation to</span>&nbsp;<app-language [code]="targetLanguage()"></app-language></p>
+      <md-input-container fxFlexFill>
+        <input mdInput [(ngModel)]="_editedTargetText" name="_editedTargetText">
       </md-input-container>
-      <button md-button (click)="markTranslated()" i18n mdTooltip="press to accept the given translation" i18n-mdTooltip>mark as translated</button>
+      <button *ngIf="!translationUnit.isTranslated()"
+              fxFlexAlign="start"
+              md-button color="primary"
+              (click)="markTranslated()"
+              i18n
+              mdTooltip="press to accept the given translation" i18n-mdTooltip>
+        mark as translated
+      </button>
     </form>
   </md-card-content>
   <md-card-actions>
-    <button md-button i18n (click)="prev()" [disabled]="!hasPrev()">Previous</button>
-    <button md-button i18n (click)="next()" [disabled]="!hasNext()">Next</button>
+    <button md-button i18n (click)="prev()"
+            [disabled]="!hasPrev()"
+            mdTooltip="accept translation and go to provious unit" i18n-mdTooltip>
+      Previous
+    </button>
+    <button md-button i18n (click)="next()"
+            [disabled]="!hasNext()"
+            mdTooltip="accept translation and go to next unit" i18n-mdTooltip>
+      Next
+    </button>
   </md-card-actions>
 </md-card>

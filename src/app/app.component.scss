@@ -23,6 +23,8 @@ md-toolbar .md-toolbar-layout md-toolbar-row {
 #main {
   overflow: auto;
   margin: 8px;
+  /* 170px = Height of toolbar plus footer */
+  max-height: calc(100vh - 170px);
 }
 
 #footer {

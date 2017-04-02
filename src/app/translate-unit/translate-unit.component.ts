@@ -107,6 +107,7 @@ export class TranslateUnitComponent implements OnInit, OnChanges {
 
   markTranslated() {
     this.isMarkedAsTranslated = true;
+    this.commitChanges();
   }
 
   /**
