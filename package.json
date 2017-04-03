@@ -1,7 +1,7 @@
 {
   "name": "tiny-translator",
-  "version": "0.0.0",
-  "license": "MIT",
+  "description": "A tiny web application to translate xliff files",
+  "version": "0.0.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -11,9 +11,28 @@
     "e2e": "ng e2e",
     "extract-i18n": "ng xi18n --output-path src/i18n --locale en && xliffmerge --profile xliffmerge.json en de",
     "start-en": "ng serve --aot --i18n-file=src/i18n/messages.en.xlf --locale=en --i18n-format=xlf",
-    "start-de": "ng serve --aot --i18n-file=src/i18n/messages.de.xlf --locale=en --i18n-format=xlf"
+    "start-de": "ng serve --aot --i18n-file=src/i18n/messages.de.xlf --locale=en --i18n-format=xlf",
+    "build-prod-en": "ng build --prod --aot --i18n-file=src/i18n/messages.en.xlf --locale=en --i18n-format=xlf --base-href=https://martinroob.github.io/tiny-translator/en --output-path=dist/en",
+    "build-prod-de": "ng build --prod --aot --i18n-file=src/i18n/messages.de.xlf --locale=de --i18n-format=xlf --base-href=https://martinroob.github.io/tiny-translator/de --output-path=dist/de",
+    "build-prod": "npm run build-prod-en && npm run build-prod-de",
+    "publish2githubpages": "angular-cli-ghpages"
   },
-  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/martinroob/tiny-translator.git"
+  },
+  "keywords": [
+    "i18n",
+    "tooling",
+    "angular",
+    "xliff"
+  ],
+  "author": "Martin Roob <martinroob65@gmail.com> (www.roobsoft.de)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/martinroob/tiny-translator/issues"
+  },
+  "homepage": "https://github.com/martinroob/tiny-translator#readme",
   "dependencies": {
     "@angular/animations": "^4.0.1",
     "@angular/common": ">=4.0.0-beta <5.0.0",
