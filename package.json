@@ -14,8 +14,8 @@
     "start-de": "ng serve --aot --i18n-file=src/i18n/messages.de.xlf --locale=en --i18n-format=xlf",
     "build-prod-en": "ng build --prod --aot --i18n-file=src/i18n/messages.en.xlf --locale=en --i18n-format=xlf --base-href=https://martinroob.github.io/tiny-translator/en --output-path=dist/en",
     "build-prod-de": "ng build --prod --aot --i18n-file=src/i18n/messages.de.xlf --locale=de --i18n-format=xlf --base-href=https://martinroob.github.io/tiny-translator/de --output-path=dist/de",
-    "build-prod": "npm run build-prod-en && npm run build-prod-de",
-    "publish2githubpages": "angular-cli-ghpages"
+    "build-prod": "npm run build-prod-en && npm run build-prod-de && cpx ./src/index.githubpages.html ./dist/index.html",
+    "publish2githubpages": "angular-cli-ghpages --no-silent"
   },
   "repository": {
     "type": "git",
@@ -70,6 +70,7 @@
     "protractor": "~5.1.0",
     "ts-node": "~2.0.0",
     "tslint": "~4.5.0",
-    "typescript": "^2.2.1"
+    "typescript": "^2.2.1",
+    "cpx": "^1.5.0"
   }
 }
