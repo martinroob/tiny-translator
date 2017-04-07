@@ -4,7 +4,6 @@
     <span i18n>Translate <b>from</b></span>&nbsp;<app-language [code]="translationFile?.sourceLanguage()"></app-language>
     &nbsp;<span i18n><b>to</b></span>&nbsp;<app-language [code]="translationFile?.targetLanguage()"></app-language>
   </div>
-  <p></p>
   <div fxLayout="row" fxLayoutAlign="start center">
     <span>{{translationFile?.name}}, </span>
     <span i18n>{{translationFile?.size}} bytes, </span>
@@ -12,8 +11,7 @@
     <md-icon *ngIf="translationFile?.isDirty()" mdTooltip="There are unpublished changes" i18n-mdTooltip>warning</md-icon>
     <button md-icon-button color="primary" (click)="save()" mdTooltip="save current state to file (download)" i18n-mdTooltip><md-icon>save</md-icon></button>
   </div>
-  <p></p>
-  <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
+  <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
     <md-progress-bar mode="determinate" [value]="translationFile?.percentageTranslated()" color="accent"></md-progress-bar>
     <span i18n>{{percentageTranslated()}} % translated</span>
   </div>

@@ -9,6 +9,6 @@
   </md-card-content>
   <md-card-actions *ngIf="showActions">
     <button md-icon-button *ngIf="!project?.translationFile?.isDirty()" (click)="deleteProject()"  mdTooltip="Delete Project" i18n-mdTooltip><md-icon>delete</md-icon></button>
-    <button md-fab *ngIf="project.canTranslate()" (click)="startWork()" mdTooltip="Start Translation" i18n-mdTooltip><md-icon>translate</md-icon></button>
+    <button md-fab *ngIf="project?.canTranslate()" (click)="startWork()" mdTooltip="Start Translation" i18n-mdTooltip><md-icon>translate</md-icon></button>
   </md-card-actions>
 </md-card>

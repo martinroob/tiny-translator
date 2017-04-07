@@ -1,23 +1,40 @@
-<p i18n>Open a new project</p>
-<form fxLayout="column">
-  <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="end center">
-    <md-input-container>
-      <input placeholder="Project name" i18n-placeholder mdInput [(ngModel)]="projectName" name="projectName"/>
-    </md-input-container>
-    <div fxLayout="column">
-      <input type="file" id="fileupload" (change)="fileSelectionChange(input)" class="inputfile" #input />
-      <label for="fileupload"><md-icon>open_in_browser</md-icon>&nbsp;<span i18n>Upload a translation file (xlf, xmb)</span></label>
-      <div>{{selectedFilesFormatted()}}</div>
+<div fxLayout="column" style="min-width: 100vw;">
+  <h1 i18n>Open a new project</h1>
+  <form fxLayout="column">
+    <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="start center">
+      <md-input-container fxFlex="50%">
+        <input placeholder="Project name" i18n-placeholder mdInput [(ngModel)]="projectName" name="projectName"/>
+      </md-input-container>
+      <div fxLayout="column" fxFlexAlign="end" fxFlex="50%">
+        <input type="file" id="fileupload" (change)="fileSelectionChange(input)" class="inputfile" #input/>
+        <label for="fileupload">
+          <md-icon>open_in_browser</md-icon>&nbsp;<span i18n>Upload a translation file (xlf, xmb)</span></label>
+        <div><span i18n>selected: </span>{{selectedFilesFormatted()}}</div>
+      </div>
     </div>
-  </div>
-  <app-translation-file-status *ngIf="isFileSelected()" [translationFile]="createdProject?.translationFile"></app-translation-file-status>
-  <p></p>
-  <button fxFlexAlign="end"
-          md-raised-button
-          color="primary"
-          (click)="addProject()"
-          md-tooltip="add as new project and start working" i18n-md-tooltip
-          [disabled]="!isInputComplete()">
-    <md-icon>add</md-icon>&nbsp;<span i18n>Add project</span>
-  </button>
-</form>
+    <div *ngIf="isMasterXmbFileNeeded()" fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="start center">
+      <p fxFlex="50%" i18n>You selected an xmb file.<br>
+        This file type only contains one language, the target language.<br>
+        To show you the original source texts, you should also select the master xml file.</p>
+      <div fxFlex="50%" fxLayout="column">
+        <input type="file" id="masterfileupload" (change)="masterXmlFileSelectionChange(masterinput)" class="inputfile"
+               #masterinput/>
+        <label for="masterfileupload">
+          <md-icon>open_in_browser</md-icon>&nbsp;<span i18n>Upload master xmb file</span></label>
+        <div><span i18n>selected: </span>{{selectedMasterFilesFormatted()}}</div>
+      </div>
+    </div>
+    <p><b i18n>Selected translation file:</b></p>
+    <app-translation-file-status *ngIf="isFileSelected()"
+                                 [translationFile]="createdProject?.translationFile"></app-translation-file-status>
+    <p></p>
+    <button fxFlexAlign="center"
+            md-raised-button
+            color="primary"
+            (click)="addProject()"
+            md-tooltip="add as new project and start working" i18n-md-tooltip
+            [disabled]="!isInputComplete()">
+      <md-icon>add</md-icon>&nbsp;<span i18n>Add project</span>
+    </button>
+  </form>
+</div>

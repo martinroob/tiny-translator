@@ -29,6 +29,7 @@ import { ProjectListComponent } from './project-list/project-list.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { CreateProjectPageComponent } from './create-project-page/create-project-page.component';
 import { ProjectStatusComponent } from './project-status/project-status.component';
+import {AsynchronousFileReaderService} from './model/asynchronous-file-reader.service';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { ProjectStatusComponent } from './project-status/project-status.componen
     {provide: APP_CONFIG, useValue: APP_CONFIG_VALUE},
     appRoutingProviders,
     TinyTranslatorService,
+    AsynchronousFileReaderService,
     DownloaderService,
     ActiveProjectGuard,
     {provide: BackendServiceAPI, useClass: BackendLocalStorageService}

@@ -3,6 +3,7 @@ import {TranslationMessagesFileFactory} from 'ngx-i18nsupport/dist';
 import {isNullOrUndefined} from 'util';
 import {TranslationUnit} from './translation-unit';
 import {Observable, Subject} from 'rxjs';
+import {AsynchronousFileReaderResult, AsynchronousFileReaderService} from './asynchronous-file-reader.service';
 
 /**
  * A single xlf or xmb file ready for work.
@@ -59,36 +60,39 @@ export class TranslationFile {
    */
   private _currentTransUnitIndex: number = -1;
 
-  constructor() {
-    this._allTransUnits = [];
-  }
-
-  static fromUploadedFile(uploadedFile: File): Observable<TranslationFile> {
-    let newInstance = new TranslationFile();
-    let subject = new Subject<TranslationFile>();
-    if (uploadedFile) {
-      newInstance._name = uploadedFile.name;
-      newInstance._size = uploadedFile.size;
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        const fileContent = reader.result;
+  static fromUploadedFile(readingUploadedFile: Observable<AsynchronousFileReaderResult>, readingMasterXmbFile?: Observable<AsynchronousFileReaderResult>): Observable<TranslationFile> {
+    return Observable.combineLatest(readingUploadedFile, readingMasterXmbFile)
+      .map((contentArray) => {
+      const fileContent: AsynchronousFileReaderResult = contentArray[0];
+      const newInstance = new TranslationFile();
+      newInstance._name = fileContent.name;
+      newInstance._size = fileContent.size;
+      if (fileContent.content) {
+        const masterXmbContent: AsynchronousFileReaderResult = contentArray[1];
         try {
-          newInstance.fileContent = fileContent;
-          newInstance._translationFile = TranslationMessagesFileFactory.fromFileContent(newInstance.guessFormat(uploadedFile.name), fileContent, uploadedFile.name, null);
+          newInstance.fileContent = fileContent.content;
+          let optionalMaster: any = null;
+          if (masterXmbContent && masterXmbContent.content) {
+            optionalMaster = {
+              path: masterXmbContent.name,
+              xmlContent: masterXmbContent.content,
+              encoding: null
+            };
+          }
+          console.log('creating translation file', fileContent.content.length, fileContent.name, optionalMaster);
+          newInstance._translationFile = TranslationMessagesFileFactory.fromUnknownFormatFileContent(fileContent.content, fileContent.name, null, optionalMaster);
           newInstance.readTransUnits();
-        } catch(err) {
+        } catch (err) {
           newInstance._error = err.toString();
         }
         newInstance.setScrollModeUntranslated();
-        subject.next(newInstance);
-        subject.complete();
-      };
-      reader.readAsText(uploadedFile);
-    } else {
-      subject.next(newInstance);
-      subject.complete();
-    }
-    return subject;
+      }
+      return newInstance;
+    });
+  }
+
+  constructor() {
+    this._allTransUnits = [];
   }
 
   private guessFormat(filename: string): string {
@@ -128,6 +132,15 @@ export class TranslationFile {
     return this._allTransUnits.filter(tu => !tu.isTranslated()).length;
   }
 
+  /**
+   * Type of file.
+   * Currently 'XLIFF 1.2' or 'XMB'
+   * @return {null}
+   */
+  public fileType(): string {
+    return this._translationFile ? this._translationFile.fileType() : null;
+  }
+
   public sourceLanguage(): string {
     return this._translationFile ? this._translationFile.sourceLanguage() : '';
   }
@@ -165,19 +178,19 @@ export class TranslationFile {
 
   public setScrollModeAll() {
     this._scrollMode = ScrollMode.ALL;
-    let oldCurrent = (this._currentTransUnitIndex >= 0) ? this.currentTransUnit() : null;
+    const oldCurrent = (this._currentTransUnitIndex >= 0) ? this.currentTransUnit() : null;
     this._scrollableTransUnits = this._allTransUnits;
     if (oldCurrent) {
-      this._currentTransUnitIndex = this._scrollableTransUnits.findIndex(tu => tu == oldCurrent);
+      this._currentTransUnitIndex = this._scrollableTransUnits.findIndex(tu => tu === oldCurrent);
     }
   }
 
   public setScrollModeUntranslated() {
     this._scrollMode = ScrollMode.UNTRANSLATED;
-    let oldCurrent = (this._currentTransUnitIndex >= 0) ? this.currentTransUnit() : null;
+    const oldCurrent = (this._currentTransUnitIndex >= 0) ? this.currentTransUnit() : null;
     this._scrollableTransUnits = this._allTransUnits.filter(tu => !tu.isTranslated());
     if (oldCurrent) {
-      this._currentTransUnitIndex = this._scrollableTransUnits.findIndex(tu => tu == oldCurrent);
+      this._currentTransUnitIndex = this._scrollableTransUnits.findIndex(tu => tu === oldCurrent);
     }
   }
 
@@ -225,7 +238,7 @@ export class TranslationFile {
   }
 
   public selectTransUnit(selectedTransUnit: TranslationUnit) {
-    let index = this._scrollableTransUnits.findIndex(tu => tu === selectedTransUnit);
+    const index = this._scrollableTransUnits.findIndex(tu => tu === selectedTransUnit);
     if (index >= 0) {
       this._currentTransUnitIndex = index;
     }
@@ -293,20 +306,20 @@ export class TranslationFile {
    * @return {TranslationFile}
    */
   static deserialize(serializationString: string): TranslationFile {
-    let deserializedObject: ISerializedTranslationFile = <ISerializedTranslationFile> JSON.parse(serializationString);
-    let file = TranslationFile.fromDeserializedObject(deserializedObject);
+    const deserializedObject: ISerializedTranslationFile = <ISerializedTranslationFile> JSON.parse(serializationString);
+    const file = TranslationFile.fromDeserializedObject(deserializedObject);
     return file;
   }
 
   static fromDeserializedObject(deserializedObject: ISerializedTranslationFile): TranslationFile {
-    let newInstance = new TranslationFile();
+    const newInstance = new TranslationFile();
     newInstance._name = deserializedObject.name;
     newInstance._size = deserializedObject.size;
     newInstance.fileContent = deserializedObject.fileContent;
     try {
       newInstance._translationFile = TranslationMessagesFileFactory.fromFileContent(newInstance.guessFormat(name), deserializedObject.editedContent, deserializedObject.name, null);
       newInstance.readTransUnits();
-    } catch(err) {
+    } catch (err) {
       newInstance._error = err.toString();
     }
     newInstance.setScrollModeUntranslated();

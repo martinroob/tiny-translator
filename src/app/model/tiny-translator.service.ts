@@ -1,11 +1,12 @@
 import {Inject, Injectable} from '@angular/core';
-import {ITranslationMessagesFile } from 'ngx-i18nsupport/dist';
+import {ITranslationMessagesFile} from 'ngx-i18nsupport/dist';
 import {TranslationFile} from './translation-file';
 import {isNullOrUndefined} from 'util';
 import {BackendServiceAPI} from './backend-service-api';
 import {TranslationProject} from './translation-project';
 import {Observable} from 'rxjs';
 import {DownloaderService} from './downloader.service';
+import {AsynchronousFileReaderService} from './asynchronous-file-reader.service';
 
 @Injectable()
 export class TinyTranslatorService {
@@ -20,7 +21,7 @@ export class TinyTranslatorService {
    */
   private _currentProject: TranslationProject;
 
-  constructor(private backendService: BackendServiceAPI, private downloaderService: DownloaderService) {
+  constructor(private backendService: BackendServiceAPI, private fileReaderService: AsynchronousFileReaderService, private downloaderService: DownloaderService) {
     this._projects = this.backendService.projects();
   }
 
@@ -41,15 +42,17 @@ export class TinyTranslatorService {
    * Create a new project.
    * (you must add it with addProject to use it).
    * @param projectName
-   * @param files selected xlf file to translate
-   * (normally one, in case of xmb it can be 2, file to translate and master
+   * @param file selected xlf or xmb file to translate
+   * @param masterXmbFile in case of xmb the master file
    * @return {TranslationProject}
    */
-  public createProject(projectName: string, files: FileList): Observable<TranslationProject> {
-    return TranslationFile.fromUploadedFile(files.item(0)).map((file: TranslationFile) => {
-      console.log('Project file created');
-      return new TranslationProject(projectName, file); // TODO handle xmb 2 files
-    });
+  public createProject(projectName: string, file: File, masterXmbFile?: File): Observable<TranslationProject> {
+    const uploadingFile = this.fileReaderService.readFile(file);
+    const readingMaster = this.fileReaderService.readFile(masterXmbFile);
+    return TranslationFile.fromUploadedFile(uploadingFile, readingMaster)
+      .map((translationfile: TranslationFile) => {
+        return new TranslationProject(projectName, translationfile);
+      });
   }
 
   /**
@@ -100,7 +103,7 @@ export class TinyTranslatorService {
 
   public deleteProject(project: TranslationProject) {
     this.backendService.delete(project);
-    let index = this._projects.findIndex(p => p === project);
+    const index = this._projects.findIndex(p => p === project);
     if (index >= 0) {
       this._projects = this._projects.slice(0, index).concat(this._projects.slice(index + 1));
     }
