@@ -3150,6 +3150,12 @@ negotiator@0.6.1:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/negotiator/-/negotiator-0.6.1.tgz#2b327184e8992101177b28563fb5e7102acd0ca9"
 
+ngx-i18nsupport-lib@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/ngx-i18nsupport-lib/-/ngx-i18nsupport-lib-0.0.3.tgz#22c022fdf67300f51ea1c5228d7b2bd2c8fe404b"
+  dependencies:
+    cheerio "^0.22.0"
+
 ngx-i18nsupport@^0.2.3:
   version "0.2.3"
   resolved "https://registry.yarnpkg.com/ngx-i18nsupport/-/ngx-i18nsupport-0.2.3.tgz#8ec6487ce7eb5a0da86b0cb0590d6b66cfa065b9"

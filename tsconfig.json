@@ -18,9 +18,7 @@
     ],
     "baseUrl": "",
     "paths": {
-      "@app/*": ["src/app/*"],
-      "@ngx-i18nsupport": ["../ngx-i18nsupport/src/"],
-      "@ngx-i18nsupport/*": ["../ngx-i18nsupport/src/*"]
+      "@app/*": ["src/app/*"]
     }
   }
 }

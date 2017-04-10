@@ -1,4 +1,4 @@
-import {ITransUnit} from 'ngx-i18nsupport/dist';
+import {ITransUnit} from 'ngx-i18nsupport-lib';
 import {TranslationFile} from './translation-file';
 
 /**

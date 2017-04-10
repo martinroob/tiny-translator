@@ -1,5 +1,4 @@
-import {ITranslationMessagesFile, ITransUnit} from 'ngx-i18nsupport/dist';
-import {TranslationMessagesFileFactory} from 'ngx-i18nsupport/dist';
+import {TranslationMessagesFileFactory, ITranslationMessagesFile, ITransUnit} from 'ngx-i18nsupport-lib';
 import {isNullOrUndefined} from 'util';
 import {TranslationUnit} from './translation-unit';
 import {Observable, Subject} from 'rxjs';

@@ -22,6 +22,24 @@
         <source>Upload a translation file (xlf, xmb)</source>
         <target/>
       </trans-unit>
+      <trans-unit id="3f32c24015d7838361235a7f1fb7c9eb93b01d30" datatype="html">
+        <source>selected: </source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="4723dd12ae7521286dea1d966e681544ba9dc62e" datatype="html">
+        <source>You selected an xmb file.<x id="LINE_BREAK" ctype="lb"/>
+        This file type only contains one language, the target language.<x id="LINE_BREAK" ctype="lb"/>
+        To show you the original source texts, you should also select the master xml file.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="40d683bc93efb370ba71ad3cd7897e2c2b36b94a" datatype="html">
+        <source>Upload master xmb file</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="599fdab6eaf0912dc7aa50e65a2749c763d9c162" datatype="html">
+        <source>Selected translation file:</source>
+        <target/>
+      </trans-unit>
       <trans-unit id="12cd052fa3e0ea8ec8457daaa98d549057c40179" datatype="html">
         <source>Add project</source>
         <target/>

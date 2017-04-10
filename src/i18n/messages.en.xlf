@@ -154,6 +154,22 @@
         <source>Start Translation</source>
         <target state="final">Start Translation</target>
       </trans-unit>
-    </body>
+    <trans-unit id="3f32c24015d7838361235a7f1fb7c9eb93b01d30" datatype="html">
+        <source>selected: </source>
+        <target state="final">selected: </target>
+      </trans-unit><trans-unit id="4723dd12ae7521286dea1d966e681544ba9dc62e" datatype="html">
+        <source>You selected an xmb file.<x id="LINE_BREAK" ctype="lb"/>
+        This file type only contains one language, the target language.<x id="LINE_BREAK" ctype="lb"/>
+        To show you the original source texts, you should also select the master xml file.</source>
+        <target state="final">You selected an xmb file.<x id="LINE_BREAK" ctype="lb"/>
+        This file type only contains one language, the target language.<x id="LINE_BREAK" ctype="lb"/>
+        To show you the original source texts, you should also select the master xml file.</target>
+      </trans-unit><trans-unit id="40d683bc93efb370ba71ad3cd7897e2c2b36b94a" datatype="html">
+        <source>Upload master xmb file</source>
+        <target state="final">Upload master xmb file</target>
+      </trans-unit><trans-unit id="599fdab6eaf0912dc7aa50e65a2749c763d9c162" datatype="html">
+        <source>Selected translation file:</source>
+        <target state="final">Selected translation file:</target>
+      </trans-unit></body>
   </file>
 </xliff>

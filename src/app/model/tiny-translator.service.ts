@@ -1,5 +1,4 @@
 import {Inject, Injectable} from '@angular/core';
-import {ITranslationMessagesFile} from 'ngx-i18nsupport/dist';
 import {TranslationFile} from './translation-file';
 import {isNullOrUndefined} from 'util';
 import {BackendServiceAPI} from './backend-service-api';
