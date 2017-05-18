@@ -12,7 +12,7 @@
     <md-card-subtitle><span i18n>State {{targetState()}}</span></md-card-subtitle>
   </md-card-header>
   <md-card-content>
-    <p><span i18n>Source: </span><app-language [code]="sourceLanguage()"></app-language>{{sourceContent()}}</p>
+    <p><span i18n>Source:<md-icon *ngIf="sourceRef()" mdTooltip="{{sourceRef()}}">errror_outline</md-icon></span><app-language [code]="sourceLanguage()"></app-language>{{sourceContent()}}</p>
     <p *ngIf="sourceDescription()"><b i18n>Description</b> {{sourceDescription()}}</p>
     <p *ngIf="sourceMeaning()"><b i18n>Meaning</b> {{sourceMeaning()}}</p>
     <form id="translation" fxLayout="column">

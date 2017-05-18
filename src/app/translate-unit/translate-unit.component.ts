@@ -91,6 +91,17 @@ export class TranslateUnitComponent implements OnInit, OnChanges {
     }
   }
 
+  public sourceRef(): string {
+    if (this.translationUnit) {
+      const refs = this.translationUnit.sourceReferences();
+      if (refs.length > 0) {
+        return refs[0].sourcefile + ':' + refs[0].linenumber;
+      }
+    } else {
+      return null;
+    }
+  }
+
   public commitChanges() {
     if (this.translationUnit) {
       if (this.isTranslationChanged() || this.isMarkedAsTranslated) {

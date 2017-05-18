@@ -59,6 +59,14 @@ export class TranslationUnit {
     }
   }
 
+  public sourceReferences(): {sourcefile: string, linenumber: number}[] {
+    if (this._transUnit) {
+      return this._transUnit.sourceReferences();
+    } else {
+      return null;
+    }
+  }
+
   public targetState(): string {
     if (this._transUnit) {
       return this._transUnit.targetState();
