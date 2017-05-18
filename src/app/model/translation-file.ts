@@ -59,35 +59,64 @@ export class TranslationFile {
    */
   private _currentTransUnitIndex: number = -1;
 
-  static fromUploadedFile(readingUploadedFile: Observable<AsynchronousFileReaderResult>, readingMasterXmbFile?: Observable<AsynchronousFileReaderResult>): Observable<TranslationFile> {
+  static fromUploadedFile(readingUploadedFile: Observable<AsynchronousFileReaderResult>,
+          readingMasterXmbFile?: Observable<AsynchronousFileReaderResult>): Observable<TranslationFile> {
     return Observable.combineLatest(readingUploadedFile, readingMasterXmbFile)
       .map((contentArray) => {
-      const fileContent: AsynchronousFileReaderResult = contentArray[0];
-      const newInstance = new TranslationFile();
-      newInstance._name = fileContent.name;
-      newInstance._size = fileContent.size;
-      if (fileContent.content) {
-        const masterXmbContent: AsynchronousFileReaderResult = contentArray[1];
-        try {
-          newInstance.fileContent = fileContent.content;
-          let optionalMaster: any = null;
-          if (masterXmbContent && masterXmbContent.content) {
-            optionalMaster = {
-              path: masterXmbContent.name,
-              xmlContent: masterXmbContent.content,
-              encoding: null
-            };
+        const fileContent: AsynchronousFileReaderResult = contentArray[0];
+        const newInstance = new TranslationFile();
+        newInstance._name = fileContent.name;
+        newInstance._size = fileContent.size;
+        if (fileContent.content) {
+          const masterXmbContent: AsynchronousFileReaderResult = contentArray[1];
+          try {
+            newInstance.fileContent = fileContent.content;
+            let optionalMaster: any = null;
+            if (masterXmbContent && masterXmbContent.content) {
+              optionalMaster = {
+                path: masterXmbContent.name,
+                xmlContent: masterXmbContent.content,
+                encoding: null
+              };
+            }
+            console.log('creating translation file', fileContent.content.length, fileContent.name, optionalMaster);
+            newInstance._translationFile =
+              TranslationMessagesFileFactory.fromUnknownFormatFileContent(
+                fileContent.content, fileContent.name, null, optionalMaster);
+            newInstance.readTransUnits();
+          } catch (err) {
+            newInstance._error = err.toString();
           }
-          console.log('creating translation file', fileContent.content.length, fileContent.name, optionalMaster);
-          newInstance._translationFile = TranslationMessagesFileFactory.fromUnknownFormatFileContent(fileContent.content, fileContent.name, null, optionalMaster);
-          newInstance.readTransUnits();
-        } catch (err) {
-          newInstance._error = err.toString();
+          newInstance.setScrollModeUntranslated();
         }
-        newInstance.setScrollModeUntranslated();
-      }
-      return newInstance;
-    });
+        return newInstance;
+      });
+  }
+
+  /**
+   * Create a translation file from the serialization.
+   * @param serializationString
+   * @return {TranslationFile}
+   */
+  static deserialize(serializationString: string): TranslationFile {
+    const deserializedObject: ISerializedTranslationFile = <ISerializedTranslationFile> JSON.parse(serializationString);
+    const file = TranslationFile.fromDeserializedObject(deserializedObject);
+    return file;
+  }
+
+  static fromDeserializedObject(deserializedObject: ISerializedTranslationFile): TranslationFile {
+    const newInstance = new TranslationFile();
+    newInstance._name = deserializedObject.name;
+    newInstance._size = deserializedObject.size;
+    newInstance.fileContent = deserializedObject.fileContent;
+    try {
+      newInstance._translationFile = TranslationMessagesFileFactory.fromUnknownFormatFileContent(deserializedObject.editedContent, deserializedObject.name, null);
+      newInstance.readTransUnits();
+    } catch (err) {
+      newInstance._error = err.toString();
+    }
+    newInstance.setScrollModeUntranslated();
+    return newInstance;
   }
 
   constructor() {
@@ -297,32 +326,6 @@ export class TranslationFile {
       editedContent: this.editedContent()
     };
     return JSON.stringify(serializedObject);
-  }
-
-  /**
-   * Create a translation file from the serialization.
-   * @param serializationString
-   * @return {TranslationFile}
-   */
-  static deserialize(serializationString: string): TranslationFile {
-    const deserializedObject: ISerializedTranslationFile = <ISerializedTranslationFile> JSON.parse(serializationString);
-    const file = TranslationFile.fromDeserializedObject(deserializedObject);
-    return file;
-  }
-
-  static fromDeserializedObject(deserializedObject: ISerializedTranslationFile): TranslationFile {
-    const newInstance = new TranslationFile();
-    newInstance._name = deserializedObject.name;
-    newInstance._size = deserializedObject.size;
-    newInstance.fileContent = deserializedObject.fileContent;
-    try {
-      newInstance._translationFile = TranslationMessagesFileFactory.fromFileContent(newInstance.guessFormat(name), deserializedObject.editedContent, deserializedObject.name, null);
-      newInstance.readTransUnits();
-    } catch (err) {
-      newInstance._error = err.toString();
-    }
-    newInstance.setScrollModeUntranslated();
-    return newInstance;
   }
 
 }
