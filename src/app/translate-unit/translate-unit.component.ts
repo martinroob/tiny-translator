@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange, SimpleChanges} from '@angular/core';
 import {TranslationUnit} from '../model/translation-unit';
+import {MdSnackBar} from '@angular/material';
 
 /**
  * Component to input a new translation.
@@ -19,7 +20,7 @@ export class TranslateUnitComponent implements OnInit, OnChanges {
   private _editedTargetText: string;
   private isMarkedAsTranslated = false;
 
-  constructor() { }
+  constructor(private _snackbar: MdSnackBar) { }
 
   ngOnInit() {
   }
@@ -100,6 +101,14 @@ export class TranslateUnitComponent implements OnInit, OnChanges {
     } else {
       return null;
     }
+  }
+
+  /**
+   * Open a snackbar to show source ref
+   */
+  public showSourceRefInfo() {
+    const sourceRefMessage = 'Original message position: ' + this.sourceRef(); // TODO i18n it
+    this._snackbar.open(sourceRefMessage, 'OK', {duration: 5000}); // TODO i18n it
   }
 
   public commitChanges() {
