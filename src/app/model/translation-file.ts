@@ -79,7 +79,6 @@ export class TranslationFile {
                 encoding: null
               };
             }
-            console.log('creating translation file', fileContent.content.length, fileContent.name, optionalMaster);
             newInstance._translationFile =
               TranslationMessagesFileFactory.fromUnknownFormatFileContent(
                 fileContent.content, fileContent.name, null, optionalMaster);

@@ -12,22 +12,32 @@
     <md-card-subtitle><span i18n>State {{targetState()}}</span></md-card-subtitle>
   </md-card-header>
   <md-card-content>
-    <p><span i18n>Source:<button md-icon-button *ngIf="sourceRef()" (click)="showSourceRefInfo()" mdTooltip="{{sourceRef()}}"><md-icon>info</md-icon></button></span><app-language [code]="sourceLanguage()"></app-language>{{sourceContent()}}</p>
+    <p>
+      <span i18n>Source:<button md-icon-button *ngIf="sourceRef()" (click)="showSourceRefInfo()" mdTooltip="{{sourceRef()}}"><md-icon>info</md-icon></button></span>
+      <app-language [code]="sourceLanguage()"></app-language>
+      <app-normalized-message-input [readonly]="true" [normalized]="showNormalized" [message]="sourceContentNormalized()"></app-normalized-message-input>
+    </p>
     <p *ngIf="sourceDescription()"><b i18n>Description</b> {{sourceDescription()}}</p>
     <p *ngIf="sourceMeaning()"><b i18n>Meaning</b> {{sourceMeaning()}}</p>
-    <form id="translation" fxLayout="column">
+    <form id="translation" fxLayout="column" [formGroup]="form">
       <p fxLayout="row"><span i18n>Your translation to</span>&nbsp;<app-language [code]="targetLanguage()"></app-language></p>
-      <md-input-container fxFlexFill>
-        <input mdInput [(ngModel)]="_editedTargetText" name="_editedTargetText">
-      </md-input-container>
-      <button *ngIf="!translationUnit.isTranslated()"
-              fxFlexAlign="start"
-              md-button color="primary"
-              (click)="markTranslated()"
-              i18n
-              mdTooltip="press to accept the given translation" i18n-mdTooltip>
-        mark as translated
-      </button>
+      <app-normalized-message-input fxFlexFill [readonly]="false" [normalized]="showNormalized" [message]="targetContentNormalized()" formControlName="_editedTargetMessage"></app-normalized-message-input>
+      <p *ngFor="let w of warnings()" class="warning"><md-icon>warning</md-icon>&nbsp;{{w}}</p>
+      <p *ngFor="let e of errors()" class="error"><md-icon>error</md-icon>&nbsp;{{e}}</p>
+      <div fxLayout="row">
+        <button *ngIf="!translationUnit.isTranslated()"
+                fxFlexAlign="start"
+                md-button color="primary"
+                (click)="markTranslated()"
+                i18n
+                mdTooltip="press to accept the given translation" i18n-mdTooltip>
+          mark as translated
+        </button>
+        <button md-button color="accent" (click)="toggleNormalized()">
+          <ng-container *ngIf="showNormalized" i18n>show original markup</ng-container>
+          <ng-container *ngIf="!showNormalized" i18n>show normalize</ng-container>
+        </button>
+      </div>
     </form>
   </md-card-content>
   <md-card-actions>

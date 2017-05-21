@@ -3162,9 +3162,9 @@ ngx-i18nsupport-lib@^0.1.3:
     "@types/xmldom" "^0.1.29"
     xmldom "^0.1.27"
 
-ngx-i18nsupport-lib@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/ngx-i18nsupport-lib/-/ngx-i18nsupport-lib-1.0.0.tgz#8c07dbaceaf4b5e29c5c8804d7ebac56c7dd749e"
+ngx-i18nsupport-lib@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/ngx-i18nsupport-lib/-/ngx-i18nsupport-lib-1.1.1.tgz#95b980895b0ab44c2874de4313068f84e74f5081"
   dependencies:
     "@types/xmldom" "^0.1.29"
     tokenizr "^1.1.4"

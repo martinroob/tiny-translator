@@ -13,3 +13,11 @@ md-input-container {
 #translation {
   border: 2px solid;
 }
+
+.error {
+   color: red;
+ }
+
+.warning {
+  color: orange;
+}

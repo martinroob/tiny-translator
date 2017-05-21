@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import {APP_CONFIG, APP_CONFIG_VALUE} from './app.config';
@@ -30,6 +30,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { CreateProjectPageComponent } from './create-project-page/create-project-page.component';
 import { ProjectStatusComponent } from './project-status/project-status.component';
 import {AsynchronousFileReaderService} from './model/asynchronous-file-reader.service';
+import { NormalizedMessageInputComponent } from './normalized-message-input/normalized-message-input.component';
+import { TranslateUnitWarningConfirmDialogComponent } from './translate-unit-warning-confirm-dialog/translate-unit-warning-confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -45,12 +47,15 @@ import {AsynchronousFileReaderService} from './model/asynchronous-file-reader.se
     ProjectComponent,
     ProjectListComponent,
     CreateProjectPageComponent,
-    ProjectStatusComponent
+    ProjectStatusComponent,
+    NormalizedMessageInputComponent,
+    TranslateUnitWarningConfirmDialogComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     routing,
     MaterialModule,
@@ -65,6 +70,7 @@ import {AsynchronousFileReaderService} from './model/asynchronous-file-reader.se
     ActiveProjectGuard,
     {provide: BackendServiceAPI, useClass: BackendLocalStorageService}
   ],
+  entryComponents: [TranslateUnitWarningConfirmDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
