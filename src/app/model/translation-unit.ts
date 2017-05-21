@@ -128,6 +128,8 @@ export class TranslationUnit {
     if (this._transUnit) {
       this._transUnit.translate(newTranslation.nativeString());
       this._isDirty = true;
+      this._normalizedSourceContent = null;
+      this._normalizedTargetContent = null;
     }
   }
 }

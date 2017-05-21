@@ -190,7 +190,7 @@ export class TranslateUnitComponent implements OnInit, OnChanges {
       switch (result) {
         case 'cancel':
           break;
-        case 'undo':
+        case 'discard':
           break;
         case 'accept':
           this.isMarkedAsTranslated = true;
@@ -205,14 +205,14 @@ export class TranslateUnitComponent implements OnInit, OnChanges {
    * If there are errors or warnings, open a dialog to conform what to do.
    * There are 3 possible results:
    * 'cancel': do not do anything, stay on this trans unit.
-   * 'undo': do not translate, leave transunit unchanged, but go to the next/prev unit.
+   * 'discard': do not translate, leave transunit unchanged, but go to the next/prev unit.
    * 'accept': translate tu as given, ignoring warnings (errors cannot be ignored).
    * @return {any}
    */
   openConfirmWarningsDialog(): Observable<any> {
     let warnings = this.warnings();
     let errors = this.errors();
-    if (isNullOrUndefined(warnings) && isNullOrUndefined(errors)) {
+    if (warnings.length === 0 && errors.length === 0) {
       // everything good, we don´t need a dialog then.
       return Observable.of('accept');
     } else if (!this.isTranslationChanged()) {
@@ -237,16 +237,16 @@ export class TranslateUnitComponent implements OnInit, OnChanges {
         switch (result) {
           case 'cancel':
             break;
-          case 'undo':
+          case 'discard':
             if (this.translationUnit.translationFile().hasNext()) {
               this.translationUnit.translationFile().nextTransUnit();
-            };
+            }
             break;
           case 'accept':
             this.commitChanges();
             if (this.translationUnit.translationFile().hasNext()) {
               this.translationUnit.translationFile().nextTransUnit();
-            };
+            }
             break;
         }
       });
@@ -271,7 +271,7 @@ export class TranslateUnitComponent implements OnInit, OnChanges {
         switch (result) {
           case 'cancel':
             break;
-          case 'undo':
+          case 'discard':
             if (this.translationUnit.translationFile().hasPrev()) {
               this.translationUnit.translationFile().prevTransUnit();
             }
