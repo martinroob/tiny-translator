@@ -2,6 +2,10 @@
   color: red;
 }
 
+.warn {
+  color: orange;
+}
+
 md-progress-bar {
   width: 200px;
 }

@@ -246,6 +246,14 @@ export class TranslationFile {
     return this._error;
   }
 
+  /**
+   * Show warnings detected in file.
+   * @return {string[]|Array}
+   */
+  public warnings(): string[] {
+    return this._translationFile ? this._translationFile.warnings() : [];
+  }
+
   public scrollMode(): ScrollMode {
     return this._scrollMode;
   }
