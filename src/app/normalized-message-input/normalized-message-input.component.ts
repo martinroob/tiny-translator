@@ -43,16 +43,21 @@ export class NormalizedMessageInputComponent implements OnInit, OnChanges, Contr
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit() {
+    this.initForm();
     this.form.valueChanges.debounceTime(200).subscribe(formValue => {this.valueChanged(formValue)});
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (!this.form) {
-      this.form = this.formBuilder.group({displayedText: [{value: this.textToDisplay(), disabled: this.disabled}]});
-    }
+    this.initForm();
     const isChanged = !isNullOrUndefined(changes['message']) || !isNullOrUndefined(changes['normalized']);
     if (isChanged) {
       this.form.controls['displayedText'].setValue(this.textToDisplay());
+    }
+  }
+
+  private initForm() {
+    if (!this.form) {
+      this.form = this.formBuilder.group({displayedText: [{value: this.textToDisplay(), disabled: this.disabled}]});
     }
   }
 

@@ -32,6 +32,7 @@ export class TranslateUnitComponent implements OnInit, OnChanges {
   constructor(private formBuilder: FormBuilder, private dialog: MdDialog, private _snackbar: MdSnackBar) { }
 
   ngOnInit() {
+    this.initForm();
     this.form.valueChanges.subscribe(formValue => {this.valueChanged(formValue)});
   }
 
@@ -41,9 +42,7 @@ export class TranslateUnitComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (!this.form) {
-      this.form = this.formBuilder.group({_editedTargetMessage: [this.targetContentNormalized()]});
-    }
+    this.initForm();
     const changedTranslationUnit: SimpleChange = changes['translationUnit'];
     if (changedTranslationUnit) {
       if (changedTranslationUnit.currentValue) {
@@ -51,6 +50,12 @@ export class TranslateUnitComponent implements OnInit, OnChanges {
       } else {
         this._editedTargetMessage = null;
       }
+    }
+  }
+
+  private initForm() {
+    if (!this.form) {
+      this.form = this.formBuilder.group({_editedTargetMessage: [this.targetContentNormalized()]});
     }
   }
 

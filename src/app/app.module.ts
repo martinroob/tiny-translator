@@ -7,8 +7,6 @@ import {APP_CONFIG, APP_CONFIG_VALUE} from './app.config';
 import {routing, appRoutingProviders} from './app.routing';
 
 import 'hammerjs';
-import {MaterialModule} from '@angular/material';
-import {FlexLayoutModule} from '@angular/flex-layout';
 
 import { AppComponent } from './app.component';
 import { ProjectStarterComponent } from './project-starter/project-starter.component';
@@ -32,6 +30,7 @@ import { ProjectStatusComponent } from './project-status/project-status.componen
 import {AsynchronousFileReaderService} from './model/asynchronous-file-reader.service';
 import { NormalizedMessageInputComponent } from './normalized-message-input/normalized-message-input.component';
 import { TranslateUnitWarningConfirmDialogComponent } from './translate-unit-warning-confirm-dialog/translate-unit-warning-confirm-dialog.component';
+import {AppMaterialModule} from './app-material.module';
 
 @NgModule({
   declarations: [
@@ -57,9 +56,8 @@ import { TranslateUnitWarningConfirmDialogComponent } from './translate-unit-war
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    routing,
-    MaterialModule,
-    FlexLayoutModule
+    AppMaterialModule,
+    routing
   ],
   providers: [
     {provide: APP_CONFIG, useValue: APP_CONFIG_VALUE},
