@@ -29,6 +29,8 @@ interface ISerializedTranslationFile {
   size: number;
   fileContent: string;
   editedContent: string;
+  masterContent: string;
+  masterName: string;
   explicitSourceLanguage: string;
 }
 
@@ -41,6 +43,10 @@ export class TranslationFile {
   private _error: string = null;
 
   private fileContent: string;
+
+  private masterContent: string;
+
+  private masterName: string;
 
   private _translationFile: ITranslationMessagesFile;
 
@@ -82,6 +88,8 @@ export class TranslationFile {
                 xmlContent: masterXmbContent.content,
                 encoding: null
               };
+              newInstance.masterContent = masterXmbContent.content;
+              newInstance.masterName = masterXmbContent.name;
             }
             newInstance._translationFile =
               TranslationMessagesFileFactory.fromUnknownFormatFileContent(
@@ -116,7 +124,12 @@ export class TranslationFile {
     newInstance.fileContent = deserializedObject.fileContent;
     newInstance._explicitSourceLanguage = deserializedObject.explicitSourceLanguage;
     try {
-      newInstance._translationFile = TranslationMessagesFileFactory.fromUnknownFormatFileContent(deserializedObject.editedContent, deserializedObject.name, null);
+      let encoding = null; // unknown, lib can find it
+      let optionalMaster: {xmlContent: string, path: string, encoding: string} = null;
+      if (deserializedObject.masterContent) {
+        optionalMaster = {xmlContent: deserializedObject.masterContent, path: deserializedObject.masterName, encoding: encoding};
+      }
+      newInstance._translationFile = TranslationMessagesFileFactory.fromUnknownFormatFileContent(deserializedObject.editedContent, deserializedObject.name, encoding, optionalMaster);
       newInstance.readTransUnits();
     } catch (err) {
       newInstance._error = err.toString();
@@ -357,6 +370,8 @@ export class TranslationFile {
       size: this.size,
       fileContent: this.fileContent,
       editedContent: this.editedContent(),
+      masterContent: this.masterContent,
+      masterName: this.masterName,
       explicitSourceLanguage: this._explicitSourceLanguage
     };
     return JSON.stringify(serializedObject);
