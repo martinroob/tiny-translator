@@ -1,5 +1,6 @@
-import {ITransUnit} from 'ngx-i18nsupport-lib';
+import {ITransUnit, INormalizedMessage, STATE_NEW} from 'ngx-i18nsupport-lib';
 import {TranslationFile} from './translation-file';
+import {NormalizedMessage} from './normalized-message';
 
 /**
  * A wrapper around ITransUnit.
@@ -10,6 +11,8 @@ import {TranslationFile} from './translation-file';
 export class TranslationUnit {
 
   private _isDirty: boolean;
+  private _normalizedSourceContent: NormalizedMessage;
+  private _normalizedTargetContent: NormalizedMessage;
 
   constructor(private _translationFile: TranslationFile, private _transUnit: ITransUnit) {
     this._isDirty = false;
@@ -35,9 +38,47 @@ export class TranslationUnit {
     }
   }
 
+  public sourceContentNormalized(): NormalizedMessage {
+    if (this._transUnit) {
+      if (!this._normalizedSourceContent) {
+        const original = this._transUnit.sourceContent();
+        let normalizedMessage: INormalizedMessage = null;
+        let parseError: string = null;
+        try {
+          normalizedMessage = this._transUnit.sourceContentNormalized();
+        } catch (error) {
+          parseError = error.message;
+        }
+        this._normalizedSourceContent = new NormalizedMessage(original, normalizedMessage, parseError, normalizedMessage);
+      }
+      return this._normalizedSourceContent;
+    } else {
+      return null;
+    }
+  }
+
   public targetContent(): string {
     if (this._transUnit) {
       return this._transUnit.targetContent();
+    } else {
+      return null;
+    }
+  }
+
+  public targetContentNormalized(): NormalizedMessage {
+    if (this._transUnit) {
+      if (!this._normalizedTargetContent) {
+        const original = this._transUnit.targetContent();
+        let normalizedMessage: INormalizedMessage = null;
+        let parseError: string = null;
+        try {
+          normalizedMessage = this._transUnit.targetContentNormalized();
+        } catch (error) {
+          parseError = error.message;
+        }
+        this._normalizedTargetContent = new NormalizedMessage(original, normalizedMessage, parseError, this._transUnit.sourceContentNormalized());
+      }
+      return this._normalizedTargetContent;
     } else {
       return null;
     }
@@ -59,6 +100,14 @@ export class TranslationUnit {
     }
   }
 
+  public sourceReferences(): {sourcefile: string, linenumber: number}[] {
+    if (this._transUnit) {
+      return this._transUnit.sourceReferences();
+    } else {
+      return null;
+    }
+  }
+
   public targetState(): string {
     if (this._transUnit) {
       return this._transUnit.targetState();
@@ -72,13 +121,15 @@ export class TranslationUnit {
   }
 
   public isTranslated(): boolean {
-    return this.targetState() && this.targetState() !== 'new';
+    return this.targetState() && this.targetState() !== STATE_NEW;
   }
 
-  public translate(newTranslation: string) {
+  public translate(newTranslation: NormalizedMessage) {
     if (this._transUnit) {
-      this._transUnit.translate(newTranslation);
+      this._transUnit.translate(newTranslation.nativeString());
       this._isDirty = true;
+      this._normalizedSourceContent = null;
+      this._normalizedTargetContent = null;
     }
   }
 }

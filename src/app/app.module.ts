@@ -1,14 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import {APP_CONFIG, APP_CONFIG_VALUE} from './app.config';
 import {routing, appRoutingProviders} from './app.routing';
 
 import 'hammerjs';
-import {MaterialModule} from '@angular/material';
-import {FlexLayoutModule} from '@angular/flex-layout';
 
 import { AppComponent } from './app.component';
 import { ProjectStarterComponent } from './project-starter/project-starter.component';
@@ -30,6 +28,9 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { CreateProjectPageComponent } from './create-project-page/create-project-page.component';
 import { ProjectStatusComponent } from './project-status/project-status.component';
 import {AsynchronousFileReaderService} from './model/asynchronous-file-reader.service';
+import { NormalizedMessageInputComponent } from './normalized-message-input/normalized-message-input.component';
+import { TranslateUnitWarningConfirmDialogComponent } from './translate-unit-warning-confirm-dialog/translate-unit-warning-confirm-dialog.component';
+import {AppMaterialModule} from './app-material.module';
 
 @NgModule({
   declarations: [
@@ -45,16 +46,18 @@ import {AsynchronousFileReaderService} from './model/asynchronous-file-reader.se
     ProjectComponent,
     ProjectListComponent,
     CreateProjectPageComponent,
-    ProjectStatusComponent
+    ProjectStatusComponent,
+    NormalizedMessageInputComponent,
+    TranslateUnitWarningConfirmDialogComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpModule,
-    routing,
-    MaterialModule,
-    FlexLayoutModule
+    AppMaterialModule,
+    routing
   ],
   providers: [
     {provide: APP_CONFIG, useValue: APP_CONFIG_VALUE},
@@ -65,6 +68,7 @@ import {AsynchronousFileReaderService} from './model/asynchronous-file-reader.se
     ActiveProjectGuard,
     {provide: BackendServiceAPI, useClass: BackendLocalStorageService}
   ],
+  entryComponents: [TranslateUnitWarningConfirmDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

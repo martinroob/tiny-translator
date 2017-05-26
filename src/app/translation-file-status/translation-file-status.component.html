@@ -1,5 +1,6 @@
 <div *ngIf="!shortInfo" fxLayout="column">
-  <p *ngIf="translationFile?.hasErrors()" class="warn">{{translationFile?.error}}</p>
+  <p *ngIf="translationFile?.hasErrors()" class="error">{{translationFile?.error}}</p>
+  <p *ngFor="let warning of translationFile?.warnings()" class="warn">{{warning}}</p>
   <div fxLayout="row">
     <span i18n>Translate <b>from</b></span>&nbsp;<app-language [code]="translationFile?.sourceLanguage()"></app-language>
     &nbsp;<span i18n><b>to</b></span>&nbsp;<app-language [code]="translationFile?.targetLanguage()"></app-language>

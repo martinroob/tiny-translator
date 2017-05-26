@@ -1,0 +1,8 @@
+<div fxLayout="column" fxFlexFill>
+  <p *ngIf="readonly">{{textToDisplay()}}</p>
+  <form *ngIf="!readonly" [formGroup]="form">
+    <md-input-container fxFlexFill>
+      <input mdInput type="text" formControlName="displayedText">
+    </md-input-container>
+  </form>
+</div>

@@ -12,7 +12,9 @@ Then maybe this application is a tool for you.
 
 For the impatient: Start it here [Tiny Translator (English)](https://martinroob.github.io/tiny-translator/en) or [Tiny Translator (Deutsch)](https://martinroob.github.io/tiny-translator/de)
 
-This application can be used to work on the translation of XLIFF 1.2 files.
+This application can be used to work on the translation of all file formats Angular can use.
+These are `XLIFF 2.0`, `XLIFF 1.2` or `XMB/XTB` files.
+
 [[XLIFF 1.2]]((http://docs.oasis-open.org/xliff/xliff-core/xliff-core.html)) is an OASIS standard and stands for <strong>XML Localization Interchange File Format</strong>.
 So, as the name expresses, it is designed as a format to exchange localization informations between different applications.
 The standard is quite old, the specification of version 1.2 is from 2007.

@@ -2,6 +2,9 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TranslateUnitComponent } from './translate-unit.component';
 import {NO_ERRORS_SCHEMA} from '@angular/core';
+import {FormBuilder} from '@angular/forms';
+import {MdDialog, MdDialogModule, MdDialogRef, Overlay} from '@angular/material';
+import {AppModule} from '../app.module';
 
 describe('TranslateUnitComponent', () => {
   let component: TranslateUnitComponent;
@@ -9,8 +12,9 @@ describe('TranslateUnitComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TranslateUnitComponent ],
-      schemas: [NO_ERRORS_SCHEMA],
+      declarations: [],
+      imports: [AppModule, MdDialogModule],
+      schemas: [NO_ERRORS_SCHEMA]
     })
     .compileComponents();
   }));

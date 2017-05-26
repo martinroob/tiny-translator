@@ -3,6 +3,8 @@ import {TinyTranslatorService} from '../model/tiny-translator.service';
 import {TranslationFile} from '../model/translation-file';
 import {TranslationProject} from '../model/translation-project';
 import {Observable} from 'rxjs';
+import {FILETYPE_XTB} from 'ngx-i18nsupport-lib/dist';
+import {isNullOrUndefined} from 'util';
 
 interface FileInfo {
   name: string;
@@ -24,6 +26,7 @@ export class ProjectStarterComponent implements OnInit {
   @Output() onAddProject: EventEmitter<TranslationProject> = new EventEmitter();
 
   public projectName: string; // set via input field
+  public sourceLanguage: string; // set via input field
   private selectedFiles: FileList;
   private selectedMasterXmbFiles;
   private createdProject: TranslationProject;
@@ -39,6 +42,7 @@ export class ProjectStarterComponent implements OnInit {
     const masterXmbFile = (this.selectedMasterXmbFiles) ? this.selectedMasterXmbFiles.item(0) : null;
     this.translatorService.createProject(this.projectName, translationFile, masterXmbFile).subscribe((newProject) => {
       this.createdProject = newProject;
+      this.explicitSourceLanguageChanged();
     });
   }
 
@@ -74,7 +78,7 @@ export class ProjectStarterComponent implements OnInit {
    * Enables the input for a second file, the master xmb.
    */
   isMasterXmbFileNeeded(): boolean {
-    return this.isFileSelected() && this.createdProject && this.createdProject.translationFile && this.createdProject.translationFile.fileType() === 'XMB';
+    return this.isFileSelected() && this.createdProject && this.createdProject.translationFile && this.createdProject.translationFile.fileType() === FILETYPE_XTB;
   }
 
   masterXmlFileSelectionChange(input: HTMLInputElement) {
@@ -83,6 +87,7 @@ export class ProjectStarterComponent implements OnInit {
     const masterXmbFile = (this.selectedMasterXmbFiles) ? this.selectedMasterXmbFiles.item(0) : null;
     this.translatorService.createProject(this.projectName, translationFile, masterXmbFile).subscribe((newProject) => {
       this.createdProject = newProject;
+      this.explicitSourceLanguageChanged();
     });
   }
 
@@ -91,10 +96,23 @@ export class ProjectStarterComponent implements OnInit {
    * Enables the add button.
    */
   isInputComplete(): boolean {
-    return this.projectName && this.isFileSelected();
+    return this.projectName && this.isFileSelected() && !!this.createdProject && !this.createdProject.hasErrors();
   }
 
   isFileSelected(): boolean {
     return this.selectedFiles && this.selectedFiles.length > 0 && !!this.createdProject;
+  }
+
+  needsExplicitSourceLanguage(): boolean {
+    return !!this.createdProject &&
+      this.createdProject.translationFile &&
+      !this.createdProject.translationFile.hasErrors() &&
+      isNullOrUndefined(this.createdProject.translationFile.sourceLanguageFromFile());
+  }
+
+  explicitSourceLanguageChanged() {
+    if (!!this.createdProject && this.createdProject.translationFile) {
+      this.createdProject.translationFile.setSourceLanguage(this.sourceLanguage);
+    }
   }
 }
