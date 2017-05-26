@@ -37,7 +37,6 @@ export class TranslateUnitComponent implements OnInit, OnChanges {
   }
 
   private valueChanged(v: any) {
-    console.log('tu form value changed: ', v);
     this._editedTargetMessage = v._editedTargetMessage;
   }
 
