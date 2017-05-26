@@ -8,14 +8,14 @@
       <div fxLayout="column" fxFlexAlign="end" fxFlex="50%">
         <input type="file" id="fileupload" (change)="fileSelectionChange(input)" class="inputfile" #input/>
         <label for="fileupload">
-          <md-icon>open_in_browser</md-icon>&nbsp;<span i18n>Upload a translation file (xlf, xmb)</span></label>
+          <md-icon>open_in_browser</md-icon>&nbsp;<span i18n>Upload a translation file (xlf, xtb)</span></label>
         <div><span i18n>selected: </span>{{selectedFilesFormatted()}}</div>
       </div>
     </div>
     <div *ngIf="isMasterXmbFileNeeded()" fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="start center">
-      <p fxFlex="50%" i18n>You selected an xmb file.<br>
+      <p fxFlex="50%" i18n>You selected an xtb file.<br>
         This file type only contains one language, the target language.<br>
-        To show you the original source texts, you should also select the master xml file.</p>
+        To show you the original source texts, you should also select the master xmb file.</p>
       <div fxFlex="50%" fxLayout="column">
         <input type="file" id="masterfileupload" (change)="masterXmlFileSelectionChange(masterinput)" class="inputfile"
                #masterinput/>
@@ -28,6 +28,11 @@
     <app-translation-file-status *ngIf="isFileSelected()"
                                  [translationFile]="createdProject?.translationFile"></app-translation-file-status>
     <p></p>
+    <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="start center">
+      <md-input-container *ngIf="needsExplicitSourceLanguage()" fxFlex="50%">
+        <input placeholder="Explicitly set source language" i18n-placeholder mdInput [(ngModel)]="sourceLanguage" (change)="explicitSourceLanguageChanged()" name="sourceLanguage"/>
+      </md-input-container>
+    </div>
     <button fxFlexAlign="center"
             md-raised-button
             color="primary"

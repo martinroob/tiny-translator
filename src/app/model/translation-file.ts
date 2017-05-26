@@ -1,8 +1,9 @@
 import {TranslationMessagesFileFactory, ITranslationMessagesFile, ITransUnit} from 'ngx-i18nsupport-lib';
 import {isNullOrUndefined} from 'util';
 import {TranslationUnit} from './translation-unit';
-import {Observable, Subject} from 'rxjs';
-import {AsynchronousFileReaderResult, AsynchronousFileReaderService} from './asynchronous-file-reader.service';
+import {Observable} from 'rxjs';
+import {AsynchronousFileReaderResult} from './asynchronous-file-reader.service';
+import {FILETYPE_XTB, FORMAT_XMB} from 'ngx-i18nsupport-lib/dist';
 
 /**
  * A single xlf or xmb file ready for work.
@@ -28,6 +29,7 @@ interface ISerializedTranslationFile {
   size: number;
   fileContent: string;
   editedContent: string;
+  explicitSourceLanguage: string;
 }
 
 export class TranslationFile {
@@ -41,6 +43,8 @@ export class TranslationFile {
   private fileContent: string;
 
   private _translationFile: ITranslationMessagesFile;
+
+  private _explicitSourceLanguage: string;
 
   private _scrollMode: ScrollMode = ScrollMode.UNTRANSLATED;
 
@@ -82,6 +86,9 @@ export class TranslationFile {
             newInstance._translationFile =
               TranslationMessagesFileFactory.fromUnknownFormatFileContent(
                 fileContent.content, fileContent.name, null, optionalMaster);
+            if (newInstance._translationFile.i18nFormat() === FORMAT_XMB) {
+              newInstance._error = 'xmb files cannot be translated, use xtb instead'; // TODO i18n
+            }
             newInstance.readTransUnits();
           } catch (err) {
             newInstance._error = err.toString();
@@ -99,8 +106,7 @@ export class TranslationFile {
    */
   static deserialize(serializationString: string): TranslationFile {
     const deserializedObject: ISerializedTranslationFile = <ISerializedTranslationFile> JSON.parse(serializationString);
-    const file = TranslationFile.fromDeserializedObject(deserializedObject);
-    return file;
+    return TranslationFile.fromDeserializedObject(deserializedObject);
   }
 
   static fromDeserializedObject(deserializedObject: ISerializedTranslationFile): TranslationFile {
@@ -108,6 +114,7 @@ export class TranslationFile {
     newInstance._name = deserializedObject.name;
     newInstance._size = deserializedObject.size;
     newInstance.fileContent = deserializedObject.fileContent;
+    newInstance._explicitSourceLanguage = deserializedObject.explicitSourceLanguage;
     try {
       newInstance._translationFile = TranslationMessagesFileFactory.fromUnknownFormatFileContent(deserializedObject.editedContent, deserializedObject.name, null);
       newInstance.readTransUnits();
@@ -120,13 +127,6 @@ export class TranslationFile {
 
   constructor() {
     this._allTransUnits = [];
-  }
-
-  private guessFormat(filename: string): string {
-    if (filename.endsWith('xmb')) {
-      return 'xmb';
-    }
-    return 'xlf';
   }
 
   private readTransUnits() {
@@ -142,10 +142,6 @@ export class TranslationFile {
     return this._name;
   }
 
-  get type(): string {
-    return '?'; // TODO
-  }
-
   get size(): number {
     return this._size;
   }
@@ -155,21 +151,59 @@ export class TranslationFile {
   }
 
   get numberOfUntranslatedTransUnits(): number {
-    // TODO move this functionality into i18nsupport API
-    return this._allTransUnits.filter(tu => !tu.isTranslated()).length;
+    return (this._translationFile) ? this._translationFile.numberOfUntranslatedTransUnits() : 0;
   }
 
   /**
    * Type of file.
-   * Currently 'XLIFF 1.2' or 'XMB'
+   * Currently 'xlf', 'xlf2', 'xmb' or or 'xtb'
    * @return {null}
    */
   public fileType(): string {
-    return this._translationFile ? this._translationFile.fileType() : null;
+    if (this._translationFile) {
+      return this._translationFile.fileType();
+    } else {
+      // try to get it by name
+      if (this._name && this._name.endsWith('xtb')) {
+        return FILETYPE_XTB;
+      } else {
+        return null;
+      }
+    }
   }
 
+  /**
+   * Source language as stored in translation file.
+   * @return {string}
+   */
+  public sourceLanguageFromFile(): string {
+    return this._translationFile ? this._translationFile.sourceLanguage() : null;
+  }
+
+  /**
+   * Source language from file or explicitly set.
+   * @return {any}
+   */
   public sourceLanguage(): string {
-    return this._translationFile ? this._translationFile.sourceLanguage() : '';
+    if (this._translationFile) {
+      const srcLang = this._translationFile.sourceLanguage();
+      if (isNullOrUndefined(srcLang)) {
+        return this._explicitSourceLanguage ? this._explicitSourceLanguage : '';
+      } else {
+        return srcLang;
+      }
+    } else {
+      return '';
+    }
+  }
+
+  /**
+   * Explicitly set source language.
+   * Only used, when file format does not store this (xmb case).
+   * @param srcLang
+   */
+  public setSourceLanguage(srcLang: string) {
+    this._explicitSourceLanguage = srcLang;
   }
 
   public targetLanguage(): string {
@@ -322,7 +356,8 @@ export class TranslationFile {
       name: this.name,
       size: this.size,
       fileContent: this.fileContent,
-      editedContent: this.editedContent()
+      editedContent: this.editedContent(),
+      explicitSourceLanguage: this._explicitSourceLanguage
     };
     return JSON.stringify(serializedObject);
   }
