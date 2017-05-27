@@ -26,7 +26,9 @@
     </div>
     <p><b i18n>Selected translation file:</b></p>
     <app-translation-file-status *ngIf="isFileSelected()"
-                                 [translationFile]="createdProject?.translationFile"></app-translation-file-status>
+                                 [translationFileView]="createdProject?.translationFileView"
+                                 [translationFile]="createdProject?.translationFile">
+    </app-translation-file-status>
     <p></p>
     <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="start center">
       <md-input-container *ngIf="needsExplicitSourceLanguage()" fxFlex="50%">

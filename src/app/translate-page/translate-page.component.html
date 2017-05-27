@@ -1,7 +1,7 @@
 <div fxLayout="row" fxFlexFill>
-  <app-translate-unit-list [translationFile]="currentFile()" fxFlex="40%"></app-translate-unit-list>
+  <app-translate-unit-list [translationFileView]="currentView()" fxFlex="40%"></app-translate-unit-list>
   <div fxLayout="column" fxFlexFill>
     <app-project-status [project]="currentProject()" (onSave)="save()"></app-project-status>
-    <app-translate-unit [translationUnit]="currentTranslationUnit()" (translationChanged)="commitChanges()"></app-translate-unit>
+    <app-translate-unit [translationFileView]="currentView()" [translationUnit]="currentTranslationUnit()" (translationChanged)="commitChanges()"></app-translate-unit>
   </div>
 </div>

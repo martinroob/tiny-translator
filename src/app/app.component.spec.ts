@@ -24,7 +24,7 @@ describe('AppComponent', () => {
   it(`should have a build version`, async(() => {
     const fixture = TestBed.createComponent(AppComponent);
     const app: AppComponent = fixture.debugElement.componentInstance;
-    expect(app.buildversion()).toEqual('0.0.1'); // TODO
+    expect(app.buildversion()).toEqual('0.1.0'); // TODO
   }));
 
   it('should render md-toolbar', async(() => {

@@ -1,4 +1,5 @@
 import {TranslationFile} from './translation-file';
+import {TranslationFileView} from './translation-file-view';
 
 /**
  * A Translation Project.
@@ -8,8 +9,10 @@ export class TranslationProject {
 
   public id: string;
 
-  constructor(private _name: string, private _translationFile: TranslationFile) {
+  private _view: TranslationFileView;
 
+  constructor(private _name: string, private _translationFile: TranslationFile) {
+    this._view = new TranslationFileView(_translationFile);
   }
 
   get name(): string {
@@ -18,6 +21,10 @@ export class TranslationProject {
 
   get translationFile(): TranslationFile {
     return this._translationFile;
+  }
+
+  get translationFileView(): TranslationFileView {
+    return this._view;
   }
 
   public hasErrors(): boolean {

@@ -6,6 +6,7 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 import {Observable} from 'rxjs/Observable';
 import {TranslateUnitWarningConfirmDialogComponent} from '../translate-unit-warning-confirm-dialog/translate-unit-warning-confirm-dialog.component';
 import {isNullOrUndefined} from 'util';
+import {TranslationFileView} from '../model/translation-file-view';
 
 /**
  * Component to input a new translation.
@@ -17,6 +18,8 @@ import {isNullOrUndefined} from 'util';
   styleUrls: ['./translate-unit.component.css']
 })
 export class TranslateUnitComponent implements OnInit, OnChanges {
+
+  @Input() translationFileView: TranslationFileView;
 
   @Input() translationUnit: TranslationUnit;
 
@@ -176,7 +179,6 @@ export class TranslateUnitComponent implements OnInit, OnChanges {
 
   public commitChanges() {
     if (this.translationUnit) {
-      console.log('accept ', this._editedTargetMessage);
       if (this.isTranslationChanged() || this.isMarkedAsTranslated) {
         this.translationUnit.translate(this._editedTargetMessage);
         this.translationChanged.emit(this.translationUnit);
@@ -242,14 +244,14 @@ export class TranslateUnitComponent implements OnInit, OnChanges {
           case 'cancel':
             break;
           case 'discard':
-            if (this.translationUnit.translationFile().hasNext()) {
-              this.translationUnit.translationFile().nextTransUnit();
+            if (this.translationFileView.hasNext()) {
+              this.translationFileView.nextTransUnit();
             }
             break;
           case 'accept':
             this.commitChanges();
-            if (this.translationUnit.translationFile().hasNext()) {
-              this.translationUnit.translationFile().nextTransUnit();
+            if (this.translationFileView.hasNext()) {
+              this.translationFileView.nextTransUnit();
             }
             break;
         }
@@ -263,7 +265,7 @@ export class TranslateUnitComponent implements OnInit, OnChanges {
    */
   public hasNext(): boolean {
     if (this.translationUnit) {
-      return this.translationUnit.translationFile().hasNext();
+      return this.translationFileView.hasNext();
     } else {
       return false;
     }
@@ -276,14 +278,14 @@ export class TranslateUnitComponent implements OnInit, OnChanges {
           case 'cancel':
             break;
           case 'discard':
-            if (this.translationUnit.translationFile().hasPrev()) {
-              this.translationUnit.translationFile().prevTransUnit();
+            if (this.translationFileView.hasPrev()) {
+              this.translationFileView.prevTransUnit();
             }
             break;
           case 'accept':
             this.commitChanges();
-            if (this.translationUnit.translationFile().hasPrev()) {
-              this.translationUnit.translationFile().prevTransUnit();
+            if (this.translationFileView.hasPrev()) {
+              this.translationFileView.prevTransUnit();
             }
             break;
         }
@@ -293,7 +295,7 @@ export class TranslateUnitComponent implements OnInit, OnChanges {
 
   public hasPrev(): boolean {
     if (this.translationUnit) {
-      return this.translationUnit.translationFile().hasPrev();
+      return this.translationFileView.hasPrev();
     } else {
       return false;
     }
