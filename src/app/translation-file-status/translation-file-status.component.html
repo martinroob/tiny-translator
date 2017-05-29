@@ -16,14 +16,14 @@
     <md-progress-bar mode="determinate" [value]="translationFile?.percentageTranslated()" color="accent"></md-progress-bar>
     <span i18n>{{percentageTranslated()}} % translated</span>
   </div>
-  <p *ngIf="translationFile?.currentTransUnitIndex() > 0">current transunit {{translationFile?.currentTransUnitIndex()}} of {{translationFile?.scrollabeTransUnitsLength()}}</p>
+  <p *ngIf="translationFileView?.currentTransUnitIndex() > 0" i18n>current transunit {{translationFileView?.currentTransUnitIndex()}} of {{translationFileView?.scrollabeTransUnitsLength()}}</p>
 </div>
 <div *ngIf="shortInfo" fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start center">
   <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
     <md-progress-bar mode="determinate" [value]="translationFile?.percentageTranslated()" color="accent"></md-progress-bar>
     <span i18n>{{percentageTranslated()}} % translated</span>
   </div>
-  <p *ngIf="translationFile?.currentTransUnitIndex() > 0">current transunit {{translationFile?.currentTransUnitIndex()}} of {{translationFile?.scrollabeTransUnitsLength()}}</p>
+  <p *ngIf="translationFileView?.currentTransUnitIndex() > 0" i18n>current transunit {{translationFileView?.currentTransUnitIndex()}} of {{translationFileView?.scrollabeTransUnitsLength()}}</p>
   <md-icon *ngIf="translationFile?.isDirty()" mdTooltip="There are unpublished changes" i18n-mdTooltip>warning</md-icon>
   <button md-icon-button color="primary" (click)="save()" mdTooltip="save current state to file (download)" i18n-mdTooltip><md-icon>save</md-icon></button>
 </div>

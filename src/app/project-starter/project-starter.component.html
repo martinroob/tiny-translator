@@ -1,12 +1,21 @@
 <div fxLayout="column" style="min-width: 100vw;">
   <h1 i18n>Open a new project</h1>
-  <form fxLayout="column">
+  <form id="createProjectForm" fxLayout="column" [formGroup]="form">
     <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="start center">
       <md-input-container fxFlex="50%">
-        <input placeholder="Project name" i18n-placeholder mdInput [(ngModel)]="projectName" name="projectName"/>
+        <input placeholder="Project name" i18n-placeholder mdInput formControlName="projectName" name="projectName"/>
       </md-input-container>
+      <md-radio-group name="selectedWorkflowType" formControlName="workflowType" name="workflowType">
+        <md-radio-button value="singleuser" i18n>Single User</md-radio-button>
+        <md-radio-button value="withReview" i18n>Separate Translator</md-radio-button>
+      </md-radio-group>
+    </div>
+    <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="start center">
+      <p fxFlex="50%" i18n>Select the file you want to translate.<br>
+        The file can be of format XLIFF 1.2, XLIFF 2.0 or XMB.<br>
+        The file will be stored in your browser local storage until you export the translated version.</p>
       <div fxLayout="column" fxFlexAlign="end" fxFlex="50%">
-        <input type="file" id="fileupload" (change)="fileSelectionChange(input)" class="inputfile" #input/>
+        <input type="file" id="fileupload" (change)="fileSelectionChange(input)" formControlName="selectedFiles" name="selectedFiles" class="inputfile" #input/>
         <label for="fileupload">
           <md-icon>open_in_browser</md-icon>&nbsp;<span i18n>Upload a translation file (xlf, xtb)</span></label>
         <div><span i18n>selected: </span>{{selectedFilesFormatted()}}</div>
@@ -17,7 +26,7 @@
         This file type only contains one language, the target language.<br>
         To show you the original source texts, you should also select the master xmb file.</p>
       <div fxFlex="50%" fxLayout="column">
-        <input type="file" id="masterfileupload" (change)="masterXmlFileSelectionChange(masterinput)" class="inputfile"
+        <input type="file" id="masterfileupload" (change)="masterXmlFileSelectionChange(masterinput)" formControlName="selectedMasterXmbFiles" name="selectedMasterXmbFiles" class="inputfile"
                #masterinput/>
         <label for="masterfileupload">
           <md-icon>open_in_browser</md-icon>&nbsp;<span i18n>Upload master xmb file</span></label>
@@ -26,11 +35,13 @@
     </div>
     <p><b i18n>Selected translation file:</b></p>
     <app-translation-file-status *ngIf="isFileSelected()"
-                                 [translationFile]="createdProject?.translationFile"></app-translation-file-status>
+                                 [translationFileView]="createdProject?.translationFileView"
+                                 [translationFile]="createdProject?.translationFile">
+    </app-translation-file-status>
     <p></p>
     <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="start center">
       <md-input-container *ngIf="needsExplicitSourceLanguage()" fxFlex="50%">
-        <input placeholder="Explicitly set source language" i18n-placeholder mdInput [(ngModel)]="sourceLanguage" (change)="explicitSourceLanguageChanged()" name="sourceLanguage"/>
+        <input placeholder="Explicitly set source language" i18n-placeholder mdInput formControlName="sourceLanguage" name="sourceLanguage"/>
       </md-input-container>
     </div>
     <button fxFlexAlign="center"

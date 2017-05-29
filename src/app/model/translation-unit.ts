@@ -116,6 +116,12 @@ export class TranslationUnit {
     }
   }
 
+  public setTargetState(newState: string) {
+    if (this._transUnit) {
+      this._transUnit.setTargetState(newState);
+    }
+  }
+
   public isDirty(): boolean {
     return this._isDirty;
   }
