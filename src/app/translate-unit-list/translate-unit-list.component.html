@@ -12,6 +12,7 @@
       <md-icon md-list-avatar *ngIf="tu.targetState() === 'translated'">label_outline</md-icon>
       <md-icon md-list-avatar *ngIf="!tu.isTranslated()">translate</md-icon>
       <h4 md-line [ngClass]="{'selected': isSelected(tu)}">{{tu.sourceContentNormalized().dislayText(true) | abbreviate}}</h4>
+      <h4 md-line [ngClass]="{'selected': isSelected(tu)}">{{tu.targetContentNormalized().dislayText(true) | abbreviate}}</h4>
     </md-list-item>
   </md-list>
 </div>
