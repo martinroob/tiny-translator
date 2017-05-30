@@ -7,6 +7,8 @@ import {Observable} from 'rxjs/Observable';
 import {TranslateUnitWarningConfirmDialogComponent} from '../translate-unit-warning-confirm-dialog/translate-unit-warning-confirm-dialog.component';
 import {isNullOrUndefined} from 'util';
 import {TranslationFileView} from '../model/translation-file-view';
+import {WorkflowType} from '../model/translation-project';
+import {STATE_FINAL, STATE_TRANSLATED} from 'ngx-i18nsupport-lib/dist';
 
 /**
  * Component to input a new translation.
@@ -22,6 +24,8 @@ export class TranslateUnitComponent implements OnInit, OnChanges {
   @Input() translationFileView: TranslationFileView;
 
   @Input() translationUnit: TranslationUnit;
+
+  @Input() workflowType: WorkflowType;
 
   @Input() showNormalized: boolean = true;
 
@@ -181,6 +185,14 @@ export class TranslateUnitComponent implements OnInit, OnChanges {
     if (this.translationUnit) {
       if (this.isTranslationChanged() || this.isMarkedAsTranslated) {
         this.translationUnit.translate(this._editedTargetMessage);
+        switch (this.workflowType) {
+          case WorkflowType.SINGLE_USER:
+            this.translationUnit.setTargetState(STATE_FINAL);
+            break;
+          case WorkflowType.WITH_REVIEW:
+            this.translationUnit.setTargetState(STATE_TRANSLATED);
+            break;
+        }
         this.translationChanged.emit(this.translationUnit);
       }
     }
