@@ -4,6 +4,7 @@ import {MdRadioChange} from '@angular/material';
 import {TranslationFileView} from '../model/translation-file-view';
 import {TranslationUnitFilterAll} from '../model/filters/translation-unit-filter-all';
 import {TranslationUnitFilterUnranslated} from '../model/filters/translation-unit-filter-untranslated';
+import {TranslationUnitFilterNeedsReview} from '../model/filters/translation-unit-filter-needs-review';
 
 /**
  * Component that shows a list of trans units.
@@ -51,6 +52,10 @@ export class TranslateUnitListComponent implements OnInit {
     this.translationFileView.setActiveFilter(new TranslationUnitFilterUnranslated());
   }
 
+  public showNeedsReview() {
+    this.translationFileView.setActiveFilter(new TranslationUnitFilterNeedsReview());
+  }
+
   filterChanged(changeEvent: MdRadioChange) {
     switch (changeEvent.value) {
       case 'all':
@@ -58,6 +63,9 @@ export class TranslateUnitListComponent implements OnInit {
         break;
       case 'untranslated':
         this.showUntranslated();
+        break;
+      case 'needsReview':
+        this.showNeedsReview();
         break;
       default:
         // do nothing
