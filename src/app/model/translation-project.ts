@@ -54,6 +54,10 @@ export class TranslationProject {
     return this._name;
   }
 
+  public setName(name: string) {
+    this._name = name;
+  }
+
   get translationFile(): TranslationFile {
     return this._translationFile;
   }

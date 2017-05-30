@@ -1,0 +1,33 @@
+<div fxLayout="column" style="min-width: 100vw;">
+  <h1 i18n>Edit project</h1>
+  <form id="editProjectForm" fxLayout="column" [formGroup]="form">
+    <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="start center">
+      <md-input-container fxFlex="50%">
+        <input placeholder="Project name" i18n-placeholder mdInput formControlName="projectName" name="projectName"/>
+      </md-input-container>
+      <md-radio-group name="selectedWorkflowType" formControlName="workflowType" name="workflowType">
+        <md-radio-button value="singleuser" i18n>Single User</md-radio-button>
+        <md-radio-button value="withReview" i18n>Separate Translator</md-radio-button>
+      </md-radio-group>
+    </div>
+    <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="start center">
+      <p fxFlex="50%" i18n>Selected translation file</p>
+      <div fxLayout="column" fxFlexAlign="end" fxFlex="50%">
+        <div><span i18n>selected: </span>{{selectedFilesFormatted()}}</div>
+      </div>
+    </div>
+    <p><b i18n>Selected translation file:</b></p>
+    <app-translation-file-status
+                                 [translationFileView]="project?.translationFileView"
+                                 [translationFile]="project?.translationFile">
+    </app-translation-file-status>
+    <p></p>
+    <button fxFlexAlign="center"
+            md-raised-button
+            color="primary"
+            (click)="editProject()"
+            md-tooltip="commit changes and continue working" i18n-md-tooltip>
+      <md-icon>edit</md-icon>&nbsp;<span i18n>Edit project</span>
+    </button>
+  </form>
+</div>

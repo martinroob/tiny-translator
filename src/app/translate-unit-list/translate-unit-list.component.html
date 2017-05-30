@@ -3,7 +3,7 @@
   <md-radio-group (change)="filterChanged($event)" [(ngModel)]="_selectedFilterName">
     <md-radio-button value="all" i18n>All units</md-radio-button><br>
     <md-radio-button value="untranslated" i18n>Untranslated units</md-radio-button>
-    <md-radio-button value="needsReview" i18n>Review needed</md-radio-button>
+    <md-radio-button *ngIf="isWorkflowWithReview()" value="needsReview" i18n>Review needed</md-radio-button>
   </md-radio-group>
   <md-list>
     <h3 md-subheader i18n>Translation Units</h3>

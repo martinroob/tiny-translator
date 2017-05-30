@@ -31,6 +31,8 @@ import {AsynchronousFileReaderService} from './model/asynchronous-file-reader.se
 import { NormalizedMessageInputComponent } from './normalized-message-input/normalized-message-input.component';
 import { TranslateUnitWarningConfirmDialogComponent } from './translate-unit-warning-confirm-dialog/translate-unit-warning-confirm-dialog.component';
 import {AppMaterialModule} from './app-material.module';
+import { EditProjectPageComponent } from './edit-project-page/edit-project-page.component';
+import { ProjectEditorComponent } from './project-editor/project-editor.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +50,9 @@ import {AppMaterialModule} from './app-material.module';
     CreateProjectPageComponent,
     ProjectStatusComponent,
     NormalizedMessageInputComponent,
-    TranslateUnitWarningConfirmDialogComponent
+    TranslateUnitWarningConfirmDialogComponent,
+    EditProjectPageComponent,
+    ProjectEditorComponent
   ],
   imports: [
     BrowserModule,

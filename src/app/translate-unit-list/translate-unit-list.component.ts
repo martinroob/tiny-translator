@@ -5,6 +5,7 @@ import {TranslationFileView} from '../model/translation-file-view';
 import {TranslationUnitFilterAll} from '../model/filters/translation-unit-filter-all';
 import {TranslationUnitFilterUnranslated} from '../model/filters/translation-unit-filter-untranslated';
 import {TranslationUnitFilterNeedsReview} from '../model/filters/translation-unit-filter-needs-review';
+import {WorkflowType} from '../model/translation-project';
 
 /**
  * Component that shows a list of trans units.
@@ -18,7 +19,12 @@ import {TranslationUnitFilterNeedsReview} from '../model/filters/translation-uni
 export class TranslateUnitListComponent implements OnInit {
 
   private _translationFileView: TranslationFileView;
-  public _selectedFilterName: string = 'all';
+  public _selectedFilterName = 'all';
+
+  /**
+   * workflowType determines, what filters are visibile.
+   */
+  @Input() workflowType: WorkflowType;
 
   constructor() {
     this.translationFileView = new TranslationFileView(null);
@@ -80,4 +86,7 @@ export class TranslateUnitListComponent implements OnInit {
     return tu && tu === this.translationFileView.currentTransUnit();
   }
 
+  isWorkflowWithReview(): boolean {
+    return this.workflowType === WorkflowType.WITH_REVIEW;
+  }
 }

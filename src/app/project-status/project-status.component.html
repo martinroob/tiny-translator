@@ -1,5 +1,9 @@
 <div fxLayout="row" fxLayoutGap="10px">
-  <p i18n><b>Project </b> {{project?.name}}</p>
+  <p><span i18n><b>Project </b> {{project?.name}}</span>
+    <button md-icon-button (click)="openProjectDetails()" mdTooltip="Details of the project">
+      <md-icon>info</md-icon>
+    </button>
+  </p>
   <app-translation-file-status
     [translationFileView]="project?.translationFileView"
     [translationFile]="project?.translationFile"
