@@ -26,17 +26,25 @@
     <p *ngIf="sourceMeaning()"><b i18n>Meaning</b> {{sourceMeaning()}}</p>
     <form id="translation" fxLayout="column" [formGroup]="form">
       <p fxLayout="row"><span i18n>Your translation to</span>&nbsp;<app-language [code]="targetLanguage()"></app-language></p>
-      <app-normalized-message-input fxFlexFill [readonly]="false" [normalized]="showNormalized" [message]="targetContentNormalized()" formControlName="_editedTargetMessage"></app-normalized-message-input>
+      <app-normalized-message-input fxFlexFill [readonly]="reviewMode" [normalized]="showNormalized" [message]="targetContentNormalized()" formControlName="_editedTargetMessage"></app-normalized-message-input>
       <p *ngFor="let w of warnings()" class="warning"><md-icon>warning</md-icon>&nbsp;{{w}}</p>
       <p *ngFor="let e of errors()" class="error"><md-icon>error</md-icon>&nbsp;{{e}}</p>
       <div fxLayout="row">
-        <button *ngIf="!translationUnit.isTranslated()"
+        <button *ngIf="!reviewMode && !translationUnit.isTranslated()"
                 fxFlexAlign="start"
                 md-button color="primary"
                 (click)="markTranslated()"
                 i18n
                 mdTooltip="press to accept the given translation" i18n-mdTooltip>
           mark as translated
+        </button>
+        <button *ngIf="reviewMode && targetState() === 'translated'"
+                fxFlexAlign="start"
+                md-button color="primary"
+                (click)="markReviewed()"
+                i18n
+                mdTooltip="press to accept the given translation as reviewed" i18n-mdTooltip>
+          mark as reviewed
         </button>
         <button md-button color="accent" (click)="toggleNormalized()">
           <ng-container *ngIf="showNormalized" i18n>show original markup</ng-container>

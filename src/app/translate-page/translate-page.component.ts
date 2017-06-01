@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {TinyTranslatorService} from '../model/tiny-translator.service';
 import {TranslationFile} from '../model/translation-file';
 import {TranslationUnit} from '../model/translation-unit';
-import {TranslationProject} from '../model/translation-project';
+import {TranslationProject, UserRole} from '../model/translation-project';
 import {TranslationFileView} from '../model/translation-file-view';
 
 @Component({
@@ -40,5 +40,9 @@ export class TranslatePageComponent implements OnInit {
 
   save() {
     this.translationService.saveProject(this.currentProject());
+  }
+
+  isInReviewMode(): boolean {
+    return this.currentProject().userRole === UserRole.REVIEWER;
   }
 }

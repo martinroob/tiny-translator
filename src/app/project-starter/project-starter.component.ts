@@ -1,6 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {TinyTranslatorService} from '../model/tiny-translator.service';
-import {TranslationProject, WorkflowType} from '../model/translation-project';
+import {TranslationProject, UserRole, WorkflowType} from '../model/translation-project';
 import {FILETYPE_XTB} from 'ngx-i18nsupport-lib/dist';
 import {isNullOrUndefined} from 'util';
 import {FormBuilder, FormGroup} from '@angular/forms';
@@ -37,7 +37,8 @@ export class ProjectStarterComponent implements OnInit {
     if (!this.form) {
       this.form = this.formBuilder.group({
         projectName: [''],
-        workflowType: [''],
+        workflowType: ['singleuser'],
+        userRole: ['translator'],
         selectedFiles: [''],
         selectedMasterXmbFiles: [''],
         sourceLanguage: [''],
@@ -66,6 +67,7 @@ export class ProjectStarterComponent implements OnInit {
     ).subscribe((newProject) => {
       this.createdProject = newProject;
       if (this.createdProject) {
+        this.createdProject.setUserRole(this.toUserRole(formValue.userRole));
         if (this.createdProject.translationFile) {
           this.createdProject.translationFile.setSourceLanguage(formValue.sourceLanguage);
         }
@@ -73,12 +75,33 @@ export class ProjectStarterComponent implements OnInit {
     });
   }
 
+  /**
+   * Convert string type from form to enum.
+   * @param type
+   * @return {any}
+   */
   toWorkflowType(type: string): WorkflowType {
     switch (type) {
       case 'singleuser':
         return WorkflowType.SINGLE_USER;
       case 'withReview':
         return WorkflowType.WITH_REVIEW;
+      default:
+        return null;
+    }
+  }
+
+  /**
+   * Convert string type from form to enum.
+   * @param type
+   * @return {any}
+   */
+  toUserRole(role: string): UserRole {
+    switch (role) {
+      case 'translator':
+        return UserRole.TRANSLATOR;
+      case 'reviewer':
+        return UserRole.REVIEWER;
       default:
         return null;
     }
@@ -135,10 +158,13 @@ export class ProjectStarterComponent implements OnInit {
   }
 
   needsExplicitSourceLanguage(): boolean {
-    return !!this.createdProject &&
+    return this.createdProject &&
       this.createdProject.translationFile &&
       !this.createdProject.translationFile.hasErrors() &&
       isNullOrUndefined(this.createdProject.translationFile.sourceLanguageFromFile());
   }
 
+  isWorkflowWithReview(): boolean {
+    return this.createdProject && this.createdProject.workflowType === WorkflowType.WITH_REVIEW;
+  }
 }

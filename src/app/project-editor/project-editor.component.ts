@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {TranslationProject, WorkflowType} from '../model/translation-project';
+import {TranslationProject, UserRole, WorkflowType} from '../model/translation-project';
 import {FormBuilder, FormGroup} from '@angular/forms';
 
 /**
@@ -30,6 +30,7 @@ export class ProjectEditorComponent implements OnInit {
       this.form = this.formBuilder.group({
         projectName: [this.project.name],
         workflowType: [this.workflowTypeToString(this.project.workflowType)],
+        userRole: [this.userRoleToString(this.project.userRole)],
       });
     }
   }
@@ -46,7 +47,7 @@ export class ProjectEditorComponent implements OnInit {
   }
 
   workflowTypeToString(type: WorkflowType): string {
-    switch(type) {
+    switch (type) {
       case WorkflowType.SINGLE_USER:
         return 'singleuser';
       case WorkflowType.WITH_REVIEW:
@@ -54,9 +55,35 @@ export class ProjectEditorComponent implements OnInit {
     }
   }
 
+  /**
+   * Convert string type from form to enum.
+   * @param type
+   * @return {any}
+   */
+  toUserRole(role: string): UserRole {
+    switch (role) {
+      case 'translator':
+        return UserRole.TRANSLATOR;
+      case 'reviewer':
+        return UserRole.REVIEWER;
+      default:
+        return null;
+    }
+  }
+
+  userRoleToString(role: UserRole): string {
+    switch (role) {
+      case UserRole.TRANSLATOR:
+        return 'translator';
+      case UserRole.REVIEWER:
+        return 'reviewer';
+    }
+  }
+
   editProject() {
     this.project.setName(this.form.value.projectName);
     this.project.setWorkflowType(this.toWorkflowType(this.form.value.workflowType));
+    this.project.setUserRole(this.toUserRole(this.form.value.userRole));
     this.onEditProject.emit(this.project);
   }
 
@@ -64,4 +91,7 @@ export class ProjectEditorComponent implements OnInit {
     return this.project.translationFile.name;
   }
 
+  isWorkflowWithReview(): boolean {
+    return this.project && this.project.workflowType === WorkflowType.WITH_REVIEW;
+  }
 }

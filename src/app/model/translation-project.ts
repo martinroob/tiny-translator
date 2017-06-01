@@ -2,9 +2,30 @@ import {TranslationFile} from './translation-file';
 import {TranslationFileView} from './translation-file-view';
 import {isNullOrUndefined} from 'util';
 
+/**
+ * Workflow type determines, how you work with the tool.
+ * There are 2 modes:
+ * SINGLE_USER: You are developer and translator in one person.
+ * You just translate the messages and, when done, reimport it into your application.
+ * All translations are marked as state "final" directly after input.
+ * WITH_REVIEW: Developer and translator are distinct people.
+ * All translation are first marked as "translated".
+ * When done, the translator gives it back to the developer, who reviews all marked as "translated".
+ * He then can mark them all as "final" or give them back to the translator.
+ */
 export enum WorkflowType {
   SINGLE_USER,
   WITH_REVIEW
+}
+
+/**
+ * The role the user has, when working with the tool.
+ * As a reviewer you can check the translations and mark them as "final" at the end.
+ * As a translator you can translate and give it back to the reviever.
+ */
+export enum UserRole {
+  REVIEWER,
+  TRANSLATOR
 }
 
 /**
@@ -17,6 +38,8 @@ export class TranslationProject {
 
   private _view: TranslationFileView;
 
+  private _userRole: UserRole;
+
   /**
    * Create a project from the serialization.
    * @param serializationString
@@ -24,8 +47,12 @@ export class TranslationProject {
    */
   static deserialize(serializationString: string): TranslationProject {
     const deserializedObject: any = JSON.parse(serializationString);
-    const project = new TranslationProject(deserializedObject.name, TranslationFile.deserialize(deserializedObject.translationFile));
+    const project = new TranslationProject(
+      deserializedObject.name,
+      TranslationFile.deserialize(deserializedObject.translationFile),
+      deserializedObject.workflowType);
     project.id = deserializedObject.id;
+    project.setUserRole(deserializedObject.userRole);
     return project;
   }
 
@@ -45,7 +72,8 @@ export class TranslationProject {
       id: this.id,
       name: this.name,
       translationFile: this.translationFile.serialize(),
-      workflowType: this.workflowType
+      workflowType: this.workflowType,
+      userRole: this.userRole
     };
     return JSON.stringify(serializedObject);
   }
@@ -72,6 +100,18 @@ export class TranslationProject {
 
   public setWorkflowType(type: WorkflowType) {
     this._workflowType = type;
+  }
+
+  get userRole(): UserRole {
+    return isNullOrUndefined(this._userRole) ? UserRole.TRANSLATOR : this._userRole;
+  }
+
+  public setUserRole(role: UserRole) {
+    this._userRole = role;
+  }
+
+  public isReviewModeActive(): boolean {
+    return this._userRole === UserRole.REVIEWER;
   }
 
   public hasErrors(): boolean {

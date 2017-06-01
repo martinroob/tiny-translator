@@ -1,6 +1,6 @@
 <div fxLayout="row" fxLayoutGap="10px">
   <p><span i18n><b>Project </b> {{project?.name}}</span>
-    <button md-icon-button (click)="openProjectDetails()" mdTooltip="Details of the project">
+    <button md-icon-button (click)="openProjectDetails()" mdTooltip="Details of the project (click to open)" i18n-mdTooltip>
       <md-icon>info</md-icon>
     </button>
   </p>
@@ -11,3 +11,7 @@
     (onSave)="save($event)"
   </app-translation-file-status>
 </div>
+<p *ngIf="project?.isReviewModeActive()">
+  <md-icon mdTooltip="As a reviewer translation is disabled. You can only mark translated units as reviewed" i18n-mdTooltip>warning</md-icon>
+  <span i18n>You are currently working as reviewer!</span>
+</p>

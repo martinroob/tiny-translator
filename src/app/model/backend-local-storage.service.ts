@@ -19,7 +19,6 @@ export class BackendLocalStorageService extends BackendServiceAPI {
    * Store a project.
    */
   store(project: TranslationProject) {
-    console.log('project stored in local storage');
     if (!project.id) {
       project.id = BackendServiceAPI.generateUUID();
     }
@@ -30,14 +29,13 @@ export class BackendLocalStorageService extends BackendServiceAPI {
    * Get all stored projects.
    */
   projects(): TranslationProject[] {
-    console.log('projects retrieved from local storage');
-    let projectKeys = this.getProjectKeys();
+    const projectKeys = this.getProjectKeys();
     return projectKeys.map(key => {return TranslationProject.deserialize(localStorage.getItem(key))});
   }
 
   delete(project: TranslationProject) {
     if (project && project.id) {
-      let key = this.keyForProject(project);
+      const key = this.keyForProject(project);
       localStorage.removeItem(key);
     }
   }
@@ -47,7 +45,7 @@ export class BackendLocalStorageService extends BackendServiceAPI {
   }
 
   private getProjectKeys(): string[] {
-    let result = [];
+    const result = [];
     for (let i = 0; i < localStorage.length; i++) {
       const key = localStorage.key(i);
       if (key && key.startsWith(this.PRAEFIX_PROJECT)) {

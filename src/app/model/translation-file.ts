@@ -165,7 +165,7 @@ export class TranslationFile {
    * @return {string}
    */
   public sourceLanguageFromFile(): string {
-    return this._translationFile ? this._translationFile.sourceLanguage() : null;
+    return this._translationFile ? this._translationFile.sourceLanguage() : 'unknown';
   }
 
   /**

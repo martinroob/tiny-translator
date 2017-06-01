@@ -5,7 +5,6 @@ import {NormalizedMessage} from '../model/normalized-message';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {Observable} from 'rxjs/Observable';
 import {TranslateUnitWarningConfirmDialogComponent} from '../translate-unit-warning-confirm-dialog/translate-unit-warning-confirm-dialog.component';
-import {isNullOrUndefined} from 'util';
 import {TranslationFileView} from '../model/translation-file-view';
 import {WorkflowType} from '../model/translation-project';
 import {STATE_FINAL, STATE_TRANSLATED} from 'ngx-i18nsupport-lib/dist';
@@ -27,7 +26,9 @@ export class TranslateUnitComponent implements OnInit, OnChanges {
 
   @Input() workflowType: WorkflowType;
 
-  @Input() showNormalized: boolean = true;
+  @Input() showNormalized = true;
+
+  @Input() reviewMode = false;
 
   @Output() translationChanged: EventEmitter<TranslationUnit> = new EventEmitter();
 
@@ -35,12 +36,13 @@ export class TranslateUnitComponent implements OnInit, OnChanges {
 
   private _editedTargetMessage: NormalizedMessage;
   private isMarkedAsTranslated = false;
+  private isMarkedAsReviewed = false;
 
   constructor(private formBuilder: FormBuilder, private dialog: MdDialog, private _snackbar: MdSnackBar) { }
 
   ngOnInit() {
     this.initForm();
-    this.form.valueChanges.subscribe(formValue => {this.valueChanged(formValue)});
+    this.form.valueChanges.subscribe(formValue => {this.valueChanged(formValue); });
   }
 
   private valueChanged(v: any) {
@@ -164,7 +166,7 @@ export class TranslateUnitComponent implements OnInit, OnChanges {
   }
 
   errors(): any[] {
-    let errors = this._editedTargetMessage.validate(this.showNormalized);
+    const errors = this._editedTargetMessage.validate(this.showNormalized);
     if (errors) {
       return Object.keys(errors).map(key => errors[key]);
     } else {
@@ -173,7 +175,7 @@ export class TranslateUnitComponent implements OnInit, OnChanges {
   }
 
   warnings(): any[] {
-    let errors = this._editedTargetMessage.validateWarnings(this.showNormalized);
+    const errors = this._editedTargetMessage.validateWarnings(this.showNormalized);
     if (errors) {
       return Object.keys(errors).map(key => errors[key]);
     } else {
@@ -183,17 +185,23 @@ export class TranslateUnitComponent implements OnInit, OnChanges {
 
   public commitChanges() {
     if (this.translationUnit) {
-      if (this.isTranslationChanged() || this.isMarkedAsTranslated) {
+      if (this.isTranslationChanged() || this.isMarkedAsTranslated || this.isMarkedAsReviewed) {
         this.translationUnit.translate(this._editedTargetMessage);
         switch (this.workflowType) {
           case WorkflowType.SINGLE_USER:
             this.translationUnit.setTargetState(STATE_FINAL);
             break;
           case WorkflowType.WITH_REVIEW:
-            this.translationUnit.setTargetState(STATE_TRANSLATED);
+            if (this.isMarkedAsReviewed) {
+              this.translationUnit.setTargetState(STATE_FINAL);
+            } else {
+              this.translationUnit.setTargetState(STATE_TRANSLATED);
+            }
             break;
         }
         this.translationChanged.emit(this.translationUnit);
+        this.isMarkedAsTranslated = false;
+        this.isMarkedAsReviewed = false;
       }
     }
   }
@@ -219,6 +227,11 @@ export class TranslateUnitComponent implements OnInit, OnChanges {
     });
   }
 
+  markReviewed() {
+    this.isMarkedAsReviewed = true;
+    this.commitChanges();
+  }
+
   /**
    * If there are errors or warnings, open a dialog to conform what to do.
    * There are 3 possible results:
@@ -228,15 +241,15 @@ export class TranslateUnitComponent implements OnInit, OnChanges {
    * @return {any}
    */
   openConfirmWarningsDialog(): Observable<any> {
-    let warnings = this.warnings();
-    let errors = this.errors();
+    const warnings = this.warnings();
+    const errors = this.errors();
     if (warnings.length === 0 && errors.length === 0) {
       // everything good, we don´t need a dialog then.
       return Observable.of('accept');
     } else if (!this.isTranslationChanged()) {
       return Observable.of('accept');
     } else {
-      let dialogRef = this.dialog.open(TranslateUnitWarningConfirmDialogComponent,
+      const dialogRef = this.dialog.open(TranslateUnitWarningConfirmDialogComponent,
         {
           data: {errors: errors, warnings: warnings},
           disableClose: true
