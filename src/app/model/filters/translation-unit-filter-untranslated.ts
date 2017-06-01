@@ -4,7 +4,7 @@ import {TranslationUnit} from '../translation-unit';
  * Filter that filters all units.
  * Created by martin on 27.05.2017.
  */
-export class TranslationUnitFilterUnranslated implements ITranslationUnitFilter {
+export class TranslationUnitFilterUntranslated implements ITranslationUnitFilter {
 
   public filters(tu: TranslationUnit): boolean {
     return !tu.isTranslated();

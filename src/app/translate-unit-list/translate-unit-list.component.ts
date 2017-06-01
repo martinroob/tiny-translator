@@ -3,9 +3,12 @@ import {TranslationUnit} from '../model/translation-unit';
 import {MdRadioChange} from '@angular/material';
 import {TranslationFileView} from '../model/translation-file-view';
 import {TranslationUnitFilterAll} from '../model/filters/translation-unit-filter-all';
-import {TranslationUnitFilterUnranslated} from '../model/filters/translation-unit-filter-untranslated';
+import {TranslationUnitFilterUntranslated} from '../model/filters/translation-unit-filter-untranslated';
 import {TranslationUnitFilterNeedsReview} from '../model/filters/translation-unit-filter-needs-review';
 import {WorkflowType} from '../model/translation-project';
+import {Subject} from 'rxjs/Subject';
+import {Subscription} from 'rxjs/Subscription';
+import {TranslationUnitFilterSubstring} from '../model/filters/translation-unit-filter-substring';
 
 /**
  * Component that shows a list of trans units.
@@ -20,6 +23,9 @@ export class TranslateUnitListComponent implements OnInit {
 
   private _translationFileView: TranslationFileView;
   public _selectedFilterName = 'all';
+  public substringToSearch: string;
+  private substringSubject: Subject<string>;
+  private substringSubscription: Subscription;
 
   /**
    * workflowType determines, what filters are visibile.
@@ -28,6 +34,7 @@ export class TranslateUnitListComponent implements OnInit {
 
   constructor() {
     this.translationFileView = new TranslationFileView(null);
+    this.substringSubject = new Subject<string>();
   }
 
   @Input() public get translationFileView() {
@@ -55,11 +62,25 @@ export class TranslateUnitListComponent implements OnInit {
   }
 
   public showUntranslated() {
-    this.translationFileView.setActiveFilter(new TranslationUnitFilterUnranslated());
+    this.translationFileView.setActiveFilter(new TranslationUnitFilterUntranslated());
   }
 
   public showNeedsReview() {
     this.translationFileView.setActiveFilter(new TranslationUnitFilterNeedsReview());
+  }
+
+  public showBySearchFilter() {
+    if (this.substringSubscription) {
+      this.substringSubscription.unsubscribe();
+    }
+    this.substringSubscription = this.substringSubject.debounceTime(200).subscribe((substr) => {
+      console.log('CHange filter to', substr);
+      this.translationFileView.setActiveFilter(new TranslationUnitFilterSubstring(substr));
+    });
+  }
+
+  substringToSearchChange() {
+    this.substringSubject.next(this.substringToSearch);
   }
 
   filterChanged(changeEvent: MdRadioChange) {
@@ -72,6 +93,9 @@ export class TranslateUnitListComponent implements OnInit {
         break;
       case 'needsReview':
         this.showNeedsReview();
+        break;
+      case 'search':
+        this.showBySearchFilter();
         break;
       default:
         // do nothing
