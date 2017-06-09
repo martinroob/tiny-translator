@@ -1,8 +1,19 @@
 <div fxLayout="column" fxFlexFill>
   <p *ngIf="readonly">{{textToDisplay()}}</p>
   <form *ngIf="!readonly" [formGroup]="form">
-    <md-input-container fxFlexFill>
-      <input mdInput type="text" formControlName="displayedText">
-    </md-input-container>
+    <ng-container *ngIf="!isICUMessage() || !normalized">
+      <md-input-container fxFlexFill>
+        <input mdInput type="text" formControlName="displayedText">
+      </md-input-container>
+    </ng-container>
+    <ng-container *ngIf="isICUMessage() && normalized">
+      <p>{{textToDisplay()}}</p>
+      <div *ngFor="let category of getICUMessageCategories(); index as i" fxLayout="row" fxLayoutGap="20px" formArrayName="icuMessages">
+        <p>{{category.getCategory()}}</p>
+        <md-input-container fxFlexFill>
+          <input mdInput type="text" [formControlName]="i">
+        </md-input-container>
+      </div>
+    </ng-container>
   </form>
 </div>

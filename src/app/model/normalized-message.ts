@@ -1,5 +1,7 @@
 import {INormalizedMessage} from 'ngx-i18nsupport-lib';
 import {ValidationErrors} from '@angular/forms';
+import {isNullOrUndefined} from 'util';
+import {IICUMessage, IICUMessageTranslation} from 'ngx-i18nsupport-lib/dist';
 /**
  * Created by martin on 19.05.2017.
  * Wrapper around INormalizedMessage for GUI usage.
@@ -41,13 +43,28 @@ export class NormalizedMessage {
   public dislayText(normalize: boolean): string {
     if (normalize) {
       if (this._normalizedMessage) {
-        return this._normalizedMessage.asDisplayString();
+        if (this.isICUMessage()) {
+          return this._normalizedMessage.asDisplayString() + ' ' + this._normalizedMessage.getICUMessage().asNativeString();
+        } else {
+          return this._normalizedMessage.asDisplayString();
+        }
       } else {
         return this._parseError;
       }
     } else {
       return this._original;
     }
+  }
+
+  /**
+   * Test, wether it is an ICU message.
+   */
+  isICUMessage(): boolean {
+    return this._normalizedMessage && !isNullOrUndefined(this._normalizedMessage.getICUMessage());
+  }
+
+  getICUMessage(): IICUMessage {
+    return this._normalizedMessage ? this._normalizedMessage.getICUMessage() : null;
   }
 
   public translate(newValue: string, normalize: boolean): NormalizedMessage {
@@ -82,6 +99,26 @@ export class NormalizedMessage {
         parseError = error.message;
       }
     }
+    return new NormalizedMessage(newOriginal, newMessage, parseError, this._sourceMessage);
+  }
+
+  public translateICUMessage(newValue: IICUMessageTranslation): NormalizedMessage {
+    let newOriginal: string;
+    let newMessage: INormalizedMessage;
+    let parseError: string;
+      try {
+        if (this._normalizedMessage) {
+          newMessage = this._normalizedMessage.translateICUMessage(newValue);
+        } else {
+          newMessage = this._sourceMessage.translateICUMessage(newValue);
+        }
+        newOriginal = newMessage.asNativeString();
+        parseError = null;
+      } catch (error) {
+        parseError = error.message;
+        newMessage = null;
+        newOriginal = null;
+      }
     return new NormalizedMessage(newOriginal, newMessage, parseError, this._sourceMessage);
   }
 

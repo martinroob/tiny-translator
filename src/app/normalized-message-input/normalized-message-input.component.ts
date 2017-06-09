@@ -2,6 +2,8 @@ import {Component, forwardRef, Input, OnChanges, OnInit, SimpleChange, SimpleCha
 import {NormalizedMessage} from '../model/normalized-message';
 import {isNullOrUndefined} from 'util';
 import {ControlValueAccessor, FormBuilder, FormGroup, NG_VALUE_ACCESSOR} from '@angular/forms';
+import {IICUMessageCategory, IICUMessageTranslation} from 'ngx-i18nsupport-lib/dist';
+import {Subscription} from 'rxjs/Subscription';
 /**
  * A component used as an input field for normalized message.
  */
@@ -36,6 +38,7 @@ export class NormalizedMessageInputComponent implements OnInit, OnChanges, Contr
   @Input() readonly: boolean;
 
   form: FormGroup;
+  subscription: Subscription;
 
   propagateChange = (_: any) => {};
   disabled: boolean = false;
@@ -44,7 +47,6 @@ export class NormalizedMessageInputComponent implements OnInit, OnChanges, Contr
 
   ngOnInit() {
     this.initForm();
-    this.form.valueChanges.debounceTime(200).subscribe(formValue => {this.valueChanged(formValue)});
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -56,9 +58,23 @@ export class NormalizedMessageInputComponent implements OnInit, OnChanges, Contr
   }
 
   private initForm() {
-    if (!this.form) {
-      this.form = this.formBuilder.group({displayedText: [{value: this.textToDisplay(), disabled: this.disabled}]});
+    if (this.subscription) {
+      this.subscription.unsubscribe();
     }
+    this.form = this.formBuilder.group({
+      displayedText: [{value: this.textToDisplay(), disabled: this.disabled}],
+      icuMessages: this.formBuilder.array(this.initIcuMessagesFormArray())
+    });
+    this.subscription = this.form.valueChanges.debounceTime(200).subscribe(formValue => {this.valueChanged(formValue)});
+  }
+
+  private initIcuMessagesFormArray() {
+    if (!this.isICUMessage()) {
+      return [];
+    }
+    return this.getICUMessageCategories().map((category) => {
+      return [category.getMessageNormalized().asDisplayString()];
+    });
   }
 
   /**
@@ -93,6 +109,10 @@ export class NormalizedMessageInputComponent implements OnInit, OnChanges, Contr
     this.form = this.formBuilder.group({displayedText: [{value: this.textToDisplay(), disabled: this.disabled}]});
   }
 
+  /**
+   * The text to be shown in the readonly mode.
+   * @return {any}
+   */
   textToDisplay(): string {
     if (this.message) {
       return this.message.dislayText(this.normalized);
@@ -101,10 +121,47 @@ export class NormalizedMessageInputComponent implements OnInit, OnChanges, Contr
     }
   }
 
+  /**
+   * Test, wether it is an ICU message.
+   */
+  isICUMessage(): boolean {
+    if (this.message) {
+      return this.message.isICUMessage();
+    } else {
+      return false;
+    }
+  }
+
+  /**
+   * Get list of categories if it is an ICU Message.
+   * @return categories or empty array.
+   */
+  getICUMessageCategories(): IICUMessageCategory[] {
+    if (isNullOrUndefined(this.message)) {
+      return [];
+    }
+    const icuMessage = this.message.getICUMessage();
+    if (isNullOrUndefined(icuMessage)) {
+      return [];
+    }
+    return icuMessage.getCategories();
+  }
+
   private valueChanged(value: any) {
+    console.log('form value: ', value);
     if (!this.readonly) {
-      let textEntered = value.displayedText;
-      this.message = this.message.translate(textEntered, this.normalized);
+      if (!this.isICUMessage() || !this.normalized) {
+        let textEntered = value.displayedText;
+        this.message = this.message.translate(textEntered, this.normalized);
+      } else {
+        const categories = this.getICUMessageCategories();
+        const valuesEntered = value.icuMessages;
+        let translation: IICUMessageTranslation = {};
+        for (let i = 0; i < value.icuMessages.length; i++) {
+          translation[categories[i].getCategory()] = valuesEntered[i];
+        }
+        this.message = this.message.translateICUMessage(translation);
+      }
     }
     this.propagateChange(this.message);
   }
