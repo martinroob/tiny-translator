@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {TranslationProject, UserRole, WorkflowType} from '../model/translation-project';
 import {FormBuilder, FormGroup} from '@angular/forms';
+import {isNullOrUndefined} from 'util';
 
 /**
  * Component to edit some properties of the current project.
@@ -31,6 +32,7 @@ export class ProjectEditorComponent implements OnInit {
         projectName: [this.project.name],
         workflowType: [this.workflowTypeToString(this.project.workflowType)],
         userRole: [this.userRoleToString(this.project.userRole)],
+        sourceLanguage: [this.project.translationFile.sourceLanguage()],
       });
     }
   }
@@ -84,6 +86,7 @@ export class ProjectEditorComponent implements OnInit {
     this.project.setName(this.form.value.projectName);
     this.project.setWorkflowType(this.toWorkflowType(this.form.value.workflowType));
     this.project.setUserRole(this.toUserRole(this.form.value.userRole));
+    this.project.translationFile.setSourceLanguage(this.form.value.sourceLanguage);
     this.onEditProject.emit(this.project);
   }
 
@@ -94,4 +97,12 @@ export class ProjectEditorComponent implements OnInit {
   isWorkflowWithReview(): boolean {
     return this.project && this.project.workflowType === WorkflowType.WITH_REVIEW;
   }
+
+  hasExplicitSourceLanguage(): boolean {
+    return this.project &&
+      this.project.translationFile &&
+      !this.project.translationFile.hasErrors() &&
+      isNullOrUndefined(this.project.translationFile.sourceLanguageFromFile());
+  }
+
 }

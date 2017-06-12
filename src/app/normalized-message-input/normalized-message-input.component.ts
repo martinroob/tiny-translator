@@ -148,7 +148,6 @@ export class NormalizedMessageInputComponent implements OnInit, OnChanges, Contr
   }
 
   private valueChanged(value: any) {
-    console.log('form value: ', value);
     if (!this.readonly) {
       if (!this.isICUMessage() || !this.normalized) {
         let textEntered = value.displayedText;

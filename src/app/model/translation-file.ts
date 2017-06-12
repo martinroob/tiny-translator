@@ -35,7 +35,7 @@ export class TranslationFile {
 
   private masterContent: string;
 
-  private masterName: string;
+  private _masterName: string;
 
   private _translationFile: ITranslationMessagesFile;
 
@@ -66,7 +66,7 @@ export class TranslationFile {
                 encoding: null
               };
               newInstance.masterContent = masterXmbContent.content;
-              newInstance.masterName = masterXmbContent.name;
+              newInstance._masterName = masterXmbContent.name;
             }
             newInstance._translationFile =
               TranslationMessagesFileFactory.fromUnknownFormatFileContent(
@@ -104,6 +104,7 @@ export class TranslationFile {
       let optionalMaster: {xmlContent: string, path: string, encoding: string} = null;
       if (deserializedObject.masterContent) {
         optionalMaster = {xmlContent: deserializedObject.masterContent, path: deserializedObject.masterName, encoding: encoding};
+        newInstance._masterName = deserializedObject.masterName;
       }
       newInstance._translationFile = TranslationMessagesFileFactory.fromUnknownFormatFileContent(deserializedObject.editedContent, deserializedObject.name, encoding, optionalMaster);
       newInstance.readTransUnits();
@@ -128,6 +129,14 @@ export class TranslationFile {
 
   get name(): string {
     return this._name;
+  }
+
+  /**
+   * In case of xmb/xtb the name of the master xmb file.
+   * @return {string}
+   */
+  get masterName(): string {
+    return this._masterName;
   }
 
   get size(): number {
@@ -276,7 +285,7 @@ export class TranslationFile {
       fileContent: this.fileContent,
       editedContent: this.editedContent(),
       masterContent: this.masterContent,
-      masterName: this.masterName,
+      masterName: this._masterName,
       explicitSourceLanguage: this._explicitSourceLanguage
     };
     return JSON.stringify(serializedObject);

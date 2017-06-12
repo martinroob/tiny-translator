@@ -21,6 +21,12 @@
     </app-translation-file-status>
     <p></p>
     <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="start center">
+      <md-input-container *ngIf="hasExplicitSourceLanguage()" fxFlex="50%"
+                          md-tooltip="Your selected file contains no information about the language used. You can set it here explicitly." i18n-md-tooltip>
+        <input placeholder="Explicitly set source language" i18n-placeholder mdInput formControlName="sourceLanguage" name="sourceLanguage"/>
+      </md-input-container>
+    </div>
+    <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="start center">
       <div fxFlex="50%">
         <p i18n>Workflow type you are using</p>
         <md-radio-group formControlName="workflowType" name="workflowType">

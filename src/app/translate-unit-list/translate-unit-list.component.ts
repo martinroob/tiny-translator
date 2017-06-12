@@ -74,7 +74,6 @@ export class TranslateUnitListComponent implements OnInit {
       this.substringSubscription.unsubscribe();
     }
     this.substringSubscription = this.substringSubject.debounceTime(200).subscribe((substr) => {
-      console.log('CHange filter to', substr);
       this.translationFileView.setActiveFilter(new TranslationUnitFilterSubstring(substr));
     });
   }

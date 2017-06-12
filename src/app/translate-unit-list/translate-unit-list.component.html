@@ -9,7 +9,7 @@
       <span i18n>Search</span>&nbsp;
       <md-input-container>
         <input mdInput type="search" placeholder="Substring" i18n-placeholder [(ngModel)]="substringToSearch"
-               (keyup)="substringToSearchChange()">
+               (keyup)="substringToSearchChange()" [disabled]="_selectedFilterName !== 'search'">
       </md-input-container>
     </md-radio-button>
   </md-radio-group>
