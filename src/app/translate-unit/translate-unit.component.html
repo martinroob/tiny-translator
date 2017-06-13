@@ -26,6 +26,10 @@
     <p *ngIf="sourceMeaning()"><b i18n>Meaning</b> {{sourceMeaning()}}</p>
     <form id="translation" fxLayout="column" [formGroup]="form">
       <p fxLayout="row"><span i18n>Your translation to</span>&nbsp;<app-language [code]="targetLanguage()"></app-language></p>
+      <md-slide-toggle formControlName="showNormalized" color="accent">
+        <ng-container *ngIf="showNormalized" i18n>Normalization mode (switch off to show native message)</ng-container>
+        <ng-container *ngIf="!showNormalized" i18n>Normalization mode (switch on to use normalization)</ng-container>
+      </md-slide-toggle>
       <app-normalized-message-input fxFlexFill [readonly]="reviewMode" [normalized]="showNormalized" [message]="targetContentNormalized()" formControlName="_editedTargetMessage"></app-normalized-message-input>
       <p *ngFor="let w of warnings()" class="warning"><md-icon>warning</md-icon>&nbsp;{{w}}</p>
       <p *ngFor="let e of errors()" class="error"><md-icon>error</md-icon>&nbsp;{{e}}</p>
@@ -45,10 +49,6 @@
                 i18n
                 mdTooltip="press to accept the given translation as reviewed" i18n-mdTooltip>
           mark as reviewed
-        </button>
-        <button md-button color="accent" (click)="toggleNormalized()">
-          <ng-container *ngIf="showNormalized" i18n>show original markup</ng-container>
-          <ng-container *ngIf="!showNormalized" i18n>show normalized</ng-container>
         </button>
       </div>
     </form>

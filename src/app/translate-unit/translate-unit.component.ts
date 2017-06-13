@@ -35,6 +35,7 @@ export class TranslateUnitComponent implements OnInit, OnChanges {
   form: FormGroup;
 
   private _editedTargetMessage: NormalizedMessage;
+  private _targetContentNormalized: NormalizedMessage;
   private isMarkedAsTranslated = false;
   private isMarkedAsReviewed = false;
 
@@ -47,6 +48,7 @@ export class TranslateUnitComponent implements OnInit, OnChanges {
 
   private valueChanged(v: any) {
     this._editedTargetMessage = v._editedTargetMessage;
+    this.showNormalized = v.showNormalized;
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -55,15 +57,20 @@ export class TranslateUnitComponent implements OnInit, OnChanges {
     if (changedTranslationUnit) {
       if (changedTranslationUnit.currentValue) {
         this._editedTargetMessage = changedTranslationUnit.currentValue.targetContentNormalized();
+        this._targetContentNormalized = null;
       } else {
         this._editedTargetMessage = null;
+        this._targetContentNormalized = null;
       }
     }
   }
 
   private initForm() {
     if (!this.form) {
-      this.form = this.formBuilder.group({_editedTargetMessage: [this.targetContentNormalized()]});
+      this.form = this.formBuilder.group({
+        _editedTargetMessage: [this.targetContentNormalized()],
+        showNormalized: [this.showNormalized],
+      });
     }
   }
 
@@ -108,18 +115,15 @@ export class TranslateUnitComponent implements OnInit, OnChanges {
   }
 
   public targetContentNormalized(): NormalizedMessage {
-    if (this.translationUnit) {
-      return this.translationUnit.targetContentNormalized();
-    } else {
-      return null;
+    if (!this._targetContentNormalized) {
+      if (this.translationUnit) {
+        console.log('new targetContentNormalized');
+        this._targetContentNormalized = this.translationUnit.targetContentNormalized();
+      } else {
+        this._targetContentNormalized = null;
+      }
     }
-  }
-
-  /**
-   * Toggle between normalized an native markup.
-   */
-  public toggleNormalized() {
-    this.showNormalized = !this.showNormalized;
+    return this._targetContentNormalized;
   }
 
   public sourceLanguage(): string {
