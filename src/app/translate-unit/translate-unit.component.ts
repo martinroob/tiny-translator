@@ -117,7 +117,6 @@ export class TranslateUnitComponent implements OnInit, OnChanges {
   public targetContentNormalized(): NormalizedMessage {
     if (!this._targetContentNormalized) {
       if (this.translationUnit) {
-        console.log('new targetContentNormalized');
         this._targetContentNormalized = this.translationUnit.targetContentNormalized();
       } else {
         this._targetContentNormalized = null;

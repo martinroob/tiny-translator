@@ -26,6 +26,8 @@ export class NormalizedMessageInputComponent implements OnInit, OnChanges, Contr
    */
   @Input() message: NormalizedMessage;
 
+  editedMessage: NormalizedMessage;
+
   /**
    * Flag, wether the message should be shown in normalized form.
    */
@@ -39,9 +41,9 @@ export class NormalizedMessageInputComponent implements OnInit, OnChanges, Contr
 
   form: FormGroup;
   subscription: Subscription;
+  disabled = false;
 
   propagateChange = (_: any) => {};
-  disabled: boolean = false;
 
   constructor(private formBuilder: FormBuilder) { }
 
@@ -51,6 +53,9 @@ export class NormalizedMessageInputComponent implements OnInit, OnChanges, Contr
 
   ngOnChanges(changes: SimpleChanges) {
     this.initForm();
+    if (!isNullOrUndefined(changes['message'])) {
+      this.editedMessage = this.message;
+    }
     const isChanged = !isNullOrUndefined(changes['message']) || !isNullOrUndefined(changes['normalized']);
     if (isChanged) {
       this.form.controls['displayedText'].setValue(this.textToDisplay());
@@ -65,7 +70,9 @@ export class NormalizedMessageInputComponent implements OnInit, OnChanges, Contr
       displayedText: [{value: this.textToDisplay(), disabled: this.disabled}],
       icuMessages: this.formBuilder.array(this.initIcuMessagesFormArray())
     });
-    this.subscription = this.form.valueChanges.debounceTime(200).subscribe(formValue => {this.valueChanged(formValue)});
+    this.subscription = this.form.valueChanges.debounceTime(200).subscribe(formValue => {
+      this.valueChanged(formValue);
+    });
   }
 
   private initIcuMessagesFormArray() {
@@ -114,8 +121,8 @@ export class NormalizedMessageInputComponent implements OnInit, OnChanges, Contr
    * @return {any}
    */
   textToDisplay(): string {
-    if (this.message) {
-      return this.message.dislayText(this.normalized);
+    if (this.editedMessage) {
+      return this.editedMessage.dislayText(this.normalized);
     } else {
       return '';
     }
@@ -150,18 +157,18 @@ export class NormalizedMessageInputComponent implements OnInit, OnChanges, Contr
   private valueChanged(value: any) {
     if (!this.readonly) {
       if (!this.isICUMessage() || !this.normalized) {
-        let textEntered = value.displayedText;
-        this.message = this.message.translate(textEntered, this.normalized);
+        const textEntered = value.displayedText;
+        this.editedMessage = this.message.translate(textEntered, this.normalized);
       } else {
         const categories = this.getICUMessageCategories();
         const valuesEntered = value.icuMessages;
-        let translation: IICUMessageTranslation = {};
+        const translation: IICUMessageTranslation = {};
         for (let i = 0; i < value.icuMessages.length; i++) {
           translation[categories[i].getCategory()] = valuesEntered[i];
         }
-        this.message = this.message.translateICUMessage(translation);
+        this.editedMessage = this.message.translateICUMessage(translation);
       }
     }
-    this.propagateChange(this.message);
+    this.propagateChange(this.editedMessage);
   }
 }
