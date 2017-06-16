@@ -11,6 +11,9 @@ export class TranslationUnitFilterSubstring implements ITranslationUnitFilter {
   }
 
   public filters(tu: TranslationUnit): boolean {
+    if (!this.substring) {
+      return true;
+    }
     const source = tu.sourceContent();
     if (this.matches(source)) {
       return true;

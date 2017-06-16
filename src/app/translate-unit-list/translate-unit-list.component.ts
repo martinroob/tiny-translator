@@ -73,6 +73,8 @@ export class TranslateUnitListComponent implements OnInit {
     if (this.substringSubscription) {
       this.substringSubscription.unsubscribe();
     }
+    const substr = this.substringToSearch ? this.substringToSearch : '';
+    this.translationFileView.setActiveFilter(new TranslationUnitFilterSubstring(substr));
     this.substringSubscription = this.substringSubject.debounceTime(200).subscribe((substr) => {
       this.translationFileView.setActiveFilter(new TranslationUnitFilterSubstring(substr));
     });

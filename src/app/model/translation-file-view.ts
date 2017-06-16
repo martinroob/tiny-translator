@@ -6,6 +6,7 @@ import {AsynchronousFileReaderResult} from './asynchronous-file-reader.service';
 import {TranslationFile} from './translation-file';
 import {ITranslationUnitFilter} from './filters/i-translation-unit-filter';
 import {TranslationUnitFilterAll} from './filters/translation-unit-filter-all';
+import {TranslationUnitFilterUntranslated} from './filters/translation-unit-filter-untranslated';
 
 /**
  * A view on the current translation file.
@@ -32,7 +33,7 @@ export class TranslationFileView {
 
   constructor(translationFile: TranslationFile) {
     this._translationFile = translationFile;
-    this.setActiveFilter(new TranslationUnitFilterAll());
+    this.setActiveFilter(new TranslationUnitFilterUntranslated());
   }
 
   public activeFilter(): ITranslationUnitFilter {
