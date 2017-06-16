@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {TinyTranslatorService} from '../model/tiny-translator.service';
 import {TranslationFile} from '../model/translation-file';
 import {TranslationUnit} from '../model/translation-unit';
-import {TranslationProject} from '../model/translation-project';
+import {TranslationProject, UserRole} from '../model/translation-project';
+import {TranslationFileView} from '../model/translation-file-view';
 
 @Component({
   selector: 'app-translate-page',
@@ -24,9 +25,13 @@ export class TranslatePageComponent implements OnInit {
     return this.currentProject() ? this.currentProject().translationFile : null;
   }
 
+  currentView(): TranslationFileView {
+    return this.currentProject() ? this.currentProject().translationFileView : null;
+  }
+
   currentTranslationUnit(): TranslationUnit {
-    const currentFile = this.currentFile();
-    return currentFile ? currentFile.currentTransUnit() : null;
+    const currentProject = this.currentProject();
+    return currentProject ? currentProject.translationFileView.currentTransUnit() : null;
   }
 
   commitChanges() {
@@ -35,5 +40,9 @@ export class TranslatePageComponent implements OnInit {
 
   save() {
     this.translationService.saveProject(this.currentProject());
+  }
+
+  isInReviewMode(): boolean {
+    return this.currentProject().userRole === UserRole.REVIEWER;
   }
 }

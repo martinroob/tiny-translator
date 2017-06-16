@@ -1,8 +1,19 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ScrollMode, TranslationFile} from '../model/translation-file';
 import {TranslationUnit} from '../model/translation-unit';
 import {MdRadioChange} from '@angular/material';
+import {TranslationFileView} from '../model/translation-file-view';
+import {TranslationUnitFilterAll} from '../model/filters/translation-unit-filter-all';
+import {TranslationUnitFilterUntranslated} from '../model/filters/translation-unit-filter-untranslated';
+import {TranslationUnitFilterNeedsReview} from '../model/filters/translation-unit-filter-needs-review';
+import {WorkflowType} from '../model/translation-project';
+import {Subject} from 'rxjs/Subject';
+import {Subscription} from 'rxjs/Subscription';
+import {TranslationUnitFilterSubstring} from '../model/filters/translation-unit-filter-substring';
 
+/**
+ * Component that shows a list of trans units.
+ * It allows to filter by different criteria and to select a unit.
+ */
 @Component({
   selector: 'app-translate-unit-list',
   templateUrl: './translate-unit-list.component.html',
@@ -10,49 +21,67 @@ import {MdRadioChange} from '@angular/material';
 })
 export class TranslateUnitListComponent implements OnInit {
 
-  private _translationFile: TranslationFile;
-  public _selectedFilter: string = 'all';
+  private _translationFileView: TranslationFileView;
+  public _selectedFilterName = 'all';
+  public substringToSearch: string;
+  private substringSubject: Subject<string>;
+  private substringSubscription: Subscription;
+
+  /**
+   * workflowType determines, what filters are visibile.
+   */
+  @Input() workflowType: WorkflowType;
 
   constructor() {
-    this.translationFile = new TranslationFile();
+    this.translationFileView = new TranslationFileView(null);
+    this.substringSubject = new Subject<string>();
   }
 
-  @Input() public get translationFile() {
-    return this._translationFile;
+  @Input() public get translationFileView() {
+    return this._translationFileView;
   }
 
-  public set translationFile(file: TranslationFile) {
-    if (file) {
-      this._translationFile = file;
+  public set translationFileView(view: TranslationFileView) {
+    if (view) {
+      this._translationFileView = view;
     } else {
-      this._translationFile = new TranslationFile();
+      this._translationFileView = new TranslationFileView(null);
     }
-    this._selectedFilter = this.scrollModeToString(this._translationFile.scrollMode());
-  }
-
-  private scrollModeToString(scrollMode: ScrollMode) {
-    switch (scrollMode) {
-      case ScrollMode.ALL:
-        return 'all';
-      case ScrollMode.UNTRANSLATED:
-        return 'untranslated';
-      default:return '';
-    }
+    this._selectedFilterName = this._translationFileView.activeFilter().name();
   }
 
   ngOnInit() {
   }
 
   public transUnits(): TranslationUnit[] {
-    return this.translationFile.scrollabeTransUnits();
+    return this.translationFileView.scrollabeTransUnits();
   }
 
   public showAll() {
-    this.translationFile.setScrollModeAll();
+    this.translationFileView.setActiveFilter(new TranslationUnitFilterAll());
   }
 
   public showUntranslated() {
-    this.translationFile.setScrollModeUntranslated();
+    this.translationFileView.setActiveFilter(new TranslationUnitFilterUntranslated());
+  }
+
+  public showNeedsReview() {
+    this.translationFileView.setActiveFilter(new TranslationUnitFilterNeedsReview());
+  }
+
+  public showBySearchFilter() {
+    if (this.substringSubscription) {
+      this.substringSubscription.unsubscribe();
+    }
+    const substr = this.substringToSearch ? this.substringToSearch : '';
+    this.translationFileView.setActiveFilter(new TranslationUnitFilterSubstring(substr));
+    this.substringSubscription = this.substringSubject.debounceTime(200).subscribe((substr) => {
+      this.translationFileView.setActiveFilter(new TranslationUnitFilterSubstring(substr));
+    });
+  }
+
+  substringToSearchChange() {
+    this.substringSubject.next(this.substringToSearch);
   }
 
   filterChanged(changeEvent: MdRadioChange) {
@@ -63,26 +92,26 @@ export class TranslateUnitListComponent implements OnInit {
       case 'untranslated':
         this.showUntranslated();
         break;
+      case 'needsReview':
+        this.showNeedsReview();
+        break;
+      case 'search':
+        this.showBySearchFilter();
+        break;
       default:
         // do nothing
     }
   }
 
   public selectTransUnit(tu: TranslationUnit) {
-    this.translationFile.selectTransUnit(tu);
+    this.translationFileView.selectTransUnit(tu);
   }
 
   isSelected(tu: TranslationUnit): boolean {
-    return tu && tu === this.translationFile.currentTransUnit();
+    return tu && tu === this.translationFileView.currentTransUnit();
   }
 
-  selectedStyle(tu: TranslationUnit): any {
-    if (!tu || !this.isSelected(tu)) {
-      return {};
-    } else {
-      return {
-        'background-color': 'pink'
-      }
-    }
+  isWorkflowWithReview(): boolean {
+    return this.workflowType === WorkflowType.WITH_REVIEW;
   }
 }

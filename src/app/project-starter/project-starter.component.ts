@@ -1,16 +1,9 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {TinyTranslatorService} from '../model/tiny-translator.service';
-import {TranslationFile} from '../model/translation-file';
-import {TranslationProject} from '../model/translation-project';
-import {Observable} from 'rxjs';
+import {TranslationProject, UserRole, WorkflowType} from '../model/translation-project';
 import {FILETYPE_XTB} from 'ngx-i18nsupport-lib/dist';
 import {isNullOrUndefined} from 'util';
-
-interface FileInfo {
-  name: string;
-  type: string;
-  size: number;
-}
+import {FormBuilder, FormGroup} from '@angular/forms';
 
 /**
  * The ProjectStarter is an upload component.
@@ -25,29 +18,97 @@ export class ProjectStarterComponent implements OnInit {
 
   @Output() onAddProject: EventEmitter<TranslationProject> = new EventEmitter();
 
-  public projectName: string; // set via input field
-  public sourceLanguage: string; // set via input field
-  private selectedFiles: FileList;
-  private selectedMasterXmbFiles;
   private createdProject: TranslationProject;
 
-  constructor(private translatorService: TinyTranslatorService) { }
+  form: FormGroup;
+  private selectedFiles: FileList;
+  private selectedMasterXmbFiles: FileList;
+
+  constructor(private formBuilder: FormBuilder, private translatorService: TinyTranslatorService) { }
 
   ngOnInit() {
+    this.initForm();
+    this.form.valueChanges.subscribe(formValue => {
+      this.valueChanged(formValue);
+    });
+  }
+
+  private initForm() {
+    if (!this.form) {
+      this.form = this.formBuilder.group({
+        projectName: [''],
+        workflowType: ['singleuser'],
+        userRole: ['translator'],
+        selectedFiles: [''],
+        selectedMasterXmbFiles: [''],
+        sourceLanguage: [''],
+      });
+    }
   }
 
   fileSelectionChange(input: HTMLInputElement) {
     this.selectedFiles = input.files;
+    this.valueChanged(this.form.value);
+  }
+
+  masterXmlFileSelectionChange(input: HTMLInputElement) {
+    this.selectedMasterXmbFiles = input.files;
+    this.valueChanged(this.form.value);
+  }
+
+  valueChanged(formValue) {
     const translationFile = (this.selectedFiles) ? this.selectedFiles.item(0) : null;
     const masterXmbFile = (this.selectedMasterXmbFiles) ? this.selectedMasterXmbFiles.item(0) : null;
-    this.translatorService.createProject(this.projectName, translationFile, masterXmbFile).subscribe((newProject) => {
+    this.translatorService.createProject(
+      formValue.projectName,
+      translationFile,
+      masterXmbFile,
+      this.toWorkflowType(formValue.workflowType)
+    ).subscribe((newProject) => {
       this.createdProject = newProject;
-      this.explicitSourceLanguageChanged();
+      if (this.createdProject) {
+        this.createdProject.setUserRole(this.toUserRole(formValue.userRole));
+        if (this.createdProject.translationFile) {
+          this.createdProject.translationFile.setSourceLanguage(formValue.sourceLanguage);
+        }
+      }
     });
   }
 
+  /**
+   * Convert string type from form to enum.
+   * @param type
+   * @return {any}
+   */
+  toWorkflowType(type: string): WorkflowType {
+    switch (type) {
+      case 'singleuser':
+        return WorkflowType.SINGLE_USER;
+      case 'withReview':
+        return WorkflowType.WITH_REVIEW;
+      default:
+        return null;
+    }
+  }
+
+  /**
+   * Convert string type from form to enum.
+   * @param type
+   * @return {any}
+   */
+  toUserRole(role: string): UserRole {
+    switch (role) {
+      case 'translator':
+        return UserRole.TRANSLATOR;
+      case 'reviewer':
+        return UserRole.REVIEWER;
+      default:
+        return null;
+    }
+  }
+
   addProject() {
-      this.onAddProject.emit(new TranslationProject(this.projectName, this.createdProject.translationFile));
+      this.onAddProject.emit(this.createdProject);
   }
 
   selectedFilesFormatted(): string {
@@ -78,17 +139,10 @@ export class ProjectStarterComponent implements OnInit {
    * Enables the input for a second file, the master xmb.
    */
   isMasterXmbFileNeeded(): boolean {
-    return this.isFileSelected() && this.createdProject && this.createdProject.translationFile && this.createdProject.translationFile.fileType() === FILETYPE_XTB;
-  }
-
-  masterXmlFileSelectionChange(input: HTMLInputElement) {
-    this.selectedMasterXmbFiles = input.files;
-    const translationFile = (this.selectedFiles) ? this.selectedFiles.item(0) : null;
-    const masterXmbFile = (this.selectedMasterXmbFiles) ? this.selectedMasterXmbFiles.item(0) : null;
-    this.translatorService.createProject(this.projectName, translationFile, masterXmbFile).subscribe((newProject) => {
-      this.createdProject = newProject;
-      this.explicitSourceLanguageChanged();
-    });
+    return this.isFileSelected() &&
+      this.createdProject &&
+      this.createdProject.translationFile &&
+      this.createdProject.translationFile.fileType() === FILETYPE_XTB;
   }
 
   /**
@@ -96,7 +150,7 @@ export class ProjectStarterComponent implements OnInit {
    * Enables the add button.
    */
   isInputComplete(): boolean {
-    return this.projectName && this.isFileSelected() && !!this.createdProject && !this.createdProject.hasErrors();
+    return this.createdProject && this.createdProject.name && !this.createdProject.hasErrors() && this.isFileSelected();
   }
 
   isFileSelected(): boolean {
@@ -104,15 +158,13 @@ export class ProjectStarterComponent implements OnInit {
   }
 
   needsExplicitSourceLanguage(): boolean {
-    return !!this.createdProject &&
+    return this.createdProject &&
       this.createdProject.translationFile &&
       !this.createdProject.translationFile.hasErrors() &&
       isNullOrUndefined(this.createdProject.translationFile.sourceLanguageFromFile());
   }
 
-  explicitSourceLanguageChanged() {
-    if (!!this.createdProject && this.createdProject.translationFile) {
-      this.createdProject.translationFile.setSourceLanguage(this.sourceLanguage);
-    }
+  isWorkflowWithReview(): boolean {
+    return this.createdProject && this.createdProject.workflowType === WorkflowType.WITH_REVIEW;
   }
 }

@@ -2,10 +2,6 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="en" datatype="plaintext" original="ng2.template" target-language="de">
     <body>
-      <trans-unit id="d04085c5069d49c88f924e788121d4161ffc5bc8" datatype="html">
-        <source/>
-        <target state="final"/>
-      <context-group purpose="location"><context context-type="sourcefile">S:/experimente/tiny-translator/src/app/home-page/home-page.component.ts</context><context context-type="linenumber">2</context></context-group></trans-unit>
       <trans-unit id="f540f05dc71be88e226a3920dbf1140b2658e5ea" datatype="html">
         <source>Create a new project</source>
         <target state="final">Legen Sie ein neues Projekt an</target>
@@ -16,20 +12,20 @@
       <context-group purpose="location"><context context-type="sourcefile">S:/experimente/tiny-translator/src/app/project-starter/project-starter.component.ts</context><context context-type="linenumber">2</context></context-group></trans-unit>
       <trans-unit id="c660f51d0a809bdffb6939f4c4459858abc2288b" datatype="html">
         <source>Project name</source>
-        <target state="final">Projekt Name</target>
-      <context-group purpose="location"><context context-type="sourcefile">S:/experimente/tiny-translator/src/app/project-starter/project-starter.component.ts</context><context context-type="linenumber">6</context></context-group></trans-unit>
-      
+        <target state="final">Projektname</target>
+      <context-group purpose="location"><context context-type="sourcefile">S:/experimente/tiny-translator/src/app/project-starter/project-starter.component.ts</context><context context-type="linenumber">6</context></context-group><context-group purpose="location"><context context-type="sourcefile">S:/experimente/tiny-translator/src/app/project-editor/project-editor.component.ts</context><context context-type="linenumber">6</context></context-group></trans-unit>
+
       <trans-unit id="12cd052fa3e0ea8ec8457daaa98d549057c40179" datatype="html">
         <source>Add project</source>
         <target state="final">Projekt hinzufügen</target>
-      <context-group purpose="location"><context context-type="sourcefile">S:/experimente/tiny-translator/src/app/project-starter/project-starter.component.ts</context><context context-type="linenumber">42</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">S:/experimente/tiny-translator/src/app/project-starter/project-starter.component.ts</context><context context-type="linenumber">75</context></context-group></trans-unit>
       <trans-unit id="4fd0a9dfdb0cd2e905ea22770ab54449cbeb8585" datatype="html">
         <source>add as new project and start working</source>
-        <target state="final">als neues Projekt hinzufügen und mit der Übersetzung beginnen</target>
-      <context-group purpose="location"><context context-type="sourcefile">S:/experimente/tiny-translator/src/app/project-starter/project-starter.component.ts</context><context context-type="linenumber">40</context></context-group></trans-unit>
+        <target state="final">Als neues Projekt hinzufügen und mit der Übersetzung beginnen</target>
+      <context-group purpose="location"><context context-type="sourcefile">S:/experimente/tiny-translator/src/app/project-starter/project-starter.component.ts</context><context context-type="linenumber">73</context></context-group></trans-unit>
       <trans-unit id="92c7024852ec03b5fd29a5e7ecd58ba8b39f5cb3" datatype="html">
         <source>Translate <x id="START_BOLD_TEXT" ctype="x-b"/>from<x id="CLOSE_BOLD_TEXT" ctype="x-b"/></source>
-        <target state="final">Übersetzen Sie <x id="START_BOLD_TEXT" ctype="x-b"/>von<x id="CLOSE_BOLD_TEXT" ctype="x-b"/></target>
+        <target state="final">Übersetzung <x id="START_BOLD_TEXT" ctype="x-b"/>von<x id="CLOSE_BOLD_TEXT" ctype="x-b"/></target>
       <context-group purpose="location"><context context-type="sourcefile">S:/experimente/tiny-translator/src/app/translation-file-status/translation-file-status.component.ts</context><context context-type="linenumber">5</context></context-group></trans-unit>
       <trans-unit id="0f00b1615388646b985be70cbd27f0e94f093976" datatype="html">
         <source><x id="START_BOLD_TEXT" ctype="x-b"/>to<x id="CLOSE_BOLD_TEXT" ctype="x-b"/></source>
@@ -45,16 +41,16 @@
       <context-group purpose="location"><context context-type="sourcefile">S:/experimente/tiny-translator/src/app/translation-file-status/translation-file-status.component.ts</context><context context-type="linenumber">11</context></context-group></trans-unit>
       <trans-unit id="b0a601002055bb07b804db00cda9cc209f54b5a5" datatype="html">
         <source>There are unpublished changes</source>
-        <target state="final">Es gibt unveröffentlichte Änderungen</target>
-      <context-group purpose="location"><context context-type="sourcefile">S:/experimente/tiny-translator/src/app/translation-file-status/translation-file-status.component.ts</context><context context-type="linenumber">12</context></context-group><context-group purpose="location"><context context-type="sourcefile">S:/experimente/tiny-translator/src/app/translation-file-status/translation-file-status.component.ts</context><context context-type="linenumber">27</context></context-group></trans-unit>
+        <target state="final">Es gibt unveröffentlichte Änderungen!</target>
+      <context-group purpose="location"><context context-type="sourcefile">S:/experimente/tiny-translator/src/app/translation-file-status/translation-file-status.component.ts</context><context context-type="linenumber">12</context></context-group><context-group purpose="location"><context context-type="sourcefile">S:/experimente/tiny-translator/src/app/translation-file-status/translation-file-status.component.ts</context><context context-type="linenumber">29</context></context-group></trans-unit>
       <trans-unit id="25c34b740fa0303c3e31e35d944d73ffa7e534dd" datatype="html">
         <source>save current state to file (download)</source>
         <target state="final">Sichern des aktuellen Stands (Download)</target>
-      <context-group purpose="location"><context context-type="sourcefile">S:/experimente/tiny-translator/src/app/translation-file-status/translation-file-status.component.ts</context><context context-type="linenumber">13</context></context-group><context-group purpose="location"><context context-type="sourcefile">S:/experimente/tiny-translator/src/app/translation-file-status/translation-file-status.component.ts</context><context context-type="linenumber">28</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">S:/experimente/tiny-translator/src/app/translation-file-status/translation-file-status.component.ts</context><context context-type="linenumber">13</context></context-group></trans-unit>
       <trans-unit id="2b5754331bc53b5fed19b7945e81e7dea1fc8221" datatype="html">
         <source><x id="INTERPOLATION"/> % translated</source>
         <target state="final"><x id="INTERPOLATION"/> % übersetzt</target>
-      <context-group purpose="location"><context context-type="sourcefile">S:/experimente/tiny-translator/src/app/translation-file-status/translation-file-status.component.ts</context><context context-type="linenumber">17</context></context-group><context-group purpose="location"><context context-type="sourcefile">S:/experimente/tiny-translator/src/app/translation-file-status/translation-file-status.component.ts</context><context context-type="linenumber">24</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">S:/experimente/tiny-translator/src/app/translation-file-status/translation-file-status.component.ts</context><context context-type="linenumber">20</context></context-group><context-group purpose="location"><context context-type="sourcefile">S:/experimente/tiny-translator/src/app/translation-file-status/translation-file-status.component.ts</context><context context-type="linenumber">26</context></context-group></trans-unit>
       <trans-unit id="9d306bade90ca878105dfc2772851c5d0fa5fcf2" datatype="html">
         <source>No Translation Unit</source>
         <target state="final">Keine Übersetzungen</target>
@@ -65,50 +61,50 @@
       <context-group purpose="location"><context context-type="sourcefile">S:/experimente/tiny-translator/src/app/translate-unit/translate-unit.component.ts</context><context context-type="linenumber">6</context></context-group></trans-unit>
       <trans-unit id="09082a94d48b3f14be9ea6d942b34654020157d3" datatype="html">
         <source>Translation Unit <x id="INTERPOLATION"/></source>
-        <target state="final">Überstezung <x id="INTERPOLATION"/></target>
+        <target state="final">Übersetzung <x id="INTERPOLATION"/></target>
       <context-group purpose="location"><context context-type="sourcefile">S:/experimente/tiny-translator/src/app/translate-unit/translate-unit.component.ts</context><context context-type="linenumber">11</context></context-group></trans-unit>
       <trans-unit id="95f5a0d1979da3f0b092ffa96e7307e02cc4baee" datatype="html">
         <source>State <x id="INTERPOLATION"/></source>
         <target state="final">Status <x id="INTERPOLATION"/></target>
-      <context-group purpose="location"><context context-type="sourcefile">S:/experimente/tiny-translator/src/app/translate-unit/translate-unit.component.ts</context><context context-type="linenumber">12</context></context-group></trans-unit>
-      
+      <context-group purpose="location"><context context-type="sourcefile">S:/experimente/tiny-translator/src/app/translate-unit/translate-unit.component.ts</context><context context-type="linenumber">13</context></context-group></trans-unit>
+
       <trans-unit id="eec715de352a6b114713b30b640d319fa78207a0" datatype="html">
         <source>Description</source>
         <target state="final">Beschreibung</target>
-      <context-group purpose="location"><context context-type="sourcefile">S:/experimente/tiny-translator/src/app/translate-unit/translate-unit.component.ts</context><context context-type="linenumber">20</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">S:/experimente/tiny-translator/src/app/translate-unit/translate-unit.component.ts</context><context context-type="linenumber">25</context></context-group></trans-unit>
       <trans-unit id="f2081dbd0b230b2e61d03f870d85af5b54aed1ba" datatype="html">
         <source>Meaning</source>
         <target state="final">Bedeutung</target>
-      <context-group purpose="location"><context context-type="sourcefile">S:/experimente/tiny-translator/src/app/translate-unit/translate-unit.component.ts</context><context context-type="linenumber">21</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">S:/experimente/tiny-translator/src/app/translate-unit/translate-unit.component.ts</context><context context-type="linenumber">26</context></context-group></trans-unit>
       <trans-unit id="c4a05f0fcb307b9203be9ad5ebc6e37f726801d1" datatype="html">
         <source>Your translation to</source>
         <target state="final">Ihre Übersetzung nach</target>
-      <context-group purpose="location"><context context-type="sourcefile">S:/experimente/tiny-translator/src/app/translate-unit/translate-unit.component.ts</context><context context-type="linenumber">23</context></context-group></trans-unit>
-      
+      <context-group purpose="location"><context context-type="sourcefile">S:/experimente/tiny-translator/src/app/translate-unit/translate-unit.component.ts</context><context context-type="linenumber">28</context></context-group></trans-unit>
+
       <trans-unit id="c1ac90520acbce71ffbf35f3b693ae5119944726" datatype="html">
         <source>press to accept the given translation</source>
         <target state="final">übernimmt den angebenen Text als Übersetzung </target>
-      <context-group purpose="location"><context context-type="sourcefile">S:/experimente/tiny-translator/src/app/translate-unit/translate-unit.component.ts</context><context context-type="linenumber">33</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">S:/experimente/tiny-translator/src/app/translate-unit/translate-unit.component.ts</context><context context-type="linenumber">42</context></context-group></trans-unit>
       <trans-unit id="5b117cf9fb2eb651ee9e22bc57a141005f3212ab" datatype="html">
         <source>
       Previous
     </source>
         <target state="final">vorherige </target>
-      <context-group purpose="location"><context context-type="sourcefile">S:/experimente/tiny-translator/src/app/translate-unit/translate-unit.component.ts</context><context context-type="linenumber">46</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">S:/experimente/tiny-translator/src/app/translate-unit/translate-unit.component.ts</context><context context-type="linenumber">59</context></context-group></trans-unit>
       <trans-unit id="3e37d6e24a88996f88c1d9b14e210fc29bae3b74" datatype="html">
         <source>accept translation and go to provious unit</source>
-        <target state="final">übersetzen und zurück zur vorherigen</target>
-      <context-group purpose="location"><context context-type="sourcefile">S:/experimente/tiny-translator/src/app/translate-unit/translate-unit.component.ts</context><context context-type="linenumber">46</context></context-group></trans-unit>
+        <target state="final">Übersetzen und zurück zur vorherigen</target>
+      <context-group purpose="location"><context context-type="sourcefile">S:/experimente/tiny-translator/src/app/translate-unit/translate-unit.component.ts</context><context context-type="linenumber">59</context></context-group></trans-unit>
       <trans-unit id="c9702419b173fe7ab2aeee4ec1f5857fca1135a1" datatype="html">
         <source>
       Next
     </source>
-        <target state="final">Näcste</target>
-      <context-group purpose="location"><context context-type="sourcefile">S:/experimente/tiny-translator/src/app/translate-unit/translate-unit.component.ts</context><context context-type="linenumber">51</context></context-group></trans-unit>
+        <target state="final">Nächste</target>
+      <context-group purpose="location"><context context-type="sourcefile">S:/experimente/tiny-translator/src/app/translate-unit/translate-unit.component.ts</context><context context-type="linenumber">64</context></context-group></trans-unit>
       <trans-unit id="c7d43f1354429a28b43c8e301dd65d838d9fd31d" datatype="html">
         <source>accept translation and go to next unit</source>
-        <target state="final">übersetzen und weiter zur nächsten</target>
-      <context-group purpose="location"><context context-type="sourcefile">S:/experimente/tiny-translator/src/app/translate-unit/translate-unit.component.ts</context><context context-type="linenumber">51</context></context-group></trans-unit>
+        <target state="final">Übersetzen und weiter zur nächsten</target>
+      <context-group purpose="location"><context context-type="sourcefile">S:/experimente/tiny-translator/src/app/translate-unit/translate-unit.component.ts</context><context context-type="linenumber">64</context></context-group></trans-unit>
       <trans-unit id="2aba1e87039819aca3b70faa9aa848c12bf139ca" datatype="html">
         <source>Show</source>
         <target state="final">Anzeigen</target>
@@ -120,14 +116,14 @@
       <trans-unit id="241c6acffa51499f0c35686c02ead21abae22d76" datatype="html">
         <source>Untranslated units</source>
         <target state="final">Unübersetztes</target>
-      <context-group purpose="location"><context context-type="sourcefile">S:/experimente/tiny-translator/src/app/translate-unit-list/translate-unit-list.component.ts</context><context context-type="linenumber">5</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">S:/experimente/tiny-translator/src/app/translate-unit-list/translate-unit-list.component.ts</context><context context-type="linenumber">6</context></context-group></trans-unit>
       <trans-unit id="53f473744534bc153bce1f04cd8c5b32c9ef1650" datatype="html">
         <source>Translation Units</source>
         <target state="final">Übersetzungen</target>
-      <context-group purpose="location"><context context-type="sourcefile">S:/experimente/tiny-translator/src/app/translate-unit-list/translate-unit-list.component.ts</context><context context-type="linenumber">8</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">S:/experimente/tiny-translator/src/app/translate-unit-list/translate-unit-list.component.ts</context><context context-type="linenumber">17</context></context-group></trans-unit>
       <trans-unit id="c6b1933d51bc90ad9e1380949873bb09932d448b" datatype="html">
         <source><x id="START_BOLD_TEXT" ctype="x-b"/>Project <x id="CLOSE_BOLD_TEXT" ctype="x-b"/> <x id="INTERPOLATION"/></source>
-        <target state="final"><x id="START_BOLD_TEXT" ctype="x-b"/>Projekt <x id="CLOSE_BOLD_TEXT" ctype="x-b"/> <x id="INTERPOLATION"/></target>
+        <target state="final"><x id="START_BOLD_TEXT" ctype="x-b"/>Projekt<x id="CLOSE_BOLD_TEXT" ctype="x-b"/> <x id="INTERPOLATION"/></target>
       <context-group purpose="location"><context context-type="sourcefile">S:/experimente/tiny-translator/src/app/project/project.component.ts</context><context context-type="linenumber">4</context></context-group><context-group purpose="location"><context context-type="sourcefile">S:/experimente/tiny-translator/src/app/project-status/project-status.component.ts</context><context context-type="linenumber">2</context></context-group></trans-unit>
       <trans-unit id="d9d8be77cf88cf6bfb0cd5bdfdd3290c58380422" datatype="html">
         <source>Delete Project</source>
@@ -140,36 +136,27 @@
     <trans-unit id="3f32c24015d7838361235a7f1fb7c9eb93b01d30" datatype="html">
         <source>selected: </source>
         <target state="final">Ausgewählt:</target>
-      <context-group purpose="location"><context context-type="sourcefile">S:/experimente/tiny-translator/src/app/project-starter/project-starter.component.ts</context><context context-type="linenumber">12</context></context-group><context-group purpose="location"><context context-type="sourcefile">S:/experimente/tiny-translator/src/app/project-starter/project-starter.component.ts</context><context context-type="linenumber">24</context></context-group></trans-unit><trans-unit id="40d683bc93efb370ba71ad3cd7897e2c2b36b94a" datatype="html">
+      <context-group purpose="location"><context context-type="sourcefile">S:/experimente/tiny-translator/src/app/project-starter/project-starter.component.ts</context><context context-type="linenumber">19</context></context-group><context-group purpose="location"><context context-type="sourcefile">S:/experimente/tiny-translator/src/app/project-starter/project-starter.component.ts</context><context context-type="linenumber">31</context></context-group><context-group purpose="location"><context context-type="sourcefile">S:/experimente/tiny-translator/src/app/project-editor/project-editor.component.ts</context><context context-type="linenumber">14</context></context-group></trans-unit><trans-unit id="40d683bc93efb370ba71ad3cd7897e2c2b36b94a" datatype="html">
         <source>Upload master xmb file</source>
         <target state="final">Hochladen Master XMB</target>
-      <context-group purpose="location"><context context-type="sourcefile">S:/experimente/tiny-translator/src/app/project-starter/project-starter.component.ts</context><context context-type="linenumber">23</context></context-group></trans-unit><trans-unit id="599fdab6eaf0912dc7aa50e65a2749c763d9c162" datatype="html">
+      <context-group purpose="location"><context context-type="sourcefile">S:/experimente/tiny-translator/src/app/project-starter/project-starter.component.ts</context><context context-type="linenumber">30</context></context-group></trans-unit><trans-unit id="599fdab6eaf0912dc7aa50e65a2749c763d9c162" datatype="html">
         <source>Selected translation file:</source>
         <target state="final">Ausgewählte Übersetzungsdatei:</target>
-      <context-group purpose="location"><context context-type="sourcefile">S:/experimente/tiny-translator/src/app/project-starter/project-starter.component.ts</context><context context-type="linenumber">27</context></context-group></trans-unit><trans-unit id="165f5612a1516d3841d036e3d6d593e4743372bf" datatype="html">
+      <context-group purpose="location"><context context-type="sourcefile">S:/experimente/tiny-translator/src/app/project-starter/project-starter.component.ts</context><context context-type="linenumber">34</context></context-group><context-group purpose="location"><context context-type="sourcefile">S:/experimente/tiny-translator/src/app/project-editor/project-editor.component.ts</context><context context-type="linenumber">17</context></context-group></trans-unit><trans-unit id="165f5612a1516d3841d036e3d6d593e4743372bf" datatype="html">
         <source>Upload a translation file (xlf, xtb)</source>
         <target state="translated">Übermitteln Sie eine Übersetzungsdatei (xlf, xtb)</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/project-starter/project-starter.component.ts</context>
-          <context context-type="linenumber">11</context>
-        </context-group>
-      </trans-unit><trans-unit id="42649fcfb37e5731e215dfb39fc060a2cc3d1a7d" datatype="html">
+
+      <context-group purpose="location"><context context-type="sourcefile">S:/experimente/tiny-translator/src/app/project-starter/project-starter.component.ts</context><context context-type="linenumber">18</context></context-group></trans-unit><trans-unit id="42649fcfb37e5731e215dfb39fc060a2cc3d1a7d" datatype="html">
         <source>You selected an xtb file.<x id="LINE_BREAK" ctype="lb"/>
         This file type only contains one language, the target language.<x id="LINE_BREAK" ctype="lb"/>
         To show you the original source texts, you should also select the master xmb file.</source>
-        <target state="translated">Sie haben eine Datei im Format 'xtb' ausgewählt. Diese Dateien enthalten nur die Zielsprache, aber nicht die Ausgangssprache. Um auch die Ausgangstexte zu sehen, müssen Sie zusätzliche eine xmb-Datei auswählen.</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/project-starter/project-starter.component.ts</context>
-          <context context-type="linenumber">16</context>
-        </context-group>
-      </trans-unit><trans-unit id="f3ba2e517a9f0ee2fa5346acc19d259d185685f9" datatype="html">
+        <target state="final">Sie haben eine Datei im Format 'xtb' ausgewählt.<x id="LINE_BREAK" ctype="lb"/>Diese Dateien enthalten nur die Zielsprache, aber nicht die Ausgangssprache.<x id="LINE_BREAK" ctype="lb"/>Um auch die Ausgangstexte zu sehen, müssen Sie zusätzliche eine xmb-Datei auswählen.</target>
+
+      <context-group purpose="location"><context context-type="sourcefile">S:/experimente/tiny-translator/src/app/project-starter/project-starter.component.ts</context><context context-type="linenumber">23</context></context-group></trans-unit><trans-unit id="f3ba2e517a9f0ee2fa5346acc19d259d185685f9" datatype="html">
         <source>Explicitly set source language</source>
         <target state="translated">Explizit angegebene Ausgangssprache</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/project-starter/project-starter.component.ts</context>
-          <context context-type="linenumber">33</context>
-        </context-group>
-      </trans-unit><trans-unit id="231b7122d4d3178ad7261f7900388fb3be2a5a05" datatype="html">
+
+      <context-group purpose="location"><context context-type="sourcefile">S:/experimente/tiny-translator/src/app/project-starter/project-starter.component.ts</context><context context-type="linenumber">43</context></context-group><context-group purpose="location"><context context-type="sourcefile">S:/experimente/tiny-translator/src/app/project-editor/project-editor.component.ts</context><context context-type="linenumber">26</context></context-group></trans-unit><trans-unit id="231b7122d4d3178ad7261f7900388fb3be2a5a05" datatype="html">
         <source>There are problems with the translation</source>
         <target state="translated">Es gibt Probleme mit dieser Übersetzung</target>
         <context-group purpose="location">
@@ -199,33 +186,245 @@
         </context-group>
       </trans-unit><trans-unit id="6063098ce853945ab79af5600ca4e2286f880c5d" datatype="html">
         <source>Source:<x id="START_TAG_BUTTON" ctype="x-button"/><x id="START_TAG_MD-ICON" ctype="x-md-icon"/>info<x id="CLOSE_TAG_MD-ICON" ctype="x-md-icon"/><x id="CLOSE_TAG_BUTTON" ctype="x-button"/></source>
-        <target state="translated">Quelle:<x id="START_TAG_BUTTON" ctype="x-button"/>&lt;md-icon>info&lt;/md-icon><x id="CLOSE_TAG_BUTTON" ctype="x-button"/></target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/translate-unit/translate-unit.component.ts</context>
-          <context context-type="linenumber">16</context>
-        </context-group>
-      </trans-unit><trans-unit id="8fef9621af4e75f6004de0ec95ba7d6b003db416" datatype="html">
+        <target state="final">Quelle:<x id="START_TAG_BUTTON" ctype="x-button"/><x id="START_TAG_MD-ICON" ctype="x-md-icon"/>info<x id="CLOSE_TAG_MD-ICON" ctype="x-md-icon"/><x id="CLOSE_TAG_BUTTON" ctype="x-button"/></target>
+
+      <context-group purpose="location"><context context-type="sourcefile">S:/experimente/tiny-translator/src/app/translate-unit/translate-unit.component.ts</context><context context-type="linenumber">21</context></context-group></trans-unit><trans-unit id="8fef9621af4e75f6004de0ec95ba7d6b003db416" datatype="html">
         <source>
           mark as translated
         </source>
         <target state="translated">Als übersetzt markieren</target>
+
+      <context-group purpose="location"><context context-type="sourcefile">S:/experimente/tiny-translator/src/app/translate-unit/translate-unit.component.ts</context><context context-type="linenumber">42</context></context-group></trans-unit><trans-unit id="6ea6fd6e11f219096dc53edcb89479798a1f826b" datatype="html">
+        <source>Select the file you want to translate.<x id="LINE_BREAK" ctype="lb"/>
+        The file can be of format XLIFF 1.2, XLIFF 2.0 or XMB.<x id="LINE_BREAK" ctype="lb"/>
+        The file will be stored in your browser local storage until you export the translated version.</source>
+        <target state="final">Wählen Sie die Datei, die übersetzt werden soll.<x id="LINE_BREAK" ctype="lb"/> Mögliche Dateiformate sind XLIFF 1.2, XLIFF 2.0 oder XMB.<x id="LINE_BREAK" ctype="lb"/> Die Datei wird im LocalStorage des Browser gespeichert, bis Sie die übersetzte Version exportieren.</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/translate-unit/translate-unit.component.ts</context>
+          <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/project-starter/project-starter.component.ts</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit><trans-unit id="d468177dfc7419e3d29614b1293796d2adb649cd" datatype="html">
+        <source>Your selected file contains no information about the language used. You can set it here explicitly.</source>
+        <target state="final">Die ausgewählte Datei enthält keine Angabe zur Zielsprache. Sie können die Sprache hier explizit angeben.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/project-starter/project-starter.component.ts</context>
+          <context context-type="linenumber">42</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/project-editor/project-editor.component.ts</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+      </trans-unit><trans-unit id="b2ec941a71700e0a09f243cb7946f1924b5bcbff" datatype="html">
+        <source>Workflow type you are using</source>
+        <target state="final">Die Art des Workflow, die Sie verwenden wollen.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/project-starter/project-starter.component.ts</context>
+          <context context-type="linenumber">48</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/project-editor/project-editor.component.ts</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+      </trans-unit><trans-unit id="cab2db0e2da8dff5d34bb5904d5f88ee7bf995ad" datatype="html">
+        <source>Single User</source>
+        <target state="final">Einzelbenutzer</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/project-starter/project-starter.component.ts</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/project-editor/project-editor.component.ts</context>
           <context context-type="linenumber">33</context>
         </context-group>
-      </trans-unit><trans-unit id="372eac807d64286f3cd8e453544b27e66772e010" datatype="html">
-        <source>show original markup</source>
-        <target state="translated">Original Markup anzeigen</target>
+      </trans-unit><trans-unit id="bc044499ac0e07e81804c919f9d709d6aedb9945" datatype="html">
+        <source>Single user workflow. You are translator and reviewer in one person. Every translated unit will directly get the state 'final'</source>
+        <target state="final">Workflow "Einzelbenutzer". Sie sind sowohl Übersetzer als auch Reviewer in einer Person. Jede eingegebene Übersetzung bekommt direkt den Zustand 'final'</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/translate-unit/translate-unit.component.ts</context>
-          <context context-type="linenumber">37</context>
+          <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/project-starter/project-starter.component.ts</context>
+          <context context-type="linenumber">51</context>
         </context-group>
-      </trans-unit><trans-unit id="3088a418326b27f42e6a85208098278dd3567bc0" datatype="html">
-        <source>show normalize</source>
-        <target state="translated">Normalisiert anzeigen</target>
+      </trans-unit><trans-unit id="3464dfa4b46545e4511324aa3b48dee75bb1392d" datatype="html">
+        <source>Translator/Reviewer</source>
+        <target state="final">Übersetzer/Reviewer</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/project-starter/project-starter.component.ts</context>
+          <context context-type="linenumber">55</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/project-editor/project-editor.component.ts</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+      </trans-unit><trans-unit id="17f972504a525e40d37583055db2d8569499bfe2" datatype="html">
+        <source>Workflow with explicit translator and reviewer. Translation get te state 'translated'. The reviewer must mark them as 'final' later.</source>
+        <target state="final">Workflow mit getrenntem Übersetzer und Reviewer. Eingegebene Übersetzungen bekommen den Zustand 'translated'. Der Reviewer muss sie dann später als 'final' markieren.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/project-starter/project-starter.component.ts</context>
+          <context context-type="linenumber">54</context>
+        </context-group>
+      </trans-unit><trans-unit id="9a61282719c1955ab95a4c9c62aa9c7b96c73fc6" datatype="html">
+        <source>Your role</source>
+        <target state="final">Ihre Rolle</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/project-starter/project-starter.component.ts</context>
+          <context context-type="linenumber">60</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/project-editor/project-editor.component.ts</context>
+          <context context-type="linenumber">39</context>
+        </context-group>
+      </trans-unit><trans-unit id="6cdc5b25318491e0c0e5ed059f2b9a2b3523452c" datatype="html">
+        <source>Translator</source>
+        <target state="final">Übersetzer</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/project-starter/project-starter.component.ts</context>
+          <context context-type="linenumber">62</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/project-editor/project-editor.component.ts</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
+      </trans-unit><trans-unit id="3005c11319b17d34f0021b21e36823d4e82ebc4b" datatype="html">
+        <source>Reviewer</source>
+        <target state="final">Reviewer</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/project-starter/project-starter.component.ts</context>
+          <context context-type="linenumber">63</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/project-editor/project-editor.component.ts</context>
+          <context context-type="linenumber">42</context>
+        </context-group>
+      </trans-unit><trans-unit id="abb32ed4141f1d6669fbd2d7258c33eb8da04119" datatype="html">
+        <source>(translation of file <x id="INTERPOLATION"/>)</source>
+        <target state="final">(Übersetzung der Datei <x id="INTERPOLATION"/>)</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/translation-file-status/translation-file-status.component.ts</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+      </trans-unit><trans-unit id="f0a34959bca31a411dabad58e0be83432592163e" datatype="html">
+        <source>current transunit <x id="INTERPOLATION"/> of <x id="INTERPOLATION_1"/></source>
+        <target state="final">aktuelle Übersetzung <x id="INTERPOLATION"/> von <x id="INTERPOLATION_1"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/translation-file-status/translation-file-status.component.ts</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+      </trans-unit><trans-unit id="5a96c7f7a29ee51b58316aa6cb9f914c10368d95" datatype="html">
+        <source>export current translation state to file (download)</source>
+        <target state="final">Export der Übersetzungen (download)</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/translation-file-status/translation-file-status.component.ts</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+      </trans-unit><trans-unit id="35457b7b5c4c296ea210e80208d0ee6e8cceb7a0" datatype="html">
+        <source>Normalization mode (switch off to show native message)</source>
+        <target state="final">Normalisierungsmodus (Schalten sie es aus, um die Originalübersetzung zu sehen)</target>
         <context-group purpose="location">
           <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/translate-unit/translate-unit.component.ts</context>
-          <context context-type="linenumber">38</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+      </trans-unit><trans-unit id="609b76a73d3a98ab8611501f82eb64f1ba750586" datatype="html">
+        <source>Normalization mode (switch on to use normalization)</source>
+        <target state="final">Normalisierungsmodus (Schalten sie es ein, um den Modus zu verwenden)</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/translate-unit/translate-unit.component.ts</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+      </trans-unit><trans-unit id="5ca62f8d7b9cfe1b70df406e02fb5402cda34782" datatype="html">
+        <source>In normalization mode all markup contained in the messsages is shown in a simplified, format neutral way.</source>
+        <target state="final">Im Normalisierungsmodus werden alle speziellen Markierungen (markup) in den Nachrichten in einer vereinfachten und formatunabhängigen Form angezeigt.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/translate-unit/translate-unit.component.ts</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+      </trans-unit><trans-unit id="c5cf65546dcaf2698e122492511c14bf57b3b68e" datatype="html">
+        <source>
+          mark as reviewed
+        </source>
+        <target state="final">Markieren als "Reviewed"     </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/translate-unit/translate-unit.component.ts</context>
+          <context context-type="linenumber">50</context>
+        </context-group>
+      </trans-unit><trans-unit id="60bb386dc9e8c4a8dbffd7449cac73088f4e5a77" datatype="html">
+        <source>press to accept the given translation as reviewed</source>
+        <target state="final">Benutzen Sie diesen Button, um den aktuellen Text als Übersetzung zu akzeptieren.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/translate-unit/translate-unit.component.ts</context>
+          <context context-type="linenumber">50</context>
+        </context-group>
+      </trans-unit><trans-unit id="cb6007dc11cb4f5a331524a560711fadfc03cb3e" datatype="html">
+        <source>Review needed</source>
+        <target state="final">Review erforderlich</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/translate-unit-list/translate-unit-list.component.ts</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit><trans-unit id="7e892ba15f2c6c17e83510e273b3e10fc32ea016" datatype="html">
+        <source>Search</source>
+        <target state="final">Suchen</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/translate-unit-list/translate-unit-list.component.ts</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit><trans-unit id="f748aef5326fdae92685f7a92f5330db624cf431" datatype="html">
+        <source>Substring</source>
+        <target state="final">Teilstring</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/translate-unit-list/translate-unit-list.component.ts</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit><trans-unit id="cecce9108254c2771317c2fd8a6ace406579041d" datatype="html">
+        <source>Details of the project (click to open)</source>
+        <target state="final">Details des Projekts (Klicken Sie hier zum Öffnen der Details)</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/project-status/project-status.component.ts</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit><trans-unit id="bc1dd546b5bf6ce79f355319167889865afa6be2" datatype="html">
+        <source>As a reviewer translation is disabled. You can only mark translated units as reviewed</source>
+        <target state="final">Als "Reviewer" können Sie keine Übersetzungen eingeben. Sie können nur vohandene Übersetzungen als "reviewed" markieren.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/project-status/project-status.component.ts</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit><trans-unit id="ae4d2eddd04f46aa7790a4dbbd4ae79761bd95ae" datatype="html">
+        <source>You are currently working as reviewer!</source>
+        <target state="final">Sie arbeiten aktuell als "Reviewer" !</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/project-status/project-status.component.ts</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+      </trans-unit><trans-unit id="b50b492392bbd579b8b38f3833b1ed18e1c6bd7d" datatype="html">
+        <source>Edit project</source>
+        <target state="final">Projekteinstellungen ändern</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/project-editor/project-editor.component.ts</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/project-editor/project-editor.component.ts</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit><trans-unit id="8eb34e574d4be12b1e4cdc7e431b83a104500514" datatype="html">
+        <source>Selected translation file</source>
+        <target state="final">Ausgewählte Übersetzungsdatei</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/project-editor/project-editor.component.ts</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit><trans-unit id="ddea8979810454a56742090a2e62c957ee2f4735" datatype="html">
+        <source>commit changes and continue working</source>
+        <target state="final">Änderungen speichern</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/project-editor/project-editor.component.ts</context>
+          <context context-type="linenumber">51</context>
+        </context-group>
+      </trans-unit><trans-unit id="d04085c5069d49c88f924e788121d4161ffc5bc8" datatype="html">
+        <source>{VAR_PLURAL, plural, =0 {Currently there is no open project.} =1 {Currently there is <x id="START_BOLD_TEXT" ctype="x-b"/>1<x id="CLOSE_BOLD_TEXT" ctype="x-b"/> open project.} other {Currently there are <x id="START_BOLD_TEXT" ctype="x-b"/><x id="INTERPOLATION"/><x id="CLOSE_BOLD_TEXT" ctype="x-b"/> open projects.} }</source>
+        <target state="final">{VAR_PLURAL, plural, =0 {Aktuell gibt es keine offenen Projekte.} =1 {Aktuell gibt es <x id="START_BOLD_TEXT" ctype="x-b"/>1<x id="CLOSE_BOLD_TEXT" ctype="x-b"/> offenes Projekt.} other {Aktuell gibt es <x id="START_BOLD_TEXT" ctype="x-b"/><x id="INTERPOLATION"/><x id="CLOSE_BOLD_TEXT" ctype="x-b"/> offene Projekte.}}</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/home-page/home-page.component.ts</context>
+          <context context-type="linenumber">2</context>
         </context-group>
       </trans-unit></body>
   </file>

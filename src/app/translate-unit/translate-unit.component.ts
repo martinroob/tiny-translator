@@ -5,7 +5,9 @@ import {NormalizedMessage} from '../model/normalized-message';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {Observable} from 'rxjs/Observable';
 import {TranslateUnitWarningConfirmDialogComponent} from '../translate-unit-warning-confirm-dialog/translate-unit-warning-confirm-dialog.component';
-import {isNullOrUndefined} from 'util';
+import {TranslationFileView} from '../model/translation-file-view';
+import {WorkflowType} from '../model/translation-project';
+import {STATE_FINAL, STATE_TRANSLATED} from 'ngx-i18nsupport-lib/dist';
 
 /**
  * Component to input a new translation.
@@ -18,26 +20,35 @@ import {isNullOrUndefined} from 'util';
 })
 export class TranslateUnitComponent implements OnInit, OnChanges {
 
+  @Input() translationFileView: TranslationFileView;
+
   @Input() translationUnit: TranslationUnit;
 
-  @Input() showNormalized: boolean = true;
+  @Input() workflowType: WorkflowType;
+
+  @Input() showNormalized = true;
+
+  @Input() reviewMode = false;
 
   @Output() translationChanged: EventEmitter<TranslationUnit> = new EventEmitter();
 
   form: FormGroup;
 
   private _editedTargetMessage: NormalizedMessage;
+  private _targetContentNormalized: NormalizedMessage;
   private isMarkedAsTranslated = false;
+  private isMarkedAsReviewed = false;
 
   constructor(private formBuilder: FormBuilder, private dialog: MdDialog, private _snackbar: MdSnackBar) { }
 
   ngOnInit() {
     this.initForm();
-    this.form.valueChanges.subscribe(formValue => {this.valueChanged(formValue)});
+    this.form.valueChanges.subscribe(formValue => {this.valueChanged(formValue); });
   }
 
   private valueChanged(v: any) {
     this._editedTargetMessage = v._editedTargetMessage;
+    this.showNormalized = v.showNormalized;
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -46,15 +57,20 @@ export class TranslateUnitComponent implements OnInit, OnChanges {
     if (changedTranslationUnit) {
       if (changedTranslationUnit.currentValue) {
         this._editedTargetMessage = changedTranslationUnit.currentValue.targetContentNormalized();
+        this._targetContentNormalized = null;
       } else {
         this._editedTargetMessage = null;
+        this._targetContentNormalized = null;
       }
     }
   }
 
   private initForm() {
     if (!this.form) {
-      this.form = this.formBuilder.group({_editedTargetMessage: [this.targetContentNormalized()]});
+      this.form = this.formBuilder.group({
+        _editedTargetMessage: [this.targetContentNormalized()],
+        showNormalized: [this.showNormalized],
+      });
     }
   }
 
@@ -99,18 +115,14 @@ export class TranslateUnitComponent implements OnInit, OnChanges {
   }
 
   public targetContentNormalized(): NormalizedMessage {
-    if (this.translationUnit) {
-      return this.translationUnit.targetContentNormalized();
-    } else {
-      return null;
+    if (!this._targetContentNormalized) {
+      if (this.translationUnit) {
+        this._targetContentNormalized = this.translationUnit.targetContentNormalized();
+      } else {
+        this._targetContentNormalized = null;
+      }
     }
-  }
-
-  /**
-   * Toggle between normalized an native markup.
-   */
-  public toggleNormalized() {
-    this.showNormalized = !this.showNormalized;
+    return this._targetContentNormalized;
   }
 
   public sourceLanguage(): string {
@@ -157,7 +169,10 @@ export class TranslateUnitComponent implements OnInit, OnChanges {
   }
 
   errors(): any[] {
-    let errors = this._editedTargetMessage.validate(this.showNormalized);
+    if (!this._editedTargetMessage) {
+      return [];
+    }
+    const errors = this._editedTargetMessage.validate(this.showNormalized);
     if (errors) {
       return Object.keys(errors).map(key => errors[key]);
     } else {
@@ -166,7 +181,10 @@ export class TranslateUnitComponent implements OnInit, OnChanges {
   }
 
   warnings(): any[] {
-    let errors = this._editedTargetMessage.validateWarnings(this.showNormalized);
+    if (!this._editedTargetMessage) {
+      return [];
+    }
+    const errors = this._editedTargetMessage.validateWarnings(this.showNormalized);
     if (errors) {
       return Object.keys(errors).map(key => errors[key]);
     } else {
@@ -176,10 +194,23 @@ export class TranslateUnitComponent implements OnInit, OnChanges {
 
   public commitChanges() {
     if (this.translationUnit) {
-      console.log('accept ', this._editedTargetMessage);
-      if (this.isTranslationChanged() || this.isMarkedAsTranslated) {
+      if (this.isTranslationChanged() || this.isMarkedAsTranslated || this.isMarkedAsReviewed) {
         this.translationUnit.translate(this._editedTargetMessage);
+        switch (this.workflowType) {
+          case WorkflowType.SINGLE_USER:
+            this.translationUnit.setTargetState(STATE_FINAL);
+            break;
+          case WorkflowType.WITH_REVIEW:
+            if (this.isMarkedAsReviewed) {
+              this.translationUnit.setTargetState(STATE_FINAL);
+            } else {
+              this.translationUnit.setTargetState(STATE_TRANSLATED);
+            }
+            break;
+        }
         this.translationChanged.emit(this.translationUnit);
+        this.isMarkedAsTranslated = false;
+        this.isMarkedAsReviewed = false;
       }
     }
   }
@@ -205,6 +236,11 @@ export class TranslateUnitComponent implements OnInit, OnChanges {
     });
   }
 
+  markReviewed() {
+    this.isMarkedAsReviewed = true;
+    this.commitChanges();
+  }
+
   /**
    * If there are errors or warnings, open a dialog to conform what to do.
    * There are 3 possible results:
@@ -214,15 +250,15 @@ export class TranslateUnitComponent implements OnInit, OnChanges {
    * @return {any}
    */
   openConfirmWarningsDialog(): Observable<any> {
-    let warnings = this.warnings();
-    let errors = this.errors();
+    const warnings = this.warnings();
+    const errors = this.errors();
     if (warnings.length === 0 && errors.length === 0) {
       // everything good, we don´t need a dialog then.
       return Observable.of('accept');
     } else if (!this.isTranslationChanged()) {
       return Observable.of('accept');
     } else {
-      let dialogRef = this.dialog.open(TranslateUnitWarningConfirmDialogComponent,
+      const dialogRef = this.dialog.open(TranslateUnitWarningConfirmDialogComponent,
         {
           data: {errors: errors, warnings: warnings},
           disableClose: true
@@ -242,14 +278,14 @@ export class TranslateUnitComponent implements OnInit, OnChanges {
           case 'cancel':
             break;
           case 'discard':
-            if (this.translationUnit.translationFile().hasNext()) {
-              this.translationUnit.translationFile().nextTransUnit();
+            if (this.translationFileView.hasNext()) {
+              this.translationFileView.nextTransUnit();
             }
             break;
           case 'accept':
             this.commitChanges();
-            if (this.translationUnit.translationFile().hasNext()) {
-              this.translationUnit.translationFile().nextTransUnit();
+            if (this.translationFileView.hasNext()) {
+              this.translationFileView.nextTransUnit();
             }
             break;
         }
@@ -263,7 +299,7 @@ export class TranslateUnitComponent implements OnInit, OnChanges {
    */
   public hasNext(): boolean {
     if (this.translationUnit) {
-      return this.translationUnit.translationFile().hasNext();
+      return this.translationFileView.hasNext();
     } else {
       return false;
     }
@@ -276,14 +312,14 @@ export class TranslateUnitComponent implements OnInit, OnChanges {
           case 'cancel':
             break;
           case 'discard':
-            if (this.translationUnit.translationFile().hasPrev()) {
-              this.translationUnit.translationFile().prevTransUnit();
+            if (this.translationFileView.hasPrev()) {
+              this.translationFileView.prevTransUnit();
             }
             break;
           case 'accept':
             this.commitChanges();
-            if (this.translationUnit.translationFile().hasPrev()) {
-              this.translationUnit.translationFile().prevTransUnit();
+            if (this.translationFileView.hasPrev()) {
+              this.translationFileView.prevTransUnit();
             }
             break;
         }
@@ -293,7 +329,7 @@ export class TranslateUnitComponent implements OnInit, OnChanges {
 
   public hasPrev(): boolean {
     if (this.translationUnit) {
-      return this.translationUnit.translationFile().hasPrev();
+      return this.translationFileView.hasPrev();
     } else {
       return false;
     }

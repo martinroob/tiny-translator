@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {
   MdButtonModule, MdCardModule, MdCheckboxModule, MdDialogModule, MdIconModule, MdInputModule, MdListModule,
   MdProgressBarModule,
-  MdRadioModule, MdSnackBarModule,
+  MdRadioModule, MdSlideToggleModule, MdSnackBarModule,
   MdToolbarModule, MdTooltipModule, OverlayModule
 } from '@angular/material';
 import {FlexLayoutModule} from '@angular/flex-layout';
@@ -21,6 +21,7 @@ import {FlexLayoutModule} from '@angular/flex-layout';
     MdListModule,
     MdProgressBarModule,
     MdRadioModule,
+    MdSlideToggleModule,
     MdSnackBarModule,
     MdToolbarModule,
     MdTooltipModule,
@@ -37,6 +38,7 @@ import {FlexLayoutModule} from '@angular/flex-layout';
     MdListModule,
     MdProgressBarModule,
     MdRadioModule,
+    MdSlideToggleModule,
     MdSnackBarModule,
     MdToolbarModule,
     MdTooltipModule,

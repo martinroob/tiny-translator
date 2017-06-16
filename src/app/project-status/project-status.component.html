@@ -1,4 +1,17 @@
 <div fxLayout="row" fxLayoutGap="10px">
-  <p i18n><b>Project </b> {{project?.name}}</p>
-  <app-translation-file-status [translationFile]="project?.translationFile" (onSave)="save($event)" [shortInfo]="true"></app-translation-file-status>
+  <p><span i18n><b>Project </b> {{project?.name}}</span>
+    <button md-icon-button (click)="openProjectDetails()" mdTooltip="Details of the project (click to open)" i18n-mdTooltip>
+      <md-icon>info</md-icon>
+    </button>
+  </p>
+  <app-translation-file-status
+    [translationFileView]="project?.translationFileView"
+    [translationFile]="project?.translationFile"
+    [shortInfo]="true"
+    (onSave)="save($event)">
+  </app-translation-file-status>
 </div>
+<p *ngIf="project?.isReviewModeActive()">
+  <md-icon mdTooltip="As a reviewer translation is disabled. You can only mark translated units as reviewed" i18n-mdTooltip>warning</md-icon>
+  <span i18n>You are currently working as reviewer!</span>
+</p>

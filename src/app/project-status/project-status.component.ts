@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {TranslationProject} from '../model/translation-project';
 import {TranslationFile} from '../model/translation-file';
+import {Router} from '@angular/router';
 
 /**
  * Shows the actual translation status of a project.
@@ -15,16 +16,23 @@ import {TranslationFile} from '../model/translation-file';
 export class ProjectStatusComponent implements OnInit {
 
   @Input() project: TranslationProject;
-  @Input() showActions: boolean = true;
+  @Input() showActions = true;
 
   @Output() onSave: EventEmitter<TranslationProject> = new EventEmitter();
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
-  save(translationFile: TranslationFile) {
+  save(translationFile: any) {
     this.onSave.emit(this.project);
+  }
+
+  /**
+   * Open a page that shows all the details of the project.
+   */
+  openProjectDetails() {
+    this.router.navigateByUrl('/editproject');
   }
 }

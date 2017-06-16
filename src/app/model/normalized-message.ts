@@ -1,5 +1,7 @@
 import {INormalizedMessage} from 'ngx-i18nsupport-lib';
 import {ValidationErrors} from '@angular/forms';
+import {isNullOrUndefined} from 'util';
+import {IICUMessage, IICUMessageTranslation} from 'ngx-i18nsupport-lib/dist';
 /**
  * Created by martin on 19.05.2017.
  * Wrapper around INormalizedMessage for GUI usage.
@@ -23,6 +25,14 @@ export class NormalizedMessage {
    */
   private _parseError: string;
 
+  /**
+   * Errors and warnings, lazy evaluated.
+   */
+  private _errors: ValidationErrors;
+  private _errorsInitialized = false;
+  private _warnings: ValidationErrors;
+  private _warningsInitialized = false;
+
   private _sourceMessage: INormalizedMessage;
 
   /**
@@ -36,12 +46,25 @@ export class NormalizedMessage {
     this._normalizedMessage = normalizedMessage;
     this._parseError = parseError;
     this._sourceMessage = sourceMessage;
+    this._errorsInitialized = false;
+    this._warningsInitialized = false;
+  }
+
+  /**
+   * Return a copy of the message.
+   */
+  public copy(): NormalizedMessage {
+    return new NormalizedMessage(this._original, this._normalizedMessage, this._parseError, this._sourceMessage);
   }
 
   public dislayText(normalize: boolean): string {
     if (normalize) {
       if (this._normalizedMessage) {
-        return this._normalizedMessage.asDisplayString();
+        if (this.isICUMessage()) {
+          return this._normalizedMessage.asDisplayString() + ' ' + this._normalizedMessage.getICUMessage().asNativeString();
+        } else {
+          return this._normalizedMessage.asDisplayString();
+        }
       } else {
         return this._parseError;
       }
@@ -50,17 +73,25 @@ export class NormalizedMessage {
     }
   }
 
+  /**
+   * Test, wether it is an ICU message.
+   */
+  isICUMessage(): boolean {
+    return this._normalizedMessage && !isNullOrUndefined(this._normalizedMessage.getICUMessage());
+  }
+
+  getICUMessage(): IICUMessage {
+    return this._normalizedMessage ? this._normalizedMessage.getICUMessage() : null;
+  }
+
   public translate(newValue: string, normalize: boolean): NormalizedMessage {
+    console.log('Translating', newValue);
     let newOriginal: string;
     let newMessage: INormalizedMessage;
     let parseError: string;
     if (normalize) {
       try {
-        if (this._normalizedMessage) {
-          newMessage = this._normalizedMessage.translate(newValue);
-        } else {
-          newMessage = this._sourceMessage.translate(newValue);
-        }
+        newMessage = this._sourceMessage.translate(newValue);
         newOriginal = newMessage.asNativeString();
         parseError = null;
       } catch (error) {
@@ -71,17 +102,32 @@ export class NormalizedMessage {
     } else {
       newOriginal = newValue;
       try {
-        if (this._normalizedMessage) {
-          newMessage = this._normalizedMessage.translateNativeString(newValue);
-          parseError = null;
-        } else {
-          newMessage = this._sourceMessage.translateNativeString(newValue);
-          parseError = null;
-        }
+        newMessage = this._sourceMessage.translateNativeString(newValue);
+        parseError = null;
       } catch (error) {
         parseError = error.message;
       }
     }
+    return new NormalizedMessage(newOriginal, newMessage, parseError, this._sourceMessage);
+  }
+
+  public translateICUMessage(newValue: IICUMessageTranslation): NormalizedMessage {
+    let newOriginal: string;
+    let newMessage: INormalizedMessage;
+    let parseError: string;
+      try {
+        if (this._normalizedMessage) {
+          newMessage = this._normalizedMessage.translateICUMessage(newValue);
+        } else {
+          newMessage = this._sourceMessage.translateICUMessage(newValue);
+        }
+        newOriginal = newMessage.asNativeString();
+        parseError = null;
+      } catch (error) {
+        parseError = error.message;
+        newMessage = null;
+        newOriginal = null;
+      }
     return new NormalizedMessage(newOriginal, newMessage, parseError, this._sourceMessage);
   }
 
@@ -94,26 +140,34 @@ export class NormalizedMessage {
   }
 
   public validate(normalize: boolean): ValidationErrors | null {
-    if (normalize) {
-      if (this._normalizedMessage) {
-        return this._normalizedMessage.validate();
+    if (!this._errorsInitialized) {
+      if (normalize) {
+        if (this._normalizedMessage) {
+          this._errors = this._normalizedMessage.validate();
+        } else {
+          this._errors = {'parseError': this._parseError};
+        }
       } else {
-        return {'parseError': this._parseError};
+        this._errors = null;
       }
-    } else {
-      return null;
+      this._errorsInitialized = true;
     }
+    return this._errors;
   }
 
   public validateWarnings(normalize: boolean): ValidationErrors | null {
-    if (normalize) {
-      if (this._normalizedMessage) {
-        return this._normalizedMessage.validateWarnings();
+    if (!this._warningsInitialized) {
+      if (normalize) {
+        if (this._normalizedMessage) {
+          this._warnings = this._normalizedMessage.validateWarnings();
+        } else {
+          this._warnings = null;
+        }
       } else {
-        return null;
+        this._warnings = null;
       }
-    } else {
-      return null;
+      this._warningsInitialized = true;
     }
+    return this._warnings;
   }
 }

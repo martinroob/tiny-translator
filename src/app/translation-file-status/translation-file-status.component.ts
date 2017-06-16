@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {TranslationFile} from '../model/translation-file';
+import {TranslationFileView} from '../model/translation-file-view';
 
 /**
  * Component to show the current status of a loaded translation file.
@@ -13,6 +14,7 @@ import {TranslationFile} from '../model/translation-file';
 export class TranslationFileStatusComponent implements OnInit {
 
   @Input() translationFile: TranslationFile;
+  @Input() translationFileView: TranslationFileView;
   @Input() shortInfo = false;
 
   @Output() onSave: EventEmitter<TranslationFile> = new EventEmitter();

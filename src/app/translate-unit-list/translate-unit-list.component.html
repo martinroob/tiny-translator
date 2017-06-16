@@ -1,15 +1,26 @@
 <div fxLayout="column">
   <p i18n>Show</p>
-  <md-radio-group (change)="filterChanged($event)" [(ngModel)]="_selectedFilter">
-    <md-radio-button value="all" i18n>All units</md-radio-button><br>
+  <md-radio-group (change)="filterChanged($event)" [(ngModel)]="_selectedFilterName">
+    <md-radio-button value="all" i18n>All units</md-radio-button>
+    <br>
     <md-radio-button value="untranslated" i18n>Untranslated units</md-radio-button>
+    <md-radio-button *ngIf="isWorkflowWithReview()" value="needsReview" i18n>Review needed</md-radio-button>
+    <md-radio-button value="search">
+      <span i18n>Search</span>&nbsp;
+      <md-input-container>
+        <input mdInput type="search" placeholder="Substring" i18n-placeholder [(ngModel)]="substringToSearch"
+               (keyup)="substringToSearchChange()" [disabled]="_selectedFilterName !== 'search'">
+      </md-input-container>
+    </md-radio-button>
   </md-radio-group>
   <md-list>
     <h3 md-subheader i18n>Translation Units</h3>
     <md-list-item *ngFor="let tu of transUnits()" (click)="selectTransUnit(tu)">
-      <md-icon md-list-avatar *ngIf="tu.isTranslated()">done</md-icon>
+      <md-icon md-list-avatar *ngIf="tu.targetState() === 'final'">done</md-icon>
+      <md-icon md-list-avatar *ngIf="tu.targetState() === 'translated'">label_outline</md-icon>
       <md-icon md-list-avatar *ngIf="!tu.isTranslated()">translate</md-icon>
       <h4 md-line [ngClass]="{'selected': isSelected(tu)}">{{tu.sourceContentNormalized().dislayText(true) | abbreviate}}</h4>
+      <h4 md-line [ngClass]="{'selected': isSelected(tu)}">{{tu.targetContentNormalized().dislayText(true) | abbreviate}}</h4>
     </md-list-item>
   </md-list>
 </div>

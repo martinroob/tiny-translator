@@ -9,19 +9,8 @@ import {FILETYPE_XTB, FORMAT_XMB} from 'ngx-i18nsupport-lib/dist';
  * A single xlf or xmb file ready for work.
  * This is a wrapper around ITranslationMessagesFile.
  * It can read from uploaded files and adds errorhandling.
- * It also has a pointer to the current trans unit and allows scrolling through the trans units.
  * Created by roobm on 22.03.2017.
  */
-
-/**
- * Scrollmode.
- * Decides, wether next and prev scoll through all units
- * or only untranslated units.
- */
-export enum ScrollMode {
-  ALL,
-  UNTRANSLATED
-}
 
 // internal representation of serialized form.
 interface ISerializedTranslationFile {
@@ -46,28 +35,16 @@ export class TranslationFile {
 
   private masterContent: string;
 
-  private masterName: string;
+  private _masterName: string;
 
   private _translationFile: ITranslationMessagesFile;
 
   private _explicitSourceLanguage: string;
 
-  private _scrollMode: ScrollMode = ScrollMode.UNTRANSLATED;
-
   /**
    * all TransUnits read from file.
    */
   private _allTransUnits: TranslationUnit[];
-
-  /**
-   * The scroll list (either all or all unitranslated, depending on ScrollMode).
-   */
-  private _scrollableTransUnits: TranslationUnit[];
-
-  /**
-   * Pointer to current unit (points to _scrollableTransUnits).
-   */
-  private _currentTransUnitIndex: number = -1;
 
   static fromUploadedFile(readingUploadedFile: Observable<AsynchronousFileReaderResult>,
           readingMasterXmbFile?: Observable<AsynchronousFileReaderResult>): Observable<TranslationFile> {
@@ -89,7 +66,7 @@ export class TranslationFile {
                 encoding: null
               };
               newInstance.masterContent = masterXmbContent.content;
-              newInstance.masterName = masterXmbContent.name;
+              newInstance._masterName = masterXmbContent.name;
             }
             newInstance._translationFile =
               TranslationMessagesFileFactory.fromUnknownFormatFileContent(
@@ -101,7 +78,6 @@ export class TranslationFile {
           } catch (err) {
             newInstance._error = err.toString();
           }
-          newInstance.setScrollModeUntranslated();
         }
         return newInstance;
       });
@@ -128,13 +104,13 @@ export class TranslationFile {
       let optionalMaster: {xmlContent: string, path: string, encoding: string} = null;
       if (deserializedObject.masterContent) {
         optionalMaster = {xmlContent: deserializedObject.masterContent, path: deserializedObject.masterName, encoding: encoding};
+        newInstance._masterName = deserializedObject.masterName;
       }
       newInstance._translationFile = TranslationMessagesFileFactory.fromUnknownFormatFileContent(deserializedObject.editedContent, deserializedObject.name, encoding, optionalMaster);
       newInstance.readTransUnits();
     } catch (err) {
       newInstance._error = err.toString();
     }
-    newInstance.setScrollModeUntranslated();
     return newInstance;
   }
 
@@ -153,6 +129,14 @@ export class TranslationFile {
 
   get name(): string {
     return this._name;
+  }
+
+  /**
+   * In case of xmb/xtb the name of the master xmb file.
+   * @return {string}
+   */
+  get masterName(): string {
+    return this._masterName;
   }
 
   get size(): number {
@@ -190,7 +174,7 @@ export class TranslationFile {
    * @return {string}
    */
   public sourceLanguageFromFile(): string {
-    return this._translationFile ? this._translationFile.sourceLanguage() : null;
+    return this._translationFile ? this._translationFile.sourceLanguage() : 'unknown';
   }
 
   /**
@@ -254,35 +238,12 @@ export class TranslationFile {
     return this._translationFile ? this._translationFile.warnings() : [];
   }
 
-  public scrollMode(): ScrollMode {
-    return this._scrollMode;
-  }
-
-  public setScrollModeAll() {
-    this._scrollMode = ScrollMode.ALL;
-    const oldCurrent = (this._currentTransUnitIndex >= 0) ? this.currentTransUnit() : null;
-    this._scrollableTransUnits = this._allTransUnits;
-    if (oldCurrent) {
-      this._currentTransUnitIndex = this._scrollableTransUnits.findIndex(tu => tu === oldCurrent);
-    }
-  }
-
-  public setScrollModeUntranslated() {
-    this._scrollMode = ScrollMode.UNTRANSLATED;
-    const oldCurrent = (this._currentTransUnitIndex >= 0) ? this.currentTransUnit() : null;
-    this._scrollableTransUnits = this._allTransUnits.filter(tu => !tu.isTranslated());
-    if (oldCurrent) {
-      this._currentTransUnitIndex = this._scrollableTransUnits.findIndex(tu => tu === oldCurrent);
-    }
-  }
-
   /**
    * Check, wether file is changed.
    * @return {boolean}
    */
   public isDirty(): boolean {
     return this._translationFile && this.fileContent !== this.editedContent();
-    // return this._allTransUnits.find(tu => tu.isDirty()) != null;
   }
 
   /**
@@ -305,67 +266,12 @@ export class TranslationFile {
     this.fileContent = this.editedContent();
   }
 
-  public currentTransUnit(): TranslationUnit {
-    if (this._scrollableTransUnits.length === 0) {
-      return null;
-    }
-    if (this._currentTransUnitIndex < 0) {
-      this._currentTransUnitIndex = 0;
-    }
-    if (this._currentTransUnitIndex >= 0 && this._currentTransUnitIndex < this._scrollableTransUnits.length) {
-      return this._scrollableTransUnits[this._currentTransUnitIndex];
-    } else {
-      return null;
-    }
-  }
-
-  public selectTransUnit(selectedTransUnit: TranslationUnit) {
-    const index = this._scrollableTransUnits.findIndex(tu => tu === selectedTransUnit);
-    if (index >= 0) {
-      this._currentTransUnitIndex = index;
-    }
-  }
-
-  public nextTransUnit(): TranslationUnit {
-    if (this._currentTransUnitIndex >= 0) {
-      this._currentTransUnitIndex++;
-    }
-    return this.currentTransUnit();
-  }
-
-  public prevTransUnit(): TranslationUnit {
-    if (this._currentTransUnitIndex >= 1) {
-      this._currentTransUnitIndex--;
-    }
-    return this.currentTransUnit();
-  }
-
-  public hasNext(): boolean {
-    if (this._currentTransUnitIndex < 0) {
-      return this._scrollableTransUnits.length > 0;
-    } else {
-      return this._currentTransUnitIndex < (this._scrollableTransUnits.length - 1);
-    }
-  }
-
-  public hasPrev(): boolean {
-    if (this._currentTransUnitIndex < 0) {
-      return false;
-    } else {
-      return this._currentTransUnitIndex > 0;
-    }
-  }
-
-  public scrollabeTransUnits(): TranslationUnit[] {
-    return this._scrollableTransUnits;
-  }
-
-  public currentTransUnitIndex(): number {
-    return (this._currentTransUnitIndex < 0) ? 0 : this._currentTransUnitIndex + 1;
-  }
-
-  public scrollabeTransUnitsLength(): number {
-    return (this._scrollableTransUnits) ? this._scrollableTransUnits.length : 0;
+  /**
+   * Return all trans units found in file.
+   * @return {TranslationUnit[]}
+   */
+  public allTransUnits(): TranslationUnit[] {
+    return this._allTransUnits;
   }
 
   /**
@@ -379,7 +285,7 @@ export class TranslationFile {
       fileContent: this.fileContent,
       editedContent: this.editedContent(),
       masterContent: this.masterContent,
-      masterName: this.masterName,
+      masterName: this._masterName,
       explicitSourceLanguage: this._explicitSourceLanguage
     };
     return JSON.stringify(serializedObject);

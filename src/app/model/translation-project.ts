@@ -1,4 +1,32 @@
 import {TranslationFile} from './translation-file';
+import {TranslationFileView} from './translation-file-view';
+import {isNullOrUndefined} from 'util';
+
+/**
+ * Workflow type determines, how you work with the tool.
+ * There are 2 modes:
+ * SINGLE_USER: You are developer and translator in one person.
+ * You just translate the messages and, when done, reimport it into your application.
+ * All translations are marked as state "final" directly after input.
+ * WITH_REVIEW: Developer and translator are distinct people.
+ * All translation are first marked as "translated".
+ * When done, the translator gives it back to the developer, who reviews all marked as "translated".
+ * He then can mark them all as "final" or give them back to the translator.
+ */
+export enum WorkflowType {
+  SINGLE_USER,
+  WITH_REVIEW
+}
+
+/**
+ * The role the user has, when working with the tool.
+ * As a reviewer you can check the translations and mark them as "final" at the end.
+ * As a translator you can translate and give it back to the reviever.
+ */
+export enum UserRole {
+  REVIEWER,
+  TRANSLATOR
+}
 
 /**
  * A Translation Project.
@@ -8,24 +36,31 @@ export class TranslationProject {
 
   public id: string;
 
-  constructor(private _name: string, private _translationFile: TranslationFile) {
+  private _view: TranslationFileView;
 
+  private _userRole: UserRole;
+
+  /**
+   * Create a project from the serialization.
+   * @param serializationString
+   * @return {TranslationProject}
+   */
+  static deserialize(serializationString: string): TranslationProject {
+    const deserializedObject: any = JSON.parse(serializationString);
+    const project = new TranslationProject(
+      deserializedObject.name,
+      TranslationFile.deserialize(deserializedObject.translationFile),
+      deserializedObject.workflowType);
+    project.id = deserializedObject.id;
+    project.setUserRole(deserializedObject.userRole);
+    return project;
   }
 
-  get name(): string {
-    return this._name;
-  }
-
-  get translationFile(): TranslationFile {
-    return this._translationFile;
-  }
-
-  public hasErrors(): boolean {
-    return this.translationFile && this.translationFile.hasErrors();
-  }
-
-  public canTranslate(): boolean {
-    return this.translationFile && this.translationFile.canTranslate();
+  constructor(private _name: string, private _translationFile: TranslationFile, private _workflowType?: WorkflowType) {
+    if (isNullOrUndefined(this._workflowType)) {
+      this._workflowType = WorkflowType.SINGLE_USER;
+    }
+    this._view = new TranslationFileView(_translationFile);
   }
 
   /**
@@ -36,20 +71,55 @@ export class TranslationProject {
     const serializedObject = {
       id: this.id,
       name: this.name,
-      translationFile: this.translationFile.serialize()
+      translationFile: this.translationFile.serialize(),
+      workflowType: this.workflowType,
+      userRole: this.userRole
     };
     return JSON.stringify(serializedObject);
   }
 
-  /**
-   * Create a project from the serialization.
-   * @param serializationString
-   * @return {TranslationProject}
-   */
-  static deserialize(serializationString: string): TranslationProject {
-    let deserializedObject: any = JSON.parse(serializationString);
-    let project = new TranslationProject(deserializedObject.name, TranslationFile.deserialize(deserializedObject.translationFile));
-    project.id = deserializedObject.id;
-    return project;
+  get name(): string {
+    return this._name;
   }
+
+  public setName(name: string) {
+    this._name = name;
+  }
+
+  get translationFile(): TranslationFile {
+    return this._translationFile;
+  }
+
+  get translationFileView(): TranslationFileView {
+    return this._view;
+  }
+
+  get workflowType(): WorkflowType {
+    return this._workflowType ? this._workflowType : WorkflowType.SINGLE_USER;
+  }
+
+  public setWorkflowType(type: WorkflowType) {
+    this._workflowType = type;
+  }
+
+  get userRole(): UserRole {
+    return isNullOrUndefined(this._userRole) ? UserRole.TRANSLATOR : this._userRole;
+  }
+
+  public setUserRole(role: UserRole) {
+    this._userRole = role;
+  }
+
+  public isReviewModeActive(): boolean {
+    return this._userRole === UserRole.REVIEWER;
+  }
+
+  public hasErrors(): boolean {
+    return this.translationFile && this.translationFile.hasErrors();
+  }
+
+  public canTranslate(): boolean {
+    return this.translationFile && this.translationFile.canTranslate();
+  }
+
 }
