@@ -7,8 +7,8 @@
   <app-translation-file-status
     [translationFileView]="project?.translationFileView"
     [translationFile]="project?.translationFile"
-    [shortInfo]="true">
-    (onSave)="save($event)"
+    [shortInfo]="true"
+    (onSave)="save($event)">
   </app-translation-file-status>
 </div>
 <p *ngIf="project?.isReviewModeActive()">

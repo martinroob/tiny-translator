@@ -25,7 +25,7 @@ export class ProjectStatusComponent implements OnInit {
   ngOnInit() {
   }
 
-  save(translationFile: TranslationFile) {
+  save() {
     this.onSave.emit(this.project);
   }
 
