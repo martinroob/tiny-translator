@@ -2,10 +2,6 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="en" datatype="plaintext" original="ng2.template" target-language="de">
     <body>
-      <trans-unit id="d04085c5069d49c88f924e788121d4161ffc5bc8" datatype="html">
-        <source/>
-        <target state="final"/>
-      <context-group purpose="location"><context context-type="sourcefile">S:/experimente/tiny-translator/src/app/home-page/home-page.component.ts</context><context context-type="linenumber">2</context></context-group></trans-unit>
       <trans-unit id="f540f05dc71be88e226a3920dbf1140b2658e5ea" datatype="html">
         <source>Create a new project</source>
         <target state="final">Legen Sie ein neues Projekt an</target>
@@ -18,7 +14,7 @@
         <source>Project name</source>
         <target state="final">Projekt Name</target>
       <context-group purpose="location"><context context-type="sourcefile">S:/experimente/tiny-translator/src/app/project-starter/project-starter.component.ts</context><context context-type="linenumber">6</context></context-group><context-group purpose="location"><context context-type="sourcefile">S:/experimente/tiny-translator/src/app/project-editor/project-editor.component.ts</context><context context-type="linenumber">6</context></context-group></trans-unit>
-      
+
       <trans-unit id="12cd052fa3e0ea8ec8457daaa98d549057c40179" datatype="html">
         <source>Add project</source>
         <target state="final">Projekt hinzufügen</target>
@@ -71,7 +67,7 @@
         <source>State <x id="INTERPOLATION"/></source>
         <target state="final">Status <x id="INTERPOLATION"/></target>
       <context-group purpose="location"><context context-type="sourcefile">S:/experimente/tiny-translator/src/app/translate-unit/translate-unit.component.ts</context><context context-type="linenumber">13</context></context-group></trans-unit>
-      
+
       <trans-unit id="eec715de352a6b114713b30b640d319fa78207a0" datatype="html">
         <source>Description</source>
         <target state="final">Beschreibung</target>
@@ -84,7 +80,7 @@
         <source>Your translation to</source>
         <target state="final">Ihre Übersetzung nach</target>
       <context-group purpose="location"><context context-type="sourcefile">S:/experimente/tiny-translator/src/app/translate-unit/translate-unit.component.ts</context><context context-type="linenumber">28</context></context-group></trans-unit>
-      
+
       <trans-unit id="c1ac90520acbce71ffbf35f3b693ae5119944726" datatype="html">
         <source>press to accept the given translation</source>
         <target state="final">übernimmt den angebenen Text als Übersetzung </target>
@@ -149,17 +145,17 @@
       <context-group purpose="location"><context context-type="sourcefile">S:/experimente/tiny-translator/src/app/project-starter/project-starter.component.ts</context><context context-type="linenumber">34</context></context-group><context-group purpose="location"><context context-type="sourcefile">S:/experimente/tiny-translator/src/app/project-editor/project-editor.component.ts</context><context context-type="linenumber">17</context></context-group></trans-unit><trans-unit id="165f5612a1516d3841d036e3d6d593e4743372bf" datatype="html">
         <source>Upload a translation file (xlf, xtb)</source>
         <target state="translated">Übermitteln Sie eine Übersetzungsdatei (xlf, xtb)</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">S:/experimente/tiny-translator/src/app/project-starter/project-starter.component.ts</context><context context-type="linenumber">18</context></context-group></trans-unit><trans-unit id="42649fcfb37e5731e215dfb39fc060a2cc3d1a7d" datatype="html">
         <source>You selected an xtb file.<x id="LINE_BREAK" ctype="lb"/>
         This file type only contains one language, the target language.<x id="LINE_BREAK" ctype="lb"/>
         To show you the original source texts, you should also select the master xmb file.</source>
         <target state="translated">Sie haben eine Datei im Format 'xtb' ausgewählt. Diese Dateien enthalten nur die Zielsprache, aber nicht die Ausgangssprache. Um auch die Ausgangstexte zu sehen, müssen Sie zusätzliche eine xmb-Datei auswählen.</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">S:/experimente/tiny-translator/src/app/project-starter/project-starter.component.ts</context><context context-type="linenumber">23</context></context-group></trans-unit><trans-unit id="f3ba2e517a9f0ee2fa5346acc19d259d185685f9" datatype="html">
         <source>Explicitly set source language</source>
         <target state="translated">Explizit angegebene Ausgangssprache</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">S:/experimente/tiny-translator/src/app/project-starter/project-starter.component.ts</context><context context-type="linenumber">43</context></context-group><context-group purpose="location"><context context-type="sourcefile">S:/experimente/tiny-translator/src/app/project-editor/project-editor.component.ts</context><context context-type="linenumber">26</context></context-group></trans-unit><trans-unit id="231b7122d4d3178ad7261f7900388fb3be2a5a05" datatype="html">
         <source>There are problems with the translation</source>
         <target state="translated">Es gibt Probleme mit dieser Übersetzung</target>
@@ -191,13 +187,13 @@
       </trans-unit><trans-unit id="6063098ce853945ab79af5600ca4e2286f880c5d" datatype="html">
         <source>Source:<x id="START_TAG_BUTTON" ctype="x-button"/><x id="START_TAG_MD-ICON" ctype="x-md-icon"/>info<x id="CLOSE_TAG_MD-ICON" ctype="x-md-icon"/><x id="CLOSE_TAG_BUTTON" ctype="x-button"/></source>
         <target state="translated">Quelle:<x id="START_TAG_BUTTON" ctype="x-button"/>&lt;md-icon>info&lt;/md-icon><x id="CLOSE_TAG_BUTTON" ctype="x-button"/></target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">S:/experimente/tiny-translator/src/app/translate-unit/translate-unit.component.ts</context><context context-type="linenumber">21</context></context-group></trans-unit><trans-unit id="8fef9621af4e75f6004de0ec95ba7d6b003db416" datatype="html">
         <source>
           mark as translated
         </source>
         <target state="translated">Als übersetzt markieren</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">S:/experimente/tiny-translator/src/app/translate-unit/translate-unit.component.ts</context><context context-type="linenumber">42</context></context-group></trans-unit><trans-unit id="6ea6fd6e11f219096dc53edcb89479798a1f826b" datatype="html">
         <source>Select the file you want to translate.<x id="LINE_BREAK" ctype="lb"/>
         The file can be of format XLIFF 1.2, XLIFF 2.0 or XMB.<x id="LINE_BREAK" ctype="lb"/>
@@ -422,6 +418,13 @@
         <context-group purpose="location">
           <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/project-editor/project-editor.component.ts</context>
           <context context-type="linenumber">51</context>
+        </context-group>
+      </trans-unit><trans-unit id="d04085c5069d49c88f924e788121d4161ffc5bc8" datatype="html">
+        <source>{VAR_PLURAL, plural, =0 {Currently there is no open project.} =1 {Currently there is <x id="START_BOLD_TEXT" ctype="x-b"/>1<x id="CLOSE_BOLD_TEXT" ctype="x-b"/> open project.} other {Currently there are <x id="START_BOLD_TEXT" ctype="x-b"/><x id="INTERPOLATION"/><x id="CLOSE_BOLD_TEXT" ctype="x-b"/> open projects.} }</source>
+        <target state="final">{VAR_PLURAL, plural, =0 {Aktuell gibt es keine offenen Projekte.} =1 {Aktuell gibt es <x id="START_BOLD_TEXT" ctype="x-b"/>1<x id="CLOSE_BOLD_TEXT" ctype="x-b"/> offenes Projekt.} other {Aktuell gibt es <x id="START_BOLD_TEXT" ctype="x-b"/><x id="INTERPOLATION"/><x id="CLOSE_BOLD_TEXT" ctype="x-b"/> offene Projekte.}}</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/home-page/home-page.component.ts</context>
+          <context context-type="linenumber">2</context>
         </context-group>
       </trans-unit></body>
   </file>
