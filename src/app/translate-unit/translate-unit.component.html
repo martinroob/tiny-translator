@@ -34,7 +34,7 @@
       <p *ngFor="let w of warnings()" class="warning"><md-icon>warning</md-icon>&nbsp;{{w}}</p>
       <p *ngFor="let e of errors()" class="error"><md-icon>error</md-icon>&nbsp;{{e}}</p>
       <div fxLayout="row">
-        <button *ngIf="!reviewMode && !translationUnit.isTranslated()"
+        <button *ngIf="!reviewMode"
                 fxFlexAlign="start"
                 md-button color="primary"
                 (click)="markTranslated()"

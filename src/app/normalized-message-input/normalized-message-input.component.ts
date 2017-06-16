@@ -26,8 +26,6 @@ export class NormalizedMessageInputComponent implements OnInit, OnChanges, Contr
    */
   @Input() message: NormalizedMessage;
 
-  editedMessage: NormalizedMessage;
-
   /**
    * Flag, wether the message should be shown in normalized form.
    */
@@ -39,6 +37,7 @@ export class NormalizedMessageInputComponent implements OnInit, OnChanges, Contr
    */
   @Input() readonly: boolean;
 
+  editedMessage: NormalizedMessage;
   form: FormGroup;
   subscription: Subscription;
   disabled = false;
@@ -52,13 +51,13 @@ export class NormalizedMessageInputComponent implements OnInit, OnChanges, Contr
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    this.initForm();
+    console.log('norm input onChanges', changes);
     if (!isNullOrUndefined(changes['message'])) {
-      this.editedMessage = this.message;
+      this.editedMessage = this.message.copy();
     }
     const isChanged = !isNullOrUndefined(changes['message']) || !isNullOrUndefined(changes['normalized']);
     if (isChanged) {
-      this.form.controls['displayedText'].setValue(this.textToDisplay());
+      this.initForm();
     }
   }
 
@@ -155,6 +154,7 @@ export class NormalizedMessageInputComponent implements OnInit, OnChanges, Contr
   }
 
   private valueChanged(value: any) {
+    console.log('norm input changed', value);
     if (!this.readonly) {
       if (!this.isICUMessage() || !this.normalized) {
         const textEntered = value.displayedText;

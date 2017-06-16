@@ -180,8 +180,10 @@ export class TranslateUnitComponent implements OnInit, OnChanges {
   warnings(): any[] {
     const errors = this._editedTargetMessage.validateWarnings(this.showNormalized);
     if (errors) {
+      console.log('warnings ', errors, this._editedTargetMessage);
       return Object.keys(errors).map(key => errors[key]);
     } else {
+      console.log('no warnings ', this._editedTargetMessage);
       return [];
     }
   }
