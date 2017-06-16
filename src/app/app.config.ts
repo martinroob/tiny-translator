@@ -16,8 +16,8 @@ export class AppConfig {
 
 export const APP_CONFIG_VALUE: AppConfig = {
   // set values here
-  'BUILDVERSION': '0.1.0',
-  'BUILDTIME': '26.05.2017',
+  'BUILDVERSION': '0.2.0',
+  'BUILDTIME': '16.06.2017',
 };
 
 export let APP_CONFIG = new InjectionToken<AppConfig>('app.config');
