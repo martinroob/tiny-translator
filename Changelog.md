@@ -1,3 +1,22 @@
+<a name="0.2.0"></a>
+# [0.2.0](https://github.com/martinroob/tiny-translator/compare/v0.1.0...v0.2.0) (2017-06-16)
+
+### Bug Fixes
+
+* **all formats** Linebreaks in normalized mode do not work ([#11](https://github.com/martinroob/tiny-translator/issues/11)).
+
+* **all formats** upload button in project summary on translation page does not work ([#10](https://github.com/martinroob/tiny-translator/issues/10)).
+
+### Features
+
+* **all formats** Added Search functionality ([#9](https://github.com/martinroob/tiny-translator/issues/9)).
+
+* **all formats** Added State Management ([#5](https://github.com/martinroob/tiny-translator/issues/5)).
+
+* **all formats** Support for ICU message translation (ngx-i18nsupport-lib [#25](https://github.com/martinroob/ngx-i18nsupport-lib/issues/25)).
+
+* **XLIFF 2.0** Support for sourcefile and linenumber in XLIFF 2.0 format ([#3](https://github.com/martinroob/tiny-translator/issues/3)).
+
 <a name="0.1.0"></a>
 # [0.1.0](https://github.com/martinroob/tiny-translator/compare/v0.0.1...v0.1.0) (2017-05-26)
 
