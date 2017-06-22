@@ -15,7 +15,9 @@
     "build-prod-en": "ng build --prod --aot --i18n-file=src/i18n/messages.en.xlf --locale=en --i18n-format=xlf --base-href=/tiny-translator/en/ --output-path=dist/en",
     "build-prod-de": "ng build --prod --aot --i18n-file=src/i18n/messages.de.xlf --locale=de --i18n-format=xlf --base-href=/tiny-translator/de/ --output-path=dist/de",
     "build-prod": "npm run build-prod-en && npm run build-prod-de && cpx ./src/ghpages/* ./dist",
-    "publish2githubpages": "angular-cli-ghpages --no-silent"
+    "publish2githubpages": "angular-cli-ghpages --no-silent",
+    "dockerbuild": "docker build -t tiny-translator:0.2 .",
+    "publish2dockerhub": "docker push"
   },
   "repository": {
     "type": "git",
