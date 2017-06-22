@@ -8,6 +8,7 @@ import {TranslateUnitWarningConfirmDialogComponent} from '../translate-unit-warn
 import {TranslationFileView} from '../model/translation-file-view';
 import {WorkflowType} from '../model/translation-project';
 import {STATE_FINAL, STATE_TRANSLATED} from 'ngx-i18nsupport-lib/dist';
+import {AutoTranslateServiceAPI} from '../model/auto-translate-service-api';
 
 /**
  * Component to input a new translation.
@@ -39,7 +40,11 @@ export class TranslateUnitComponent implements OnInit, OnChanges {
   private isMarkedAsTranslated = false;
   private isMarkedAsReviewed = false;
 
-  constructor(private formBuilder: FormBuilder, private dialog: MdDialog, private _snackbar: MdSnackBar) { }
+  constructor(private formBuilder: FormBuilder,
+              private dialog: MdDialog,
+              private _snackbar: MdSnackBar,
+              private autoTranslateService: AutoTranslateServiceAPI) {
+  }
 
   ngOnInit() {
     this.initForm();
@@ -334,4 +339,18 @@ export class TranslateUnitComponent implements OnInit, OnChanges {
       return false;
     }
   }
+
+  /**
+   * Auto translate all untranslated units.
+   */
+  autoTranslate() {
+    if (this.translationUnit) {
+      this.translationUnit.autoTranslateUsingService(this.autoTranslateService);
+    }
+  }
+
+  canAutoTranslate(): boolean {
+    return this.translationUnit && this.autoTranslateService.canAutoTranslate();
+  }
+
 }

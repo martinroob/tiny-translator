@@ -4,6 +4,8 @@ import {TranslationUnit} from './translation-unit';
 import {Observable} from 'rxjs';
 import {AsynchronousFileReaderResult} from './asynchronous-file-reader.service';
 import {FILETYPE_XTB, FORMAT_XMB} from 'ngx-i18nsupport-lib/dist';
+import {AutoTranslateServiceAPI} from './auto-translate-service-api';
+import {NormalizedMessage} from './normalized-message';
 
 /**
  * A single xlf or xmb file ready for work.
@@ -289,6 +291,21 @@ export class TranslationFile {
       explicitSourceLanguage: this._explicitSourceLanguage
     };
     return JSON.stringify(serializedObject);
+  }
+
+  /**
+   * Auto translate this file via Google Translate.
+   * Translates all untranslated units.
+   * @param autoTranslateService
+   */
+  public autoTranslateUsingService(autoTranslateService: AutoTranslateServiceAPI) {
+    // TODO
+    console.log('Autotranslate...');
+    this.allTransUnits().forEach((tu) => {
+      if (!tu.isTranslated()) {
+        tu.autoTranslateUsingService(autoTranslateService)
+      }
+    });
   }
 
 }

@@ -51,7 +51,6 @@ export class NormalizedMessageInputComponent implements OnInit, OnChanges, Contr
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log('norm input onChanges', changes);
     if (!isNullOrUndefined(changes['message'])) {
       this.editedMessage = this.message.copy();
     }
@@ -154,7 +153,6 @@ export class NormalizedMessageInputComponent implements OnInit, OnChanges, Contr
   }
 
   private valueChanged(value: any) {
-    console.log('norm input changed', value);
     if (!this.readonly) {
       if (!this.isICUMessage() || !this.normalized) {
         const textEntered = value.displayedText;

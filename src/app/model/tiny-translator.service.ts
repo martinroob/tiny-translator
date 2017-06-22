@@ -6,6 +6,7 @@ import {TranslationProject, WorkflowType} from './translation-project';
 import {Observable} from 'rxjs/observable';
 import {DownloaderService} from './downloader.service';
 import {AsynchronousFileReaderService} from './asynchronous-file-reader.service';
+import {AutoTranslateServiceAPI} from './auto-translate-service-api';
 
 @Injectable()
 export class TinyTranslatorService {
@@ -22,7 +23,8 @@ export class TinyTranslatorService {
 
   constructor(private backendService: BackendServiceAPI,
               private fileReaderService: AsynchronousFileReaderService,
-              private downloaderService: DownloaderService) {
+              private downloaderService: DownloaderService,
+              private autoTranslateService: AutoTranslateServiceAPI) {
     this._projects = this.backendService.projects();
   }
 
@@ -109,4 +111,24 @@ export class TinyTranslatorService {
       this._projects = this._projects.slice(0, index).concat(this._projects.slice(index + 1));
     }
   }
+
+  /**
+   * Test, wether auto translation is possible.
+   * @return {boolean}
+   */
+  public canAutoTranslate(): boolean {
+    return !isNullOrUndefined(this.currentProject()) && this.currentProject().canTranslate()
+      && this.autoTranslateService.canAutoTranslate();
+  }
+
+  /**
+   * Auto translate all untranslated units.
+   */
+  public autoTranslate() {
+    if (this.currentProject() && this.currentProject().translationFile) {
+      this.currentProject().translationFile.autoTranslateUsingService(this.autoTranslateService);
+    }
+  }
+
+
 }

@@ -1,6 +1,8 @@
 import {ITransUnit, INormalizedMessage, STATE_NEW} from 'ngx-i18nsupport-lib';
 import {TranslationFile} from './translation-file';
 import {NormalizedMessage} from './normalized-message';
+import {AutoTranslateServiceAPI} from './auto-translate-service-api';
+import {isNullOrUndefined} from 'util';
 
 /**
  * A wrapper around ITransUnit.
@@ -138,4 +140,24 @@ export class TranslationUnit {
       this._normalizedTargetContent = null;
     }
   }
+
+  /**
+   * Auto translate this unit via Google Translate.
+   * @param autoTranslateService
+   */
+  public autoTranslateUsingService(autoTranslateService: AutoTranslateServiceAPI) {
+    // TODO
+    console.log('Autotranslate Unit...');
+      if (!this.isTranslated()) {
+        const source: NormalizedMessage = this.sourceContentNormalized();
+        const translation: string = autoTranslateService.translate(source.dislayText(true), this.translationFile().sourceLanguage(), this.translationFile().targetLanguage());
+        if (!isNullOrUndefined(translation)) {
+          const newTranslation = source.translate(translation, true);
+          // TODO error handling
+          this.translate(newTranslation);
+        }
+      }
+  }
+
+
 }

@@ -22,6 +22,7 @@ import { LanguageComponent } from './language/language.component';
 import {ActiveProjectGuard} from './active-project.guard';
 import {BackendServiceAPI} from './model/backend-service-api';
 import {BackendLocalStorageService} from './model/backend-local-storage.service';
+import {AutoTranslateServiceAPI} from './model/auto-translate-service-api';
 import { ProjectComponent } from './project/project.component';
 import { ProjectListComponent } from './project-list/project-list.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -70,7 +71,8 @@ import { ProjectEditorComponent } from './project-editor/project-editor.componen
     AsynchronousFileReaderService,
     DownloaderService,
     ActiveProjectGuard,
-    {provide: BackendServiceAPI, useClass: BackendLocalStorageService}
+    {provide: BackendServiceAPI, useClass: BackendLocalStorageService},
+    {provide: AutoTranslateServiceAPI, useClass: AutoTranslateServiceAPI}
   ],
   entryComponents: [TranslateUnitWarningConfirmDialogComponent],
   bootstrap: [AppComponent]
