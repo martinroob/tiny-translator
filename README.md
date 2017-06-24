@@ -54,6 +54,16 @@ Just start it by clicking on
 - [Tiny Translator (English)](https://martinroob.github.io/tiny-translator/en)
 - or [Tiny Translator (Deutsch)](https://martinroob.github.io/tiny-translator/de)
 
+## Ready to run Docker image
+There are docker images available on [Docker Cloud](https://cloud.docker.com/swarm/martinroob/repository/docker/martinroob/tiny-translator/general).
+
+It contains a running `nginx` with the app available on port 80.
+
+To run it, e.g. on local port 4000 (your choice)
+* install docker on your machine
+* run `docker run -d -it --rm -p4000:80 martinroob/tiny-translator:0.2`
+* Open in browser [http://localhost:4000/tiny-translator/]().
+
 ## Local version
 Alternatively you can start a local version
 
