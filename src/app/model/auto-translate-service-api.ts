@@ -8,8 +8,17 @@ export class AutoTranslateServiceAPI {
   /**
    * Test, wether it is active.
    */
-  canAutoTranslate(): boolean {
+  public canAutoTranslate(): boolean {
     return false;
+  }
+
+  /**
+   * Return a list of language codes that can be used.
+   * Returns codes as "language" and readable name.
+   * @param target language for readable name.
+   */
+  supportedLanguages(target: string): Observable<{language: string; name: string}[]> {
+    return Observable.of([]);
   }
 
   /**
@@ -20,8 +29,18 @@ export class AutoTranslateServiceAPI {
    * @param to target language code
    * @return Observable with translated message or error
    */
-  translate(message: string, from: string, to: string): Observable<string> {
+  public translate(message: string, from: string, to: string): Observable<string> {
     return Observable.throw('no translation service installed');
   }
 
+  /**
+   * Translate an array of messages at once.
+   * @param messages the messages to be translated
+   * @param from source language code
+   * @param to target language code
+   * @return Observable with translated messages or error
+   */
+  public translateMultipleStrings(messages: string[], from: string, to: string): Observable<string[]> {
+    return Observable.throw('no translation service installed');
+  }
 }
