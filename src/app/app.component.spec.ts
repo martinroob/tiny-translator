@@ -3,14 +3,12 @@ import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import {NO_ERRORS_SCHEMA} from '@angular/core';
 import {APP_CONFIG, APP_CONFIG_VALUE} from './app.config';
+import {AppModule} from './app.module';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        AppComponent
-      ],
-      schemas: [NO_ERRORS_SCHEMA],
+      imports: [AppModule],
       providers: [{provide: APP_CONFIG, useValue: APP_CONFIG_VALUE}]
     }).compileComponents();
   }));
@@ -24,7 +22,7 @@ describe('AppComponent', () => {
   it(`should have a build version`, async(() => {
     const fixture = TestBed.createComponent(AppComponent);
     const app: AppComponent = fixture.debugElement.componentInstance;
-    expect(app.buildversion()).toEqual('0.1.0'); // TODO
+    expect(app.buildversion()).toEqual('0.2.0'); // TODO
   }));
 
   it('should render md-toolbar', async(() => {

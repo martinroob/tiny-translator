@@ -2,8 +2,11 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TranslateUnitWarningConfirmDialogComponent } from './translate-unit-warning-confirm-dialog.component';
 import {NO_ERRORS_SCHEMA} from '@angular/core';
-import {MdDialog, MdDialogContainer, MdDialogModule, MdDialogRef, Overlay} from '@angular/material';
+import {MD_DIALOG_DATA, MdDialog, MdDialogContainer, MdDialogModule, MdDialogRef, Overlay} from '@angular/material';
 import {AppModule} from '../app.module';
+
+class MdDialogRefMock {
+}
 
 describe('TranslateUnitWarningConfirmDialogComponent', () => {
   let dialog: MdDialog;
@@ -14,7 +17,9 @@ describe('TranslateUnitWarningConfirmDialogComponent', () => {
     TestBed.configureTestingModule({
       declarations: [],
       imports: [AppModule, MdDialogModule],
-      providers: [MdDialogRef],
+      providers: [
+        { provide: MdDialogRef, useClass: MdDialogRefMock },
+        { provide: MD_DIALOG_DATA, useValue: "lmaa"}],
       schemas: [NO_ERRORS_SCHEMA]
     })
     .compileComponents();

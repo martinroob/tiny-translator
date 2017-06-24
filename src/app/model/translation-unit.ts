@@ -150,12 +150,13 @@ export class TranslationUnit {
     console.log('Autotranslate Unit...');
       if (!this.isTranslated()) {
         const source: NormalizedMessage = this.sourceContentNormalized();
-        const translation: string = autoTranslateService.translate(source.dislayText(true), this.translationFile().sourceLanguage(), this.translationFile().targetLanguage());
-        if (!isNullOrUndefined(translation)) {
-          const newTranslation = source.translate(translation, true);
-          // TODO error handling
-          this.translate(newTranslation);
-        }
+        autoTranslateService.translate(source.dislayText(true), this.translationFile().sourceLanguage(), this.translationFile().targetLanguage()).subscribe((translation: string) => {
+          if (!isNullOrUndefined(translation)) {
+            const newTranslation = source.translate(translation, true);
+            // TODO error handling
+            this.translate(newTranslation);
+          }
+        });
       }
   }
 

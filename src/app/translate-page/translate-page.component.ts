@@ -43,6 +43,6 @@ export class TranslatePageComponent implements OnInit {
   }
 
   isInReviewMode(): boolean {
-    return this.currentProject().userRole === UserRole.REVIEWER;
+    return this.currentProject() && this.currentProject().userRole === UserRole.REVIEWER;
   }
 }

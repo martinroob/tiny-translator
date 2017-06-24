@@ -4,7 +4,7 @@
   <p class="error" *ngFor="let error of data.errors"><md-icon>error</md-icon>&nbsp;{{error}}</p>
 </div>
 <div md-dialog-actions>
-  <button md-button md-dialog-close (click)="accept()" [disabled]="data.errors.length > 0" i18n>Accept, I know what I do</button>
+  <button md-button md-dialog-close (click)="accept()" [disabled]="data?.errors?.length > 0" i18n>Accept, I know what I do</button>
   <button md-button md-dialog-close (click)="discard()" i18n>Discard changes</button>
   <button md-button md-dialog-close (click)="cancel()" i18n>Cancel</button>
 </div>
