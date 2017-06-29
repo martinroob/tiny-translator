@@ -300,7 +300,6 @@ export class TranslationFile {
    */
   public autoTranslateUsingService(autoTranslateService: AutoTranslateServiceAPI) {
     // TODO
-    console.log('Autotranslate...');
     this.allTransUnits().forEach((tu) => {
       if (!tu.isTranslated()) {
         tu.autoTranslateUsingService(autoTranslateService)

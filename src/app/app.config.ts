@@ -8,8 +8,6 @@ import {environment} from '../environments/environment';
 export class AppConfig {
   // URL to Google translate API (optional)
   GOOGLETRANSLATE_API_ROOT_URL?: string;
-  // Your API Key
-  GOOGLETRANSLATE_API_KEY?: string;
   BUILDVERSION: string;
   BUILDTIME: string;
 }
@@ -19,7 +17,6 @@ export const APP_CONFIG_VALUE: AppConfig = {
   'BUILDVERSION': '0.2.0',
   'BUILDTIME': '16.06.2017',
   GOOGLETRANSLATE_API_ROOT_URL: 'https://translation.googleapis.com/',
-  GOOGLETRANSLATE_API_KEY: 'AIzaSyBtjjpgqJcxcfu2v-NwUR-dzwir_t_XPn4', // TODO must be secret
 };
 
 export let APP_CONFIG = new InjectionToken<AppConfig>('app.config');

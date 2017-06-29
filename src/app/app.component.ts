@@ -2,6 +2,8 @@ import {Component, Inject} from '@angular/core';
 import {AppConfig, APP_CONFIG} from './app.config';
 import {TinyTranslatorService} from './model/tiny-translator.service';
 import {isNullOrUndefined} from 'util';
+import {Observable} from 'rxjs/observable';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +13,7 @@ import {isNullOrUndefined} from 'util';
 export class AppComponent {
   title = 'app works!';
 
-  constructor(@Inject(APP_CONFIG) private APP_CONFIG: AppConfig, private translatorService: TinyTranslatorService) {
+  constructor(@Inject(APP_CONFIG) private APP_CONFIG: AppConfig, private translatorService: TinyTranslatorService, private router: Router) {
 
   }
 
@@ -25,12 +27,20 @@ export class AppComponent {
 
   /**
    * Auto translate all untranslated units.
+   * Redirects to a config page, if Google Translate is currently not available.
+   * Otherwise auto translates all untranslated units..
    */
   autoTranslate() {
-      this.translatorService.autoTranslate();
+    this.translatorService.canAutoTranslate().subscribe((canTranslate: boolean) => {
+      if (canTranslate) {
+        this.translatorService.autoTranslate();
+      } else {
+        this.router.navigateByUrl('configureautotranslate');
+      }
+    });
   }
 
-  canAutoTranslate(): boolean {
-    return this.translatorService.canAutoTranslate();
+  configureAutoTranslate() {
+    this.router.navigateByUrl('configureautotranslate');
   }
 }

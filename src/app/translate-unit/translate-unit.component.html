@@ -34,16 +34,16 @@
           </ng-container>
           <ng-container *ngIf="!showNormalized" i18n>Normalization mode (switch on to use normalization)</ng-container>
         </md-slide-toggle>
-        <button *ngIf="!reviewMode" md-fab
-                [disabled]="!canAutoTranslate()"
+        <button *ngIf="!reviewMode" md-mini-fab
                 fxFlexAlign="start"
                 md-button color="accent"
                 (click)="autoTranslate()"
+                [disabled]="autoTranslateDisabled() | async"
                 mdTooltip="press to get a translation suggestion from Google Translate" i18n-mdTooltip>
           <md-icon>g_translate</md-icon>
         </button>
       </div>
-      <app-normalized-message-input fxFlexFill [readonly]="reviewMode" [normalized]="showNormalized" [message]="targetContentNormalized()" formControlName="_editedTargetMessage"></app-normalized-message-input>
+      <app-normalized-message-input fxFlexFill [readonly]="reviewMode" [normalized]="showNormalized" [message]="editedTargetContentNormalized()" formControlName="_editedTargetMessage"></app-normalized-message-input>
       <p *ngFor="let w of warnings()" class="warning"><md-icon>warning</md-icon>&nbsp;{{w}}</p>
       <p *ngFor="let e of errors()" class="error"><md-icon>error</md-icon>&nbsp;{{e}}</p>
       <div fxLayout="row">

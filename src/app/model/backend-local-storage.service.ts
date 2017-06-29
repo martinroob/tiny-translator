@@ -7,6 +7,7 @@ export class BackendLocalStorageService extends BackendServiceAPI {
 
   private PRAEFIX = 'tinytranslator.';
   private PRAEFIX_PROJECT = this.PRAEFIX + 'project.';
+  private KEY_APIKEY = this.PRAEFIX + 'googletranslate.apikey';
 
   constructor() {
     super();
@@ -40,6 +41,26 @@ export class BackendLocalStorageService extends BackendServiceAPI {
     }
   }
 
+  /**
+   * Save API Key in store.
+   * @param key
+   */
+  storeAutoTranslateApiKey(key: string) {
+    if (!key) {
+      localStorage.removeItem(this.KEY_APIKEY);
+    } else {
+      localStorage.setItem(this.KEY_APIKEY, key);
+    }
+  }
+
+  /**
+   * Get API key from store.
+   * @return {null}
+   */
+  autoTranslateApiKey(): string {
+    return localStorage.getItem(this.KEY_APIKEY);
+  }
+
   private keyForProject(project: TranslationProject) {
     return this.PRAEFIX_PROJECT + project.id;
   }
@@ -54,4 +75,5 @@ export class BackendLocalStorageService extends BackendServiceAPI {
     }
     return result;
   }
+
 }

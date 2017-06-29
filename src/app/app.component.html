@@ -20,9 +20,15 @@
       <a md-icon-button routerLink="/home" routerLinkActive="active"><md-icon>home</md-icon></a>
       <!-- main menu -->
       <md-menu #menu="mdMenu">
-        <button md-menu-item (click)="autoTranslate()" [disabled]="!canAutoTranslate()">
+        <button md-menu-item (click)="configureAutoTranslate()"
+                mdTooltip="configure Google Translate API Key" i18n-mdTooltip>
+          <md-icon>settings</md-icon>
+          <span i18n>Google Translate settings..</span>
+        </button>
+        <button md-menu-item (click)="autoTranslate()"
+          mdTooltip="Translate all untranslated units with Google Translate" i18n-mdTooltip>
           <md-icon>g_translate</md-icon>
-          <span i18n>Translate all untranslated unit with Google Translate</span>
+          <span i18n>Google Translate units..</span>
         </button>
       </md-menu>
     </md-toolbar-row>

@@ -3,6 +3,7 @@ import { TestBed, inject, async } from '@angular/core/testing';
 import { AutoTranslateGoogleService } from './auto-translate-google.service';
 import {APP_CONFIG, APP_CONFIG_VALUE} from '../app.config';
 import {ConnectionBackend, Http, HttpModule, RequestOptions} from '@angular/http';
+import {AutoTranslateDisabledReason} from './auto-translate-service-api';
 
 describe('AutoTranslateGoogleService', () => {
   beforeEach(() => {
@@ -15,6 +16,44 @@ describe('AutoTranslateGoogleService', () => {
   it('should be created', inject([AutoTranslateGoogleService], (service: AutoTranslateGoogleService) => {
     expect(service).toBeTruthy();
   }));
+
+  it('should detect missing key', async(inject([AutoTranslateGoogleService], (service: AutoTranslateGoogleService) => {
+    service.setApiKey(null);
+    service.canAutoTranslate('en', 'de').subscribe((result) => {
+      expect(result).toBeFalsy();
+    });
+    service.disabledReason('en', 'de').subscribe((result) => {
+      expect(result).toBe(AutoTranslateDisabledReason.NO_KEY);
+    });
+  })));
+
+  it('should detect invalid key', async(inject([AutoTranslateGoogleService], (service: AutoTranslateGoogleService) => {
+    service.setApiKey('definitely_not_a_valid_key');
+    service.canAutoTranslate('en', 'de').subscribe((result) => {
+      expect(result).toBeFalsy();
+    });
+    service.disabledReason('en', 'de').subscribe((result) => {
+      expect(result).toBe(AutoTranslateDisabledReason.INVALID_KEY);
+    });
+  })));
+
+  it('should support en and de', async(inject([AutoTranslateGoogleService], (service: AutoTranslateGoogleService) => {
+    service.canAutoTranslate('en', 'de').subscribe((result) => {
+      expect(result).toBeTruthy();
+    });
+    service.disabledReason('en', 'de').subscribe((result) => {
+      expect(result).toBeFalsy();
+    });
+  })));
+
+  it('should not support fantasy language', async(inject([AutoTranslateGoogleService], (service: AutoTranslateGoogleService) => {
+    service.canAutoTranslate('en', 'fantasy').subscribe((result) => {
+      expect(result).toBeFalsy();
+    });
+    service.disabledReason('en', 'fantasy').subscribe((result) => {
+      expect(result).toBe(AutoTranslateDisabledReason.TARGET_LANG_NOT_SUPPORTED);
+    });
+  })));
 
   it('should translate hello from english to german', async(inject([AutoTranslateGoogleService], (service: AutoTranslateGoogleService) => {
     service.translate('Hello', 'en', 'de').subscribe((translation) => {

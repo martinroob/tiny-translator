@@ -1,9 +1,14 @@
 import {Inject, Injectable} from '@angular/core';
-import {AutoTranslateServiceAPI} from './auto-translate-service-api';
+import {
+  AutoTranslateDisabledReason, AutoTranslateDisabledReasonKey, AutoTranslateServiceAPI,
+  Language
+} from './auto-translate-service-api';
 import {APP_CONFIG, AppConfig} from '../app.config';
 import {Observable} from 'rxjs/Observable';
+import {Http, Response} from '@angular/http';
+import {isNullOrUndefined} from 'util';
 import {Subject} from 'rxjs/Subject';
-import {Http, RequestOptions, Response} from '@angular/http';
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 
 const projectId = 'tinytranslator-20170621';
 
@@ -48,28 +53,122 @@ interface TranslationsListResponse {
 @Injectable()
 export class AutoTranslateGoogleService extends AutoTranslateServiceAPI {
 
-  constructor(@Inject(APP_CONFIG) private app_config: AppConfig, private httpService: Http) {
+  private _rootUrl: string;
+
+  private _apiKey: string;
+
+  /**
+   * Cache of supported languages.
+   */
+  private _subjects: {[target: string]: BehaviorSubject<Language[]>};
+
+  /**
+   * Reason, that currently disables the API.
+   * (no key, invalid key)
+   */
+  private _permanentFailReason: AutoTranslateDisabledReason;
+
+  constructor(@Inject(APP_CONFIG) app_config: AppConfig, private httpService: Http) {
     super();
+    this._rootUrl = app_config.GOOGLETRANSLATE_API_ROOT_URL;
+    this.setApiKey(null); // must be set explicitly via setApiKey()
+  }
+
+  public apiKey(): string {
+    return this._apiKey;
+  }
+
+  public setApiKey(key: string) {
+    this._apiKey = key;
+    this._permanentFailReason = null;
+    this._subjects = {};
+    if (!this._apiKey) {
+      this._permanentFailReason = {reason: AutoTranslateDisabledReasonKey.NO_KEY};
+    }
   }
 
   /**
    * Test, wether it is active.
+   * @param source the language to translate from
+   * @param target the language to translate to
    */
-  public canAutoTranslate(): boolean {
-    return true;
+  public canAutoTranslate(source: string, target: string): Observable<boolean> {
+    return this.supportedLanguages().map((languages: Language[]) => {
+      if (languages.findIndex((lang) => lang.language === source) < 0) {
+        return false;
+      }
+      return (languages.findIndex((lang) => lang.language === target) >= 0);
+    });
+  }
+
+  /**
+   * The reason, why canAutoTranslate returns false.
+   * @param source the language to translate from
+   * @param target the language to translate to
+   * @return {AutoTranslateDisabledReason} or null, if API is enabled.
+   */
+  public disabledReason(source: string, target: string): Observable<AutoTranslateDisabledReason> {
+    return this.supportedLanguages().map((languages: Language[]) => {
+      if (languages.length === 0) {
+        return this._permanentFailReason;
+      }
+      if (!source || languages.findIndex((lang) => lang.language === source) < 0) {
+        return {reason: AutoTranslateDisabledReasonKey.SOURCE_LANG_NOT_SUPPORTED};
+      }
+      if (!target || languages.findIndex((lang) => lang.language === target) < 0) {
+        return {reason: AutoTranslateDisabledReasonKey.TARGET_LANG_NOT_SUPPORTED};
+      }
+      return null;
+    });
   }
 
   /**
    * Return a list of language codes that can be used.
    * Returns codes as "language" and readable name.
-   * @param target language for readable name.
+   * @param target language for readable name. (default is en)
    */
-  supportedLanguages(target: string): Observable<{language: string; name: string}[]> {
-    const realUrl = this.app_config.GOOGLETRANSLATE_API_ROOT_URL + 'language/translate/v2/languages' + '?key=' + this.app_config.GOOGLETRANSLATE_API_KEY + '&target=' + target;
-    return this.httpService.get(realUrl).map((response: Response) => {
-      const result: LanguagesListResponse = response.json().data;
-      return result.languages;
-    });
+  supportedLanguages(target?: string): Observable<Language[]> {
+    if (!target) {
+      target = 'en';
+    }
+    if (!this._subjects[target]) {
+      if (this._apiKey) {
+        this._permanentFailReason = {reason: AutoTranslateDisabledReasonKey.NO_PROVIDER};
+      } else {
+        this._permanentFailReason = {reason: AutoTranslateDisabledReasonKey.NO_KEY};
+      }
+      this._subjects[target] = new BehaviorSubject<Language[]>([]);
+      if (this._apiKey) {
+        const languagesRequestUrl = this._rootUrl + 'language/translate/v2/languages' + '?key=' + this._apiKey + '&target=' + target;
+        this.httpService.get(languagesRequestUrl).catch((error: Response) => {
+          if (this.isInvalidApiKeyError(error)) {
+            this._permanentFailReason = {reason: AutoTranslateDisabledReasonKey.INVALID_KEY};
+          } else {
+            this._permanentFailReason = {reason: AutoTranslateDisabledReasonKey.CONNECT_PROBLEM, details: JSON.stringify(error.json())};
+          }
+          return [];
+        }).map((response: Response) => {
+          const result: LanguagesListResponse = response.json().data;
+          return result.languages;
+        }).subscribe((languages) => {
+          this._subjects[target].next(languages);
+        });
+      }
+    }
+    return this._subjects[target];
+  }
+
+  private isInvalidApiKeyError(error: Response): boolean {
+    if (!error) {
+      return false;
+    }
+    if (error.status === 400) {
+      const body = error.json();
+      if (body) {
+        return JSON.stringify(body).indexOf('API key not valid') >= 0;
+      }
+    }
+    return false;
   }
 
   /**
@@ -80,13 +179,16 @@ export class AutoTranslateGoogleService extends AutoTranslateServiceAPI {
    * @return Observable with translated message or error
    */
   public translate(message: string, from: string, to: string): Observable<string> {
+    if (!this._apiKey) {
+      return Observable.throw('error, no api key');
+    }
     const translateRequest: TranslateTextRequest = {
       q: [message],
       target: to,
       source: from,
       // format: TODO useful html or text
     };
-    const realUrl = this.app_config.GOOGLETRANSLATE_API_ROOT_URL + 'language/translate/v2' + '?key=' + this.app_config.GOOGLETRANSLATE_API_KEY;
+    const realUrl = this._rootUrl + 'language/translate/v2' + '?key=' + this._apiKey;
     return this.httpService.post(realUrl, translateRequest).map((response: Response) => {
       const result: TranslationsListResponse = response.json().data;
       return result.translations[0].translatedText;
@@ -101,16 +203,21 @@ export class AutoTranslateGoogleService extends AutoTranslateServiceAPI {
    * @return Observable with translated messages or error
    */
   public translateMultipleStrings(messages: string[], from: string, to: string): Observable<string[]> {
+    if (!this._apiKey) {
+      return Observable.throw('error, no api key');
+    }
     const translateRequest: TranslateTextRequest = {
       q: messages,
       target: to,
       source: from,
       // format: TODO useful html or text
     };
-    const realUrl = this.app_config.GOOGLETRANSLATE_API_ROOT_URL + 'language/translate/v2' + '?key=' + this.app_config.GOOGLETRANSLATE_API_KEY;
+    const realUrl = this._rootUrl + 'language/translate/v2' + '?key=' + this._apiKey;
     return this.httpService.post(realUrl, translateRequest).map((response: Response) => {
       const result: TranslationsListResponse = response.json().data;
-      return result.translations.map((translation: TranslationsResource) => {return translation.translatedText});
+      return result.translations.map((translation: TranslationsResource) => {
+        return translation.translatedText;
+      });
     });
   }
 }

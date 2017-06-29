@@ -1,23 +1,66 @@
 import {Observable} from 'rxjs/Observable';
+
+/**
+ * Reasons, why you cannot use the API.
+ */
+export enum AutoTranslateDisabledReasonKey {
+  NO_PROVIDER,
+  NO_KEY,
+  INVALID_KEY,
+  SOURCE_LANG_NOT_SUPPORTED,
+  TARGET_LANG_NOT_SUPPORTED,
+  CONNECT_PROBLEM
+}
+
+export interface AutoTranslateDisabledReason {
+  reason: AutoTranslateDisabledReasonKey;
+  details?: string;  // in case of CONNECT_PROBLEM some readable details like status code, error message
+}
+
+export interface Language {
+  language: string; // language code
+  name: string; // human readable language name
+}
+
 /**
  * Interface of AutoTranslate Service API.
  * An AutoTranslateService can translate messages to other languages.
  */
 export class AutoTranslateServiceAPI {
 
+  public apiKey(): string {
+    return null;
+  }
+
+  public setApiKey(apiKey: string) {
+    // ignore it
+  }
+
   /**
    * Test, wether it is active.
+   * @param source the language to translate from
+   * @param target the language to translate to
    */
-  public canAutoTranslate(): boolean {
-    return false;
+  public canAutoTranslate(source: string, target: string): Observable<boolean> {
+    return Observable.of(false);
+  }
+
+  /**
+   * The reason, why canAutoTranslate returns false.
+   * @param source the language to translate from
+   * @param target the language to translate to
+   * @return {AutoTranslateDisabledReason} or null, if API is enabled.
+   */
+  public disabledReason(source: string, target: string): Observable<AutoTranslateDisabledReason> {
+    return Observable.of({reason: AutoTranslateDisabledReasonKey.NO_PROVIDER});
   }
 
   /**
    * Return a list of language codes that can be used.
    * Returns codes as "language" and readable name.
-   * @param target language for readable name.
+   * @param target language for readable name. (default is en)
    */
-  supportedLanguages(target: string): Observable<{language: string; name: string}[]> {
+  supportedLanguages(target?: string): Observable<Language[]> {
     return Observable.of([]);
   }
 

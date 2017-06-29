@@ -3,10 +3,13 @@ import {TranslationFile} from './translation-file';
 import {isNullOrUndefined} from 'util';
 import {BackendServiceAPI} from './backend-service-api';
 import {TranslationProject, WorkflowType} from './translation-project';
-import {Observable} from 'rxjs/observable';
+import {Observable} from 'rxjs';
 import {DownloaderService} from './downloader.service';
 import {AsynchronousFileReaderService} from './asynchronous-file-reader.service';
-import {AutoTranslateServiceAPI} from './auto-translate-service-api';
+import {
+  AutoTranslateDisabledReason, AutoTranslateDisabledReasonKey,
+  AutoTranslateServiceAPI
+} from './auto-translate-service-api';
 
 @Injectable()
 export class TinyTranslatorService {
@@ -26,6 +29,7 @@ export class TinyTranslatorService {
               private downloaderService: DownloaderService,
               private autoTranslateService: AutoTranslateServiceAPI) {
     this._projects = this.backendService.projects();
+    this.autoTranslateService.setApiKey(this.backendService.autoTranslateApiKey());
   }
 
   /**
@@ -113,12 +117,94 @@ export class TinyTranslatorService {
   }
 
   /**
-   * Test, wether auto translation is possible.
-   * @return {boolean}
+   * Set an API key for Google Translate.
+   * Will be stored in local storage.
+   * @param key
    */
-  public canAutoTranslate(): boolean {
-    return !isNullOrUndefined(this.currentProject()) && this.currentProject().canTranslate()
-      && this.autoTranslateService.canAutoTranslate();
+  public setAutoTranslateApiKey(key: string) {
+    this.autoTranslateService.setApiKey(key);
+    this.backendService.storeAutoTranslateApiKey(key);
+  }
+
+  /**
+   * Get the currently active Google Translate API key.
+   * @return {string}
+   */
+  public autoTranslateApiKey(): string {
+    return this.autoTranslateService.apiKey();
+  }
+
+  /**
+   * Test, wether auto translation is possible for current project.
+   * @return {Observable<boolean>}
+   */
+  public canAutoTranslate(): Observable<boolean> {
+    if (isNullOrUndefined(this.currentProject()) || !this.currentProject().canTranslate()) {
+      return Observable.of(false);
+    }
+    return this.canAutoTranslateForLanguages(
+      this.currentProject().translationFile.sourceLanguage(),
+      this.currentProject().translationFile.targetLanguage());
+  }
+
+  /**
+   * Test, wether auto translation is possible for given languages.
+   * @param source Source Language
+   * @param target Target Language
+   * @return {Observable<boolean>}
+   */
+  public canAutoTranslateForLanguages(source: string, target: string): Observable<boolean> {
+    return this.autoTranslateService.canAutoTranslate(source, target);
+  }
+
+  /**
+   * Reason, why auto translation is not possible for current project.
+   * @return {Observable<string>}
+   */
+  public autoTranslateDisabledReason(): Observable<string> {
+    if (isNullOrUndefined(this.currentProject()) || !this.currentProject().canTranslate()) {
+      return Observable.of('no translatable project');
+    }
+    return this.autoTranslateDisabledReasonForLanguages(
+      this.currentProject().translationFile.sourceLanguage(),
+      this.currentProject().translationFile.targetLanguage());
+  }
+
+  /**
+   * Reason, why auto translation is not possible for given languages.
+   * @return {Observable<string>}
+   */
+  public autoTranslateDisabledReasonForLanguages(source: string, target: string): Observable<string> {
+    return this.autoTranslateService.disabledReason(source, target).map((reason) => {
+      if (isNullOrUndefined(reason)) {
+        return null; // means not disabled, everything is ok!
+      }
+      switch (reason.reason) {
+        case AutoTranslateDisabledReasonKey.NO_PROVIDER:
+          return 'no provider';
+        case AutoTranslateDisabledReasonKey.NO_KEY:
+          return 'no key';
+        case AutoTranslateDisabledReasonKey.INVALID_KEY:
+          return 'invalid key';
+        case AutoTranslateDisabledReasonKey.SOURCE_LANG_NOT_SUPPORTED:
+          return 'source language not supported';
+        case AutoTranslateDisabledReasonKey.TARGET_LANG_NOT_SUPPORTED:
+          return 'target language not supported';
+        case AutoTranslateDisabledReasonKey.CONNECT_PROBLEM:
+          return 'connection problem: ' + reason.details;
+      }
+    });
+  }
+
+  /**
+   * Test call the auto translate service.
+   * @param message
+   * @param source
+   * @param target
+   * @return {Observable<string>}
+   */
+  public testAutoTranslate(message: string, source: string, target: string): Observable<string> {
+    return this.autoTranslateService.translate(message, source, target);
   }
 
   /**

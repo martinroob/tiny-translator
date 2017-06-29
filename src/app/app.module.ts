@@ -35,6 +35,7 @@ import { TranslateUnitWarningConfirmDialogComponent } from './translate-unit-war
 import {AppMaterialModule} from './app-material.module';
 import { EditProjectPageComponent } from './edit-project-page/edit-project-page.component';
 import { ProjectEditorComponent } from './project-editor/project-editor.component';
+import { ConfigureAutoTranslatePageComponent } from './configure-auto-translate-page/configure-auto-translate-page.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { ProjectEditorComponent } from './project-editor/project-editor.componen
     NormalizedMessageInputComponent,
     TranslateUnitWarningConfirmDialogComponent,
     EditProjectPageComponent,
-    ProjectEditorComponent
+    ProjectEditorComponent,
+    ConfigureAutoTranslatePageComponent
   ],
   imports: [
     BrowserModule,

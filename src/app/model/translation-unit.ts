@@ -143,21 +143,27 @@ export class TranslationUnit {
 
   /**
    * Auto translate this unit via Google Translate.
+   * This is called by the menu function 'auto translate all untranslated units'.
    * @param autoTranslateService
    */
   public autoTranslateUsingService(autoTranslateService: AutoTranslateServiceAPI) {
     // TODO
-    console.log('Autotranslate Unit...');
-      if (!this.isTranslated()) {
-        const source: NormalizedMessage = this.sourceContentNormalized();
-        autoTranslateService.translate(source.dislayText(true), this.translationFile().sourceLanguage(), this.translationFile().targetLanguage()).subscribe((translation: string) => {
-          if (!isNullOrUndefined(translation)) {
-            const newTranslation = source.translate(translation, true);
-            // TODO error handling
+    const source: NormalizedMessage = this.sourceContentNormalized();
+    source.autoTranslateUsingService(autoTranslateService, this.translationFile().sourceLanguage(), this.translationFile().targetLanguage())
+      .subscribe((newTranslation: NormalizedMessage) => {
+        // TODO error handling
+        if (newTranslation) {
+          const errors = newTranslation.validate(true);
+          const warnings = newTranslation.validateWarnings(true);
+          if (errors === null && warnings === null) {
             this.translate(newTranslation);
+          } else {
+            // TODO
           }
-        });
-      }
+        } else {
+          // TODO
+        }
+      });
   }
 
 
