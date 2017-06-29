@@ -33,7 +33,9 @@ export class AppComponent {
   autoTranslate() {
     this.translatorService.canAutoTranslate().subscribe((canTranslate: boolean) => {
       if (canTranslate) {
-        this.translatorService.autoTranslate();
+        this.translatorService.autoTranslate().subscribe((summary) => {
+          console.log('Summary: ', summary.content(), summary); // TODO show Toast or result page...
+        });
       } else {
         this.router.navigateByUrl('configureautotranslate');
       }

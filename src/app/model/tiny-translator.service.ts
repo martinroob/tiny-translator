@@ -10,6 +10,7 @@ import {
   AutoTranslateDisabledReason, AutoTranslateDisabledReasonKey,
   AutoTranslateServiceAPI
 } from './auto-translate-service-api';
+import {AutoTranslateSummaryReport} from './auto-translate-summary-report';
 
 @Injectable()
 export class TinyTranslatorService {
@@ -210,11 +211,12 @@ export class TinyTranslatorService {
   /**
    * Auto translate all untranslated units.
    */
-  public autoTranslate() {
+  public autoTranslate(): Observable<AutoTranslateSummaryReport>  {
     if (this.currentProject() && this.currentProject().translationFile) {
-      this.currentProject().translationFile.autoTranslateUsingService(this.autoTranslateService);
+      return this.currentProject().translationFile.autoTranslateUsingService(this.autoTranslateService);
+    } else {
+      return Observable.of(new AutoTranslateSummaryReport());
     }
   }
-
 
 }

@@ -1,8 +1,8 @@
 import {ITransUnit, INormalizedMessage, STATE_NEW} from 'ngx-i18nsupport-lib';
 import {TranslationFile} from './translation-file';
 import {NormalizedMessage} from './normalized-message';
-import {AutoTranslateServiceAPI} from './auto-translate-service-api';
 import {isNullOrUndefined} from 'util';
+import {AutoTranslateResult} from './auto-translate-result';
 
 /**
  * A wrapper around ITransUnit.
@@ -142,29 +142,23 @@ export class TranslationUnit {
   }
 
   /**
-   * Auto translate this unit via Google Translate.
-   * This is called by the menu function 'auto translate all untranslated units'.
-   * @param autoTranslateService
+   * Try to use the given generated message as a translation.
+   * If there are any errors or warnings, translation will not take place.
+   * @param translatedMessage
+   * @return {AutoTranslateResult} wether it was successful or not.
    */
-  public autoTranslateUsingService(autoTranslateService: AutoTranslateServiceAPI) {
-    // TODO
-    const source: NormalizedMessage = this.sourceContentNormalized();
-    source.autoTranslateUsingService(autoTranslateService, this.translationFile().sourceLanguage(), this.translationFile().targetLanguage())
-      .subscribe((newTranslation: NormalizedMessage) => {
-        // TODO error handling
-        if (newTranslation) {
-          const errors = newTranslation.validate(true);
-          const warnings = newTranslation.validateWarnings(true);
-          if (errors === null && warnings === null) {
-            this.translate(newTranslation);
-          } else {
-            // TODO
-          }
-        } else {
-          // TODO
-        }
-      });
+  public autoTranslate(translatedMessage: string): AutoTranslateResult {
+    const translationMessage = this.sourceContentNormalized().translate(translatedMessage, true);
+    const errors = translationMessage.validate(true);
+    const warnings = translationMessage.validateWarnings(true);
+    if (!isNullOrUndefined(errors)) {
+      return new AutoTranslateResult(false, 'errors detected, not translated');
+    } else if (!isNullOrUndefined(warnings)) {
+      return new AutoTranslateResult(false, 'warnings detected, not translated');
+    } else {
+      this.translate(translationMessage);
+      return new AutoTranslateResult(true, null); // success
+    }
   }
-
 
 }
