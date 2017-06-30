@@ -29,29 +29,29 @@ describe('AutoTranslateGoogleService', () => {
 
   it('should detect invalid key', async(inject([AutoTranslateGoogleService], (service: AutoTranslateGoogleService) => {
     service.setApiKey('definitely_not_a_valid_key');
-    service.canAutoTranslate('en', 'de').subscribe((result) => {
-      expect(result).toBeFalsy();
+    service.canAutoTranslate('en', 'de').pairwise().subscribe((results) => {
+      expect(results[1]).toBeFalsy();
     });
-    service.disabledReason('en', 'de').subscribe((result) => {
-      expect(result.reason).toBe(AutoTranslateDisabledReasonKey.INVALID_KEY);
+    service.disabledReason('en', 'de').pairwise().subscribe((results) => {
+      expect(results[1].reason).toBe(AutoTranslateDisabledReasonKey.INVALID_KEY);
     });
   })));
 
   it('should support en and de', async(inject([AutoTranslateGoogleService], (service: AutoTranslateGoogleService) => {
-    service.canAutoTranslate('en', 'de').subscribe((result) => {
-      expect(result).toBeTruthy();
+    service.canAutoTranslate('en', 'de').pairwise().subscribe((results) => {
+      expect(results[1]).toBeTruthy();
     });
-    service.disabledReason('en', 'de').subscribe((result) => {
-      expect(result).toBeFalsy();
+    service.disabledReason('en', 'de').pairwise().subscribe((results) => {
+      expect(results[1]).toBeFalsy();
     });
   })));
 
   it('should not support fantasy language', async(inject([AutoTranslateGoogleService], (service: AutoTranslateGoogleService) => {
-    service.canAutoTranslate('en', 'fantasy').subscribe((result) => {
-      expect(result).toBeFalsy();
+    service.canAutoTranslate('en', 'fantasy').pairwise().subscribe((results) => {
+      expect(results[1]).toBeFalsy();
     });
-    service.disabledReason('en', 'fantasy').subscribe((result) => {
-      expect(result.reason).toBe(AutoTranslateDisabledReasonKey.TARGET_LANG_NOT_SUPPORTED);
+    service.disabledReason('en', 'fantasy').pairwise().subscribe((results) => {
+      expect(results[1].reason).toBe(AutoTranslateDisabledReasonKey.TARGET_LANG_NOT_SUPPORTED);
     });
   })));
 
@@ -69,7 +69,8 @@ describe('AutoTranslateGoogleService', () => {
   })));
 
   it('should return a list of languages supported', async(inject([AutoTranslateGoogleService], (service: AutoTranslateGoogleService) => {
-    service.supportedLanguages('en').subscribe((list) => {
+    service.supportedLanguages('en').pairwise().subscribe((lists) => {
+      const list = lists[1];
       expect(list.length).toBeGreaterThan(10);
       let index = list.findIndex((lang) => lang.language === 'en');
       expect(index).toBeGreaterThan(0);
@@ -81,7 +82,8 @@ describe('AutoTranslateGoogleService', () => {
   })));
 
   it('should return a list of languages supported in german too', async(inject([AutoTranslateGoogleService], (service: AutoTranslateGoogleService) => {
-    service.supportedLanguages('de').subscribe((list) => {
+    service.supportedLanguages('de').pairwise().subscribe((lists) => {
+      const list = lists[1];
       expect(list.length).toBeGreaterThan(10);
       let index = list.findIndex((lang) => lang.language === 'en');
       expect(index).toBeGreaterThan(0);
