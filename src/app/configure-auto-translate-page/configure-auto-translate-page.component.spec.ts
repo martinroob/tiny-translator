@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ConfigureAutoTranslatePageComponent } from './configure-auto-translate-page.component';
+import {NO_ERRORS_SCHEMA} from '@angular/core';
+import {AppModule} from '../app.module';
 
 describe('ConfigureAutoTranslatePageComponent', () => {
   let component: ConfigureAutoTranslatePageComponent;
@@ -8,7 +10,8 @@ describe('ConfigureAutoTranslatePageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ConfigureAutoTranslatePageComponent ]
+      imports: [ AppModule],
+      schemas: [NO_ERRORS_SCHEMA]
     })
     .compileComponents();
   }));

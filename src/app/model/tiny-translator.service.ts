@@ -213,7 +213,10 @@ export class TinyTranslatorService {
    */
   public autoTranslate(): Observable<AutoTranslateSummaryReport>  {
     if (this.currentProject() && this.currentProject().translationFile) {
-      return this.currentProject().translationFile.autoTranslateUsingService(this.autoTranslateService);
+      return this.currentProject().translationFile.autoTranslateUsingService(this.autoTranslateService).map((summary) => {
+        this.commitChanges(this.currentProject());
+        return summary;
+      });
     } else {
       return Observable.of(new AutoTranslateSummaryReport());
     }

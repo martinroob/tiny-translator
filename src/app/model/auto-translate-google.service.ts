@@ -71,7 +71,10 @@ export class AutoTranslateGoogleService extends AutoTranslateServiceAPI {
   constructor(@Inject(APP_CONFIG) app_config: AppConfig, private httpService: Http) {
     super();
     this._rootUrl = app_config.GOOGLETRANSLATE_API_ROOT_URL;
-    this.setApiKey(null); // must be set explicitly via setApiKey()
+    // API key is secret, normally it is nit configured and will be null
+    // it can be set interactively in the app
+    // but in the karma tests it will be set. It is stored than in environment.secret.ts (not in Git)
+    this.setApiKey(app_config.GOOGLETRANSLATE_API_KEY); // must be set explicitly via setApiKey()
   }
 
   public apiKey(): string {

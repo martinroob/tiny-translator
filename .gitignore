@@ -42,3 +42,4 @@ Thumbs.db
 
 # Secrets
 googleTranslateApiKey.txt
+src/environments/environment.secret.ts

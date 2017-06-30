@@ -3,7 +3,7 @@ import { TestBed, inject, async } from '@angular/core/testing';
 import { AutoTranslateGoogleService } from './auto-translate-google.service';
 import {APP_CONFIG, APP_CONFIG_VALUE} from '../app.config';
 import {ConnectionBackend, Http, HttpModule, RequestOptions} from '@angular/http';
-import {AutoTranslateDisabledReason} from './auto-translate-service-api';
+import {AutoTranslateDisabledReason, AutoTranslateDisabledReasonKey} from './auto-translate-service-api';
 
 describe('AutoTranslateGoogleService', () => {
   beforeEach(() => {
@@ -23,7 +23,7 @@ describe('AutoTranslateGoogleService', () => {
       expect(result).toBeFalsy();
     });
     service.disabledReason('en', 'de').subscribe((result) => {
-      expect(result).toBe(AutoTranslateDisabledReason.NO_KEY);
+      expect(result.reason).toBe(AutoTranslateDisabledReasonKey.NO_KEY);
     });
   })));
 
@@ -33,7 +33,7 @@ describe('AutoTranslateGoogleService', () => {
       expect(result).toBeFalsy();
     });
     service.disabledReason('en', 'de').subscribe((result) => {
-      expect(result).toBe(AutoTranslateDisabledReason.INVALID_KEY);
+      expect(result.reason).toBe(AutoTranslateDisabledReasonKey.INVALID_KEY);
     });
   })));
 
@@ -51,7 +51,7 @@ describe('AutoTranslateGoogleService', () => {
       expect(result).toBeFalsy();
     });
     service.disabledReason('en', 'fantasy').subscribe((result) => {
-      expect(result).toBe(AutoTranslateDisabledReason.TARGET_LANG_NOT_SUPPORTED);
+      expect(result.reason).toBe(AutoTranslateDisabledReasonKey.TARGET_LANG_NOT_SUPPORTED);
     });
   })));
 
