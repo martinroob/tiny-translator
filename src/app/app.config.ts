@@ -17,8 +17,8 @@ export class AppConfig {
 
 export const APP_CONFIG_VALUE: AppConfig = {
   // set values here
-  'BUILDVERSION': '0.2.0',
-  'BUILDTIME': '16.06.2017',
+  'BUILDVERSION': '0.3',
+  'BUILDTIME': '2017-07-01', // TODO should be dynamic
   GOOGLETRANSLATE_API_ROOT_URL: 'https://translation.googleapis.com/',
   GOOGLETRANSLATE_API_KEY: environment.googletranslate_api_key
 };
