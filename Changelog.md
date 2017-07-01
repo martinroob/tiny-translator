@@ -1,3 +1,16 @@
+<a name="0.3.0"></a>
+# [0.3.0](https://github.com/martinroob/tiny-translator/compare/v0.3.0...v0.2.0) (2017-07-01)
+
+### Bug Fixes
+
+* **all formats** ICU-References are not converted to native strings ([#11](ngx-i18nsupport-lib [#37](https://github.com/martinroob/ngx-i18nsupport-lib/issues/37)).
+
+### Features
+
+* **all formats** Added `Google Translate` support. You can now use Google Translate to let it automatically translate your texts. ([#15](https://github.com/martinroob/tiny-translator/issues/15)).
+
+* **all formats** Ready to run versions are now available as `Docker images` on `dockerhub`. See details in the [README](https://github.com/martinroob/tiny-translator/README.md). ([#16](https://github.com/martinroob/tiny-translator/issues/16)).
+
 <a name="0.2.0"></a>
 # [0.2.0](https://github.com/martinroob/tiny-translator/compare/v0.1.0...v0.2.0) (2017-06-16)
 

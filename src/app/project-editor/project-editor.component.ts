@@ -28,12 +28,21 @@ export class ProjectEditorComponent implements OnInit {
 
   private initForm() {
     if (!this.form) {
-      this.form = this.formBuilder.group({
-        projectName: [this.project.name],
-        workflowType: [this.workflowTypeToString(this.project.workflowType)],
-        userRole: [this.userRoleToString(this.project.userRole)],
-        sourceLanguage: [this.project.translationFile.sourceLanguage()],
-      });
+      if (this.project) {
+        this.form = this.formBuilder.group({
+          projectName: [this.project.name],
+          workflowType: [this.workflowTypeToString(this.project.workflowType)],
+          userRole: [this.userRoleToString(this.project.userRole)],
+          sourceLanguage: [this.project.translationFile.sourceLanguage()],
+        });
+      } else {
+        this.form = this.formBuilder.group({
+          projectName: [''],
+          workflowType: [this.workflowTypeToString(WorkflowType.SINGLE_USER)],
+          userRole: [this.userRoleToString(UserRole.TRANSLATOR)],
+          sourceLanguage: [null],
+        });
+      }
     }
   }
 
@@ -91,7 +100,11 @@ export class ProjectEditorComponent implements OnInit {
   }
 
   selectedFilesFormatted(): string {
-    return this.project.translationFile.name;
+    if (this.project && this.project.translationFile) {
+      return this.project.translationFile.name;
+    } else {
+      return null;
+    }
   }
 
   isWorkflowWithReview(): boolean {

@@ -4,6 +4,9 @@ import {TranslationUnit} from './translation-unit';
 import {Observable} from 'rxjs';
 import {AsynchronousFileReaderResult} from './asynchronous-file-reader.service';
 import {FILETYPE_XTB, FORMAT_XMB} from 'ngx-i18nsupport-lib/dist';
+import {AutoTranslateServiceAPI} from './auto-translate-service-api';
+import {NormalizedMessage} from './normalized-message';
+import {AutoTranslateSummaryReport} from './auto-translate-summary-report';
 
 /**
  * A single xlf or xmb file ready for work.
@@ -289,6 +292,33 @@ export class TranslationFile {
       explicitSourceLanguage: this._explicitSourceLanguage
     };
     return JSON.stringify(serializedObject);
+  }
+
+  /**
+   * Auto translate this file via Google Translate.
+   * Translates all untranslated units.
+   * @param autoTranslateService the service for the raw text translation via Google Translate
+   * @return a summary of the run (how many units are handled, how many sucessful, errors, ..)
+   */
+  public autoTranslateUsingService(autoTranslateService: AutoTranslateServiceAPI): Observable<AutoTranslateSummaryReport> {
+    // collect all units, that should be auto translated
+    const allUntranslated: TranslationUnit[] = this.allTransUnits().filter((tu) => !tu.isTranslated());
+    const allTranslatable = allUntranslated.filter((tu) => !tu.sourceContentNormalized().isICUMessage());
+    const allMessages: string[] = allTranslatable.map((tu) => {
+      return tu.sourceContentNormalized().dislayText(true);
+    });
+    return autoTranslateService.translateMultipleStrings(allMessages, this.sourceLanguage(), this.targetLanguage())
+      .map((translations: string[]) => {
+        const summary = new AutoTranslateSummaryReport();
+        summary.setIgnored(allUntranslated.length - allTranslatable.length);
+        for (let i = 0; i < translations.length; i++) {
+          const tu = allTranslatable[i];
+          const translationText = translations[i];
+          const result = tu.autoTranslate(translationText);
+          summary.addSingleResult(tu, result);
+        }
+        return summary;
+      })
   }
 
 }

@@ -4,6 +4,8 @@ import { ProjectStatusComponent } from './project-status.component';
 import {TranslationFileStatusComponent} from '../translation-file-status/translation-file-status.component';
 import {LanguageComponent} from '../language/language.component';
 import {NO_ERRORS_SCHEMA} from '@angular/core';
+import {Router} from '@angular/router';
+import {AppModule} from '../app.module';
 
 describe('ProjectStatusComponent', () => {
   let component: ProjectStatusComponent;
@@ -11,8 +13,7 @@ describe('ProjectStatusComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProjectStatusComponent, TranslationFileStatusComponent, LanguageComponent ],
-      schemas: [NO_ERRORS_SCHEMA]
+      imports: [AppModule]
     })
     .compileComponents();
   }));

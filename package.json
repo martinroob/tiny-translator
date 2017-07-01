@@ -1,7 +1,7 @@
 {
   "name": "tiny-translator",
   "description": "A tiny web application to translate xliff files",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -12,10 +12,12 @@
     "extract-i18n": "ng xi18n --output-path src/i18n --locale en && xliffmerge --profile xliffmerge.json en de",
     "start-en": "ng serve --aot --i18n-file=src/i18n/messages.en.xlf --locale=en --i18n-format=xlf",
     "start-de": "ng serve --aot --i18n-file=src/i18n/messages.de.xlf --locale=en --i18n-format=xlf",
-    "build-prod-en": "ng build --prod --aot --i18n-file=src/i18n/messages.en.xlf --locale=en --i18n-format=xlf --base-href=https://martinroob.github.io/tiny-translator/en/ --output-path=dist/en",
-    "build-prod-de": "ng build --prod --aot --i18n-file=src/i18n/messages.de.xlf --locale=de --i18n-format=xlf --base-href=https://martinroob.github.io/tiny-translator/de/ --output-path=dist/de",
+    "build-prod-en": "ng build --prod --aot --i18n-file=src/i18n/messages.en.xlf --locale=en --i18n-format=xlf --base-href=/tiny-translator/en/ --output-path=dist/en",
+    "build-prod-de": "ng build --prod --aot --i18n-file=src/i18n/messages.de.xlf --locale=de --i18n-format=xlf --base-href=/tiny-translator/de/ --output-path=dist/de",
     "build-prod": "npm run build-prod-en && npm run build-prod-de && cpx ./src/ghpages/* ./dist",
-    "publish2githubpages": "angular-cli-ghpages --no-silent"
+    "publish2githubpages": "angular-cli-ghpages --no-silent",
+    "dockerbuild": "docker build -t tiny-translator:0.3 .",
+    "publish2dockerhub": "docker push"
   },
   "repository": {
     "type": "git",
@@ -41,7 +43,7 @@
     "@angular/flex-layout": "2.0.0-beta.8",
     "@angular/forms": "^4.1.3",
     "@angular/http": "^4.1.3",
-    "@angular/material": "^2.0.0-beta.6",
+    "@angular/material": "^2.0.0-beta.7",
     "@angular/platform-browser": "^4.1.3",
     "@angular/platform-browser-dynamic": "^4.1.3",
     "@angular/router": "^4.1.3",
@@ -49,7 +51,7 @@
     "file-saver": "^1.3.3",
     "flag-icon-css": "^2.8.0",
     "hammerjs": "^2.0.8",
-    "ngx-i18nsupport-lib": "^1.4.5",
+    "ngx-i18nsupport-lib": "^1.4.6",
     "rxjs": "^5.1.0",
     "zone.js": "^0.8.10"
   },

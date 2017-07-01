@@ -8,6 +8,8 @@ import {TranslateUnitWarningConfirmDialogComponent} from '../translate-unit-warn
 import {TranslationFileView} from '../model/translation-file-view';
 import {WorkflowType} from '../model/translation-project';
 import {STATE_FINAL, STATE_TRANSLATED} from 'ngx-i18nsupport-lib/dist';
+import {AutoTranslateServiceAPI} from '../model/auto-translate-service-api';
+import {isNullOrUndefined} from 'util';
 
 /**
  * Component to input a new translation.
@@ -35,11 +37,15 @@ export class TranslateUnitComponent implements OnInit, OnChanges {
   form: FormGroup;
 
   private _editedTargetMessage: NormalizedMessage;
-  private _targetContentNormalized: NormalizedMessage;
+  private _editableTargetMessage: NormalizedMessage;
   private isMarkedAsTranslated = false;
   private isMarkedAsReviewed = false;
 
-  constructor(private formBuilder: FormBuilder, private dialog: MdDialog, private _snackbar: MdSnackBar) { }
+  constructor(private formBuilder: FormBuilder,
+              private dialog: MdDialog,
+              private _snackbar: MdSnackBar,
+              private autoTranslateService: AutoTranslateServiceAPI) {
+  }
 
   ngOnInit() {
     this.initForm();
@@ -57,18 +63,17 @@ export class TranslateUnitComponent implements OnInit, OnChanges {
     if (changedTranslationUnit) {
       if (changedTranslationUnit.currentValue) {
         this._editedTargetMessage = changedTranslationUnit.currentValue.targetContentNormalized();
-        this._targetContentNormalized = null;
       } else {
         this._editedTargetMessage = null;
-        this._targetContentNormalized = null;
       }
+      this._editableTargetMessage = null;
     }
   }
 
   private initForm() {
     if (!this.form) {
       this.form = this.formBuilder.group({
-        _editedTargetMessage: [this.targetContentNormalized()],
+        _editedTargetMessage: [this.editedTargetContentNormalized()],
         showNormalized: [this.showNormalized],
       });
     }
@@ -114,15 +119,13 @@ export class TranslateUnitComponent implements OnInit, OnChanges {
     }
   }
 
-  public targetContentNormalized(): NormalizedMessage {
-    if (!this._targetContentNormalized) {
+  public editedTargetContentNormalized(): NormalizedMessage {
+    if (isNullOrUndefined(this._editableTargetMessage)) {
       if (this.translationUnit) {
-        this._targetContentNormalized = this.translationUnit.targetContentNormalized();
-      } else {
-        this._targetContentNormalized = null;
+        this._editableTargetMessage = this.translationUnit.targetContentNormalized();
       }
     }
-    return this._targetContentNormalized;
+    return this._editableTargetMessage;
   }
 
   public sourceLanguage(): string {
@@ -334,4 +337,24 @@ export class TranslateUnitComponent implements OnInit, OnChanges {
       return false;
     }
   }
+
+  /**
+   * Auto translate this unit using Google Translate.
+   */
+  autoTranslate() {
+    this.sourceContentNormalized().autoTranslateUsingService(this.autoTranslateService, this.sourceLanguage(), this.targetLanguage()).subscribe((translatedMessage: NormalizedMessage) => {
+      this._editableTargetMessage = translatedMessage;
+      this._editedTargetMessage = translatedMessage;
+    });
+  }
+
+  autoTranslateDisabled(): Observable<boolean> {
+    if (!this.translationUnit) {
+      return Observable.of(true);
+    }
+    return this.autoTranslateService.canAutoTranslate(
+      this.translationUnit.translationFile().sourceLanguage(),
+      this.translationUnit.translationFile().targetLanguage()).map(val => !val);
+  }
+
 }

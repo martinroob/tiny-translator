@@ -1,24 +1,23 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProjectEditorComponent } from './project-editor.component';
+import { ConfigureAutoTranslatePageComponent } from './configure-auto-translate-page.component';
 import {NO_ERRORS_SCHEMA} from '@angular/core';
-import {FormBuilder} from '@angular/forms';
+import {AppModule} from '../app.module';
 
-describe('ProjectEditorComponent', () => {
-  let component: ProjectEditorComponent;
-  let fixture: ComponentFixture<ProjectEditorComponent>;
+describe('ConfigureAutoTranslatePageComponent', () => {
+  let component: ConfigureAutoTranslatePageComponent;
+  let fixture: ComponentFixture<ConfigureAutoTranslatePageComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProjectEditorComponent ],
-      providers: [FormBuilder],
+      imports: [ AppModule],
       schemas: [NO_ERRORS_SCHEMA]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ProjectEditorComponent);
+    fixture = TestBed.createComponent(ConfigureAutoTranslatePageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

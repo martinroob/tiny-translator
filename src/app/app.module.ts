@@ -22,6 +22,8 @@ import { LanguageComponent } from './language/language.component';
 import {ActiveProjectGuard} from './active-project.guard';
 import {BackendServiceAPI} from './model/backend-service-api';
 import {BackendLocalStorageService} from './model/backend-local-storage.service';
+import {AutoTranslateServiceAPI} from './model/auto-translate-service-api';
+import {AutoTranslateGoogleService} from './model/auto-translate-google.service';
 import { ProjectComponent } from './project/project.component';
 import { ProjectListComponent } from './project-list/project-list.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -33,6 +35,7 @@ import { TranslateUnitWarningConfirmDialogComponent } from './translate-unit-war
 import {AppMaterialModule} from './app-material.module';
 import { EditProjectPageComponent } from './edit-project-page/edit-project-page.component';
 import { ProjectEditorComponent } from './project-editor/project-editor.component';
+import { ConfigureAutoTranslatePageComponent } from './configure-auto-translate-page/configure-auto-translate-page.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +55,8 @@ import { ProjectEditorComponent } from './project-editor/project-editor.componen
     NormalizedMessageInputComponent,
     TranslateUnitWarningConfirmDialogComponent,
     EditProjectPageComponent,
-    ProjectEditorComponent
+    ProjectEditorComponent,
+    ConfigureAutoTranslatePageComponent
   ],
   imports: [
     BrowserModule,
@@ -70,7 +74,8 @@ import { ProjectEditorComponent } from './project-editor/project-editor.componen
     AsynchronousFileReaderService,
     DownloaderService,
     ActiveProjectGuard,
-    {provide: BackendServiceAPI, useClass: BackendLocalStorageService}
+    {provide: BackendServiceAPI, useClass: BackendLocalStorageService},
+    {provide: AutoTranslateServiceAPI, useClass: AutoTranslateGoogleService}
   ],
   entryComponents: [TranslateUnitWarningConfirmDialogComponent],
   bootstrap: [AppComponent]

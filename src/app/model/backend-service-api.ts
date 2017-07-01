@@ -3,8 +3,8 @@ import {InjectionToken} from '@angular/core';
 
 /**
  * Interface of BackendService.
- * A BackendService and store and retrieve translation projects.
- *
+ * A BackendService can store and retrieve translation projects.
+ * It also can store an API key for Google Translate.
  */
 export class BackendServiceAPI {
 
@@ -28,6 +28,22 @@ export class BackendServiceAPI {
    */
   delete(project: TranslationProject) {
 
+  }
+
+  /**
+   * Save API Key in store.
+   * @param key
+   */
+  storeAutoTranslateApiKey(key: string) {
+
+  }
+
+  /**
+   * Get API key from store.
+   * @return {null}
+   */
+  autoTranslateApiKey(): string {
+    return null;
   }
 
   /**

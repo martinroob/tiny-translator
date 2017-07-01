@@ -18,6 +18,182 @@
           <context context-type="linenumber">3</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="2f0d96acbeea1301bcaf29c5b31e1fc9f3ac2d4a" datatype="html">
+        <source>Google Translate status for current project</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/configure-auto-translate-page/configure-auto-translate-page.component.ts</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cacc6e51c2558b899a376b42969ac104a97c2cdf" datatype="html">
+        <source>Google Translate is currently disabled due to the following reason:</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/configure-auto-translate-page/configure-auto-translate-page.component.ts</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="50916de5246890bf2d310c08825546c83749f8ac" datatype="html">
+        <source>Google Translate is ready to translate from <x id="INTERPOLATION"/> to <x id="INTERPOLATION_1"/></source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/configure-auto-translate-page/configure-auto-translate-page.component.ts</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3beb2efd0ff3b845b1a98156562509e7488a737f" datatype="html">
+        <source>Google Translate Settings</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/configure-auto-translate-page/configure-auto-translate-page.component.ts</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="afd3ae467f544794a545ef4db4a6f6536736a2dc" datatype="html">
+        <source>To use Google Translate you need an account on <x id="START_LINK" ctype="x-a"/>Google Cloud Platform<x id="CLOSE_LINK" ctype="x-a"/>.</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/configure-auto-translate-page/configure-auto-translate-page.component.ts</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="00405112badd2766d84d9e01ed7f2c002d975d63" datatype="html">
+        <source>Then you have to create an API Key.</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/configure-auto-translate-page/configure-auto-translate-page.component.ts</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7d83e028d709cb79a27f1168114080a8ab264b41" datatype="html">
+        <source>For details follow:</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/configure-auto-translate-page/configure-auto-translate-page.component.ts</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="14fb15f0b42400411216ad432ebdb517490fc158" datatype="html">
+        <source>API key</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/configure-auto-translate-page/configure-auto-translate-page.component.ts</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a73457552e2e981887e5aceba1982d4ca4414ebf" datatype="html">
+        <source>API Key will be stored in the local storage of your browser. It will not be sent to anywhere but the Google Translate Service.</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/configure-auto-translate-page/configure-auto-translate-page.component.ts</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/configure-auto-translate-page/configure-auto-translate-page.component.ts</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cae4febf91df322d64c1ba1655ed294c13ee3350" datatype="html">
+        <source>
+    Store API Key
+  </source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/configure-auto-translate-page/configure-auto-translate-page.component.ts</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="b77205e34fa53f427b86358baa0a39a582a77d6d" datatype="html">
+        <source>Google Translate Test</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/configure-auto-translate-page/configure-auto-translate-page.component.ts</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c4af0949d56b2c8c6ff7747ddea1dab88d4ab221" datatype="html">
+        <source>Google Translate cannot translate from <x id="INTERPOLATION"/> to <x id="INTERPOLATION_1"/> due to the following reason:</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/configure-auto-translate-page/configure-auto-translate-page.component.ts</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="14d3c10f8e6d51106aae905f1f5bf17406661af7" datatype="html">
+        <source>Google Translate is ready to translate from <x id="INTERPOLATION"/> to <x id="INTERPOLATION_1"/></source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/configure-auto-translate-page/configure-auto-translate-page.component.ts</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6d3cc7575e90a220bf3e28868846f9b003ad0c8f" datatype="html">
+        <source>Source language code</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/configure-auto-translate-page/configure-auto-translate-page.component.ts</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e9296c63f79a6653a6e88929f2eaf810584dc99c" datatype="html">
+        <source>Target language code</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/configure-auto-translate-page/configure-auto-translate-page.component.ts</context>
+          <context context-type="linenumber">44</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="80d3aafb9834631af0bdee4b919e8d34fc01ef36" datatype="html">
+        <source>
+    Test
+  </source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/configure-auto-translate-page/configure-auto-translate-page.component.ts</context>
+          <context context-type="linenumber">47</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="0d0268e272dc7947e005e0f8b8e2da54337f1412" datatype="html">
+        <source>Test a call</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/configure-auto-translate-page/configure-auto-translate-page.component.ts</context>
+          <context context-type="linenumber">47</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4b725f2ba664dae3def5416198a32f1ad152369a" datatype="html">
+        <source>Google Translate settings..</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/app.component.ts</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d4b7dbc9a30d91dd5a1b88251d7a654f00e6ef52" datatype="html">
+        <source>configure Google Translate API Key</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/app.component.ts</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f4b94231ace292964b73b1ba8b77c69ca1d42947" datatype="html">
+        <source>Google Translate units..</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/app.component.ts</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="b3da02a762691a868113c1555c0a74c2252c31d3" datatype="html">
+        <source>Translate all untranslated units with Google Translate</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/app.component.ts</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="84972a39ee3484b97abdfe3863284af16564f9b2" datatype="html">
         <source>Open a new project</source>
         <target/>
@@ -414,12 +590,13 @@
           <context context-type="linenumber">28</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="35457b7b5c4c296ea210e80208d0ee6e8cceb7a0" datatype="html">
-        <source>Normalization mode (switch off to show native message)</source>
+      <trans-unit id="e3989061118d63642d8dc25668261a64aad710c1" datatype="html">
+        <source>Normalization mode (switch off to show native message)
+          </source>
         <target/>
         <context-group purpose="location">
           <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/translate-unit/translate-unit.component.ts</context>
-          <context context-type="linenumber">30</context>
+          <context context-type="linenumber">33</context>
         </context-group>
       </trans-unit>
       <trans-unit id="609b76a73d3a98ab8611501f82eb64f1ba750586" datatype="html">
@@ -427,7 +604,7 @@
         <target/>
         <context-group purpose="location">
           <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/translate-unit/translate-unit.component.ts</context>
-          <context context-type="linenumber">31</context>
+          <context context-type="linenumber">35</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5ca62f8d7b9cfe1b70df406e02fb5402cda34782" datatype="html">
@@ -435,7 +612,15 @@
         <target/>
         <context-group purpose="location">
           <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/translate-unit/translate-unit.component.ts</context>
-          <context context-type="linenumber">29</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="84fde7a04ebc8c588e3ff102e614ae5e1ff76b86" datatype="html">
+        <source>press to get a translation suggestion from Google Translate</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/translate-unit/translate-unit.component.ts</context>
+          <context context-type="linenumber">42</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8fef9621af4e75f6004de0ec95ba7d6b003db416" datatype="html">
@@ -445,7 +630,7 @@
         <target/>
         <context-group purpose="location">
           <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/translate-unit/translate-unit.component.ts</context>
-          <context context-type="linenumber">42</context>
+          <context context-type="linenumber">55</context>
         </context-group>
       </trans-unit>
       <trans-unit id="c1ac90520acbce71ffbf35f3b693ae5119944726" datatype="html">
@@ -453,7 +638,7 @@
         <target/>
         <context-group purpose="location">
           <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/translate-unit/translate-unit.component.ts</context>
-          <context context-type="linenumber">42</context>
+          <context context-type="linenumber">55</context>
         </context-group>
       </trans-unit>
       <trans-unit id="c5cf65546dcaf2698e122492511c14bf57b3b68e" datatype="html">
@@ -463,7 +648,7 @@
         <target/>
         <context-group purpose="location">
           <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/translate-unit/translate-unit.component.ts</context>
-          <context context-type="linenumber">50</context>
+          <context context-type="linenumber">63</context>
         </context-group>
       </trans-unit>
       <trans-unit id="60bb386dc9e8c4a8dbffd7449cac73088f4e5a77" datatype="html">
@@ -471,7 +656,7 @@
         <target/>
         <context-group purpose="location">
           <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/translate-unit/translate-unit.component.ts</context>
-          <context context-type="linenumber">50</context>
+          <context context-type="linenumber">63</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5b117cf9fb2eb651ee9e22bc57a141005f3212ab" datatype="html">
@@ -481,7 +666,7 @@
         <target/>
         <context-group purpose="location">
           <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/translate-unit/translate-unit.component.ts</context>
-          <context context-type="linenumber">59</context>
+          <context context-type="linenumber">72</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3e37d6e24a88996f88c1d9b14e210fc29bae3b74" datatype="html">
@@ -489,7 +674,7 @@
         <target/>
         <context-group purpose="location">
           <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/translate-unit/translate-unit.component.ts</context>
-          <context context-type="linenumber">59</context>
+          <context context-type="linenumber">72</context>
         </context-group>
       </trans-unit>
       <trans-unit id="c9702419b173fe7ab2aeee4ec1f5857fca1135a1" datatype="html">
@@ -499,7 +684,7 @@
         <target/>
         <context-group purpose="location">
           <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/translate-unit/translate-unit.component.ts</context>
-          <context context-type="linenumber">64</context>
+          <context context-type="linenumber">77</context>
         </context-group>
       </trans-unit>
       <trans-unit id="c7d43f1354429a28b43c8e301dd65d838d9fd31d" datatype="html">
@@ -507,7 +692,7 @@
         <target/>
         <context-group purpose="location">
           <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/translate-unit/translate-unit.component.ts</context>
-          <context context-type="linenumber">64</context>
+          <context context-type="linenumber">77</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2aba1e87039819aca3b70faa9aa848c12bf139ca" datatype="html">

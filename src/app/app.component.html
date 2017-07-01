@@ -14,7 +14,23 @@
       <app-language code="pt-br" [showCode]="false"></app-language>
     </div>
     <md-toolbar-row>
+      <button md-icon-button [mdMenuTriggerFor]="menu">
+        <md-icon>more_vert</md-icon>
+      </button>
       <a md-icon-button routerLink="/home" routerLinkActive="active"><md-icon>home</md-icon></a>
+      <!-- main menu -->
+      <md-menu #menu="mdMenu">
+        <button md-menu-item (click)="configureAutoTranslate()"
+                mdTooltip="configure Google Translate API Key" i18n-mdTooltip>
+          <md-icon>settings</md-icon>
+          <span i18n>Google Translate settings..</span>
+        </button>
+        <button md-menu-item (click)="autoTranslate()"
+          mdTooltip="Translate all untranslated units with Google Translate" i18n-mdTooltip>
+          <md-icon>g_translate</md-icon>
+          <span i18n>Google Translate units..</span>
+        </button>
+      </md-menu>
     </md-toolbar-row>
   </md-toolbar>
   <div id="main" fxFlex="1 1 auto" fxLayout="column" fxLayoutAlign="start start">

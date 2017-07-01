@@ -103,9 +103,9 @@
   version "4.1.3"
   resolved "https://registry.yarnpkg.com/@angular/http/-/http-4.1.3.tgz#eb9d1c302a0172815f9a573310d9be0bdeb845ae"
 
-"@angular/material@^2.0.0-beta.6":
-  version "2.0.0-beta.6"
-  resolved "https://registry.yarnpkg.com/@angular/material/-/material-2.0.0-beta.6.tgz#83bfdf00f540a8c7db900a1e7b8ed2cff49df821"
+"@angular/material@^2.0.0-beta.7":
+  version "2.0.0-beta.7"
+  resolved "https://registry.yarnpkg.com/@angular/material/-/material-2.0.0-beta.7.tgz#2584aaf1ffbe24779916345f1ac82921ccbc2577"
   dependencies:
     tslib "^1.7.1"
 
@@ -3162,17 +3162,9 @@ negotiator@0.6.1:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/negotiator/-/negotiator-0.6.1.tgz#2b327184e8992101177b28563fb5e7102acd0ca9"
 
-ngx-i18nsupport-lib@^1.3.1:
-  version "1.3.1"
-  resolved "https://registry.yarnpkg.com/ngx-i18nsupport-lib/-/ngx-i18nsupport-lib-1.3.1.tgz#90f063f628759070ac2a9ff53698945f1af44c8f"
-  dependencies:
-    "@types/xmldom" "^0.1.29"
-    tokenizr "^1.1.4"
-    xmldom "^0.1.27"
-
-ngx-i18nsupport-lib@^1.4.5:
-  version "1.4.5"
-  resolved "https://registry.yarnpkg.com/ngx-i18nsupport-lib/-/ngx-i18nsupport-lib-1.4.5.tgz#f64b6843aa8be5c7da70d85b5e13fd89762ef8ff"
+ngx-i18nsupport-lib@^1.3.1, ngx-i18nsupport-lib@^1.4.6:
+  version "1.4.6"
+  resolved "https://registry.yarnpkg.com/ngx-i18nsupport-lib/-/ngx-i18nsupport-lib-1.4.6.tgz#4a276946a126173862eb2a9537d28701197a3424"
   dependencies:
     "@types/xmldom" "^0.1.29"
     tokenizr "^1.1.4"

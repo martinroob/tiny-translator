@@ -2,6 +2,8 @@ import {INormalizedMessage} from 'ngx-i18nsupport-lib';
 import {ValidationErrors} from '@angular/forms';
 import {isNullOrUndefined} from 'util';
 import {IICUMessage, IICUMessageTranslation} from 'ngx-i18nsupport-lib/dist';
+import {AutoTranslateServiceAPI} from './auto-translate-service-api';
+import {Observable} from 'rxjs/Observable';
 /**
  * Created by martin on 19.05.2017.
  * Wrapper around INormalizedMessage for GUI usage.
@@ -85,7 +87,6 @@ export class NormalizedMessage {
   }
 
   public translate(newValue: string, normalize: boolean): NormalizedMessage {
-    console.log('Translating', newValue);
     let newOriginal: string;
     let newMessage: INormalizedMessage;
     let parseError: string;
@@ -109,6 +110,28 @@ export class NormalizedMessage {
       }
     }
     return new NormalizedMessage(newOriginal, newMessage, parseError, this._sourceMessage);
+  }
+
+  /**
+   * Auto translate this normalized message via Google Translate.
+   * @param autoTranslateService
+   * @param sourceLanguage Language of source
+   * @param targetLanguage Language of target
+   * @return new translated message (as Observable, it is an async call)
+   */
+  public autoTranslateUsingService(autoTranslateService: AutoTranslateServiceAPI, sourceLanguage: string, targetLanguage: string): Observable<NormalizedMessage> {
+    // TODO corner cases to be researched like special tags, ICU, ...
+    if (this.isICUMessage()) {
+      // TODO handling of ICU messages currently not supported
+      return Observable.of(this);
+    }
+    return autoTranslateService.translate(this.dislayText(true), sourceLanguage, targetLanguage).map((translation: string) => {
+      if (!isNullOrUndefined(translation)) {
+        return this.translate(translation, true);
+      } else {
+        return null;
+      }
+    });
   }
 
   public translateICUMessage(newValue: IICUMessageTranslation): NormalizedMessage {
