@@ -61,7 +61,7 @@ It contains a running `nginx` with the app available on port 80.
 
 To run it, e.g. on local port 4000 (your choice)
 * install docker on your machine
-* run `docker run -d -it --rm -p4000:80 martinroob/tiny-translator:0.2`
+* run `docker run -d -it --rm -p4000:80 martinroob/tiny-translator:latest`
 * Open in browser [http://localhost:4000/tiny-translator/]().
 
 ## Local version
