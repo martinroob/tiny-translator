@@ -68,6 +68,25 @@ export class AutoTranslateGoogleService extends AutoTranslateServiceAPI {
    */
   private _permanentFailReason: AutoTranslateDisabledReason;
 
+  /**
+   * Strip region code and convert to lower
+   * @param lang
+   * @return {string} lang without region code and in lower case.
+   */
+  public static stripRegioncode(lang: string): string {
+    if (isNullOrUndefined(lang)) {
+      return null;
+    }
+    const langLower = lang.toLowerCase();
+    for(let i = 0; i < langLower.length; i++) {
+      const c = langLower.charAt(i);
+      if (c < 'a' || c > 'z') {
+        return langLower.substring(0, i);
+      }
+    }
+    return langLower;
+  }
+
   constructor(@Inject(APP_CONFIG) app_config: AppConfig, private httpService: Http) {
     super();
     this._rootUrl = app_config.GOOGLETRANSLATE_API_ROOT_URL;
@@ -97,10 +116,12 @@ export class AutoTranslateGoogleService extends AutoTranslateServiceAPI {
    */
   public canAutoTranslate(source: string, target: string): Observable<boolean> {
     return this.supportedLanguages().map((languages: Language[]) => {
-      if (languages.findIndex((lang) => lang.language === source) < 0) {
+      const s = AutoTranslateGoogleService.stripRegioncode(source);
+      const t = AutoTranslateGoogleService.stripRegioncode(target);
+      if (!s || languages.findIndex((lang) => lang.language === s) < 0) {
         return false;
       }
-      return (languages.findIndex((lang) => lang.language === target) >= 0);
+      return (!t || languages.findIndex((lang) => lang.language === t) >= 0);
     });
   }
 
@@ -115,10 +136,12 @@ export class AutoTranslateGoogleService extends AutoTranslateServiceAPI {
       if (languages.length === 0) {
         return this._permanentFailReason;
       }
-      if (!source || languages.findIndex((lang) => lang.language === source) < 0) {
+      const s = AutoTranslateGoogleService.stripRegioncode(source);
+      if (!s || languages.findIndex((lang) => lang.language === s) < 0) {
         return {reason: AutoTranslateDisabledReasonKey.SOURCE_LANG_NOT_SUPPORTED};
       }
-      if (!target || languages.findIndex((lang) => lang.language === target) < 0) {
+      const t = AutoTranslateGoogleService.stripRegioncode(target);
+      if (!t || languages.findIndex((lang) => lang.language === t) < 0) {
         return {reason: AutoTranslateDisabledReasonKey.TARGET_LANG_NOT_SUPPORTED};
       }
       return null;
@@ -133,6 +156,8 @@ export class AutoTranslateGoogleService extends AutoTranslateServiceAPI {
   supportedLanguages(target?: string): Observable<Language[]> {
     if (!target) {
       target = 'en';
+    } else {
+      target = AutoTranslateGoogleService.stripRegioncode(target);
     }
     if (!this._subjects[target]) {
       if (this._apiKey) {
@@ -185,6 +210,8 @@ export class AutoTranslateGoogleService extends AutoTranslateServiceAPI {
     if (!this._apiKey) {
       return Observable.throw('error, no api key');
     }
+    from = AutoTranslateGoogleService.stripRegioncode(from);
+    to = AutoTranslateGoogleService.stripRegioncode(to);
     const translateRequest: TranslateTextRequest = {
       q: [message],
       target: to,
@@ -209,6 +236,8 @@ export class AutoTranslateGoogleService extends AutoTranslateServiceAPI {
     if (!this._apiKey) {
       return Observable.throw('error, no api key');
     }
+    from = AutoTranslateGoogleService.stripRegioncode(from);
+    to = AutoTranslateGoogleService.stripRegioncode(to);
     const translateRequest: TranslateTextRequest = {
       q: messages,
       target: to,
