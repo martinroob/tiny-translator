@@ -3,10 +3,14 @@ import {isNullOrUndefined} from 'util';
 import {TranslationUnit} from './translation-unit';
 import {Observable} from 'rxjs';
 import {AsynchronousFileReaderResult} from './asynchronous-file-reader.service';
-import {FILETYPE_XTB, FORMAT_XMB} from 'ngx-i18nsupport-lib/dist';
+import {
+  FILETYPE_XTB, FORMAT_XMB, IICUMessage, IICUMessageTranslation,
+  INormalizedMessage
+} from 'ngx-i18nsupport-lib/dist';
 import {AutoTranslateServiceAPI} from './auto-translate-service-api';
 import {NormalizedMessage} from './normalized-message';
 import {AutoTranslateSummaryReport} from './auto-translate-summary-report';
+import {AutoTranslateResult} from './auto-translate-result';
 
 /**
  * A single xlf or xmb file ready for work.
@@ -301,6 +305,25 @@ export class TranslationFile {
    * @return a summary of the run (how many units are handled, how many sucessful, errors, ..)
    */
   public autoTranslateUsingService(autoTranslateService: AutoTranslateServiceAPI): Observable<AutoTranslateSummaryReport> {
+    return Observable.forkJoin([
+      this.doAutoTranslateNonICUMessages(autoTranslateService),
+      ...this.doAutoTranslateICUMessages(autoTranslateService)])
+      .map((summaries: AutoTranslateSummaryReport[]) => {
+        const summary = summaries[0];
+        for (let i = 1; i < summaries.length; i++) {
+          summary.merge(summaries[i]);
+        }
+        return summary;
+      });
+  }
+
+  /**
+   * Auto translate this file via Google Translate.
+   * Translates all untranslated units.
+   * @param autoTranslateService the service for the raw text translation via Google Translate
+   * @return a summary of the run (how many units are handled, how many sucessful, errors, ..)
+   */
+  private doAutoTranslateNonICUMessages(autoTranslateService: AutoTranslateServiceAPI): Observable<AutoTranslateSummaryReport> {
     // collect all units, that should be auto translated
     const allUntranslated: TranslationUnit[] = this.allTransUnits().filter((tu) => !tu.isTranslated());
     const allTranslatable = allUntranslated.filter((tu) => !tu.sourceContentNormalized().isICUMessage());
@@ -314,11 +337,54 @@ export class TranslationFile {
         for (let i = 0; i < translations.length; i++) {
           const tu = allTranslatable[i];
           const translationText = translations[i];
-          const result = tu.autoTranslate(translationText);
+          const result = tu.autoTranslateNonICUUnit(translationText);
           summary.addSingleResult(tu, result);
         }
         return summary;
       })
+  }
+
+  private doAutoTranslateICUMessages(autoTranslateService: AutoTranslateServiceAPI): Observable<AutoTranslateSummaryReport>[] {
+    // collect all units, that should be auto translated
+    const allUntranslated: TranslationUnit[] = this.allTransUnits().filter((tu) => !tu.isTranslated());
+    const allTranslatableICU = allUntranslated.filter((tu) => !isNullOrUndefined(tu.sourceContentNormalized().getICUMessage()));
+    return allTranslatableICU.map((tu) => {
+      return this.doAutoTranslateICUMessage(autoTranslateService, tu);
+    });
+  }
+
+  /**
+   * Translate single ICU Messages.
+   * @param autoTranslateService
+   * @param tu transunit to translate (must contain ICU Message)
+   * @return {Observable<AutoTranslateSummaryReport>}
+   */
+  private doAutoTranslateICUMessage(autoTranslateService: AutoTranslateServiceAPI, tu: TranslationUnit): Observable<AutoTranslateSummaryReport> {
+    const icuMessage: IICUMessage = tu.sourceContentNormalized().getICUMessage();
+    const categories = icuMessage.getCategories();
+    // check for nested ICUs, we do not support that
+    if (categories.find((category) => !isNullOrUndefined(category.getMessageNormalized().getICUMessage()))) {
+      const summary = new AutoTranslateSummaryReport();
+      summary.setIgnored(1);
+      return Observable.of(summary);
+    }
+    const allMessages: string[] = categories.map((category) => category.getMessageNormalized().asDisplayString());
+    return autoTranslateService.translateMultipleStrings(allMessages, this.sourceLanguage(), this.targetLanguage())
+      .map((translations: string[]) => {
+        const summary = new AutoTranslateSummaryReport();
+        const icuTranslation: IICUMessageTranslation = {};
+        for (let i = 0; i < translations.length; i++) {
+          const translationText = translations[i];
+          icuTranslation[categories[i].getCategory()] = translationText;
+        }
+        const result = tu.autoTranslateICUUnit(icuTranslation);
+        summary.addSingleResult(tu, result);
+        return summary;
+      }).catch((err) => {
+        const failSummary = new AutoTranslateSummaryReport();
+        failSummary.addSingleResult(tu, new AutoTranslateResult(false, err.message));
+        return Observable.of(failSummary);
+      });
   }
 
 }

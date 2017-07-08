@@ -41,10 +41,38 @@ export class AutoTranslateSummaryReport {
   }
 
   /**
+   * Merge another summary into this one.
+   * @param anotherSummary
+   */
+  public merge(anotherSummary: AutoTranslateSummaryReport) {
+    this._total += anotherSummary.total();
+    this._ignored += anotherSummary.ignored();
+    this._success += anotherSummary.success();
+    this._failed += anotherSummary.failed();
+  }
+
+  public total(): number {
+    return this._total;
+  }
+
+  public ignored(): number {
+    return this._ignored;
+  }
+
+  public success(): number {
+    return this._success;
+  }
+
+  public failed(): number {
+    return this._failed;
+  }
+
+  /**
    * Human readable version of report
    */
   public content(): string {
     let result = format('Total translated: %s\nIgnored: %s\nSuccesful: %s\nFailed: %s', this._total, this._ignored, this._success, this._failed);
     return result;
   }
+
 }
