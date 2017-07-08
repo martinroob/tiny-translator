@@ -61,6 +61,12 @@ describe('AutoTranslateGoogleService', () => {
     });
   })));
 
+  it('should translate hello from english to german ignoring region codes', async(inject([AutoTranslateGoogleService], (service: AutoTranslateGoogleService) => {
+    service.translate('Hello', 'en-us', 'DE-DE').subscribe((translation) => {
+      expect(translation).toBe('Hallo');
+    });
+  })));
+
   it('should translate multiple string at once', async(inject([AutoTranslateGoogleService], (service: AutoTranslateGoogleService) => {
     service.translateMultipleStrings(['Hello', 'world'], 'en', 'de').subscribe((translations) => {
       expect(translations[0]).toBe('Hallo');
