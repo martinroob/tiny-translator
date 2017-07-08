@@ -7,10 +7,7 @@ import {APP_CONFIG, AppConfig} from '../app.config';
 import {Observable} from 'rxjs/Observable';
 import {Http, Response} from '@angular/http';
 import {isNullOrUndefined} from 'util';
-import {Subject} from 'rxjs/Subject';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
-
-const projectId = 'tinytranslator-20170621';
 
 /**
  * Types form google translate api.
@@ -46,6 +43,9 @@ interface TranslationsResource {
 interface TranslationsListResponse {
   translations: TranslationsResource[];
 }
+
+// maximum number of strings to translate in one request (a Google limit!)
+const MAX_SEGMENTS = 128;
 
 /**
  * Auto Translate Service using Google Translate.
@@ -238,6 +238,32 @@ export class AutoTranslateGoogleService extends AutoTranslateServiceAPI {
     }
     from = AutoTranslateGoogleService.stripRegioncode(from);
     to = AutoTranslateGoogleService.stripRegioncode(to);
+    const allRequests: Observable<string[]>[] = this.splitMessagesToGoogleLimit(messages).map((partialMessages: string[]) => {
+      return this.limitedTranslateMultipleStrings(partialMessages, from, to);
+    });
+    return Observable.forkJoin(allRequests).map((allTranslations: string[][]) => {
+      let all = [];
+      for (let i = 0; i < allTranslations.length; i++) {
+        all = all.concat(allTranslations[i]);
+      }
+      return all;
+    })
+  }
+
+  /**
+   * Return translation request, but messages must be limited to google limits.
+   * Not more that 128 single messages.
+   * @param messages
+   * @param from
+   * @param to
+   * @return {Observable<string[]>} the translated strings
+   */
+  private limitedTranslateMultipleStrings(messages: string[], from: string, to: string): Observable<string[]> {
+    if (!this._apiKey) {
+      return Observable.throw('error, no api key');
+    }
+    from = AutoTranslateGoogleService.stripRegioncode(from);
+    to = AutoTranslateGoogleService.stripRegioncode(to);
     const translateRequest: TranslateTextRequest = {
       q: messages,
       target: to,
@@ -252,4 +278,33 @@ export class AutoTranslateGoogleService extends AutoTranslateServiceAPI {
       });
     });
   }
+
+  /**
+   * Splits one array of messages to n arrays, where each has at least 128 (const MAX_ENTRIES) entries.
+   * @param messages
+   * @return {any}
+   */
+  private splitMessagesToGoogleLimit(messages: string[]): string[][] {
+    if (messages.length <= MAX_SEGMENTS) {
+      return [messages];
+    }
+    const result = [];
+    let currentPackage = [];
+    let packageSize = 0;
+    for (let i = 0; i < messages.length; i++) {
+      currentPackage.push(messages[i]);
+      packageSize++;
+      if (packageSize >= MAX_SEGMENTS) {
+        result.push(currentPackage);
+        currentPackage = [];
+        packageSize = 0;
+      }
+    }
+    if (currentPackage.length > 0) {
+      result.push(currentPackage);
+    }
+    return result;
+  }
+
+
 }
