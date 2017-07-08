@@ -1,7 +1,7 @@
 {
   "name": "tiny-translator",
   "description": "A tiny web application to translate xliff files",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -75,6 +75,6 @@
     "protractor": "~5.1.0",
     "ts-node": "~2.0.0",
     "tslint": "~4.5.0",
-    "typescript": "^2.4.1"
+    "typescript": "2.3.3"
   }
 }
