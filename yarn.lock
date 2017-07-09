@@ -2,15 +2,6 @@
 # yarn lockfile v1
 
 
-"@akanass/rx-http-request@^2.3.0":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@akanass/rx-http-request/-/rx-http-request-2.3.0.tgz#3729707ef94a781723d6421848f5cd8c1dee5630"
-  dependencies:
-    "@types/node" "^7.0.18"
-    "@types/request" "^0.0.43"
-    request "^2.81.0"
-    rxjs "^5.4.0"
-
 "@angular/animations@^4.1.3":
   version "4.1.3"
   resolved "https://registry.yarnpkg.com/@angular/animations/-/animations-4.1.3.tgz#6e89a1e0fbfd6d0e90be4f2ae190aac67f83a411"
@@ -149,19 +140,9 @@
     magic-string "^0.19.0"
     source-map "^0.5.6"
 
-"@types/form-data@*":
-  version "0.0.33"
-  resolved "https://registry.yarnpkg.com/@types/form-data/-/form-data-0.0.33.tgz#c9ac85b2a5fd18435b8c85d9ecb50e6d6c893ff8"
-  dependencies:
-    "@types/node" "*"
-
 "@types/jasmine@2.5.38":
   version "2.5.38"
   resolved "https://registry.yarnpkg.com/@types/jasmine/-/jasmine-2.5.38.tgz#a4379124c4921d4e21de54ec74669c9e9b356717"
-
-"@types/node@*", "@types/node@^7.0.18":
-  version "7.0.33"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-7.0.33.tgz#ae3c53ad01d7e9d62c7f1a85c5f7500d59b9d25b"
 
 "@types/node@^6.0.46", "@types/node@~6.0.60":
   version "6.0.73"
@@ -170,13 +151,6 @@
 "@types/q@^0.0.32":
   version "0.0.32"
   resolved "https://registry.yarnpkg.com/@types/q/-/q-0.0.32.tgz#bd284e57c84f1325da702babfc82a5328190c0c5"
-
-"@types/request@^0.0.43":
-  version "0.0.43"
-  resolved "https://registry.yarnpkg.com/@types/request/-/request-0.0.43.tgz#fcc59cfd88e63034e813c6884a0aade2d0f7e935"
-  dependencies:
-    "@types/form-data" "*"
-    "@types/node" "*"
 
 "@types/selenium-webdriver@^2.53.35", "@types/selenium-webdriver@~2.53.39":
   version "2.53.42"
@@ -3324,14 +3298,14 @@ ngx-i18nsupport-lib@^1.4.6:
     tokenizr "^1.1.4"
     xmldom "^0.1.27"
 
-ngx-i18nsupport@^0.7.1:
-  version "0.7.1"
-  resolved "https://registry.yarnpkg.com/ngx-i18nsupport/-/ngx-i18nsupport-0.7.1.tgz#2da27a0ebddb7f3ef03273a8436e3b97006dac81"
+ngx-i18nsupport@^0.7.4:
+  version "0.7.4"
+  resolved "https://registry.yarnpkg.com/ngx-i18nsupport/-/ngx-i18nsupport-0.7.4.tgz#0cf7faa290c45ef3eb2fd79b9b1ffb4ea3b16596"
   dependencies:
-    "@akanass/rx-http-request" "^2.3.0"
     chalk "^2.0.1"
     commander "^2.9.0"
     ngx-i18nsupport-lib "^1.4.6"
+    request "^2.81.0"
     rxjs "^5.4.2"
 
 no-case@^2.2.0:
@@ -4439,7 +4413,7 @@ rxjs@^5.0.1, rxjs@^5.1.0:
   dependencies:
     symbol-observable "^1.0.1"
 
-rxjs@^5.4.0, rxjs@^5.4.2:
+rxjs@^5.4.2:
   version "5.4.2"
   resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-5.4.2.tgz#2a3236fcbf03df57bae06fd6972fd99e5c08fcf7"
   dependencies:
