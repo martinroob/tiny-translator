@@ -1,7 +1,7 @@
 import {TranslationMessagesFileFactory, ITranslationMessagesFile, ITransUnit} from 'ngx-i18nsupport-lib';
 import {isNullOrUndefined} from 'util';
 import {TranslationUnit} from './translation-unit';
-import {Observable} from 'rxjs';
+import {Observable} from 'rxjs/Observable';
 import {AsynchronousFileReaderResult} from './asynchronous-file-reader.service';
 import {
   FILETYPE_XTB, FORMAT_XMB, IICUMessage, IICUMessageTranslation,
@@ -107,7 +107,7 @@ export class TranslationFile {
     newInstance.fileContent = deserializedObject.fileContent;
     newInstance._explicitSourceLanguage = deserializedObject.explicitSourceLanguage;
     try {
-      let encoding = null; // unknown, lib can find it
+      const encoding = null; // unknown, lib can find it
       let optionalMaster: {xmlContent: string, path: string, encoding: string} = null;
       if (deserializedObject.masterContent) {
         optionalMaster = {xmlContent: deserializedObject.masterContent, path: deserializedObject.masterName, encoding: encoding};
@@ -338,7 +338,7 @@ export class TranslationFile {
           const tu = allTranslatable[i];
           const translationText = translations[i];
           const result = tu.autoTranslateNonICUUnit(translationText);
-          summary.addSingleResult(tu, result);
+          summary.addSingleResult(result);
         }
         return summary;
       })
@@ -378,11 +378,11 @@ export class TranslationFile {
           icuTranslation[categories[i].getCategory()] = translationText;
         }
         const result = tu.autoTranslateICUUnit(icuTranslation);
-        summary.addSingleResult(tu, result);
+        summary.addSingleResult(result);
         return summary;
       }).catch((err) => {
         const failSummary = new AutoTranslateSummaryReport();
-        failSummary.addSingleResult(tu, new AutoTranslateResult(false, err.message));
+        failSummary.addSingleResult(new AutoTranslateResult(tu.id(), false, err.message));
         return Observable.of(failSummary);
       });
   }

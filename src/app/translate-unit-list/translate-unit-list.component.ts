@@ -32,6 +32,8 @@ export class TranslateUnitListComponent implements OnInit {
    */
   @Input() workflowType: WorkflowType;
 
+  @Input() hasAutotranslatedUnits: boolean;
+
   constructor() {
     this.translationFileView = new TranslationFileView(null);
     this.substringSubject = new Subject<string>();
@@ -75,8 +77,8 @@ export class TranslateUnitListComponent implements OnInit {
     }
     const substr = this.substringToSearch ? this.substringToSearch : '';
     this.translationFileView.setActiveFilter(new TranslationUnitFilterSubstring(substr));
-    this.substringSubscription = this.substringSubject.debounceTime(200).subscribe((substr) => {
-      this.translationFileView.setActiveFilter(new TranslationUnitFilterSubstring(substr));
+    this.substringSubscription = this.substringSubject.debounceTime(200).subscribe((sub) => {
+      this.translationFileView.setActiveFilter(new TranslationUnitFilterSubstring(sub));
     });
   }
 
@@ -114,4 +116,5 @@ export class TranslateUnitListComponent implements OnInit {
   isWorkflowWithReview(): boolean {
     return this.workflowType === WorkflowType.WITH_REVIEW;
   }
+
 }

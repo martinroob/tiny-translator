@@ -236,6 +236,9 @@ export class AutoTranslateGoogleService extends AutoTranslateServiceAPI {
     if (!this._apiKey) {
       return Observable.throw('error, no api key');
     }
+    if (messages.length === 0) {
+      return Observable.of([]);
+    }
     from = AutoTranslateGoogleService.stripRegioncode(from);
     to = AutoTranslateGoogleService.stripRegioncode(to);
     const allRequests: Observable<string[]>[] = this.splitMessagesToGoogleLimit(messages).map((partialMessages: string[]) => {
@@ -247,7 +250,7 @@ export class AutoTranslateGoogleService extends AutoTranslateServiceAPI {
         all = all.concat(allTranslations[i]);
       }
       return all;
-    })
+    });
   }
 
   /**

@@ -1,10 +1,10 @@
 <div fxLayout="column">
   <p i18n>Show</p>
   <md-radio-group (change)="filterChanged($event)" [(ngModel)]="_selectedFilterName">
-    <md-radio-button value="all" i18n>All units</md-radio-button>
-    <br>
-    <md-radio-button value="untranslated" i18n>Untranslated units</md-radio-button>
-    <md-radio-button *ngIf="isWorkflowWithReview()" value="needsReview" i18n>Review needed</md-radio-button>
+    <md-radio-button value="all" i18n>All units</md-radio-button><br>
+    <md-radio-button *ngIf="hasAutotranslatedUnits" value="autotranslated" i18n>Autotranslated units</md-radio-button><br>
+    <md-radio-button value="untranslated" i18n>Untranslated units</md-radio-button><br>
+    <md-radio-button *ngIf="isWorkflowWithReview()" value="needsReview" i18n>Review needed</md-radio-button><br>
     <md-radio-button value="search">
       <span i18n>Search</span>&nbsp;
       <md-input-container>

@@ -12,8 +12,10 @@ export class AutoTranslateSummaryReport {
   private _ignored: number;
   private _success: number;
   private _failed: number;
+  private _allResults: {[id: string]: AutoTranslateResult};
 
   constructor() {
+    this._allResults = {};
     this._total = 0;
     this._ignored = 0;
     this._success = 0;
@@ -30,8 +32,8 @@ export class AutoTranslateSummaryReport {
    * @param tu
    * @param result
    */
-  public addSingleResult(tu: TranslationUnit, result: AutoTranslateResult) {
-    // TODO
+  public addSingleResult(result: AutoTranslateResult) {
+    this._allResults[result.translationUnitId()] = result;
     this._total++;
     if (result.success()) {
       this._success++;
@@ -71,8 +73,12 @@ export class AutoTranslateSummaryReport {
    * Human readable version of report
    */
   public content(): string {
-    let result = format('Total translated: %s\nIgnored: %s\nSuccesful: %s\nFailed: %s', this._total, this._ignored, this._success, this._failed);
+    const result = format('Total translated: %s\nIgnored: %s\nSuccesful: %s\nFailed: %s',
+      this._total, this._ignored, this._success, this._failed);
     return result;
   }
 
+  public singleResult(tuId: string): AutoTranslateResult {
+    return this._allResults[tuId];
+  }
 }

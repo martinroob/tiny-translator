@@ -45,4 +45,11 @@ export class TranslatePageComponent implements OnInit {
   isInReviewMode(): boolean {
     return this.currentProject() && this.currentProject().userRole === UserRole.REVIEWER;
   }
+
+  hasAutotranslatedUnits(): boolean {
+    return this.currentProject()
+      && this.currentProject().autoTranslateSummaryReport()
+      && this.currentProject().autoTranslateSummaryReport().success() > 0;
+  }
+
 }

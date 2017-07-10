@@ -160,12 +160,12 @@ export class TranslationUnit {
     const errors = translatedMessage.validate(true);
     const warnings = translatedMessage.validateWarnings(true);
     if (!isNullOrUndefined(errors)) {
-      return new AutoTranslateResult(false, 'errors detected, not translated');
+      return new AutoTranslateResult(this.id(), false, 'errors detected, not translated');
     } else if (!isNullOrUndefined(warnings)) {
-      return new AutoTranslateResult(false, 'warnings detected, not translated');
+      return new AutoTranslateResult(this.id(), false, 'warnings detected, not translated');
     } else {
       this.translate(translatedMessage);
-      return new AutoTranslateResult(true, null); // success
+      return new AutoTranslateResult(this.id(), true, null); // success
     }
   }
 }

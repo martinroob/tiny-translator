@@ -1,6 +1,7 @@
 import {TranslationFile} from './translation-file';
 import {TranslationFileView} from './translation-file-view';
 import {isNullOrUndefined} from 'util';
+import {AutoTranslateSummaryReport} from './auto-translate-summary-report';
 
 /**
  * Workflow type determines, how you work with the tool.
@@ -39,6 +40,8 @@ export class TranslationProject {
   private _view: TranslationFileView;
 
   private _userRole: UserRole;
+
+  private _autoTranslateSummaryReport: AutoTranslateSummaryReport;
 
   /**
    * Create a project from the serialization.
@@ -122,4 +125,19 @@ export class TranslationProject {
     return this.translationFile && this.translationFile.canTranslate();
   }
 
+  /**
+   * Return Report about last executed Autotranslate run.
+   * @return {AutoTranslateSummaryReport}
+   */
+  public autoTranslateSummaryReport(): AutoTranslateSummaryReport {
+    return this._autoTranslateSummaryReport;
+  }
+
+  /**
+   * Store summary of last executed AutoTranslate run.
+   * @param summary
+   */
+  public setAutoTranslateSummaryReport(summary: AutoTranslateSummaryReport) {
+    this._autoTranslateSummaryReport = summary;
+  }
 }

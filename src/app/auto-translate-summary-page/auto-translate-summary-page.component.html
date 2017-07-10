@@ -1,0 +1,22 @@
+<h3 i18n>Autotranslate Run Result</h3>
+<div *ngIf="autoTranslateSummaryReport() === null">
+  <p i18n>No Autotranslate run result available.</p>
+</div>
+<div *ngIf="autoTranslateSummaryReport() !== null" i18n>
+  <p>{{autoTranslateSummaryReport().content()}}</p>
+  <div fxLayout="row">
+    <button *ngIf="autoTranslateSummaryReport().success() > 0"
+            fxFlexAlign="start"
+            md-button color="accent"
+            (click)="navigateToTranslated()"
+            i18n
+            mdTooltip="show overview of auto translated units" i18n-mdTooltip>show translated units</button>
+    <button
+            fxFlexAlign="start"
+            md-button color="accent"
+            (click)="navigateToContinueWork()"
+            i18n
+            mdTooltip="continue translation" i18n-mdTooltip>continue</button>
+  </div>
+
+</div>

@@ -35,6 +35,8 @@ export class AppComponent {
       if (canTranslate) {
         this.translatorService.autoTranslate().subscribe((summary) => {
           console.log('Summary: ', summary.content(), summary); // TODO show Toast or result page...
+          this.translatorService.currentProject().setAutoTranslateSummaryReport(summary);
+          this.router.navigateByUrl('autotranslatesummary');
         });
       } else {
         this.router.navigateByUrl('configureautotranslate');
