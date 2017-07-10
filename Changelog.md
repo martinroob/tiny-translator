@@ -1,3 +1,18 @@
+<a name="0.4.0"></a>
+# [0.4.0](https://github.com/martinroob/tiny-translator/compare/v0.4.0...v0.3.0) (2017-07-10)
+
+### Features
+
+* **new languages** Added a *French* and a *Russian* version.
+Both are created by the new Autotranslate Feature, so do not expect to see perfect translation here.
+It is more like a design study. ([#21](https://github.com/martinroob/tiny-translator/issues/21)).
+
+* **auto translation** Google translate support for ICU messages ([#20](https://github.com/martinroob/tiny-translator/issues/20)).
+
+* **auto translation** Handle Google translate query limit ([#19](https://github.com/martinroob/tiny-translator/issues/19)).
+
+* **auto translation** Google translate support should ignore region codes ([#18](https://github.com/martinroob/tiny-translator/issues/18)).
+
 <a name="0.3.0"></a>
 # [0.3.0](https://github.com/martinroob/tiny-translator/compare/v0.3.0...v0.2.0) (2017-07-01)
 
