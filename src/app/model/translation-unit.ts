@@ -3,6 +3,7 @@ import {TranslationFile} from './translation-file';
 import {NormalizedMessage} from './normalized-message';
 import {isNullOrUndefined} from 'util';
 import {AutoTranslateResult} from './auto-translate-result';
+import {IICUMessageTranslation} from 'ngx-i18nsupport-lib/dist';
 
 /**
  * A wrapper around ITransUnit.
@@ -141,24 +142,30 @@ export class TranslationUnit {
     }
   }
 
+  public autoTranslateNonICUUnit(translatedMessage: string): AutoTranslateResult {
+    return this.autoTranslate(this.sourceContentNormalized().translate(translatedMessage, true));
+  }
+
+  public autoTranslateICUUnit(translation: IICUMessageTranslation): AutoTranslateResult {
+    return this.autoTranslate(this.sourceContentNormalized().translateICUMessage(translation));
+  }
+
   /**
    * Try to use the given generated message as a translation.
    * If there are any errors or warnings, translation will not take place.
    * @param translatedMessage
    * @return {AutoTranslateResult} wether it was successful or not.
    */
-  public autoTranslate(translatedMessage: string): AutoTranslateResult {
-    const translationMessage = this.sourceContentNormalized().translate(translatedMessage, true);
-    const errors = translationMessage.validate(true);
-    const warnings = translationMessage.validateWarnings(true);
+  public autoTranslate(translatedMessage: NormalizedMessage): AutoTranslateResult {
+    const errors = translatedMessage.validate(true);
+    const warnings = translatedMessage.validateWarnings(true);
     if (!isNullOrUndefined(errors)) {
       return new AutoTranslateResult(false, 'errors detected, not translated');
     } else if (!isNullOrUndefined(warnings)) {
       return new AutoTranslateResult(false, 'warnings detected, not translated');
     } else {
-      this.translate(translationMessage);
+      this.translate(translatedMessage);
       return new AutoTranslateResult(true, null); // success
     }
   }
-
 }

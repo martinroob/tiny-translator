@@ -61,10 +61,28 @@ describe('AutoTranslateGoogleService', () => {
     });
   })));
 
+  it('should translate hello from english to german ignoring region codes', async(inject([AutoTranslateGoogleService], (service: AutoTranslateGoogleService) => {
+    service.translate('Hello', 'en-us', 'DE-DE').subscribe((translation) => {
+      expect(translation).toBe('Hallo');
+    });
+  })));
+
   it('should translate multiple string at once', async(inject([AutoTranslateGoogleService], (service: AutoTranslateGoogleService) => {
     service.translateMultipleStrings(['Hello', 'world'], 'en', 'de').subscribe((translations) => {
       expect(translations[0]).toBe('Hallo');
       expect(translations[1]).toBe('Welt');
+    });
+  })));
+
+  it('should translate more than 128 multiple strings at once (exceeding google limit)', async(inject([AutoTranslateGoogleService], (service: AutoTranslateGoogleService) => {
+    const NUM = 1000; // internal google limit is 128, so service has to split it...
+    const manyMessages: string[] = [];
+    for (let i = 0; i < NUM; i++) {
+      manyMessages.push('Hello world!');
+    }
+    service.translateMultipleStrings(manyMessages, 'en', 'de').subscribe((translations) => {
+      expect(translations[0]).toBe('Hallo Welt!');
+      expect(translations[NUM -1]).toBe('Hallo Welt!');
     });
   })));
 
