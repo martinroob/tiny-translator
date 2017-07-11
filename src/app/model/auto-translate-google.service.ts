@@ -277,6 +277,13 @@ export class AutoTranslateGoogleService extends AutoTranslateServiceAPI {
     return this.httpService.post(realUrl, translateRequest).map((response: Response) => {
       const result: TranslationsListResponse = response.json().data;
       return result.translations.map((translation: TranslationsResource) => {
+        // just for test, provoke errors and warnings TODO MUSS WIEDER RAUS
+        if (translation.translatedText.indexOf('{') >= 0) {
+          return 'oopsi';
+        }
+        if (translation.translatedText.indexOf('<') >= 0) {
+          return 'oopsala';
+        }
         return translation.translatedText;
       });
     });

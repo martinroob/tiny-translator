@@ -4,11 +4,23 @@
 </div>
 <div *ngIf="autoTranslateSummaryReport() !== null" i18n>
   <p>{{autoTranslateSummaryReport().content()}}</p>
+  <div *ngIf="ignoredResults().length > 0">
+    <h4 i18n>Ignored</h4>
+    <p *ngFor="let result of ignoredResults()">{{result.details()}}</p>
+    <button fxFlexAlign="start" md-button color="accent" (click)="navigateToAutoTranslatedIgnored()"
+            i18n mdTooltip="show all untranslated that were ignored by auto translation" i18n-mdTooltip>show ignored units</button>
+  </div>
+  <div *ngIf="failedResults().length > 0">
+    <h4 i18n>Failed</h4>
+    <p *ngFor="let result of failedResults()">{{result.details()}}</p>
+    <button fxFlexAlign="start" md-button color="accent" (click)="navigateToAutoTranslatedFailed()"
+            i18n mdTooltip="show all untranslated where auto translation failed" i18n-mdTooltip>show failed units</button>
+  </div>
   <div fxLayout="row">
     <button *ngIf="autoTranslateSummaryReport().success() > 0"
             fxFlexAlign="start"
             md-button color="accent"
-            (click)="navigateToTranslated()"
+            (click)="navigateToAutoTranslated()"
             i18n
             mdTooltip="show overview of auto translated units" i18n-mdTooltip>show translated units</button>
     <button

@@ -1,4 +1,3 @@
-import {TranslationUnit} from './translation-unit';
 /**
  * Created by martin on 29.06.2017.
  */
@@ -25,8 +24,16 @@ export class AutoTranslateResult {
     return this._success;
   }
 
+  public failed(): boolean {
+    return !this._success;
+  }
+
   public ignored(): boolean {
     return this._ignored;
+  }
+
+  public details(): string {
+    return this._details;
   }
 
   public translationUnitId(): string {
