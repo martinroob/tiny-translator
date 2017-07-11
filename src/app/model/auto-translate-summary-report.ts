@@ -1,4 +1,3 @@
-import {TranslationUnit} from './translation-unit';
 import {AutoTranslateResult} from './auto-translate-result';
 import {format} from 'util';
 /**
@@ -22,21 +21,19 @@ export class AutoTranslateSummaryReport {
     this._failed = 0;
   }
 
-  public setIgnored(ignored: number) {
-    this._total += ignored;
-    this._ignored = ignored;
-  }
-
   /**
    * Add a single result to the summary.
-   * @param tu
    * @param result
    */
   public addSingleResult(result: AutoTranslateResult) {
     this._allResults[result.translationUnitId()] = result;
     this._total++;
     if (result.success()) {
-      this._success++;
+      if (result.ignored()) {
+        this._ignored++;
+      } else {
+        this._success++;
+      }
     } else {
       this._failed++;
     }
@@ -47,6 +44,7 @@ export class AutoTranslateSummaryReport {
    * @param anotherSummary
    */
   public merge(anotherSummary: AutoTranslateSummaryReport) {
+    this._allResults = Object.assign({}, this._allResults, anotherSummary._allResults);
     this._total += anotherSummary.total();
     this._ignored += anotherSummary.ignored();
     this._success += anotherSummary.success();
@@ -73,12 +71,19 @@ export class AutoTranslateSummaryReport {
    * Human readable version of report
    */
   public content(): string {
-    const result = format('Total translated: %s\nIgnored: %s\nSuccesful: %s\nFailed: %s',
+    return format('Total translated: %s\nIgnored: %s\nSuccesful: %s\nFailed: %s',
       this._total, this._ignored, this._success, this._failed);
-    return result;
   }
 
   public singleResult(tuId: string): AutoTranslateResult {
     return this._allResults[tuId];
+  }
+
+  public allResults(): AutoTranslateResult[] {
+    const result: AutoTranslateResult[] = [];
+    Object.keys(this._allResults).forEach((val) => {
+      result.push(this._allResults[val]);
+    })
+    return result;
   }
 }

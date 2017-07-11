@@ -333,7 +333,6 @@ export class TranslationFile {
     return autoTranslateService.translateMultipleStrings(allMessages, this.sourceLanguage(), this.targetLanguage())
       .map((translations: string[]) => {
         const summary = new AutoTranslateSummaryReport();
-        summary.setIgnored(allUntranslated.length - allTranslatable.length);
         for (let i = 0; i < translations.length; i++) {
           const tu = allTranslatable[i];
           const translationText = translations[i];
@@ -382,7 +381,7 @@ export class TranslationFile {
         return summary;
       }).catch((err) => {
         const failSummary = new AutoTranslateSummaryReport();
-        failSummary.addSingleResult(new AutoTranslateResult(tu.id(), false, err.message));
+        failSummary.addSingleResult(AutoTranslateResult.Failed(tu.id(), err.message));
         return Observable.of(failSummary);
       });
   }

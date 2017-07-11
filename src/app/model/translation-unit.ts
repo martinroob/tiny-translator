@@ -1,7 +1,7 @@
 import {ITransUnit, INormalizedMessage, STATE_NEW} from 'ngx-i18nsupport-lib';
 import {TranslationFile} from './translation-file';
 import {NormalizedMessage} from './normalized-message';
-import {isNullOrUndefined} from 'util';
+import {format, isNullOrUndefined} from 'util';
 import {AutoTranslateResult} from './auto-translate-result';
 import {IICUMessageTranslation} from 'ngx-i18nsupport-lib/dist';
 
@@ -160,12 +160,12 @@ export class TranslationUnit {
     const errors = translatedMessage.validate(true);
     const warnings = translatedMessage.validateWarnings(true);
     if (!isNullOrUndefined(errors)) {
-      return new AutoTranslateResult(this.id(), false, 'errors detected, not translated');
+      return AutoTranslateResult.Failed(this.id(), format('errors detected, not translated: %s', JSON.stringify(errors)));
     } else if (!isNullOrUndefined(warnings)) {
-      return new AutoTranslateResult(this.id(), false, 'warnings detected, not translated');
+      return AutoTranslateResult.Failed(this.id(), format('warnings detected, not translated: %s', JSON.stringify(warnings)));
     } else {
       this.translate(translatedMessage);
-      return new AutoTranslateResult(this.id(), true, null); // success
+      return AutoTranslateResult.Success(this.id());
     }
   }
 }
