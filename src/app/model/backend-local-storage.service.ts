@@ -7,6 +7,7 @@ export class BackendLocalStorageService extends BackendServiceAPI {
 
   private PRAEFIX = 'tinytranslator.';
   private PRAEFIX_PROJECT = this.PRAEFIX + 'project.';
+  private KEY_CURRENT_PROJECT_ID = this.PRAEFIX + 'currentproject.id';
   private KEY_APIKEY = this.PRAEFIX + 'googletranslate.apikey';
 
   constructor() {
@@ -31,10 +32,32 @@ export class BackendLocalStorageService extends BackendServiceAPI {
    */
   projects(): TranslationProject[] {
     const projectKeys = this.getProjectKeys();
-    return projectKeys.map(key => {return TranslationProject.deserialize(localStorage.getItem(key))});
+    return projectKeys
+      .map(key => {return TranslationProject.deserialize(localStorage.getItem(key)); })
+      .sort((p1, p2) => p1.name.localeCompare(p2.name));
   }
 
-  delete(project: TranslationProject) {
+  /**
+   * Save id of curent project.
+   * @param id of project, null to remove.
+   */
+  storeCurrentProjectId(id: string) {
+    if (!id) {
+      localStorage.removeItem(this.KEY_CURRENT_PROJECT_ID);
+    } else {
+      localStorage.setItem(this.KEY_CURRENT_PROJECT_ID, id);
+    }
+  }
+
+  /**
+   * ID if current project.
+   * @return {string} id of current project or null
+   */
+  currentProjectId(): string {
+    return localStorage.getItem(this.KEY_CURRENT_PROJECT_ID);
+  }
+
+  deleteProject(project: TranslationProject) {
     if (project && project.id) {
       const key = this.keyForProject(project);
       localStorage.removeItem(key);

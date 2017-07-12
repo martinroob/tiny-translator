@@ -3,11 +3,11 @@ import {TranslationFile} from './translation-file';
 import {isNullOrUndefined} from 'util';
 import {BackendServiceAPI} from './backend-service-api';
 import {TranslationProject, WorkflowType} from './translation-project';
-import {Observable} from 'rxjs';
+import {Observable} from 'rxjs/Observable';
 import {DownloaderService} from './downloader.service';
 import {AsynchronousFileReaderService} from './asynchronous-file-reader.service';
 import {
-  AutoTranslateDisabledReason, AutoTranslateDisabledReasonKey,
+  AutoTranslateDisabledReasonKey,
   AutoTranslateServiceAPI
 } from './auto-translate-service-api';
 import {AutoTranslateSummaryReport} from './auto-translate-summary-report';
@@ -30,6 +30,10 @@ export class TinyTranslatorService {
               private downloaderService: DownloaderService,
               private autoTranslateService: AutoTranslateServiceAPI) {
     this._projects = this.backendService.projects();
+    const currentProjectId = this.backendService.currentProjectId();
+    if (currentProjectId) {
+      this._currentProject = this._projects.find((project) => project.id === currentProjectId);
+    }
     this.autoTranslateService.setApiKey(this.backendService.autoTranslateApiKey());
   }
 
@@ -63,20 +67,16 @@ export class TinyTranslatorService {
       });
   }
 
-  /**
-   * Test, wether the project selection is ready to start.
-   * This is the case, if there is a valid xlf file selected.
-   * @return {boolean}
-   */
-  public canStartWork(): boolean {
-    return this._projects && this._projects.length > 0 && !this.hasErrors();
-  }
-
   public setCurrentProject(project: TranslationProject) {
-    if (!this._projects.find(p => p === project)) {
-      throw new Error('oops, selected project not in list');
+    let id: string = null;
+    if (project) {
+      if (isNullOrUndefined(this._projects.find(p => p === project))) {
+        throw new Error('oops, selected project not in list');
+      }
+      id = project.id;
     }
     this._currentProject = project;
+    this.backendService.storeCurrentProjectId(id);
   }
 
   public currentProject(): TranslationProject {
@@ -110,7 +110,7 @@ export class TinyTranslatorService {
   }
 
   public deleteProject(project: TranslationProject) {
-    this.backendService.delete(project);
+    this.backendService.deleteProject(project);
     const index = this._projects.findIndex(p => p === project);
     if (index >= 0) {
       this._projects = this._projects.slice(0, index).concat(this._projects.slice(index + 1));
