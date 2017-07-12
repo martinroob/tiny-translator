@@ -47,4 +47,8 @@ export class AppComponent {
   configureAutoTranslate() {
     this.router.navigateByUrl('configureautotranslate');
   }
+
+  navigateToAutoTranslateSummary() {
+    this.router.navigateByUrl('autotranslatesummary');
+  }
 }

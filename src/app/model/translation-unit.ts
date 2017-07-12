@@ -160,12 +160,12 @@ export class TranslationUnit {
     const errors = translatedMessage.validate(true);
     const warnings = translatedMessage.validateWarnings(true);
     if (!isNullOrUndefined(errors)) {
-      return AutoTranslateResult.Failed(this.id(), format('errors detected, not translated: %s', JSON.stringify(errors)));
+      return AutoTranslateResult.Failed(this, format('errors detected, not translated: %s', JSON.stringify(errors)));
     } else if (!isNullOrUndefined(warnings)) {
-      return AutoTranslateResult.Failed(this.id(), format('warnings detected, not translated: %s', JSON.stringify(warnings)));
+      return AutoTranslateResult.Failed(this, format('warnings detected, not translated: %s', JSON.stringify(warnings)));
     } else {
       this.translate(translatedMessage);
-      return AutoTranslateResult.Success(this.id());
+      return AutoTranslateResult.Success(this);
     }
   }
 }

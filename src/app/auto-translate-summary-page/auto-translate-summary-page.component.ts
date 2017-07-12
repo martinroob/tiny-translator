@@ -11,6 +11,8 @@ import {
   FILTER_AUTOTRANSLATED, FILTER_AUTOTRANSLATED_FAILED, FILTER_AUTOTRANSLATED_IGNORED,
   TranslationUnitFilterService
 } from '../model/filters/translation-unit-filter.service';
+import {isNullOrUndefined} from 'util';
+import {TranslationUnit} from '../model/translation-unit';
 
 @Component({
   selector: 'app-auto-translate-summary-page',
@@ -33,16 +35,33 @@ export class AutoTranslateSummaryPageComponent implements OnInit {
     this.translationUnitFilterService.setAutotranslateSummaryReport(this._autoTranslateSummaryReport);
   }
 
+  hasTranslateSummaryReport(): boolean {
+    return !isNullOrUndefined(this._autoTranslateSummaryReport);
+  }
+
   autoTranslateSummaryReport() {
     return this._autoTranslateSummaryReport;
   }
 
   ignoredResults(): AutoTranslateResult[] {
-    return this._autoTranslateSummaryReport.allResults().filter((result) => result.ignored());
+    return (this._autoTranslateSummaryReport) ? this._autoTranslateSummaryReport.allResults().filter((result) => result.ignored()) : [];
   }
 
   failedResults(): AutoTranslateResult[] {
-    return this._autoTranslateSummaryReport.allResults().filter((result) => result.failed());
+    return (this._autoTranslateSummaryReport) ? this._autoTranslateSummaryReport.allResults().filter((result) => result.failed()) : [];
+  }
+
+  /**
+   * Show a brief overview of the transunit of the result.
+   * @param result
+   */
+  showTransUnitOfResult(result: AutoTranslateResult): string {
+    const tu: TranslationUnit = result.translationUnit();
+    if (tu) {
+      return tu.sourceContentNormalized().dislayText(true);
+    } else {
+      return '';
+    }
   }
 
   navigateToAutoTranslated() {

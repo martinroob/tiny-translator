@@ -1,31 +1,45 @@
 <h3 i18n>Autotranslate Run Result</h3>
-<div *ngIf="autoTranslateSummaryReport() === null">
+<div *ngIf="!hasTranslateSummaryReport()">
   <p i18n>No Autotranslate run result available.</p>
 </div>
-<div *ngIf="autoTranslateSummaryReport() !== null" i18n>
+<div *ngIf="hasTranslateSummaryReport()" i18n>
   <p>{{autoTranslateSummaryReport().content()}}</p>
   <div *ngIf="ignoredResults().length > 0">
-    <h4 i18n>Ignored</h4>
-    <p *ngFor="let result of ignoredResults()">{{result.details()}}</p>
-    <button fxFlexAlign="start" md-button color="accent" (click)="navigateToAutoTranslatedIgnored()"
-            i18n mdTooltip="show all untranslated that were ignored by auto translation" i18n-mdTooltip>show ignored units</button>
+    <div fxLayout="row" fxLayoutGap="50px">
+      <h4 i18n>Ignored</h4>
+      <button fxFlexAlign="start" md-raised-button color="accent" (click)="navigateToAutoTranslatedIgnored()"
+              i18n mdTooltip="show all untranslated that were ignored by auto translation" i18n-mdTooltip>navigate to ignored units</button>
+    </div>
+    <md-list>
+      <md-list-item *ngFor="let result of ignoredResults()">
+        <h4 md-line>{{showTransUnitOfResult(result)}}</h4>
+        <p md-line>{{result.details()}}</p>
+      </md-list-item>
+    </md-list>
   </div>
   <div *ngIf="failedResults().length > 0">
-    <h4 i18n>Failed</h4>
-    <p *ngFor="let result of failedResults()">{{result.details()}}</p>
-    <button fxFlexAlign="start" md-button color="accent" (click)="navigateToAutoTranslatedFailed()"
-            i18n mdTooltip="show all untranslated where auto translation failed" i18n-mdTooltip>show failed units</button>
+    <div fxLayout="row" fxLayoutGap="50px">
+      <h4 i18n>Failed</h4>
+      <button fxFlexAlign="start" md-raised-button color="accent" (click)="navigateToAutoTranslatedFailed()"
+              i18n mdTooltip="show all untranslated where auto translation failed" i18n-mdTooltip>navigate to failed units</button>
+    </div>
+    <md-list>
+      <md-list-item *ngFor="let result of failedResults()">
+        <h4 md-line>{{showTransUnitOfResult(result)}}</h4>
+        <p md-line>{{result.details()}}</p>
+      </md-list-item>
+    </md-list>
   </div>
-  <div fxLayout="row">
+  <div fxLayout="row" fxLayoutGap="50px">
     <button *ngIf="autoTranslateSummaryReport().success() > 0"
             fxFlexAlign="start"
-            md-button color="accent"
+            md-raised-button color="accent"
             (click)="navigateToAutoTranslated()"
             i18n
-            mdTooltip="show overview of auto translated units" i18n-mdTooltip>show translated units</button>
+            mdTooltip="show overview of auto translated units" i18n-mdTooltip>navigate to translated units</button>
     <button
             fxFlexAlign="start"
-            md-button color="accent"
+            md-raised-button color="accent"
             (click)="navigateToContinueWork()"
             i18n
             mdTooltip="continue translation" i18n-mdTooltip>continue</button>

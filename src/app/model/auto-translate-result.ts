@@ -1,22 +1,23 @@
+import {TranslationUnit} from './translation-unit';
 /**
  * Created by martin on 29.06.2017.
  */
 
 export class AutoTranslateResult {
 
-  public static Success(tuId: string): AutoTranslateResult {
-    return new AutoTranslateResult(tuId, true, false, null);
+  public static Success(tu: TranslationUnit): AutoTranslateResult {
+    return new AutoTranslateResult(tu, true, false, null);
   }
 
-  public static Failed(tuId: string, details: string): AutoTranslateResult {
-    return new AutoTranslateResult(tuId, false, false, details);
+  public static Failed(tu: TranslationUnit, details: string): AutoTranslateResult {
+    return new AutoTranslateResult(tu, false, false, details);
   }
 
-  public static Ignored(tuId: string, details: string): AutoTranslateResult {
-    return new AutoTranslateResult(tuId, true, true, details);
+  public static Ignored(tu: TranslationUnit, details: string): AutoTranslateResult {
+    return new AutoTranslateResult(tu, true, true, details);
   }
 
-  private constructor(private _transUnitId: string, private _success: boolean, private _ignored: boolean, private _details: string) {
+  private constructor(private _transUnit: TranslationUnit, private _success: boolean, private _ignored: boolean, private _details: string) {
 
   }
 
@@ -36,7 +37,8 @@ export class AutoTranslateResult {
     return this._details;
   }
 
-  public translationUnitId(): string {
-    return this._transUnitId;
+  public translationUnit(): TranslationUnit {
+    return this._transUnit;
   }
+
 }

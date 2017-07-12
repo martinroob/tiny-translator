@@ -26,7 +26,7 @@ export class AutoTranslateSummaryReport {
    * @param result
    */
   public addSingleResult(result: AutoTranslateResult) {
-    this._allResults[result.translationUnitId()] = result;
+    this._allResults[result.translationUnit().id()] = result;
     this._total++;
     if (result.success()) {
       if (result.ignored()) {

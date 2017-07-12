@@ -364,7 +364,7 @@ export class TranslationFile {
     // check for nested ICUs, we do not support that
     if (categories.find((category) => !isNullOrUndefined(category.getMessageNormalized().getICUMessage()))) {
       const summary = new AutoTranslateSummaryReport();
-      summary.addSingleResult(AutoTranslateResult.Ignored(tu.id(), 'nested icu message'));
+      summary.addSingleResult(AutoTranslateResult.Ignored(tu, 'nested icu message'));
       return Observable.of(summary);
     }
     const allMessages: string[] = categories.map((category) => category.getMessageNormalized().asDisplayString());
@@ -381,7 +381,7 @@ export class TranslationFile {
         return summary;
       }).catch((err) => {
         const failSummary = new AutoTranslateSummaryReport();
-        failSummary.addSingleResult(AutoTranslateResult.Failed(tu.id(), err.message));
+        failSummary.addSingleResult(AutoTranslateResult.Failed(tu, err.message));
         return Observable.of(failSummary);
       });
   }
