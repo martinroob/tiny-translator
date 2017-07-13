@@ -1,15 +1,10 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {TranslationUnit} from '../model/translation-unit';
 import {MdRadioChange} from '@angular/material';
 import {TranslationFileView} from '../model/translation-file-view';
-import {TranslationUnitFilterAll} from '../model/filters/translation-unit-filter-all';
-import {TranslationUnitFilterUntranslated} from '../model/filters/translation-unit-filter-untranslated';
-import {TranslationUnitFilterNeedsReview} from '../model/filters/translation-unit-filter-needs-review';
 import {WorkflowType} from '../model/translation-project';
 import {Subject} from 'rxjs/Subject';
 import {Subscription} from 'rxjs/Subscription';
-import {TranslationUnitFilterSubstring} from '../model/filters/translation-unit-filter-substring';
-import {TranslationUnitFilterAutoTranslated} from '../model/filters/translation-unit-filter-autotranslated';
 import {
   FILTER_ALL, FILTER_AUTOTRANSLATED, FILTER_AUTOTRANSLATED_FAILED, FILTER_AUTOTRANSLATED_IGNORED, FILTER_NEEDS_REVIEW,
   FILTER_SUBSTRING,
@@ -40,6 +35,12 @@ export class TranslateUnitListComponent implements OnInit {
   @Input() workflowType: WorkflowType;
 
   @Input() hasAutotranslatedUnits: boolean;
+
+  /**
+   * Emitted, when user wants to navigate to another unit.
+   * @type {EventEmitter<TranslationUnit>} the wanted trans unit.
+   */
+  @Output() changeTranslationUnit: EventEmitter<TranslationUnit> = new EventEmitter();
 
   constructor(private translationUnitFilterService: TranslationUnitFilterService) {
     this.translationFileView = new TranslationFileView(null);
@@ -134,7 +135,7 @@ export class TranslateUnitListComponent implements OnInit {
   }
 
   public selectTransUnit(tu: TranslationUnit) {
-    this.translationFileView.selectTransUnit(tu);
+    this.changeTranslationUnit.emit(tu);
   }
 
   isSelected(tu: TranslationUnit): boolean {

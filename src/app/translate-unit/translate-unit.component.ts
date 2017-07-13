@@ -32,7 +32,17 @@ export class TranslateUnitComponent implements OnInit, OnChanges {
 
   @Input() reviewMode = false;
 
+  /**
+   * Emitted, when translation is changed.
+   * @type {EventEmitter} value is the newly translated unit.
+   */
   @Output() translationChanged: EventEmitter<TranslationUnit> = new EventEmitter();
+
+  /**
+   * Emitted, when user wants to navigate to another unit.
+   * @type {EventEmitter<string>} string value can be 'next' or 'prev'
+   */
+  @Output() changeTranslationUnit: EventEmitter<string> = new EventEmitter();
 
   form: FormGroup;
 
@@ -282,13 +292,13 @@ export class TranslateUnitComponent implements OnInit, OnChanges {
             break;
           case 'discard':
             if (this.translationFileView.hasNext()) {
-              this.translationFileView.nextTransUnit();
+              this.changeTranslationUnit.emit('next');
             }
             break;
           case 'accept':
             this.commitChanges();
             if (this.translationFileView.hasNext()) {
-              this.translationFileView.nextTransUnit();
+              this.changeTranslationUnit.emit('next');
             }
             break;
         }
@@ -316,13 +326,13 @@ export class TranslateUnitComponent implements OnInit, OnChanges {
             break;
           case 'discard':
             if (this.translationFileView.hasPrev()) {
-              this.translationFileView.prevTransUnit();
+              this.changeTranslationUnit.emit('prev');
             }
             break;
           case 'accept':
             this.commitChanges();
             if (this.translationFileView.hasPrev()) {
-              this.translationFileView.prevTransUnit();
+              this.changeTranslationUnit.emit('prev');
             }
             break;
         }
@@ -342,9 +352,14 @@ export class TranslateUnitComponent implements OnInit, OnChanges {
    * Auto translate this unit using Google Translate.
    */
   autoTranslate() {
-    this.sourceContentNormalized().autoTranslateUsingService(this.autoTranslateService, this.sourceLanguage(), this.targetLanguage()).subscribe((translatedMessage: NormalizedMessage) => {
-      this._editableTargetMessage = translatedMessage;
-      this._editedTargetMessage = translatedMessage;
+    this.sourceContentNormalized().autoTranslateUsingService(
+      this.autoTranslateService,
+      this.sourceLanguage(),
+      this.targetLanguage()
+    ).subscribe((translatedMessage: NormalizedMessage) => {
+        this._editableTargetMessage = translatedMessage;
+        this._editedTargetMessage = translatedMessage;
+        this.translationChanged.emit(this.translationUnit);
     });
   }
 

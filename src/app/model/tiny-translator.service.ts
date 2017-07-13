@@ -37,7 +37,7 @@ export class TinyTranslatorService {
     }
     const currentTransUnitId: string = this.backendService.currentTransUnitId();
     if (currentTransUnitId && this.currentProject()) {
-      const transUnit = this.currentProject().translationFile.allTransUnits().find(tu => tu.id() == currentTransUnitId);
+      const transUnit = this.currentProject().translationFile.allTransUnits().find(tu => tu.id() === currentTransUnitId);
       this.currentProject().translationFileView.selectTransUnit(transUnit);
     }
     this.autoTranslateService.setApiKey(this.backendService.autoTranslateApiKey());
@@ -90,7 +90,7 @@ export class TinyTranslatorService {
   }
 
   /**
-   * Select a TranslationUnit, if it is currently in the filteres list.
+   * Select a TranslationUnit, if it is currently in the filtered list.
    * If it is not, will do nothing.
    * @param transUnit
    */
@@ -98,7 +98,32 @@ export class TinyTranslatorService {
     if (!this.currentProject()) {
       return;
     } else {
-      this.currentProject().translationFileView.selectTransUnit(transUnit);
+      if (this.currentProject().translationFileView.selectTransUnit(transUnit)) {
+        this.backendService.storeCurrentTransUnitId(transUnit.id());
+      }
+    }
+  }
+
+  /**
+   * Navigate to next unit.
+   */
+  public nextTransUnit() {
+    if (!this.currentProject()) {
+      return;
+    } else {
+      const transUnit = this.currentProject().translationFileView.nextTransUnit();
+      this.backendService.storeCurrentTransUnitId(transUnit.id());
+    }
+  }
+
+  /**
+   * Navigate to previous unit.
+   */
+  public prevTransUnit() {
+    if (!this.currentProject()) {
+      return;
+    } else {
+      const transUnit = this.currentProject().translationFileView.prevTransUnit();
       this.backendService.storeCurrentTransUnitId(transUnit.id());
     }
   }

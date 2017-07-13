@@ -1,6 +1,8 @@
 <div fxLayout="row" fxFlexFill>
   <app-translate-unit-list [translationFileView]="currentView()" [workflowType]="currentProject()?.workflowType"
-                           [hasAutotranslatedUnits]="hasAutotranslatedUnits()" fxFlex="40%"></app-translate-unit-list>
+                           [hasAutotranslatedUnits]="hasAutotranslatedUnits()"
+                           (changeTranslationUnit)="onChangeTranslationUnit($event)"
+                           fxFlex="40%"></app-translate-unit-list>
   <div fxLayout="column" fxFlexFill>
     <app-project-status [project]="currentProject()" (onSave)="save()"></app-project-status>
     <app-translate-unit
@@ -8,6 +10,7 @@
       [translationUnit]="currentTranslationUnit()"
       [workflowType]="currentProject()?.workflowType"
       [reviewMode]="isInReviewMode()"
+      (changeTranslationUnit)="onChangeTranslationUnitToNextOrPrev($event)"
       (translationChanged)="commitChanges()"></app-translate-unit>
   </div>
 </div>

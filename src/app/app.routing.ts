@@ -20,7 +20,7 @@ const appRoutes: Routes = [
   { path: 'translate', component: TranslatePageComponent, canActivate: [ActiveProjectGuard] },
   { path: 'autotranslatesummary', component: AutoTranslateSummaryPageComponent},
   { path: 'configureautotranslate', component: ConfigureAutoTranslatePageComponent},
-  { path: '', component: HomePageComponent}
+  { path: '', redirectTo: '/translate', pathMatch: 'full' },
 ];
 
 export const appRoutingProviders: any[] = [
