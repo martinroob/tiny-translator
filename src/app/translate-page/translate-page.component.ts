@@ -64,7 +64,7 @@ export class TranslatePageComponent implements OnInit {
   hasAutotranslatedUnits(): boolean {
     return this.currentProject()
       && this.currentProject().autoTranslateSummaryReport()
-      && this.currentProject().autoTranslateSummaryReport().success() > 0;
+      && this.currentProject().autoTranslateSummaryReport().total() > 0;
   }
 
 }

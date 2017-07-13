@@ -5,6 +5,7 @@
 div {
   /* 170px = Height of toolbar plus footer */
   max-height: calc(100vh - 170px);
+  min-width: 300px;
   overflow: auto;
 }
 

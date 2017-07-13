@@ -1,6 +1,6 @@
 <div fxLayout="column">
   <p i18n>Show</p>
-  <md-radio-group (change)="filterChanged($event)" [(ngModel)]="_selectedFilterName">
+  <md-radio-group (change)="filterChanged($event)" [(ngModel)]="_selectedFilterName" fxLayout="column">
     <md-radio-button value="all" i18n>All units</md-radio-button>
     <ng-container *ngIf="hasAutotranslatedUnits">
       <md-radio-button value="autotranslated" i18n>Autotranslated units</md-radio-button>

@@ -11,6 +11,10 @@ export class AppConfig {
   // Your API Key, should not be set here, because it is secret
   // can be typed in in the application, but test config needs it
   GOOGLETRANSLATE_API_KEY?: string;
+  // a setting for tests!!
+  // if set to true, all autotranslations containing placeholder or tags will FAIL BY DESIGN
+  // Used to allow testing of report page and filters for failed translations.
+  GOOGLETRANSLATE_PROVOKE_FAILURES?: boolean;
   BUILDVERSION: string;
   BUILDTIME: string;
 }
@@ -20,7 +24,8 @@ export const APP_CONFIG_VALUE: AppConfig = {
   'BUILDVERSION': '0.4.0',
   'BUILDTIME': '2017-07-10', // TODO should be dynamic
   GOOGLETRANSLATE_API_ROOT_URL: 'https://translation.googleapis.com/',
-  GOOGLETRANSLATE_API_KEY: environment.googletranslate_api_key
+  GOOGLETRANSLATE_API_KEY: environment.googletranslate_api_key,
+  GOOGLETRANSLATE_PROVOKE_FAILURES: environment.googletranslate_provoke_failures
 };
 
 export let APP_CONFIG = new InjectionToken<AppConfig>('app.config');

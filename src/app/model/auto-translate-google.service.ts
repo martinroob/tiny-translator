@@ -57,6 +57,11 @@ export class AutoTranslateGoogleService extends AutoTranslateServiceAPI {
 
   private _apiKey: string;
 
+  // a setting for tests!!
+  // if set to true, all autotranslations containing placeholder or tags will FAIL BY DESIGN
+  // Used to allow testing of report page and filters for failed translations.
+  private failByDesign: boolean;
+
   /**
    * Cache of supported languages.
    */
@@ -78,7 +83,7 @@ export class AutoTranslateGoogleService extends AutoTranslateServiceAPI {
       return null;
     }
     const langLower = lang.toLowerCase();
-    for(let i = 0; i < langLower.length; i++) {
+    for (let i = 0; i < langLower.length; i++) {
       const c = langLower.charAt(i);
       if (c < 'a' || c > 'z') {
         return langLower.substring(0, i);
@@ -94,6 +99,10 @@ export class AutoTranslateGoogleService extends AutoTranslateServiceAPI {
     // it can be set interactively in the app
     // but in the karma tests it will be set. It is stored than in environment.secret.ts (not in Git)
     this.setApiKey(app_config.GOOGLETRANSLATE_API_KEY); // must be set explicitly via setApiKey()
+    this.failByDesign = false;
+    if (app_config.GOOGLETRANSLATE_PROVOKE_FAILURES === true) {
+      this.failByDesign = true;
+    }
   }
 
   public apiKey(): string {
@@ -277,12 +286,14 @@ export class AutoTranslateGoogleService extends AutoTranslateServiceAPI {
     return this.httpService.post(realUrl, translateRequest).map((response: Response) => {
       const result: TranslationsListResponse = response.json().data;
       return result.translations.map((translation: TranslationsResource) => {
-        // just for test, provoke errors and warnings TODO MUSS WIEDER RAUS
-        if (translation.translatedText.indexOf('{') >= 0) {
-          return 'oopsi';
-        }
-        if (translation.translatedText.indexOf('<') >= 0) {
-          return 'oopsala';
+        // just for tests, provoke errors and warnings, if explicitly wanted
+        if (this.failByDesign) {
+          if (translation.translatedText.indexOf('{') >= 0) {
+            return 'oopsi';
+          }
+          if (translation.translatedText.indexOf('<') >= 0) {
+            return 'oopsala';
+          }
         }
         return translation.translatedText;
       });

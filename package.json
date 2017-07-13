@@ -5,6 +5,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "start-failtests": "ng serve --env=failtests",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
