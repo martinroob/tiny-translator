@@ -8,7 +8,7 @@
     <app-translation-file-status [translationFileView]="project?.translationFileView" [translationFile]="project?.translationFile" (onSave)="save($event)"></app-translation-file-status>
   </md-card-content>
   <md-card-actions *ngIf="showActions">
-    <button md-icon-button *ngIf="!project?.translationFile?.isDirty()" (click)="deleteProject()"  mdTooltip="Delete Project" i18n-mdTooltip><md-icon>delete</md-icon></button>
+    <button md-icon-button *ngIf="!project?.translationFile?.isDirty()" (click)="deleteProject()"  mdTooltip="Delete Project" i18n-mdTooltip><md-icon>deleteProject</md-icon></button>
     <button md-fab *ngIf="project?.canTranslate()" (click)="startWork()" mdTooltip="Start Translation" i18n-mdTooltip><md-icon>translate</md-icon></button>
   </md-card-actions>
 </md-card>

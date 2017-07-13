@@ -31,11 +31,13 @@ import { CreateProjectPageComponent } from './create-project-page/create-project
 import { ProjectStatusComponent } from './project-status/project-status.component';
 import {AsynchronousFileReaderService} from './model/asynchronous-file-reader.service';
 import { NormalizedMessageInputComponent } from './normalized-message-input/normalized-message-input.component';
-import { TranslateUnitWarningConfirmDialogComponent } from './translate-unit-warning-confirm-dialog/translate-unit-warning-confirm-dialog.component';
+import {TranslateUnitWarningConfirmDialogComponent} from './translate-unit-warning-confirm-dialog/translate-unit-warning-confirm-dialog.component';
 import {AppMaterialModule} from './app-material.module';
 import { EditProjectPageComponent } from './edit-project-page/edit-project-page.component';
 import { ProjectEditorComponent } from './project-editor/project-editor.component';
 import { ConfigureAutoTranslatePageComponent } from './configure-auto-translate-page/configure-auto-translate-page.component';
+import { AutoTranslateSummaryPageComponent } from './auto-translate-summary-page/auto-translate-summary-page.component';
+import { TranslationUnitFilterService } from './model/filters/translation-unit-filter.service';
 
 @NgModule({
   declarations: [
@@ -56,7 +58,8 @@ import { ConfigureAutoTranslatePageComponent } from './configure-auto-translate-
     TranslateUnitWarningConfirmDialogComponent,
     EditProjectPageComponent,
     ProjectEditorComponent,
-    ConfigureAutoTranslatePageComponent
+    ConfigureAutoTranslatePageComponent,
+    AutoTranslateSummaryPageComponent
   ],
   imports: [
     BrowserModule,
@@ -75,7 +78,8 @@ import { ConfigureAutoTranslatePageComponent } from './configure-auto-translate-
     DownloaderService,
     ActiveProjectGuard,
     {provide: BackendServiceAPI, useClass: BackendLocalStorageService},
-    {provide: AutoTranslateServiceAPI, useClass: AutoTranslateGoogleService}
+    {provide: AutoTranslateServiceAPI, useClass: AutoTranslateGoogleService},
+    TranslationUnitFilterService,
   ],
   entryComponents: [TranslateUnitWarningConfirmDialogComponent],
   bootstrap: [AppComponent]

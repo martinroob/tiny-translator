@@ -50,7 +50,7 @@ export class LanguageComponent implements OnInit {
     }
     const lang = this.langFromLanguageCode(languageCode);
     const region = this.regionFromLanguageCode(languageCode);
-    if (region) {
+    if (region && region.length === 2) {
       return region;
     }
     // table of all lang codes, that are different from country code

@@ -10,7 +10,11 @@ And did you start experimenting with the new `i18n` features of Angular 2?
 
 Then maybe this application is a tool for you.
 
-For the impatient: Start it here [Tiny Translator (English)](https://martinroob.github.io/tiny-translator/en) or [Tiny Translator (Deutsch)](https://martinroob.github.io/tiny-translator/de)
+For the impatient: Start it here
+* [Tiny Translator (English)](https://martinroob.github.io/tiny-translator/en)
+* [Tiny Translator (Deutsch)](https://martinroob.github.io/tiny-translator/de)
+* [Tiny Translator (Google traduit Français)](https://martinroob.github.io/tiny-translator/fr-google)
+* [Tiny Translator (Русский Google переведен)](https://martinroob.github.io/tiny-translator/ru-google)
 
 This application can be used to work on the translation of all file formats Angular can use.
 These are `XLIFF 2.0`, `XLIFF 1.2` or `XMB/XTB` files.
@@ -51,10 +55,10 @@ Have a look at it.
 ## Preinstalled version on Github Pages
 There is a preinstalled version on githubpages.
 Just start it by clicking on 
-- [Tiny Translator (English)](https://martinroob.github.io/tiny-translator/en)
-- or [Tiny Translator (Deutsch)](https://martinroob.github.io/tiny-translator/de)
-- or [Tiny Translator (Francaise, auto translated)](https://martinroob.github.io/tiny-translator/fr-google)
-- or [Tiny Translator (Russian, auto translated)](https://martinroob.github.io/tiny-translator/ru-google)
+* [Tiny Translator (English)](https://martinroob.github.io/tiny-translator/en)
+* [Tiny Translator (Deutsch)](https://martinroob.github.io/tiny-translator/de)
+* [Tiny Translator (Google traduit Français)](https://martinroob.github.io/tiny-translator/fr-google)
+* [Tiny Translator (Русский Google переведен)](https://martinroob.github.io/tiny-translator/ru-google)
 
 ## Ready to run Docker image
 There are docker images available on [Docker Cloud](https://cloud.docker.com/swarm/martinroob/repository/docker/martinroob/tiny-translator/general).

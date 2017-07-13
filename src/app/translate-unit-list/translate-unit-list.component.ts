@@ -1,14 +1,16 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {TranslationUnit} from '../model/translation-unit';
 import {MdRadioChange} from '@angular/material';
 import {TranslationFileView} from '../model/translation-file-view';
-import {TranslationUnitFilterAll} from '../model/filters/translation-unit-filter-all';
-import {TranslationUnitFilterUntranslated} from '../model/filters/translation-unit-filter-untranslated';
-import {TranslationUnitFilterNeedsReview} from '../model/filters/translation-unit-filter-needs-review';
 import {WorkflowType} from '../model/translation-project';
 import {Subject} from 'rxjs/Subject';
 import {Subscription} from 'rxjs/Subscription';
-import {TranslationUnitFilterSubstring} from '../model/filters/translation-unit-filter-substring';
+import {
+  FILTER_ALL, FILTER_AUTOTRANSLATED, FILTER_AUTOTRANSLATED_FAILED, FILTER_AUTOTRANSLATED_IGNORED, FILTER_NEEDS_REVIEW,
+  FILTER_SUBSTRING,
+  FILTER_UNTRANSLATED,
+  TranslationUnitFilterService
+} from '../model/filters/translation-unit-filter.service';
 
 /**
  * Component that shows a list of trans units.
@@ -32,7 +34,15 @@ export class TranslateUnitListComponent implements OnInit {
    */
   @Input() workflowType: WorkflowType;
 
-  constructor() {
+  @Input() hasAutotranslatedUnits: boolean;
+
+  /**
+   * Emitted, when user wants to navigate to another unit.
+   * @type {EventEmitter<TranslationUnit>} the wanted trans unit.
+   */
+  @Output() changeTranslationUnit: EventEmitter<TranslationUnit> = new EventEmitter();
+
+  constructor(private translationUnitFilterService: TranslationUnitFilterService) {
     this.translationFileView = new TranslationFileView(null);
     this.substringSubject = new Subject<string>();
   }
@@ -58,15 +68,15 @@ export class TranslateUnitListComponent implements OnInit {
   }
 
   public showAll() {
-    this.translationFileView.setActiveFilter(new TranslationUnitFilterAll());
+    this.translationFileView.setActiveFilter(this.translationUnitFilterService.getFilter(FILTER_ALL));
   }
 
   public showUntranslated() {
-    this.translationFileView.setActiveFilter(new TranslationUnitFilterUntranslated());
+    this.translationFileView.setActiveFilter(this.translationUnitFilterService.getFilter(FILTER_UNTRANSLATED));
   }
 
   public showNeedsReview() {
-    this.translationFileView.setActiveFilter(new TranslationUnitFilterNeedsReview());
+    this.translationFileView.setActiveFilter(this.translationUnitFilterService.getFilter(FILTER_NEEDS_REVIEW));
   }
 
   public showBySearchFilter() {
@@ -74,14 +84,26 @@ export class TranslateUnitListComponent implements OnInit {
       this.substringSubscription.unsubscribe();
     }
     const substr = this.substringToSearch ? this.substringToSearch : '';
-    this.translationFileView.setActiveFilter(new TranslationUnitFilterSubstring(substr));
-    this.substringSubscription = this.substringSubject.debounceTime(200).subscribe((substr) => {
-      this.translationFileView.setActiveFilter(new TranslationUnitFilterSubstring(substr));
+    this.translationFileView.setActiveFilter(this.translationUnitFilterService.getFilter(FILTER_SUBSTRING, substr));
+    this.substringSubscription = this.substringSubject.debounceTime(200).subscribe((sub) => {
+      this.translationFileView.setActiveFilter(this.translationUnitFilterService.getFilter(FILTER_SUBSTRING, sub));
     });
   }
 
   substringToSearchChange() {
     this.substringSubject.next(this.substringToSearch);
+  }
+
+  public showAutotranslated() {
+    this.translationFileView.setActiveFilter(this.translationUnitFilterService.getFilter(FILTER_AUTOTRANSLATED));
+  }
+
+  public showAutotranslatedFailed() {
+    this.translationFileView.setActiveFilter(this.translationUnitFilterService.getFilter(FILTER_AUTOTRANSLATED_FAILED));
+  }
+
+  public showAutotranslatedIgnored() {
+    this.translationFileView.setActiveFilter(this.translationUnitFilterService.getFilter(FILTER_AUTOTRANSLATED_IGNORED));
   }
 
   filterChanged(changeEvent: MdRadioChange) {
@@ -98,13 +120,22 @@ export class TranslateUnitListComponent implements OnInit {
       case 'search':
         this.showBySearchFilter();
         break;
+      case 'autotranslated':
+        this.showAutotranslated();
+        break;
+      case 'autotranslatedFailed':
+        this.showAutotranslatedFailed();
+        break;
+      case 'autotranslatedIgnored':
+        this.showAutotranslatedIgnored();
+        break;
       default:
         // do nothing
     }
   }
 
   public selectTransUnit(tu: TranslationUnit) {
-    this.translationFileView.selectTransUnit(tu);
+    this.changeTranslationUnit.emit(tu);
   }
 
   isSelected(tu: TranslationUnit): boolean {
@@ -114,4 +145,5 @@ export class TranslateUnitListComponent implements OnInit {
   isWorkflowWithReview(): boolean {
     return this.workflowType === WorkflowType.WITH_REVIEW;
   }
+
 }

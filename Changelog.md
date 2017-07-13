@@ -1,3 +1,16 @@
+<a name="0.5.0"></a>
+# [0.5.0](https://github.com/martinroob/tiny-translator/compare/v0.5.0...v0.4.0) (2017-07-13)
+
+### Bug Fixes
+
+* **GUI** No flag shown for language with region code like `fr-google`. Now when region code is longer than 2 chars it cannot be a country, so the language will be used (`fr` in example) ([#23](https://github.com/martinroob/tiny-translator/issues/23)).
+
+### Features
+
+* **GUI** TinyTranslator now stores current project and current unit in local storage ([#25](https://github.com/martinroob/tiny-translator/issues/25)).
+
+* **auto translation** Auto translation now shows a summary page after run. You can then filter for auto translated units. ([#24](https://github.com/martinroob/tiny-translator/issues/24)).
+
 <a name="0.4.0"></a>
 # [0.4.0](https://github.com/martinroob/tiny-translator/compare/v0.4.0...v0.3.0) (2017-07-10)
 

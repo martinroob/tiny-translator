@@ -1,7 +1,7 @@
 import {TranslationMessagesFileFactory, ITranslationMessagesFile, ITransUnit} from 'ngx-i18nsupport-lib';
 import {isNullOrUndefined} from 'util';
 import {TranslationUnit} from './translation-unit';
-import {Observable} from 'rxjs';
+import {Observable} from 'rxjs/Observable';
 import {AsynchronousFileReaderResult} from './asynchronous-file-reader.service';
 import {
   FILETYPE_XTB, FORMAT_XMB, IICUMessage, IICUMessageTranslation,
@@ -107,7 +107,7 @@ export class TranslationFile {
     newInstance.fileContent = deserializedObject.fileContent;
     newInstance._explicitSourceLanguage = deserializedObject.explicitSourceLanguage;
     try {
-      let encoding = null; // unknown, lib can find it
+      const encoding = null; // unknown, lib can find it
       let optionalMaster: {xmlContent: string, path: string, encoding: string} = null;
       if (deserializedObject.masterContent) {
         optionalMaster = {xmlContent: deserializedObject.masterContent, path: deserializedObject.masterName, encoding: encoding};
@@ -333,12 +333,11 @@ export class TranslationFile {
     return autoTranslateService.translateMultipleStrings(allMessages, this.sourceLanguage(), this.targetLanguage())
       .map((translations: string[]) => {
         const summary = new AutoTranslateSummaryReport();
-        summary.setIgnored(allUntranslated.length - allTranslatable.length);
         for (let i = 0; i < translations.length; i++) {
           const tu = allTranslatable[i];
           const translationText = translations[i];
           const result = tu.autoTranslateNonICUUnit(translationText);
-          summary.addSingleResult(tu, result);
+          summary.addSingleResult(result);
         }
         return summary;
       })
@@ -365,7 +364,7 @@ export class TranslationFile {
     // check for nested ICUs, we do not support that
     if (categories.find((category) => !isNullOrUndefined(category.getMessageNormalized().getICUMessage()))) {
       const summary = new AutoTranslateSummaryReport();
-      summary.setIgnored(1);
+      summary.addSingleResult(AutoTranslateResult.Ignored(tu, 'nested icu message'));
       return Observable.of(summary);
     }
     const allMessages: string[] = categories.map((category) => category.getMessageNormalized().asDisplayString());
@@ -378,11 +377,11 @@ export class TranslationFile {
           icuTranslation[categories[i].getCategory()] = translationText;
         }
         const result = tu.autoTranslateICUUnit(icuTranslation);
-        summary.addSingleResult(tu, result);
+        summary.addSingleResult(result);
         return summary;
       }).catch((err) => {
         const failSummary = new AutoTranslateSummaryReport();
-        failSummary.addSingleResult(tu, new AutoTranslateResult(false, err.message));
+        failSummary.addSingleResult(AutoTranslateResult.Failed(tu, err.message));
         return Observable.of(failSummary);
       });
   }

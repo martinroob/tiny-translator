@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {TinyTranslatorService} from '../model/tiny-translator.service';
-import {TranslationFile} from '../model/translation-file';
 import {TranslationUnit} from '../model/translation-unit';
 import {TranslationProject, UserRole} from '../model/translation-project';
 import {TranslationFileView} from '../model/translation-file-view';
@@ -21,10 +20,6 @@ export class TranslatePageComponent implements OnInit {
     return this.translationService.currentProject();
   }
 
-  currentFile(): TranslationFile {
-    return this.currentProject() ? this.currentProject().translationFile : null;
-  }
-
   currentView(): TranslationFileView {
     return this.currentProject() ? this.currentProject().translationFileView : null;
   }
@@ -38,6 +33,26 @@ export class TranslatePageComponent implements OnInit {
     this.translationService.commitChanges(this.currentProject());
   }
 
+  /**
+   * Navigate to another unit.
+   * @param translationUnit
+   */
+  onChangeTranslationUnit(translationUnit: TranslationUnit) {
+    this.translationService.selectTransUnit(translationUnit);
+  }
+
+  /**
+   * Navigate to next or prev unit.
+   * @param direction 'next' or 'prev'.
+   */
+  onChangeTranslationUnitToNextOrPrev(direction: string) {
+    if (direction === 'next') {
+      this.translationService.nextTransUnit();
+    } else if (direction === 'prev') {
+      this.translationService.prevTransUnit();
+    }
+  }
+
   save() {
     this.translationService.saveProject(this.currentProject());
   }
@@ -45,4 +60,11 @@ export class TranslatePageComponent implements OnInit {
   isInReviewMode(): boolean {
     return this.currentProject() && this.currentProject().userRole === UserRole.REVIEWER;
   }
+
+  hasAutotranslatedUnits(): boolean {
+    return this.currentProject()
+      && this.currentProject().autoTranslateSummaryReport()
+      && this.currentProject().autoTranslateSummaryReport().total() > 0;
+  }
+
 }

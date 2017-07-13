@@ -1,4 +1,3 @@
-import {TranslationUnit} from './translation-unit';
 import {AutoTranslateResult} from './auto-translate-result';
 import {format} from 'util';
 /**
@@ -12,29 +11,29 @@ export class AutoTranslateSummaryReport {
   private _ignored: number;
   private _success: number;
   private _failed: number;
+  private _allResults: {[id: string]: AutoTranslateResult};
 
   constructor() {
+    this._allResults = {};
     this._total = 0;
     this._ignored = 0;
     this._success = 0;
     this._failed = 0;
   }
 
-  public setIgnored(ignored: number) {
-    this._total += ignored;
-    this._ignored = ignored;
-  }
-
   /**
    * Add a single result to the summary.
-   * @param tu
    * @param result
    */
-  public addSingleResult(tu: TranslationUnit, result: AutoTranslateResult) {
-    // TODO
+  public addSingleResult(result: AutoTranslateResult) {
+    this._allResults[result.translationUnit().id()] = result;
     this._total++;
     if (result.success()) {
-      this._success++;
+      if (result.ignored()) {
+        this._ignored++;
+      } else {
+        this._success++;
+      }
     } else {
       this._failed++;
     }
@@ -45,6 +44,7 @@ export class AutoTranslateSummaryReport {
    * @param anotherSummary
    */
   public merge(anotherSummary: AutoTranslateSummaryReport) {
+    this._allResults = Object.assign({}, this._allResults, anotherSummary._allResults);
     this._total += anotherSummary.total();
     this._ignored += anotherSummary.ignored();
     this._success += anotherSummary.success();
@@ -71,8 +71,19 @@ export class AutoTranslateSummaryReport {
    * Human readable version of report
    */
   public content(): string {
-    let result = format('Total translated: %s\nIgnored: %s\nSuccesful: %s\nFailed: %s', this._total, this._ignored, this._success, this._failed);
-    return result;
+    return format('Total translated: %s\nIgnored: %s\nSuccesful: %s\nFailed: %s',
+      this._total, this._ignored, this._success, this._failed);
   }
 
+  public singleResult(tuId: string): AutoTranslateResult {
+    return this._allResults[tuId];
+  }
+
+  public allResults(): AutoTranslateResult[] {
+    const result: AutoTranslateResult[] = [];
+    Object.keys(this._allResults).forEach((val) => {
+      result.push(this._allResults[val]);
+    })
+    return result;
+  }
 }

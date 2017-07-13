@@ -5,6 +5,7 @@ import {TranslatePageComponent} from './translate-page/translate-page.component'
 import {ActiveProjectGuard} from './active-project.guard';
 import {CreateProjectPageComponent} from './create-project-page/create-project-page.component';
 import {EditProjectPageComponent} from './edit-project-page/edit-project-page.component';
+import {AutoTranslateSummaryPageComponent} from './auto-translate-summary-page/auto-translate-summary-page.component';
 import {ConfigureAutoTranslatePageComponent} from './configure-auto-translate-page/configure-auto-translate-page.component';
 
 /**
@@ -17,8 +18,9 @@ const appRoutes: Routes = [
   { path: 'createproject', component: CreateProjectPageComponent },
   { path: 'editproject', component: EditProjectPageComponent, canActivate: [ActiveProjectGuard] },
   { path: 'translate', component: TranslatePageComponent, canActivate: [ActiveProjectGuard] },
+  { path: 'autotranslatesummary', component: AutoTranslateSummaryPageComponent},
   { path: 'configureautotranslate', component: ConfigureAutoTranslatePageComponent},
-  { path: '', component: HomePageComponent}
+  { path: '', redirectTo: '/translate', pathMatch: 'full' },
 ];
 
 export const appRoutingProviders: any[] = [

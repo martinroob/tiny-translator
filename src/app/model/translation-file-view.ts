@@ -10,7 +10,7 @@ import {TranslationUnitFilterUntranslated} from './filters/translation-unit-filt
 
 /**
  * A view on the current translation file.
- * It determines what trans units are currently visible (specified by the actove filter).
+ * It determines what trans units are currently visible (specified by the active filter).
  * It has a pointer to the current trans unit and allows scrolling through the trans units.
  * Created by roobm on 27.05.2017.
  */
@@ -68,10 +68,18 @@ export class TranslationFileView {
     }
   }
 
-  public selectTransUnit(selectedTransUnit: TranslationUnit) {
+  /**
+   * Select given TransUnit
+   * @param selectedTransUnit
+   * @return true, if selected, false if not in view.
+   */
+  public selectTransUnit(selectedTransUnit: TranslationUnit): boolean {
     const index = this._scrollableTransUnits.findIndex(tu => tu === selectedTransUnit);
     if (index >= 0) {
       this._currentTransUnitIndex = index;
+      return true;
+    } else {
+      return false;
     }
   }
 

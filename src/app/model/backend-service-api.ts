@@ -23,10 +23,42 @@ export class BackendServiceAPI {
   }
 
   /**
+   * Save id of curent project.
+   * @param id of project, null to remove.
+   */
+  storeCurrentProjectId(id: string) {
+
+  }
+
+  /**
+   * ID if current project.
+   * @return {string} id of current project or null
+   */
+  currentProjectId(): string {
+    return null;
+  }
+
+  /**
+   * Save ID of last active TransUnit
+   * @param tuId active unit id or null.
+   */
+  storeCurrentTransUnitId(tuId: string) {
+
+  }
+
+  /**
+   * ID of last active TransUnit
+   * @return {string} active unit or null.
+   */
+  currentTransUnitId(): string {
+    return null;
+  }
+
+  /**
    * Delete a project from store.
    * @param project
    */
-  delete(project: TranslationProject) {
+  deleteProject(project: TranslationProject) {
 
   }
 
