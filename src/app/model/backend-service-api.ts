@@ -39,6 +39,22 @@ export class BackendServiceAPI {
   }
 
   /**
+   * Save ID of last active TransUnit
+   * @param tuId active unit id or null.
+   */
+  storeCurrentTransUnitId(tuId: string) {
+
+  }
+
+  /**
+   * ID of last active TransUnit
+   * @return {string} active unit or null.
+   */
+  currentTransUnitId(): string {
+    return null;
+  }
+
+  /**
    * Delete a project from store.
    * @param project
    */

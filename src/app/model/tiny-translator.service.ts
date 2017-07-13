@@ -11,6 +11,7 @@ import {
   AutoTranslateServiceAPI
 } from './auto-translate-service-api';
 import {AutoTranslateSummaryReport} from './auto-translate-summary-report';
+import {TranslationUnit} from './translation-unit';
 
 @Injectable()
 export class TinyTranslatorService {
@@ -33,6 +34,11 @@ export class TinyTranslatorService {
     const currentProjectId = this.backendService.currentProjectId();
     if (currentProjectId) {
       this._currentProject = this._projects.find((project) => project.id === currentProjectId);
+    }
+    const currentTransUnitId: string = this.backendService.currentTransUnitId();
+    if (currentTransUnitId && this.currentProject()) {
+      const transUnit = this.currentProject().translationFile.allTransUnits().find(tu => tu.id() == currentTransUnitId);
+      this.currentProject().translationFileView.selectTransUnit(transUnit);
     }
     this.autoTranslateService.setApiKey(this.backendService.autoTranslateApiKey());
   }
@@ -81,6 +87,20 @@ export class TinyTranslatorService {
 
   public currentProject(): TranslationProject {
     return this._currentProject;
+  }
+
+  /**
+   * Select a TranslationUnit, if it is currently in the filteres list.
+   * If it is not, will do nothing.
+   * @param transUnit
+   */
+  public selectTransUnit(transUnit: TranslationUnit) {
+    if (!this.currentProject()) {
+      return;
+    } else {
+      this.currentProject().translationFileView.selectTransUnit(transUnit);
+      this.backendService.storeCurrentTransUnitId(transUnit.id());
+    }
   }
 
   /**
