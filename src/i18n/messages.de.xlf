@@ -570,119 +570,119 @@
         </context-group>
       </trans-unit><trans-unit id="860553e954e6ab29671885c3ea589593657d06ca" datatype="html">
         <source>Autotranslate Run Result</source>
-        <target state="new">Autotranslate Run Result</target>
+        <target state="final">Autotranslate Ergebnis letzter Lauf</target>
         <context-group purpose="location">
           <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/auto-translate-summary-page/auto-translate-summary-page.component.ts</context>
           <context context-type="linenumber">1</context>
         </context-group>
       </trans-unit><trans-unit id="f0a200f0bdcfd0947efcaac1f7a442ed4d17f8bf" datatype="html">
         <source>No Autotranslate run result available.</source>
-        <target state="new">No Autotranslate run result available.</target>
+        <target state="final">Keine Autotranslate-Ergebnisse vorhanden.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/auto-translate-summary-page/auto-translate-summary-page.component.ts</context>
           <context context-type="linenumber">3</context>
         </context-group>
       </trans-unit><trans-unit id="1722d5b9b296cfbc68126199692aac5851a1eab6" datatype="html">
         <source>Ignored</source>
-        <target state="new">Ignored</target>
+        <target state="final">Ignorierte</target>
         <context-group purpose="location">
           <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/auto-translate-summary-page/auto-translate-summary-page.component.ts</context>
           <context context-type="linenumber">9</context>
         </context-group>
       </trans-unit><trans-unit id="e7b11a3879d38e60799103dfd461d71d6e595f20" datatype="html">
         <source>navigate to ignored units</source>
-        <target state="new">navigate to ignored units</target>
+        <target state="final">Ignorierte Units aufrufen</target>
         <context-group purpose="location">
           <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/auto-translate-summary-page/auto-translate-summary-page.component.ts</context>
           <context context-type="linenumber">11</context>
         </context-group>
       </trans-unit><trans-unit id="66a4e64e763b88fec604241bd953924fb21310df" datatype="html">
         <source>show all untranslated that were ignored by auto translation</source>
-        <target state="new">show all untranslated that were ignored by auto translation</target>
+        <target state="final">Anzeige aller nicht übersetzten Einheiten, die bei der Autotranslation ignoriert wurden.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/auto-translate-summary-page/auto-translate-summary-page.component.ts</context>
           <context context-type="linenumber">11</context>
         </context-group>
       </trans-unit><trans-unit id="64b582e0d8e3a28331a14d2a1017fa5d6ffb8d93" datatype="html">
         <source>Failed</source>
-        <target state="new">Failed</target>
+        <target state="final">Fehlerhafte</target>
         <context-group purpose="location">
           <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/auto-translate-summary-page/auto-translate-summary-page.component.ts</context>
           <context context-type="linenumber">22</context>
         </context-group>
       </trans-unit><trans-unit id="17fa8a96276576a5f8f06d080dd24ac91530912c" datatype="html">
         <source>navigate to failed units</source>
-        <target state="new">navigate to failed units</target>
+        <target state="final">Fehlerhafte Units aufrufen</target>
         <context-group purpose="location">
           <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/auto-translate-summary-page/auto-translate-summary-page.component.ts</context>
           <context context-type="linenumber">24</context>
         </context-group>
       </trans-unit><trans-unit id="44743b67870986d588da2254ffcccc3c7ef738ae" datatype="html">
         <source>show all untranslated where auto translation failed</source>
-        <target state="new">show all untranslated where auto translation failed</target>
+        <target state="final">Anzeige aller nicht übersetzten Einheiten, die bei der Autotranslation Fehler erzeugt haben.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/auto-translate-summary-page/auto-translate-summary-page.component.ts</context>
           <context context-type="linenumber">24</context>
         </context-group>
       </trans-unit><trans-unit id="0b6e58c9821f3fd3955f0175dd7d0a20c2c43c43" datatype="html">
         <source>navigate to translated units</source>
-        <target state="new">navigate to translated units</target>
+        <target state="final">Übersetze aufrufen</target>
         <context-group purpose="location">
           <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/auto-translate-summary-page/auto-translate-summary-page.component.ts</context>
           <context context-type="linenumber">39</context>
         </context-group>
       </trans-unit><trans-unit id="8b91c2c969bfc388e649eff5ad4604c9c896cf93" datatype="html">
         <source>show overview of auto translated units</source>
-        <target state="new">show overview of auto translated units</target>
+        <target state="final">Zeig eine Übersicht der automatisch übersetzten Einheiten</target>
         <context-group purpose="location">
           <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/auto-translate-summary-page/auto-translate-summary-page.component.ts</context>
           <context context-type="linenumber">39</context>
         </context-group>
       </trans-unit><trans-unit id="ac92738c50ac18bab774600d8358ff7082b747b8" datatype="html">
         <source>continue</source>
-        <target state="new">continue</target>
+        <target state="final">Weiter</target>
         <context-group purpose="location">
           <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/auto-translate-summary-page/auto-translate-summary-page.component.ts</context>
           <context context-type="linenumber">45</context>
         </context-group>
       </trans-unit><trans-unit id="1cd8aab033d0fc35b8273e731584c0c7c7a6438e" datatype="html">
         <source>continue translation</source>
-        <target state="new">continue translation</target>
+        <target state="final">Weiter übersetzen</target>
         <context-group purpose="location">
           <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/auto-translate-summary-page/auto-translate-summary-page.component.ts</context>
           <context context-type="linenumber">45</context>
         </context-group>
       </trans-unit><trans-unit id="b7aaa15193ff68fb36dbbf5cb6388672aba9c7d8" datatype="html">
         <source>Last results..</source>
-        <target state="new">Last results..</target>
+        <target state="final">Ergebnis letzter Lauf..</target>
         <context-group purpose="location">
           <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/app.component.ts</context>
           <context context-type="linenumber">36</context>
         </context-group>
       </trans-unit><trans-unit id="199c0c9528e7ded8511f4c5dcceacb0f4de13d15" datatype="html">
         <source>Open summary page of last autotranslate run</source>
-        <target state="new">Open summary page of last autotranslate run</target>
+        <target state="final">Öffnen Übersicht über die Ergebnisse des letzten Autotranslation-Laufs</target>
         <context-group purpose="location">
           <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/app.component.ts</context>
           <context context-type="linenumber">34</context>
         </context-group>
       </trans-unit><trans-unit id="50947a36dc35b04f2f8cef573952d0f2fb69c92e" datatype="html">
         <source>Autotranslated units</source>
-        <target state="new">Autotranslated units</target>
+        <target state="final">Automatisch übersetzte Einheiten</target>
         <context-group purpose="location">
           <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/translate-unit-list/translate-unit-list.component.ts</context>
           <context context-type="linenumber">6</context>
         </context-group>
       </trans-unit><trans-unit id="92afa05208be85e6b6aa721b8e72ee59318aed6b" datatype="html">
         <source>failed Autotranslated</source>
-        <target state="new">failed Autotranslated</target>
+        <target state="final">Gescheiterte automatisch übersetzte</target>
         <context-group purpose="location">
           <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/translate-unit-list/translate-unit-list.component.ts</context>
           <context context-type="linenumber">7</context>
         </context-group>
       </trans-unit><trans-unit id="f4231e3f4bf66af59f31bd007ab099b6e4cf1bfb" datatype="html">
         <source>ignored Autotranslated</source>
-        <target state="new">ignored Autotranslated</target>
+        <target state="final">Ignorierte automatisch übersetzte</target>
         <context-group purpose="location">
           <context context-type="sourcefile">S:/experimente/tiny-translator/src/app/translate-unit-list/translate-unit-list.component.ts</context>
           <context context-type="linenumber">8</context>
