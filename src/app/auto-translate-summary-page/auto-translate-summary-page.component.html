@@ -2,7 +2,7 @@
 <div *ngIf="!hasTranslateSummaryReport()">
   <p i18n>No Autotranslate run result available.</p>
 </div>
-<div *ngIf="hasTranslateSummaryReport()" i18n>
+<div *ngIf="hasTranslateSummaryReport()">
   <p>{{autoTranslateSummaryReport().content()}}</p>
   <div *ngIf="ignoredResults().length > 0">
     <div fxLayout="row" fxLayoutGap="50px">
