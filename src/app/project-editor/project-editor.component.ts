@@ -108,7 +108,7 @@ export class ProjectEditorComponent implements OnInit {
   }
 
   isWorkflowWithReview(): boolean {
-    return this.project && this.project.workflowType === WorkflowType.WITH_REVIEW;
+    return this.toWorkflowType(this.form.value.workflowType) === WorkflowType.WITH_REVIEW;
   }
 
   hasExplicitSourceLanguage(): boolean {

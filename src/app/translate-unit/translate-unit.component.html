@@ -8,32 +8,36 @@
 </md-card>
 <md-card *ngIf="translationUnit">
   <md-card-header>
-    <md-card-title i18n>Translation Unit {{transUnitID()}}</md-card-title>
-    <md-card-subtitle>
+    <md-card-title fxLayout="row" fxLayoutAlign="start center">
       <span i18n>State {{targetState()}}</span>
       <md-icon *ngIf="targetState() === 'final'">done</md-icon>
       <md-icon *ngIf="targetState() === 'translated'">label_outline</md-icon>
       <md-icon *ngIf="targetState() === 'new'">translate</md-icon>
-    </md-card-subtitle>
+      <span fxFlexFill></span>
+      <button md-icon-button (click)="showTransUnitID()" mdTooltip="ID {{transUnitID()}}"><md-icon>info</md-icon></button>
+      <button md-icon-button *ngIf="sourceRef()" (click)="showSourceRefInfo()" mdTooltip="{{sourceRef()}}"><md-icon>location_on</md-icon></button>
+    </md-card-title>
   </md-card-header>
-  <md-card-content>
-    <p>
-      <span i18n>Source:<button md-icon-button *ngIf="sourceRef()" (click)="showSourceRefInfo()" mdTooltip="{{sourceRef()}}"><md-icon>info</md-icon></button></span>
-      <app-language [code]="sourceLanguage()"></app-language>
-      <app-normalized-message-input [readonly]="true" [normalized]="showNormalized" [message]="sourceContentNormalized()"></app-normalized-message-input>
-    </p>
-    <p *ngIf="sourceDescription()"><b i18n>Description</b> {{sourceDescription()}}</p>
-    <p *ngIf="sourceMeaning()"><b i18n>Meaning</b> {{sourceMeaning()}}</p>
+  <md-card-content fxLayout="column" fxLayoutGap="5px">
+    <div>
+      <div id="sourcemessage">
+        <app-language [code]="sourceLanguage()"></app-language>
+        <app-normalized-message-input [readonly]="true" [normalized]="showNormalized" [message]="sourceContentNormalized()"></app-normalized-message-input>
+        <p *ngIf="sourceDescription()"><b i18n>Description</b> {{sourceDescription()}}</p>
+        <p *ngIf="sourceMeaning()"><b i18n>Meaning</b> {{sourceMeaning()}}</p>
+      </div>
+    </div>
     <form id="translation" fxLayout="column" [formGroup]="form">
       <p fxLayout="row"><span i18n>Your translation to</span>&nbsp;<app-language [code]="targetLanguage()"></app-language></p>
       <div fxLayout="row">
-        <md-slide-toggle formControlName="showNormalized" color="accent"
-                         md-tooltip="In normalization mode all markup contained in the messsages is shown in a simplified, format neutral way."
-                         i18n-md-tooltip>
-          <ng-container *ngIf="showNormalized" i18n>Normalization mode (switch off to show native message)
-          </ng-container>
-          <ng-container *ngIf="!showNormalized" i18n>Normalization mode (switch on to use normalization)</ng-container>
-        </md-slide-toggle>
+        <div fxLayout="column">
+          <md-slide-toggle formControlName="showNormalized" color="accent"
+                           md-tooltip="In normalization mode all markup contained in the messsages is shown in a simplified, format neutral way."
+                           i18n-md-tooltip i18n>Normalization mode
+          </md-slide-toggle>
+          <p *ngIf="showNormalized" i18n>(switch off to show native message)</p>
+          <p *ngIf="!showNormalized" i18n>(switch on to use normalization)</p>
+        </div>
         <button *ngIf="!reviewMode" md-mini-fab
                 fxFlexAlign="start"
                 md-button color="accent"

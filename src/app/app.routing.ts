@@ -2,6 +2,7 @@ import {ModuleWithProviders} from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {HomePageComponent} from './home-page/home-page.component';
 import {TranslatePageComponent} from './translate-page/translate-page.component';
+import {FilterPageComponent} from './filter-page/filter-page.component';
 import {ActiveProjectGuard} from './active-project.guard';
 import {CreateProjectPageComponent} from './create-project-page/create-project-page.component';
 import {EditProjectPageComponent} from './edit-project-page/edit-project-page.component';
@@ -18,6 +19,7 @@ const appRoutes: Routes = [
   { path: 'createproject', component: CreateProjectPageComponent },
   { path: 'editproject', component: EditProjectPageComponent, canActivate: [ActiveProjectGuard] },
   { path: 'translate', component: TranslatePageComponent, canActivate: [ActiveProjectGuard] },
+  { path: 'selectfilter', component: FilterPageComponent, canActivate: [ActiveProjectGuard] },
   { path: 'autotranslatesummary', component: AutoTranslateSummaryPageComponent},
   { path: 'configureautotranslate', component: ConfigureAutoTranslatePageComponent},
   { path: '', redirectTo: '/translate', pathMatch: 'full' },

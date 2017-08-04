@@ -2,9 +2,10 @@
   <app-translate-unit-list [translationFileView]="currentView()" [workflowType]="currentProject()?.workflowType"
                            [hasAutotranslatedUnits]="hasAutotranslatedUnits()"
                            (changeTranslationUnit)="onChangeTranslationUnit($event)"
-                           fxFlex="40%"></app-translate-unit-list>
+                           fxFlex="40%" fxHide.lt-md></app-translate-unit-list>
   <div fxLayout="column" fxFlexFill>
-    <app-project-status [project]="currentProject()" (onSave)="save()"></app-project-status>
+    <app-filter-status fxHide.gt-sm [translationFileView]="currentView()"></app-filter-status>
+    <app-project-status fxHide.lt-md [project]="currentProject()" (onSave)="save()"></app-project-status>
     <app-translate-unit
       [translationFileView]="currentView()"
       [translationUnit]="currentTranslationUnit()"
