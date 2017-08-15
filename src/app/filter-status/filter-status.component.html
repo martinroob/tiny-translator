@@ -7,7 +7,7 @@
       <ng-container *ngSwitchCase="'autotranslatedIgnored'" i18n>ignored Autotranslated</ng-container>
       <ng-container *ngSwitchCase="'untranslated'" i18n>Untranslated units</ng-container>
       <ng-container *ngSwitchCase="'needsReview'" i18n>Review needed</ng-container>
-      <ng-container *ngSwitchCase="'bySubstring'" i18n>(Search value)</ng-container>
+      <ng-container *ngSwitchCase="'bySubstring'" i18n>Substring {{substringFilterPattern()}}</ng-container>
       <ng-container *ngSwitchDefault>{{currentFilterName()}}</ng-container>
     </ng-container>
   </a>

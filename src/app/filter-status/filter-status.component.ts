@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {TranslationFileView} from '../model/translation-file-view';
+import {TranslationUnitFilterSubstring} from '../model/filters/translation-unit-filter-substring';
 
 @Component({
   selector: 'app-filter-status',
@@ -20,6 +21,14 @@ export class FilterStatusComponent implements OnInit {
       return this.translationFileView.activeFilter().name();
     } else {
       return null;
+    }
+  }
+
+  substringFilterPattern(): string {
+    const activeFilter = this.translationFileView.activeFilter();
+    if (activeFilter.name() === 'bySubstring') {
+      const filter: TranslationUnitFilterSubstring = <TranslationUnitFilterSubstring> activeFilter;
+      return filter.substringFilterPattern();
     }
   }
 }

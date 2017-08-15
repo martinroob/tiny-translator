@@ -10,6 +10,11 @@ md-input-container {
   min-width: 250px;
 }
 
+md-card-content {
+  max-height: 310px;
+  overflow: scroll;
+}
+
 #translation {
   border: 2px solid;
   padding: 5px;

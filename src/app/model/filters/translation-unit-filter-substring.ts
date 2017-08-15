@@ -35,4 +35,8 @@ export class TranslationUnitFilterSubstring implements ITranslationUnitFilter {
   public name(): string {
     return 'bySubstring';
   }
+
+  public substringFilterPattern(): string {
+    return this.substring;
+  }
 }

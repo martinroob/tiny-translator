@@ -19,8 +19,8 @@
       </button>
       <a md-icon-button routerLink="/home" routerLinkActive="active"><md-icon>home</md-icon></a>
       <a md-icon-button routerLink="/editproject" routerLinkActive="active" mdTooltip="Details of the project (click to open)" i18n-mdTooltip>
-        <md-icon>info</md-icon>
-        {{currentProjectName() | abbreviate}}
+        <md-icon>edit</md-icon>
+        {{currentProjectName() | abbreviate: 30}}
       </a>
       <!-- main menu -->
       <md-menu #menu="mdMenu">

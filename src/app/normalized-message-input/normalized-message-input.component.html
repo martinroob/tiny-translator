@@ -14,7 +14,7 @@
   <form *ngIf="!readonly" [formGroup]="form">
     <ng-container *ngIf="!isICUMessage() || !normalized">
       <md-input-container fxFlexFill>
-        <input mdInput type="text" formControlName="displayedText">
+        <textarea mdInput type="text" formControlName="displayedText"></textarea>
       </md-input-container>
     </ng-container>
     <ng-container *ngIf="isICUMessage() && normalized">

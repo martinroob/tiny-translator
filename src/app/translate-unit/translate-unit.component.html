@@ -9,11 +9,10 @@
 <md-card *ngIf="translationUnit">
   <md-card-header>
     <md-card-title fxLayout="row" fxLayoutAlign="start center">
-      <span i18n>State {{targetState()}}</span>
+      <ng-container i18n>State {{targetState()}}</ng-container>
       <md-icon *ngIf="targetState() === 'final'">done</md-icon>
       <md-icon *ngIf="targetState() === 'translated'">label_outline</md-icon>
       <md-icon *ngIf="targetState() === 'new'">translate</md-icon>
-      <span fxFlexFill></span>
       <button md-icon-button (click)="showTransUnitID()" mdTooltip="ID {{transUnitID()}}"><md-icon>info</md-icon></button>
       <button md-icon-button *ngIf="sourceRef()" (click)="showSourceRefInfo()" mdTooltip="{{sourceRef()}}"><md-icon>location_on</md-icon></button>
     </md-card-title>
