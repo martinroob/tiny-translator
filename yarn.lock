@@ -3496,21 +3496,21 @@ negotiator@0.6.1:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/negotiator/-/negotiator-0.6.1.tgz#2b327184e8992101177b28563fb5e7102acd0ca9"
 
-ngx-i18nsupport-lib@^1.5.0:
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/ngx-i18nsupport-lib/-/ngx-i18nsupport-lib-1.5.0.tgz#113460f2e037e1b6f26f6ffb9c6c5baaa15acab9"
+ngx-i18nsupport-lib@^1.6.1:
+  version "1.6.1"
+  resolved "https://registry.yarnpkg.com/ngx-i18nsupport-lib/-/ngx-i18nsupport-lib-1.6.1.tgz#02f20a330b44c3fa14a4aab089bd2195de199618"
   dependencies:
     "@types/xmldom" "^0.1.29"
     tokenizr "^1.1.4"
     xmldom "^0.1.27"
 
-ngx-i18nsupport@^0.8.0:
-  version "0.8.0"
-  resolved "https://registry.yarnpkg.com/ngx-i18nsupport/-/ngx-i18nsupport-0.8.0.tgz#d26166dff16457f7c515892b59db0db91382c935"
+ngx-i18nsupport@^0.8.3:
+  version "0.8.3"
+  resolved "https://registry.yarnpkg.com/ngx-i18nsupport/-/ngx-i18nsupport-0.8.3.tgz#77e336e2bb704a34e5205fc3d1c6e61f2e02b08f"
   dependencies:
     chalk "^2.0.1"
     commander "^2.9.0"
-    ngx-i18nsupport-lib "^1.5.0"
+    ngx-i18nsupport-lib "^1.6.1"
     request "^2.81.0"
     rxjs "^5.4.2"
 
