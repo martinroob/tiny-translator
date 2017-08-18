@@ -1,3 +1,14 @@
+<a name="0.6.0"></a>
+# [0.6.0](https://github.com/martinroob/tiny-translator/compare/v0.6.0...v0.5.0) (2017-08-18)
+
+### Bug Fixes
+
+* **XLIFF 2.0 format** handle ICU equiv in XLIFF 2.0 ([#27](https://github.com/martinroob/tiny-translator/issues/27)).
+
+### Features
+
+* **GUI** Support Phone Size Display ([#14](https://github.com/martinroob/tiny-translator/issues/14)).
+
 <a name="0.5.0"></a>
 # [0.5.0](https://github.com/martinroob/tiny-translator/compare/v0.5.0...v0.4.0) (2017-07-13)
 

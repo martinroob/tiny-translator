@@ -38,6 +38,8 @@ import { ProjectEditorComponent } from './project-editor/project-editor.componen
 import { ConfigureAutoTranslatePageComponent } from './configure-auto-translate-page/configure-auto-translate-page.component';
 import { AutoTranslateSummaryPageComponent } from './auto-translate-summary-page/auto-translate-summary-page.component';
 import { TranslationUnitFilterService } from './model/filters/translation-unit-filter.service';
+import { FilterStatusComponent } from './filter-status/filter-status.component';
+import { FilterPageComponent } from './filter-page/filter-page.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +61,9 @@ import { TranslationUnitFilterService } from './model/filters/translation-unit-f
     EditProjectPageComponent,
     ProjectEditorComponent,
     ConfigureAutoTranslatePageComponent,
-    AutoTranslateSummaryPageComponent
+    AutoTranslateSummaryPageComponent,
+    FilterStatusComponent,
+    FilterPageComponent
   ],
   imports: [
     BrowserModule,

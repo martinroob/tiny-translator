@@ -181,6 +181,14 @@ export class TranslateUnitComponent implements OnInit, OnChanges {
     this._snackbar.open(sourceRefMessage, 'OK', {duration: 5000}); // TODO i18n it
   }
 
+  /**
+   * Open a snackbar to show units ID
+   */
+  public showTransUnitID() {
+    const message = 'ID: ' + this.transUnitID();
+    this._snackbar.open(message, 'OK', {duration: 5000});
+  }
+
   errors(): any[] {
     if (!this._editedTargetMessage) {
       return [];

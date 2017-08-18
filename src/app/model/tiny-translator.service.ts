@@ -159,6 +159,9 @@ export class TinyTranslatorService {
     const index = this._projects.findIndex(p => p === project);
     if (index >= 0) {
       this._projects = this._projects.slice(0, index).concat(this._projects.slice(index + 1));
+      if (project === this.currentProject()) {
+        this.setCurrentProject(null);
+      }
     }
   }
 

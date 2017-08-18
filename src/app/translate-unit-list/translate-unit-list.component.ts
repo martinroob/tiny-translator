@@ -117,7 +117,7 @@ export class TranslateUnitListComponent implements OnInit {
       case 'needsReview':
         this.showNeedsReview();
         break;
-      case 'search':
+      case 'bySubstring':
         this.showBySearchFilter();
         break;
       case 'autotranslated':

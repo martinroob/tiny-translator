@@ -1,5 +1,5 @@
 md-card {
-  min-width: 400px;
+  min-width: 300px;
 }
 
 md-card-header {
@@ -7,11 +7,22 @@ md-card-header {
 }
 
 md-input-container {
-  min-width: 350px;
+  min-width: 250px;
+}
+
+md-card-content {
+  max-height: 310px;
+  overflow: scroll;
 }
 
 #translation {
   border: 2px solid;
+  padding: 5px;
+}
+
+#sourcemessage {
+  border: 1px solid;
+  padding: 5px;
 }
 
 .error {

@@ -25,6 +25,15 @@ export class AppComponent {
     return this.APP_CONFIG.BUILDVERSION;
   }
 
+  currentProjectName(): string {
+    const project = this.translatorService.currentProject();
+    return project ? project.name : '';
+  }
+
+  save() {
+    this.translatorService.saveProject(this.translatorService.currentProject());
+  }
+
   /**
    * Auto translate all untranslated units.
    * Redirects to a config page, if Google Translate is currently not available.
@@ -51,4 +60,5 @@ export class AppComponent {
   navigateToAutoTranslateSummary() {
     this.router.navigateByUrl('autotranslatesummary');
   }
+
 }
