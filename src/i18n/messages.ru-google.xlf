@@ -571,44 +571,43 @@
           <context context-type="sourcefile">app\app.component.ts</context>
           <context context-type="linenumber">30</context>
         </context-group>
-      <target state="new">Save..</target></trans-unit><trans-unit id="0d4e42ed6009feb7b837cf078afdc4cef5dc9699" datatype="html">
+      <target state="translated">Сохранить..</target></trans-unit><trans-unit id="0d4e42ed6009feb7b837cf078afdc4cef5dc9699" datatype="html">
         <source>Normalization mode
           </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app\translate-unit\translate-unit.component.ts</context>
           <context context-type="linenumber">35</context>
         </context-group>
-      <target state="new">Normalization mode
-          </target></trans-unit><trans-unit id="68de8fa5b0301ea69e1aa3c3b6d28ebf1fcb3c3d" datatype="html">
+      <target state="translated">Режим нормализации</target></trans-unit><trans-unit id="68de8fa5b0301ea69e1aa3c3b6d28ebf1fcb3c3d" datatype="html">
         <source>(switch off to show native message)</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app\translate-unit\translate-unit.component.ts</context>
           <context context-type="linenumber">37</context>
         </context-group>
-      <target state="new">(switch off to show native message)</target></trans-unit><trans-unit id="4c01cbb1c1da5adc5cee1eb82df786180ba61892" datatype="html">
+      <target state="translated">(Выключить, чтобы показать собственное сообщение)</target></trans-unit><trans-unit id="4c01cbb1c1da5adc5cee1eb82df786180ba61892" datatype="html">
         <source>(switch on to use normalization)</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app\translate-unit\translate-unit.component.ts</context>
           <context context-type="linenumber">38</context>
         </context-group>
-      <target state="new">(switch on to use normalization)</target></trans-unit><trans-unit id="4d29dc8d589ef19d5cb9fe7d2cf34d2f9f0b2fd3" datatype="html">
+      <target state="translated">(Включите, чтобы использовать нормализацию)</target></trans-unit><trans-unit id="4d29dc8d589ef19d5cb9fe7d2cf34d2f9f0b2fd3" datatype="html">
         <source>Save project changes</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app\project-editor\project-editor.component.ts</context>
           <context context-type="linenumber">45</context>
         </context-group>
-      <target state="new">Save project changes</target></trans-unit><trans-unit id="a2c383156fcb90b775ade03de5dd5f02fef96ba2" datatype="html">
+      <target state="translated">Сохранить изменения проекта</target></trans-unit><trans-unit id="a2c383156fcb90b775ade03de5dd5f02fef96ba2" datatype="html">
         <source>Substring <x id="INTERPOLATION"/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">app\filter-status\filter-status.component.ts</context>
           <context context-type="linenumber">10</context>
         </context-group>
-      <target state="new">Substring <x id="INTERPOLATION"/></target></trans-unit><trans-unit id="686d9c1ac5d9d25f430071ccbafb76029834f20b" datatype="html">
+      <target state="translated">Подстрока <x id="INTERPOLATION"/></target></trans-unit><trans-unit id="686d9c1ac5d9d25f430071ccbafb76029834f20b" datatype="html">
         <source><x id="INTERPOLATION"/> of <x id="INTERPOLATION_1"/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">app\filter-status\filter-status.component.ts</context>
           <context context-type="linenumber">15</context>
         </context-group>
-      <target state="new"><x id="INTERPOLATION"/> of <x id="INTERPOLATION_1"/></target></trans-unit></body>
+      <target state="translated"><x id="INTERPOLATION"/> <x id="INTERPOLATION_1"/></target></trans-unit></body>
   </file>
 </xliff>
