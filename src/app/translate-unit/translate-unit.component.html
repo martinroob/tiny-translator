@@ -2,7 +2,7 @@
   <md-card-header>
     <md-card-title i18n>No Translation Unit</md-card-title>
   </md-card-header>
-  <md-card-content>
+  <md-card-content style="overflow: hidden">
     <p i18n>no content</p>
   </md-card-content>
 </md-card>
@@ -17,7 +17,7 @@
       <button md-icon-button *ngIf="sourceRef()" (click)="showSourceRefInfo()" mdTooltip="{{sourceRef()}}"><md-icon>location_on</md-icon></button>
     </md-card-title>
   </md-card-header>
-  <md-card-content fxLayout="column" fxLayoutGap="5px">
+  <md-card-content fxLayout="column" fxLayoutGap="5px" [ngClass.gt-sm]="'mdcardcontent_gt'" [ngClass.lt-md]="'mdcardcontent_sm'">
     <div>
       <div id="sourcemessage">
         <app-language [code]="sourceLanguage()"></app-language>

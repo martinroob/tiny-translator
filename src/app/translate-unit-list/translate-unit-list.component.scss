@@ -3,8 +3,8 @@
 @import '../../styles.scss';
 
 #list {
-  /* 130px = Height of toolbar plus footer */
-  max-height: calc(100vh - 130px);
+  /* 164px = Height of toolbar (128) plus footer (20) + 2*margin */
+  max-height: calc(100vh - 164px);
   min-width: 300px;
   overflow: auto;
 }
