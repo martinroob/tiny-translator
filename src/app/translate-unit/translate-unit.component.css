@@ -3,7 +3,7 @@ md-card {
 }
 
 .mdcardcontent_gt {
-  height: calc(100vh - 384px);
+  height: calc(100vh - 400px);
   /* 364 = toolbar 128 + 2 * margin 8 + projectstatus 72 + 2 * margin card 24 + card title 56 + action bar 44 + footer 20 */
   background-color: plum;
 }
