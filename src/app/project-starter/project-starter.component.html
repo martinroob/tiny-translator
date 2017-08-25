@@ -1,18 +1,16 @@
-<div fxLayout="column" style="min-width: 100vw;">
+<div fxLayout="column" style="min-width: calc(100vw-16px);"><!-- 16px = 2xmargin of container page -->
   <h1 i18n>Open a new project</h1>
   <form id="createProjectForm" fxLayout="column" [formGroup]="form">
     <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="start center">
-      <md-input-container fxFlex="50%">
-        <textarea placeholder="Project name" i18n-placeholder mdInput formControlName="projectName" name="projectName"></textarea>
+      <md-input-container fxFlex="90%">
+        <input type="text" placeholder="Project name" i18n-placeholder mdInput formControlName="projectName" name="projectName"/>
       </md-input-container>
-      <div>
-      </div>
     </div>
     <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="start center">
       <p fxFlex="50%" i18n>Select the file you want to translate.<br>
         The file can be of format XLIFF 1.2, XLIFF 2.0 or XMB.<br>
         The file will be stored in your browser local storage until you export the translated version.</p>
-      <div fxLayout="column" fxFlexAlign="end" fxFlex="50%">
+      <div fxLayout="column" fxFlexAlign="end" fxFlex="40%">
         <input type="file" id="fileupload" (change)="fileSelectionChange(input)" formControlName="selectedFiles" name="selectedFiles" class="inputfile" #input/>
         <label for="fileupload">
           <md-icon>open_in_browser</md-icon>&nbsp;<span i18n>Upload a translation file (xlf, xtb)</span></label>

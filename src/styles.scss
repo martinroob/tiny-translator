@@ -20,7 +20,7 @@ $dit-app-primary: mat-palette($mat-red);
 $dit-app-accent:  mat-palette($mat-green, A200, A100, A400);
 
 // The warn palette is optional (defaults to red).
-$dit-app-warn:    mat-palette($mat-deep-orange);
+$dit-app-warn:    mat-palette($mat-red);
 
 // Create the theme object (a Sass map containing all of the palettes).
 $dit-app-theme: mat-light-theme($dit-app-primary, $dit-app-accent, $dit-app-warn);
@@ -36,5 +36,9 @@ body {
 }
 
 .warn {
-  color: mat-color($dit-app-warn);
+  color: mat-color($dit-app-warn, 200);
+}
+
+.error {
+  color: mat-color($dit-app-warn, A400);
 }

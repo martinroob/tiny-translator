@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FilterStatusComponent } from './filter-status.component';
+import {AppModule} from '../app.module';
+import {NO_ERRORS_SCHEMA} from '@angular/core';
 
 describe('FilterStatusComponent', () => {
   let component: FilterStatusComponent;
@@ -8,7 +10,8 @@ describe('FilterStatusComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FilterStatusComponent ]
+      imports: [ AppModule ],
+      schemas: [NO_ERRORS_SCHEMA]
     })
     .compileComponents();
   }));

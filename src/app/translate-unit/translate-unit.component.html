@@ -2,7 +2,7 @@
   <md-card-header>
     <md-card-title i18n>No Translation Unit</md-card-title>
   </md-card-header>
-  <md-card-content>
+  <md-card-content style="overflow: hidden">
     <p i18n>no content</p>
   </md-card-content>
 </md-card>
@@ -17,7 +17,7 @@
       <button md-icon-button *ngIf="sourceRef()" (click)="showSourceRefInfo()" mdTooltip="{{sourceRef()}}"><md-icon>location_on</md-icon></button>
     </md-card-title>
   </md-card-header>
-  <md-card-content fxLayout="column" fxLayoutGap="5px">
+  <md-card-content fxLayout="column" fxLayoutGap="5px" [ngClass.gt-sm]="'mdcardcontent_gt'" [ngClass.lt-md]="'mdcardcontent_sm'">
     <div>
       <div id="sourcemessage">
         <app-language [code]="sourceLanguage()"></app-language>
@@ -28,14 +28,14 @@
     </div>
     <form id="translation" fxLayout="column" [formGroup]="form">
       <p fxLayout="row"><span i18n>Your translation to</span>&nbsp;<app-language [code]="targetLanguage()"></app-language></p>
-      <div fxLayout="row">
+      <div fxLayout="row" fxLayoutGap="30px" fxFlex="noshrink">
         <div fxLayout="column">
           <md-slide-toggle formControlName="showNormalized" color="accent"
                            md-tooltip="In normalization mode all markup contained in the messsages is shown in a simplified, format neutral way."
                            i18n-md-tooltip i18n>Normalization mode
           </md-slide-toggle>
-          <p *ngIf="showNormalized" i18n>(switch off to show native message)</p>
-          <p *ngIf="!showNormalized" i18n>(switch on to use normalization)</p>
+          <p class="normalizationhint" *ngIf="showNormalized" i18n>(switch off to show native message)</p>
+          <p class="normalizationhint" *ngIf="!showNormalized" i18n>(switch on to use normalization)</p>
         </div>
         <button *ngIf="!reviewMode" md-mini-fab
                 fxFlexAlign="start"
@@ -46,8 +46,8 @@
           <md-icon>g_translate</md-icon>
         </button>
       </div>
-      <app-normalized-message-input fxFlexFill [readonly]="reviewMode" [normalized]="showNormalized" [message]="editedTargetContentNormalized()" formControlName="_editedTargetMessage"></app-normalized-message-input>
-      <p *ngFor="let w of warnings()" class="warning"><md-icon>warning</md-icon>&nbsp;{{w}}</p>
+      <app-normalized-message-input id="translationinput" [readonly]="reviewMode" [normalized]="showNormalized" [message]="editedTargetContentNormalized()" formControlName="_editedTargetMessage"></app-normalized-message-input>
+      <p *ngFor="let w of warnings()" class="warn"><md-icon>warning</md-icon>&nbsp;{{w}}</p>
       <p *ngFor="let e of errors()" class="error"><md-icon>error</md-icon>&nbsp;{{e}}</p>
       <div fxLayout="row">
         <button *ngIf="!reviewMode"
@@ -65,6 +65,14 @@
                 i18n
                 mdTooltip="press to accept the given translation as reviewed" i18n-mdTooltip>
           mark as reviewed
+        </button>
+        <button *ngIf="reviewMode && targetState() === 'final'"
+                fxFlexAlign="start"
+                md-button color="primary"
+                (click)="markTranslated()"
+                i18n
+                mdTooltip="press to reset the reviewed translation to 'translated'" i18n-mdTooltip>
+          mark as translated, but not reviewed
         </button>
       </div>
     </form>
