@@ -66,6 +66,14 @@
                 mdTooltip="press to accept the given translation as reviewed" i18n-mdTooltip>
           mark as reviewed
         </button>
+        <button *ngIf="reviewMode && targetState() === 'final'"
+                fxFlexAlign="start"
+                md-button color="primary"
+                (click)="markTranslated()"
+                i18n
+                mdTooltip="press to reset the reviewed translation to 'translated'" i18n-mdTooltip>
+          mark as translated, but not reviewed
+        </button>
       </div>
     </form>
   </md-card-content>

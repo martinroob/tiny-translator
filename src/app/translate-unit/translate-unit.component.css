@@ -3,8 +3,8 @@ md-card {
 }
 
 .mdcardcontent_gt {
-  height: calc(100vh - 416px);
-  /* 416 = toolbar 128 + 2 * margin 8 + projectstatus 72 + 2 * card padding 24 + card header 56 + 2 * card content margin 16 + action bar 44 + footer 20 */
+  height: calc(100vh - 456px);
+  /* 456 = toolbar 128 + 2 * margin 8 + projectstatus (72 oder 132,5) + 2 * card padding 24 + card header 56 + 2 * card content margin 16 + action bar 44 + footer 20 */
   overflow: auto;
 }
 
