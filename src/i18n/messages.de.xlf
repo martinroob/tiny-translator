@@ -497,14 +497,13 @@
           <context context-type="sourcefile">app\translate-unit\translate-unit.component.ts</context>
           <context context-type="linenumber">74</context>
         </context-group>
-      <target state="new">
-          mark as translated, but not reviewed
-        </target></trans-unit><trans-unit id="eb65966a3dcb1f030925b8b8f630c8a9aa40cadd" datatype="html">
+      <target state="final">
+Markieren als 'Übersetzt', aber nicht ok.</target></trans-unit><trans-unit id="eb65966a3dcb1f030925b8b8f630c8a9aa40cadd" datatype="html">
         <source>press to reset the reviewed translation to 'translated'</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app\translate-unit\translate-unit.component.ts</context>
           <context context-type="linenumber">74</context>
         </context-group>
-      <target state="new">press to reset the reviewed translation to 'translated'</target></trans-unit></body>
+      <target state="final">Benutzen Sie diesen Button, um die Übersetzung als unvollständig zu markieren.</target></trans-unit></body>
   </file>
 </xliff>
