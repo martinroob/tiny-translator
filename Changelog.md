@@ -1,3 +1,16 @@
+<a name="0.7.0"></a>
+# [0.7.0](https://github.com/martinroob/tiny-translator/compare/v0.7.0...v0.6.0) (2017-08-25)
+
+### Bug Fixes
+
+* **GUI** Layout improvements ([#29](https://github.com/martinroob/tiny-translator/issues/29)).
+The changes for supporting small phone size displays introduced some nasty effects on larger displays.
+This should be fixed now.
+
+### Features
+
+* **GUI** Added a button for reviewers to mark translation as not ok. ([#31](https://github.com/martinroob/tiny-translator/issues/31)).
+
 <a name="0.6.0"></a>
 # [0.6.0](https://github.com/martinroob/tiny-translator/compare/v0.6.0...v0.5.0) (2017-08-18)
 
