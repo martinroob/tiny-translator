@@ -454,24 +454,24 @@
     </source>
         <target state="translated">précédent</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app\translate-unit\translate-unit.component.ts</context><context context-type="linenumber">75</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app\translate-unit\translate-unit.component.ts</context><context context-type="linenumber">83</context></context-group></trans-unit>
       <trans-unit id="3e37d6e24a88996f88c1d9b14e210fc29bae3b74" datatype="html">
         <source>accept translation and go to provious unit</source>
         <target state="translated">Accepter la traduction et aller à l&amp;#39;unité provien</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app\translate-unit\translate-unit.component.ts</context><context context-type="linenumber">75</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app\translate-unit\translate-unit.component.ts</context><context context-type="linenumber">83</context></context-group></trans-unit>
       <trans-unit id="c9702419b173fe7ab2aeee4ec1f5857fca1135a1" datatype="html">
         <source>
       Next
     </source>
         <target state="translated">Prochain</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app\translate-unit\translate-unit.component.ts</context><context context-type="linenumber">80</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app\translate-unit\translate-unit.component.ts</context><context context-type="linenumber">88</context></context-group></trans-unit>
       <trans-unit id="c7d43f1354429a28b43c8e301dd65d838d9fd31d" datatype="html">
         <source>accept translation and go to next unit</source>
         <target state="translated">Accepter la traduction et passer à l&amp;#39;unité suivante</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app\translate-unit\translate-unit.component.ts</context><context context-type="linenumber">80</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app\translate-unit\translate-unit.component.ts</context><context context-type="linenumber">88</context></context-group></trans-unit>
       <trans-unit id="2aba1e87039819aca3b70faa9aa848c12bf139ca" datatype="html">
         <source>Show</source>
         <target state="translated">Montrer</target>
@@ -605,6 +605,20 @@
           <context context-type="sourcefile">app\filter-status\filter-status.component.ts</context>
           <context context-type="linenumber">15</context>
         </context-group>
-      <target state="translated"><x id="INTERPOLATION"/> de <x id="INTERPOLATION_1"/></target></trans-unit></body>
+      <target state="translated"><x id="INTERPOLATION"/> de <x id="INTERPOLATION_1"/></target></trans-unit><trans-unit id="b9c64e1452739d7ef2fd47990bb6d73601e78f09" datatype="html">
+        <source>
+          mark as translated, but not reviewed
+        </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\translate-unit\translate-unit.component.ts</context>
+          <context context-type="linenumber">74</context>
+        </context-group>
+      <target state="translated">Marque comme traduit, mais pas revu</target></trans-unit><trans-unit id="eb65966a3dcb1f030925b8b8f630c8a9aa40cadd" datatype="html">
+        <source>press to reset the reviewed translation to 'translated'</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\translate-unit\translate-unit.component.ts</context>
+          <context context-type="linenumber">74</context>
+        </context-group>
+      <target state="translated">Appuyez sur pour réinitialiser la traduction révisée à &amp;quot;traduit&amp;quot;</target></trans-unit></body>
   </file>
 </xliff>
