@@ -322,25 +322,25 @@
         The file will be stored in your browser local storage until you export the translated version.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app\project-starter\project-starter.component.ts</context>
-          <context context-type="linenumber">12</context>
+          <context context-type="linenumber">10</context>
         </context-group>
       </trans-unit>
       <trans-unit id="165f5612a1516d3841d036e3d6d593e4743372bf" datatype="html">
         <source>Upload a translation file (xlf, xtb)</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app\project-starter\project-starter.component.ts</context>
-          <context context-type="linenumber">18</context>
+          <context context-type="linenumber">16</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3f32c24015d7838361235a7f1fb7c9eb93b01d30" datatype="html">
         <source>selected: </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app\project-starter\project-starter.component.ts</context>
-          <context context-type="linenumber">19</context>
+          <context context-type="linenumber">17</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app\project-starter\project-starter.component.ts</context>
-          <context context-type="linenumber">31</context>
+          <context context-type="linenumber">29</context>
         </context-group>
       </trans-unit>
       <trans-unit id="42649fcfb37e5731e215dfb39fc060a2cc3d1a7d" datatype="html">
@@ -349,98 +349,109 @@
         To show you the original source texts, you should also select the master xmb file.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app\project-starter\project-starter.component.ts</context>
-          <context context-type="linenumber">23</context>
+          <context context-type="linenumber">21</context>
         </context-group>
       </trans-unit>
       <trans-unit id="40d683bc93efb370ba71ad3cd7897e2c2b36b94a" datatype="html">
         <source>Upload master xmb file</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app\project-starter\project-starter.component.ts</context>
-          <context context-type="linenumber">30</context>
+          <context context-type="linenumber">28</context>
         </context-group>
       </trans-unit>
       <trans-unit id="599fdab6eaf0912dc7aa50e65a2749c763d9c162" datatype="html">
         <source>Selected translation file:</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app\project-starter\project-starter.component.ts</context>
-          <context context-type="linenumber">34</context>
+          <context context-type="linenumber">32</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app\project-editor\project-editor.component.ts</context>
-          <context context-type="linenumber">11</context>
+          <context context-type="linenumber">9</context>
         </context-group>
       </trans-unit>
       <trans-unit id="f3ba2e517a9f0ee2fa5346acc19d259d185685f9" datatype="html">
         <source>Explicitly set source language</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app\project-starter\project-starter.component.ts</context>
-          <context context-type="linenumber">43</context>
+          <context context-type="linenumber">41</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app\project-editor\project-editor.component.ts</context>
-          <context context-type="linenumber">19</context>
+          <context context-type="linenumber">17</context>
         </context-group>
       </trans-unit>
       <trans-unit id="d468177dfc7419e3d29614b1293796d2adb649cd" datatype="html">
         <source>Your selected file contains no information about the language used. You can set it here explicitly.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app\project-starter\project-starter.component.ts</context>
-          <context context-type="linenumber">42</context>
+          <context context-type="linenumber">40</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app\project-editor\project-editor.component.ts</context>
-          <context context-type="linenumber">18</context>
+          <context context-type="linenumber">16</context>
         </context-group>
       </trans-unit>
       <trans-unit id="b2ec941a71700e0a09f243cb7946f1924b5bcbff" datatype="html">
         <source>Workflow type you are using</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app\project-starter\project-starter.component.ts</context>
-          <context context-type="linenumber">48</context>
+          <context context-type="linenumber">46</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app\project-editor\project-editor.component.ts</context>
-          <context context-type="linenumber">24</context>
+          <context context-type="linenumber">22</context>
         </context-group>
       </trans-unit>
       <trans-unit id="cab2db0e2da8dff5d34bb5904d5f88ee7bf995ad" datatype="html">
         <source>Single User</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app\project-starter\project-starter.component.ts</context>
-          <context context-type="linenumber">52</context>
+          <context context-type="linenumber">50</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app\project-editor\project-editor.component.ts</context>
-          <context context-type="linenumber">26</context>
+          <context context-type="linenumber">24</context>
         </context-group>
       </trans-unit>
       <trans-unit id="bc044499ac0e07e81804c919f9d709d6aedb9945" datatype="html">
         <source>Single user workflow. You are translator and reviewer in one person. Every translated unit will directly get the state &apos;final&apos;</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app\project-starter\project-starter.component.ts</context>
-          <context context-type="linenumber">51</context>
+          <context context-type="linenumber">49</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3464dfa4b46545e4511324aa3b48dee75bb1392d" datatype="html">
         <source>Translator/Reviewer</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app\project-starter\project-starter.component.ts</context>
-          <context context-type="linenumber">55</context>
+          <context context-type="linenumber">53</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app\project-editor\project-editor.component.ts</context>
-          <context context-type="linenumber">27</context>
+          <context context-type="linenumber">25</context>
         </context-group>
       </trans-unit>
       <trans-unit id="17f972504a525e40d37583055db2d8569499bfe2" datatype="html">
         <source>Workflow with explicit translator and reviewer. Translation get te state &apos;translated&apos;. The reviewer must mark them as &apos;final&apos; later.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app\project-starter\project-starter.component.ts</context>
-          <context context-type="linenumber">54</context>
+          <context context-type="linenumber">52</context>
         </context-group>
       </trans-unit>
       <trans-unit id="9a61282719c1955ab95a4c9c62aa9c7b96c73fc6" datatype="html">
         <source>Your role</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\project-starter\project-starter.component.ts</context>
+          <context context-type="linenumber">58</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\project-editor\project-editor.component.ts</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6cdc5b25318491e0c0e5ed059f2b9a2b3523452c" datatype="html">
+        <source>Translator</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app\project-starter\project-starter.component.ts</context>
           <context context-type="linenumber">60</context>
@@ -450,40 +461,29 @@
           <context context-type="linenumber">32</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6cdc5b25318491e0c0e5ed059f2b9a2b3523452c" datatype="html">
-        <source>Translator</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app\project-starter\project-starter.component.ts</context>
-          <context context-type="linenumber">62</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app\project-editor\project-editor.component.ts</context>
-          <context context-type="linenumber">34</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="3005c11319b17d34f0021b21e36823d4e82ebc4b" datatype="html">
         <source>Reviewer</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app\project-starter\project-starter.component.ts</context>
-          <context context-type="linenumber">63</context>
+          <context context-type="linenumber">61</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app\project-editor\project-editor.component.ts</context>
-          <context context-type="linenumber">35</context>
+          <context context-type="linenumber">33</context>
         </context-group>
       </trans-unit>
       <trans-unit id="12cd052fa3e0ea8ec8457daaa98d549057c40179" datatype="html">
         <source>Add project</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app\project-starter\project-starter.component.ts</context>
-          <context context-type="linenumber">75</context>
+          <context context-type="linenumber">73</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4fd0a9dfdb0cd2e905ea22770ab54449cbeb8585" datatype="html">
         <source>add as new project and start working</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app\project-starter\project-starter.component.ts</context>
-          <context context-type="linenumber">73</context>
+          <context context-type="linenumber">71</context>
         </context-group>
       </trans-unit>
       <trans-unit id="92c7024852ec03b5fd29a5e7ecd58ba8b39f5cb3" datatype="html">
@@ -871,14 +871,14 @@
         <source>Save project changes</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app\project-editor\project-editor.component.ts</context>
-          <context context-type="linenumber">45</context>
+          <context context-type="linenumber">43</context>
         </context-group>
       </trans-unit>
       <trans-unit id="ddea8979810454a56742090a2e62c957ee2f4735" datatype="html">
         <source>commit changes and continue working</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app\project-editor\project-editor.component.ts</context>
-          <context context-type="linenumber">44</context>
+          <context context-type="linenumber">42</context>
         </context-group>
       </trans-unit>
       <trans-unit id="a2c383156fcb90b775ade03de5dd5f02fef96ba2" datatype="html">
