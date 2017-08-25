@@ -3,14 +3,14 @@ md-card {
 }
 
 .mdcardcontent_gt {
-  height: calc(100vh - 400px);
-  /* 364 = toolbar 128 + 2 * margin 8 + projectstatus 72 + 2 * margin card 24 + card title 56 + action bar 44 + footer 20 */
-  background-color: plum;
+  height: calc(100vh - 416px);
+  /* 416 = toolbar 128 + 2 * margin 8 + projectstatus 72 + 2 * card padding 24 + card header 56 + 2 * card content margin 16 + action bar 44 + footer 20 */
+  overflow: auto;
 }
 
 .mdcardcontent_sm {
-  height: 300px;
-  background-color: greenyellow;
+  height: calc(100vh - 368px);
+  /* 368 = toolbar 112 + 2 * margin 8 + filter 40 + 2 * card padding 24 + card header 56 + 2 * card content margin 16 + action bar 44 + footer 20 */
 }
 
 md-card-header {
@@ -30,15 +30,14 @@ md-card-content {
   padding: 5px;
 }
 
+#translationinput {
+  border: 1px solid;
+}
 #sourcemessage {
   border: 1px solid;
   padding: 5px;
 }
 
-.error {
-   color: red;
- }
-
-.warning {
-  color: orange;
+.normalizationhint {
+  font-size: 10px;
 }

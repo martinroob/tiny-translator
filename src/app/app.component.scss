@@ -25,6 +25,7 @@ md-toolbar .md-toolbar-layout md-toolbar-row {
   margin: 8px;
   /* 164px = Height of toolbar (128) plus footer (20) + 2*margin */
   max-height: calc(100vh - 164px);
+  max-width: calc(1000vw);
 }
 
 #footer {

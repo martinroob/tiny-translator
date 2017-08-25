@@ -1,25 +1,23 @@
-<div>
+<div id="container">
   <ng-container *ngIf="readonly">
     <ng-container *ngIf="!isICUMessage() || !normalized">
       <p>{{textToDisplay()}}</p>
     </ng-container>
     <ng-container *ngIf="isICUMessage() && normalized">
-      <p>{{textToDisplay()}}</p>
       <div *ngFor="let category of getICUMessageCategories(); index as i" fxLayout="row" fxLayoutGap="20px">
         <p>{{category.getCategory()}}</p>
         <p>{{category.getMessageNormalized().asDisplayString()}}</p>
       </div>
     </ng-container>
   </ng-container>
-  <form *ngIf="!readonly" [formGroup]="form">
+  <form *ngIf="!readonly" [formGroup]="form" fxLayout="column">
     <ng-container *ngIf="!isICUMessage() || !normalized">
-      <md-input-container>
+      <md-input-container fxFlex="noshrink">
         <textarea mdInput type="text" formControlName="displayedText" md-autosize [mdAutosizeMinRows]="2"></textarea>
      </md-input-container>
     </ng-container>
     <ng-container *ngIf="isICUMessage() && normalized">
-      <p>{{textToDisplay()}}</p>
-      <div *ngFor="let category of getICUMessageCategories(); index as i" fxLayout="row" fxLayoutGap="20px" formArrayName="icuMessages">
+      <div fxFlex="noshrink" *ngFor="let category of getICUMessageCategories(); index as i" fxLayout="row" fxLayoutGap="20px" formArrayName="icuMessages">
         <p>{{category.getCategory()}}</p>
         <md-input-container fxFlexFill>
           <input mdInput type="text" [formControlName]="i">
