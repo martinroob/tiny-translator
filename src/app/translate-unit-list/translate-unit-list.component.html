@@ -12,10 +12,10 @@
       <md-radio-button *ngIf="isWorkflowWithReview()" value="needsReview" i18n>Review needed</md-radio-button>
       <md-radio-button value="bySubstring">
         <span i18n>Search</span>&nbsp;
-        <md-input-container>
+        <md-form-field>
           <input mdInput type="text" placeholder="Substring" i18n-placeholder [(ngModel)]="substringToSearch"
                  (keyup)="substringToSearchChange()" [disabled]="_selectedFilterName !== 'bySubstring'">
-        </md-input-container>
+        </md-form-field>
       </md-radio-button>
     </md-radio-group>
   </div>

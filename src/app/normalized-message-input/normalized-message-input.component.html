@@ -12,16 +12,16 @@
   </ng-container>
   <form *ngIf="!readonly" [formGroup]="form" fxLayout="column">
     <ng-container *ngIf="!isICUMessage() || !normalized">
-      <md-input-container fxFlex="noshrink">
+      <md-form-field fxFlex="noshrink">
         <textarea mdInput type="text" formControlName="displayedText" md-autosize [mdAutosizeMinRows]="2"></textarea>
-     </md-input-container>
+     </md-form-field>
     </ng-container>
     <ng-container *ngIf="isICUMessage() && normalized">
       <div fxFlex="noshrink" *ngFor="let category of getICUMessageCategories(); index as i" fxLayout="row" fxLayoutGap="20px" formArrayName="icuMessages">
         <p>{{category.getCategory()}}</p>
-        <md-input-container fxFlexFill>
+        <md-form-field fxFlexFill>
           <input mdInput type="text" [formControlName]="i">
-        </md-input-container>
+        </md-form-field>
       </div>
     </ng-container>
   </form>
