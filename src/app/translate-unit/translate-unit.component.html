@@ -37,6 +37,14 @@
           <p class="normalizationhint" *ngIf="showNormalized" i18n>(switch off to show native message)</p>
           <p class="normalizationhint" *ngIf="!showNormalized" i18n>(switch on to use normalization)</p>
         </div>
+        <button *ngIf="!reviewMode" md-icon-button
+                fxFlexAlign="start"
+                md-button color="accent"
+                (click)="undo()"
+                [disabled]="!isTranslationChanged()"
+                mdTooltip="undo changes" i18n-mdTooltip>
+          <md-icon>undo</md-icon>
+        </button>
         <button *ngIf="!reviewMode" md-mini-fab
                 fxFlexAlign="start"
                 md-button color="accent"
@@ -46,7 +54,9 @@
           <md-icon>g_translate</md-icon>
         </button>
       </div>
-      <app-normalized-message-input id="translationinput" [readonly]="reviewMode" [normalized]="showNormalized" [message]="editedTargetContentNormalized()" formControlName="_editedTargetMessage"></app-normalized-message-input>
+      <app-normalized-message-input id="translationinput" [readonly]="reviewMode" [normalized]="showNormalized"
+                                    [message]="editedTargetContentNormalized()"
+                                    formControlName="_editedTargetMessage"></app-normalized-message-input>
       <p *ngFor="let w of warnings()" class="warn"><md-icon>warning</md-icon>&nbsp;{{w}}</p>
       <p *ngFor="let e of errors()" class="error"><md-icon>error</md-icon>&nbsp;{{e}}</p>
       <div fxLayout="row">
@@ -80,7 +90,7 @@
   <md-card-actions>
     <button md-button i18n (click)="prev()"
             [disabled]="!hasPrev()"
-            mdTooltip="accept translation and go to provious unit" i18n-mdTooltip>
+            mdTooltip="accept translation and go to previous unit" i18n-mdTooltip>
       Previous
     </button>
     <button md-button i18n (click)="next()"
