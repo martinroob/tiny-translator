@@ -13,7 +13,7 @@
   <form *ngIf="!readonly" [formGroup]="form" fxLayout="column">
     <ng-container *ngIf="!isICUMessage() || !normalized">
       <md-form-field fxFlex="noshrink">
-        <textarea mdInput type="text" formControlName="displayedText" md-autosize [mdAutosizeMinRows]="2"></textarea>
+        <textarea mdInput type="text" formControlName="displayedText" mdTextareaAutosize [mdAutosizeMinRows]="2"></textarea>
      </md-form-field>
     </ng-container>
     <ng-container *ngIf="isICUMessage() && normalized">

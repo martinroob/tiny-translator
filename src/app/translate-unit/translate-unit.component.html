@@ -31,8 +31,8 @@
       <div fxLayout="row" fxLayoutGap="30px" fxFlex="noshrink">
         <div fxLayout="column">
           <md-slide-toggle formControlName="showNormalized" color="accent"
-                           md-tooltip="In normalization mode all markup contained in the messsages is shown in a simplified, format neutral way."
-                           i18n-md-tooltip i18n>Normalization mode
+                           mdTooltip="In normalization mode all markup contained in the messsages is shown in a simplified, format neutral way."
+                           i18n-mdTooltip i18n>Normalization mode
           </md-slide-toggle>
           <p class="normalizationhint" *ngIf="showNormalized" i18n>(switch off to show native message)</p>
           <p class="normalizationhint" *ngIf="!showNormalized" i18n>(switch on to use normalization)</p>

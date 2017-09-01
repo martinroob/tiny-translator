@@ -13,7 +13,7 @@
     </app-translation-file-status>
     <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="start center">
       <md-form-field *ngIf="hasExplicitSourceLanguage()" fxFlex="50%"
-                          md-tooltip="Your selected file contains no information about the language used. You can set it here explicitly." i18n-md-tooltip>
+                          mdTooltip="Your selected file contains no information about the language used. You can set it here explicitly." i18n-mdTooltip>
         <input placeholder="Explicitly set source language" i18n-placeholder mdInput formControlName="sourceLanguage" name="sourceLanguage"/>
       </md-form-field>
     </div>
@@ -39,7 +39,7 @@
             md-raised-button
             color="primary"
             (click)="editProject()"
-            md-tooltip="commit changes and continue working" i18n-md-tooltip>
+            mdTooltip="commit changes and continue working" i18n-mdTooltip>
       <md-icon>edit</md-icon>&nbsp;<span i18n>Save project changes</span>
     </button>
   </form>
