@@ -501,12 +501,12 @@ Markieren als 'Übersetzt', aber nicht ok.</target><context-group purpose="locat
           <context context-type="sourcefile">app\translate-unit\translate-unit.component.ts</context>
           <context context-type="linenumber">45</context>
         </context-group>
-      <target state="new">undo changes</target></trans-unit><trans-unit id="c6c07b1fd57546f8305009fa1b518dfc0d4415c9" datatype="html">
+      <target state="final">Änderungen rückgängig machen</target></trans-unit><trans-unit id="c6c07b1fd57546f8305009fa1b518dfc0d4415c9" datatype="html">
         <source>accept translation and go to previous unit</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app\translate-unit\translate-unit.component.ts</context>
           <context context-type="linenumber">93</context>
         </context-group>
-      <target state="new">accept translation and go to previous unit</target></trans-unit></body>
+      <target state="final">Die Übersetzung übernehmen und zur vorherigen wechseln</target></trans-unit></body>
   </file>
 </xliff>
