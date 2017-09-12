@@ -15,10 +15,10 @@
   <p><span i18n>For details follow:</span> <a href="https://support.google.com/cloud/answer/6158862?hl=en" target="_blank">create an API key for your Google Cloud Platform Console project</a></p>
 </div>
 <form fxLayout="column">
-  <md-input-container>
+  <md-form-field>
     <input mdInput [(ngModel)]="apiKey" name="apiKey" placeholder="API key" i18n-placeholder
     mdTooltip="API Key will be stored in the local storage of your browser. It will not be sent to anywhere but the Google Translate Service." i18n-mdTooltip>
-  </md-input-container>
+  </md-form-field>
   <button color="primary" md-raised-button i18n (click)="setApiKey()"
           mdTooltip="API Key will be stored in the local storage of your browser. It will not be sent to anywhere but the Google Translate Service." i18n-mdTooltip>
     Store API Key
@@ -37,13 +37,13 @@
   </div>
 </ng-template>
 <form fxLayout="column">
-  <md-input-container>
+  <md-form-field>
     <input mdInput [(ngModel)]="_sourceLanguageTest" name="_sourceLanguageTest" placeholder="Source language code" i18n-placeholder>
-  </md-input-container>
-  <md-input-container>
+  </md-form-field>
+  <md-form-field>
     <input mdInput [(ngModel)]="_targetLanguageTest" name="_targetLanguageTest" placeholder="Target language code" i18n-placeholder>
-  </md-input-container>
-  <button md-raised-button i18n (click)="testCall()"
+  </md-form-field>
+  <button md-raised-button color="accent" i18n (click)="testCall()"
           mdTooltip="Test a call" i18n-mdTooltip>
     Test
   </button>

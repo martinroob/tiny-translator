@@ -1,11 +1,6 @@
-import {TranslationMessagesFileFactory, ITranslationMessagesFile, ITransUnit} from 'ngx-i18nsupport-lib';
-import {isNullOrUndefined} from 'util';
 import {TranslationUnit} from './translation-unit';
-import {Observable} from 'rxjs';
-import {AsynchronousFileReaderResult} from './asynchronous-file-reader.service';
 import {TranslationFile} from './translation-file';
 import {ITranslationUnitFilter} from './filters/i-translation-unit-filter';
-import {TranslationUnitFilterAll} from './filters/translation-unit-filter-all';
 import {TranslationUnitFilterUntranslated} from './filters/translation-unit-filter-untranslated';
 
 /**
@@ -40,6 +35,10 @@ export class TranslationFileView {
     return this._filter;
   }
 
+  /**
+   * Change active filter.
+   * @param {ITranslationUnitFilter} filter
+   */
   public setActiveFilter(filter: ITranslationUnitFilter) {
     this._filter = filter;
     if (this._translationFile) {
@@ -52,6 +51,13 @@ export class TranslationFileView {
       this._scrollableTransUnits = [];
       this._currentTransUnitIndex = -1;
     }
+  }
+
+  /**
+   * Recalculate the view by applying the active filter again.
+   */
+  public refresh(): void {
+    this.setActiveFilter(this.activeFilter());
   }
 
   public currentTransUnit(): TranslationUnit {

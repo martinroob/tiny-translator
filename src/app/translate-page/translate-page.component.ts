@@ -3,6 +3,7 @@ import {TinyTranslatorService} from '../model/tiny-translator.service';
 import {TranslationUnit} from '../model/translation-unit';
 import {TranslationProject, UserRole} from '../model/translation-project';
 import {TranslationFileView} from '../model/translation-file-view';
+import {NavigationDirection, TranslateUnitChange} from '../translate-unit/translate-unit.component';
 
 @Component({
   selector: 'app-translate-page',
@@ -29,8 +30,19 @@ export class TranslatePageComponent implements OnInit {
     return currentProject ? currentProject.translationFileView.currentTransUnit() : null;
   }
 
-  commitChanges() {
-    this.translationService.commitChanges(this.currentProject());
+  commitChanges(translateUnitChange: TranslateUnitChange) {
+    const direction = translateUnitChange.navigationDirection;
+    if (direction === NavigationDirection.NEXT) {
+      this.translationService.nextTransUnit();
+    } else if (direction === NavigationDirection.PREV) {
+      this.translationService.prevTransUnit();
+    }
+    if (translateUnitChange.changedUnit) {
+      this.translationService.commitChanges(this.currentProject());
+      if (this.currentView()) {
+        this.currentView().refresh();
+      }
+    }
   }
 
   /**
@@ -39,18 +51,6 @@ export class TranslatePageComponent implements OnInit {
    */
   onChangeTranslationUnit(translationUnit: TranslationUnit) {
     this.translationService.selectTransUnit(translationUnit);
-  }
-
-  /**
-   * Navigate to next or prev unit.
-   * @param direction 'next' or 'prev'.
-   */
-  onChangeTranslationUnitToNextOrPrev(direction: string) {
-    if (direction === 'next') {
-      this.translationService.nextTransUnit();
-    } else if (direction === 'prev') {
-      this.translationService.prevTransUnit();
-    }
   }
 
   save() {

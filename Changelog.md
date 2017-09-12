@@ -1,3 +1,17 @@
+<a name="0.8.0"></a>
+# [0.8.0](https://github.com/martinroob/tiny-translator/compare/v0.8.0...v0.7.0) (2017-09-12)
+
+### Bug Fixes
+
+* **GUI** Google Translate Button should be disabled when there is no target language ([#37](https://github.com/martinroob/tiny-translator/issues/37)).
+
+### Features
+
+* **GUI** Added an undo button to translate-unit. ([#38](https://github.com/martinroob/tiny-translator/issues/38)).
+
+* **GUI** Upgrade to material beta 10. ([#35](https://github.com/martinroob/tiny-translator/issues/35)).
+ Upgrade to Angular CLI 1.3 too.
+ 
 <a name="0.7.0"></a>
 # [0.7.0](https://github.com/martinroob/tiny-translator/compare/v0.7.0...v0.6.0) (2017-08-25)
 

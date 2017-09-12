@@ -11,6 +11,17 @@ import {STATE_FINAL, STATE_TRANSLATED} from 'ngx-i18nsupport-lib/dist';
 import {AutoTranslateServiceAPI} from '../model/auto-translate-service-api';
 import {isNullOrUndefined} from 'util';
 
+export enum NavigationDirection {
+  NEXT,
+  PREV,
+  STAY
+}
+
+export interface TranslateUnitChange {
+  changedUnit?: TranslationUnit;
+  navigationDirection: NavigationDirection;
+}
+
 /**
  * Component to input a new translation.
  * It shows the source and allows to input the target text.
@@ -33,16 +44,11 @@ export class TranslateUnitComponent implements OnInit, OnChanges {
   @Input() reviewMode = false;
 
   /**
-   * Emitted, when translation is changed.
-   * @type {EventEmitter} value is the newly translated unit.
+   * Emitted, when translation is changed and/or the user wants to navigate to next/prev unit.
+   * If changedUnit is null, there is no change, but only navigation.
+   * @type {EventEmitter<TranslateUnitChange>}
    */
-  @Output() translationChanged: EventEmitter<TranslationUnit> = new EventEmitter();
-
-  /**
-   * Emitted, when user wants to navigate to another unit.
-   * @type {EventEmitter<string>} string value can be 'next' or 'prev'
-   */
-  @Output() changeTranslationUnit: EventEmitter<string> = new EventEmitter();
+  @Output() changed: EventEmitter<TranslateUnitChange> = new EventEmitter();
 
   form: FormGroup;
 
@@ -213,7 +219,7 @@ export class TranslateUnitComponent implements OnInit, OnChanges {
     }
   }
 
-  public commitChanges() {
+  commitChanges(navigationDirection: NavigationDirection) {
     if (this.translationUnit) {
       if (this.isTranslationChanged() || this.isMarkedAsTranslated || this.isMarkedAsReviewed) {
         this.translationUnit.translate(this._editedTargetMessage);
@@ -229,9 +235,11 @@ export class TranslateUnitComponent implements OnInit, OnChanges {
             }
             break;
         }
-        this.translationChanged.emit(this.translationUnit);
+        this.changed.emit({changedUnit: this.translationUnit, navigationDirection: navigationDirection});
         this.isMarkedAsTranslated = false;
         this.isMarkedAsReviewed = false;
+      } else {
+        this.changed.emit({navigationDirection: navigationDirection});
       }
     }
   }
@@ -250,16 +258,22 @@ export class TranslateUnitComponent implements OnInit, OnChanges {
           break;
         case 'accept':
           this.isMarkedAsTranslated = true;
-          this.commitChanges();
+          this.commitChanges(NavigationDirection.STAY);
           break;
       }
 
     });
   }
 
+  undo() {
+    this._editableTargetMessage = this.translationUnit.targetContentNormalized().copy();
+    this._editedTargetMessage = this._editableTargetMessage;
+    this.changed.emit({changedUnit: this.translationUnit, navigationDirection: NavigationDirection.STAY});
+  }
+
   markReviewed() {
     this.isMarkedAsReviewed = true;
-    this.commitChanges();
+    this.commitChanges(NavigationDirection.STAY);
   }
 
   /**
@@ -300,14 +314,12 @@ export class TranslateUnitComponent implements OnInit, OnChanges {
             break;
           case 'discard':
             if (this.translationFileView.hasNext()) {
-              this.changeTranslationUnit.emit('next');
+              this.changed.emit({navigationDirection: NavigationDirection.NEXT});
             }
             break;
           case 'accept':
-            this.commitChanges();
-            if (this.translationFileView.hasNext()) {
-              this.changeTranslationUnit.emit('next');
-            }
+            const direction = (this.translationFileView.hasNext()) ? NavigationDirection.NEXT : NavigationDirection.STAY;
+            this.commitChanges(direction);
             break;
         }
       });
@@ -334,14 +346,12 @@ export class TranslateUnitComponent implements OnInit, OnChanges {
             break;
           case 'discard':
             if (this.translationFileView.hasPrev()) {
-              this.changeTranslationUnit.emit('prev');
+              this.changed.emit({navigationDirection: NavigationDirection.PREV});
             }
             break;
           case 'accept':
-            this.commitChanges();
-            if (this.translationFileView.hasPrev()) {
-              this.changeTranslationUnit.emit('prev');
-            }
+            const direction = (this.translationFileView.hasPrev()) ? NavigationDirection.PREV : NavigationDirection.STAY;
+            this.commitChanges(direction);
             break;
         }
       });
@@ -367,7 +377,7 @@ export class TranslateUnitComponent implements OnInit, OnChanges {
     ).subscribe((translatedMessage: NormalizedMessage) => {
         this._editableTargetMessage = translatedMessage;
         this._editedTargetMessage = translatedMessage;
-        this.translationChanged.emit(this.translationUnit);
+        this.changed.emit({changedUnit: this.translationUnit, navigationDirection: NavigationDirection.STAY});
     });
   }
 

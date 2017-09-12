@@ -4,8 +4,9 @@ import {
   MdMenuModule,
   MdProgressSpinnerModule,
   MdRadioModule, MdSlideToggleModule, MdSnackBarModule,
-  MdToolbarModule, MdTooltipModule, OverlayModule
+  MdToolbarModule, MdTooltipModule
 } from '@angular/material';
+import {OverlayModule} from '@angular/cdk/overlay';
 import {FlexLayoutModule} from '@angular/flex-layout';
 /**
  * All imports of used material components.

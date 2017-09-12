@@ -130,7 +130,7 @@ export class AutoTranslateGoogleService extends AutoTranslateServiceAPI {
       if (!s || languages.findIndex((lang) => lang.language === s) < 0) {
         return false;
       }
-      return (!t || languages.findIndex((lang) => lang.language === t) >= 0);
+      return (t && languages.findIndex((lang) => lang.language === t) >= 0);
     });
   }
 

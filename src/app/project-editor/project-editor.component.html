@@ -2,9 +2,9 @@
   <h1 i18n>Edit project</h1>
   <form id="editProjectForm" fxLayout="column" [formGroup]="form">
     <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="start center">
-      <md-input-container fxFlex="80%">
+      <md-form-field fxFlex="80%">
         <input type="text" placeholder="Project name" i18n-placeholder mdInput formControlName="projectName" name="projectName"/>
-      </md-input-container>
+      </md-form-field>
     </div>
     <p><b i18n>Selected translation file:</b></p>
     <app-translation-file-status
@@ -12,10 +12,10 @@
                                  [translationFile]="project?.translationFile">
     </app-translation-file-status>
     <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="start center">
-      <md-input-container *ngIf="hasExplicitSourceLanguage()" fxFlex="50%"
-                          md-tooltip="Your selected file contains no information about the language used. You can set it here explicitly." i18n-md-tooltip>
+      <md-form-field *ngIf="hasExplicitSourceLanguage()" fxFlex="50%"
+                          mdTooltip="Your selected file contains no information about the language used. You can set it here explicitly." i18n-mdTooltip>
         <input placeholder="Explicitly set source language" i18n-placeholder mdInput formControlName="sourceLanguage" name="sourceLanguage"/>
-      </md-input-container>
+      </md-form-field>
     </div>
     <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="start center">
       <div fxFlex="50%">
@@ -39,7 +39,7 @@
             md-raised-button
             color="primary"
             (click)="editProject()"
-            md-tooltip="commit changes and continue working" i18n-md-tooltip>
+            mdTooltip="commit changes and continue working" i18n-mdTooltip>
       <md-icon>edit</md-icon>&nbsp;<span i18n>Save project changes</span>
     </button>
   </form>

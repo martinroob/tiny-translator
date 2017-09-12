@@ -55,6 +55,24 @@ describe('AutoTranslateGoogleService', () => {
     });
   })));
 
+  it('should detect missing source language', async(inject([AutoTranslateGoogleService], (service: AutoTranslateGoogleService) => {
+    service.canAutoTranslate('', 'de').pairwise().subscribe((results) => {
+      expect(results[1]).toBeFalsy();
+    });
+    service.disabledReason('', 'de').pairwise().subscribe((results) => {
+      expect(results[1].reason).toBe(AutoTranslateDisabledReasonKey.SOURCE_LANG_NOT_SUPPORTED);
+    });
+  })));
+
+  it('should detect missing target language', async(inject([AutoTranslateGoogleService], (service: AutoTranslateGoogleService) => {
+    service.canAutoTranslate('en', '').pairwise().subscribe((results) => {
+      expect(results[1]).toBeFalsy();
+    });
+    service.disabledReason('en', '').pairwise().subscribe((results) => {
+      expect(results[1].reason).toBe(AutoTranslateDisabledReasonKey.TARGET_LANG_NOT_SUPPORTED);
+    });
+  })));
+
   it('should translate hello from english to german', async(inject([AutoTranslateGoogleService], (service: AutoTranslateGoogleService) => {
     service.translate('Hello', 'en', 'de').subscribe((translation) => {
       expect(translation).toBe('Hallo');

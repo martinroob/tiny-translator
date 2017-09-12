@@ -11,7 +11,6 @@
       [translationUnit]="currentTranslationUnit()"
       [workflowType]="currentProject()?.workflowType"
       [reviewMode]="isInReviewMode()"
-      (changeTranslationUnit)="onChangeTranslationUnitToNextOrPrev($event)"
-      (translationChanged)="commitChanges()"></app-translate-unit>
+      (changed)="commitChanges($event)"></app-translate-unit>
   </div>
 </div>

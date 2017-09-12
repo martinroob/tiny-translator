@@ -81,27 +81,24 @@
       <trans-unit id="c1ac90520acbce71ffbf35f3b693ae5119944726" datatype="html">
         <source>press to accept the given translation</source>
         <target state="final">übernimmt den angebenen Text als Übersetzung </target>
-      <context-group purpose="location"><context context-type="sourcefile">app\translate-unit\translate-unit.component.ts</context><context context-type="linenumber">58</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app\translate-unit\translate-unit.component.ts</context><context context-type="linenumber">68</context></context-group></trans-unit>
       <trans-unit id="5b117cf9fb2eb651ee9e22bc57a141005f3212ab" datatype="html">
         <source>
       Previous
     </source>
-        <target state="final">Vorherige </target>
-      <context-group purpose="location"><context context-type="sourcefile">app\translate-unit\translate-unit.component.ts</context><context context-type="linenumber">83</context></context-group></trans-unit>
-      <trans-unit id="3e37d6e24a88996f88c1d9b14e210fc29bae3b74" datatype="html">
-        <source>accept translation and go to provious unit</source>
-        <target state="final">Übersetzen und zurück zur vorherigen</target>
-      <context-group purpose="location"><context context-type="sourcefile">app\translate-unit\translate-unit.component.ts</context><context context-type="linenumber">83</context></context-group></trans-unit>
+        <target state="translated">Vorherige </target>
+      <context-group purpose="location"><context context-type="sourcefile">app\translate-unit\translate-unit.component.ts</context><context context-type="linenumber">93</context></context-group></trans-unit>
+      
       <trans-unit id="c9702419b173fe7ab2aeee4ec1f5857fca1135a1" datatype="html">
         <source>
       Next
     </source>
-        <target state="final">Nächste</target>
-      <context-group purpose="location"><context context-type="sourcefile">app\translate-unit\translate-unit.component.ts</context><context context-type="linenumber">88</context></context-group></trans-unit>
+        <target state="translated">Nächste</target>
+      <context-group purpose="location"><context context-type="sourcefile">app\translate-unit\translate-unit.component.ts</context><context context-type="linenumber">98</context></context-group></trans-unit>
       <trans-unit id="c7d43f1354429a28b43c8e301dd65d838d9fd31d" datatype="html">
         <source>accept translation and go to next unit</source>
         <target state="final">Übersetzen und weiter zur nächsten</target>
-      <context-group purpose="location"><context context-type="sourcefile">app\translate-unit\translate-unit.component.ts</context><context context-type="linenumber">88</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app\translate-unit\translate-unit.component.ts</context><context context-type="linenumber">98</context></context-group></trans-unit>
       <trans-unit id="2aba1e87039819aca3b70faa9aa848c12bf139ca" datatype="html">
         <source>Show</source>
         <target state="final">Anzeigen</target>
@@ -147,7 +144,7 @@
         <source>You selected an xtb file.<x id="LINE_BREAK" ctype="lb"/>
         This file type only contains one language, the target language.<x id="LINE_BREAK" ctype="lb"/>
         To show you the original source texts, you should also select the master xmb file.</source>
-        <target state="final">Sie haben eine Datei im Format 'xtb' ausgewählt.<x id="LINE_BREAK" ctype="lb"/>Diese Dateien enthalten nur die Zielsprache, aber nicht die Ausgangssprache.<x id="LINE_BREAK" ctype="lb"/>Um auch die Ausgangstexte zu sehen, müssen Sie zusätzliche eine xmb-Datei auswählen.</target>
+        <target state="translated">Sie haben eine Datei im Format 'xtb' ausgewählt.<x id="LINE_BREAK" ctype="lb"/>Diese Dateien enthalten nur die Zielsprache, aber nicht die Ausgangssprache.<x id="LINE_BREAK" ctype="lb"/>Um auch die Ausgangstexte zu sehen, müssen Sie zusätzliche eine xmb-Datei auswählen.</target>
 
       <context-group purpose="location"><context context-type="sourcefile">app\project-starter\project-starter.component.ts</context><context context-type="linenumber">21</context></context-group></trans-unit><trans-unit id="f3ba2e517a9f0ee2fa5346acc19d259d185685f9" datatype="html">
         <source>Explicitly set source language</source>
@@ -175,11 +172,11 @@
         </source>
         <target state="translated">Markieren als "Übersetzt"</target>
 
-      <context-group purpose="location"><context context-type="sourcefile">app\translate-unit\translate-unit.component.ts</context><context context-type="linenumber">58</context></context-group></trans-unit><trans-unit id="6ea6fd6e11f219096dc53edcb89479798a1f826b" datatype="html">
+      <context-group purpose="location"><context context-type="sourcefile">app\translate-unit\translate-unit.component.ts</context><context context-type="linenumber">68</context></context-group></trans-unit><trans-unit id="6ea6fd6e11f219096dc53edcb89479798a1f826b" datatype="html">
         <source>Select the file you want to translate.<x id="LINE_BREAK" ctype="lb"/>
         The file can be of format XLIFF 1.2, XLIFF 2.0 or XMB.<x id="LINE_BREAK" ctype="lb"/>
         The file will be stored in your browser local storage until you export the translated version.</source>
-        <target state="final">Wählen Sie die Datei, die übersetzt werden soll.<x id="LINE_BREAK" ctype="lb"/> Mögliche Dateiformate sind XLIFF 1.2, XLIFF 2.0 oder XMB.<x id="LINE_BREAK" ctype="lb"/> Die Datei wird im LocalStorage des Browser gespeichert, bis Sie die übersetzte Version exportieren.</target>
+        <target state="translated">Wählen Sie die Datei, die übersetzt werden soll.<x id="LINE_BREAK" ctype="lb"/> Mögliche Dateiformate sind XLIFF 1.2, XLIFF 2.0 oder XMB.<x id="LINE_BREAK" ctype="lb"/> Die Datei wird im LocalStorage des Browser gespeichert, bis Sie die übersetzte Version exportieren.</target>
         
       <context-group purpose="location"><context context-type="sourcefile">app\project-starter\project-starter.component.ts</context><context context-type="linenumber">10</context></context-group></trans-unit><trans-unit id="d468177dfc7419e3d29614b1293796d2adb649cd" datatype="html">
         <source>Your selected file contains no information about the language used. You can set it here explicitly.</source>
@@ -244,13 +241,13 @@
         <source>
           mark as reviewed
         </source>
-        <target state="final">Markieren als "Reviewed"     </target>
+        <target state="translated">Markieren als "Reviewed"     </target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app\translate-unit\translate-unit.component.ts</context><context context-type="linenumber">66</context></context-group></trans-unit><trans-unit id="60bb386dc9e8c4a8dbffd7449cac73088f4e5a77" datatype="html">
+      <context-group purpose="location"><context context-type="sourcefile">app\translate-unit\translate-unit.component.ts</context><context context-type="linenumber">76</context></context-group></trans-unit><trans-unit id="60bb386dc9e8c4a8dbffd7449cac73088f4e5a77" datatype="html">
         <source>press to accept the given translation as reviewed</source>
         <target state="final">Benutzen Sie diesen Button, um den aktuellen Text als Übersetzung zu akzeptieren.</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app\translate-unit\translate-unit.component.ts</context><context context-type="linenumber">66</context></context-group></trans-unit><trans-unit id="cb6007dc11cb4f5a331524a560711fadfc03cb3e" datatype="html">
+      <context-group purpose="location"><context context-type="sourcefile">app\translate-unit\translate-unit.component.ts</context><context context-type="linenumber">76</context></context-group></trans-unit><trans-unit id="cb6007dc11cb4f5a331524a560711fadfc03cb3e" datatype="html">
         <source>Review needed</source>
         <target state="final">Review erforderlich</target>
         
@@ -328,7 +325,7 @@
         <source>
     Store API Key
   </source>
-        <target state="final">API-Schlüssel speichern</target>
+        <target state="translated">API-Schlüssel speichern</target>
         
       <context-group purpose="location"><context context-type="sourcefile">app\configure-auto-translate-page\configure-auto-translate-page.component.ts</context><context context-type="linenumber">23</context></context-group></trans-unit><trans-unit id="b77205e34fa53f427b86358baa0a39a582a77d6d" datatype="html">
         <source>Google Translate Test</source>
@@ -380,7 +377,7 @@
         <source>press to get a translation suggestion from Google Translate</source>
         <target state="final">Übersetzungsvorschlag von Google Translate</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app\translate-unit\translate-unit.component.ts</context><context context-type="linenumber">45</context></context-group></trans-unit><trans-unit id="860553e954e6ab29671885c3ea589593657d06ca" datatype="html">
+      <context-group purpose="location"><context context-type="sourcefile">app\translate-unit\translate-unit.component.ts</context><context context-type="linenumber">53</context></context-group></trans-unit><trans-unit id="860553e954e6ab29671885c3ea589593657d06ca" datatype="html">
         <source>Autotranslate Run Result</source>
         <target state="final">Autotranslate Ergebnis letzter Lauf</target>
         
@@ -461,7 +458,7 @@
           <context context-type="sourcefile">app\translate-unit\translate-unit.component.ts</context>
           <context context-type="linenumber">35</context>
         </context-group>
-      <target state="final">Normalisierungsmodus
+      <target state="translated">Normalisierungsmodus
           </target></trans-unit><trans-unit id="68de8fa5b0301ea69e1aa3c3b6d28ebf1fcb3c3d" datatype="html">
         <source>(switch off to show native message)</source>
         <context-group purpose="location">
@@ -493,17 +490,23 @@
         <source>
           mark as translated, but not reviewed
         </source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app\translate-unit\translate-unit.component.ts</context>
-          <context context-type="linenumber">74</context>
-        </context-group>
-      <target state="final">
-Markieren als 'Übersetzt', aber nicht ok.</target></trans-unit><trans-unit id="eb65966a3dcb1f030925b8b8f630c8a9aa40cadd" datatype="html">
+        
+      <target state="translated">
+Markieren als 'Übersetzt', aber nicht ok.</target><context-group purpose="location"><context context-type="sourcefile">app\translate-unit\translate-unit.component.ts</context><context context-type="linenumber">84</context></context-group></trans-unit><trans-unit id="eb65966a3dcb1f030925b8b8f630c8a9aa40cadd" datatype="html">
         <source>press to reset the reviewed translation to 'translated'</source>
+        
+      <target state="final">Benutzen Sie diesen Button, um die Übersetzung als unvollständig zu markieren.</target><context-group purpose="location"><context context-type="sourcefile">app\translate-unit\translate-unit.component.ts</context><context context-type="linenumber">84</context></context-group></trans-unit><trans-unit id="6a0b35deb3beb0a1c24cd9a1d652f78bd751e851" datatype="html">
+        <source>undo changes</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app\translate-unit\translate-unit.component.ts</context>
-          <context context-type="linenumber">74</context>
+          <context context-type="linenumber">45</context>
         </context-group>
-      <target state="final">Benutzen Sie diesen Button, um die Übersetzung als unvollständig zu markieren.</target></trans-unit></body>
+      <target state="final">Änderungen rückgängig machen</target></trans-unit><trans-unit id="c6c07b1fd57546f8305009fa1b518dfc0d4415c9" datatype="html">
+        <source>accept translation and go to previous unit</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\translate-unit\translate-unit.component.ts</context>
+          <context context-type="linenumber">93</context>
+        </context-group>
+      <target state="final">Die Übersetzung übernehmen und zur vorherigen wechseln</target></trans-unit></body>
   </file>
 </xliff>
