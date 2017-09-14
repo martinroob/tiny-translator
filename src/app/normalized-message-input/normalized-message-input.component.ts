@@ -1,4 +1,14 @@
-import {Component, forwardRef, Input, OnChanges, OnInit, SimpleChange, SimpleChanges} from '@angular/core';
+import {
+  Component,
+  forwardRef,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChange,
+  SimpleChanges,
+  Output,
+  EventEmitter
+} from "@angular/core";
 import {NormalizedMessage} from '../model/normalized-message';
 import {isNullOrUndefined} from 'util';
 import {ControlValueAccessor, FormBuilder, FormGroup, NG_VALUE_ACCESSOR} from '@angular/forms';
@@ -36,6 +46,11 @@ export class NormalizedMessageInputComponent implements OnInit, OnChanges, Contr
    * Then, there is no input field, but only the text is shown.
    */
   @Input() readonly: boolean;
+
+  /**
+   * Emitted when user presses Ctrl+Enter
+   */
+  @Output() accept = new EventEmitter<void>();
 
   editedMessage: NormalizedMessage;
   form: FormGroup;
