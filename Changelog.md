@@ -1,3 +1,11 @@
+<a name="0.9.0"></a>
+# [0.9.0](https://github.com/martinroob/tiny-translator/compare/v0.9.0...v0.8.0) (2017-09-15)
+
+### Features
+
+* **GUI** Added keyboard shortcut Ctrl Enter for the next button. ([#40](https://github.com/martinroob/tiny-translator/issues/40)).
+This was a nice contribution by [quanterion](https://github.com/quanterion).
+
 <a name="0.8.0"></a>
 # [0.8.0](https://github.com/martinroob/tiny-translator/compare/v0.8.0...v0.7.0) (2017-09-12)
 
