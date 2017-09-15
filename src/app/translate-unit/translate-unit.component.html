@@ -56,7 +56,8 @@
       </div>
       <app-normalized-message-input id="translationinput" [readonly]="reviewMode" [normalized]="showNormalized"
                                     [message]="editedTargetContentNormalized()"
-                                    formControlName="_editedTargetMessage"></app-normalized-message-input>
+                                    formControlName="_editedTargetMessage"
+                                    (accept)="next()"></app-normalized-message-input>
       <p *ngFor="let w of warnings()" class="warn"><md-icon>warning</md-icon>&nbsp;{{w}}</p>
       <p *ngFor="let e of errors()" class="error"><md-icon>error</md-icon>&nbsp;{{e}}</p>
       <div fxLayout="row">
@@ -95,7 +96,7 @@
     </button>
     <button md-button i18n (click)="next()"
             [disabled]="!hasNext()"
-            mdTooltip="accept translation and go to next unit" i18n-mdTooltip>
+            mdTooltip="accept translation and go to next unit (Keyboard shortcut 'Ctrl Enter')" i18n-mdTooltip>
       Next
     </button>
   </md-card-actions>
