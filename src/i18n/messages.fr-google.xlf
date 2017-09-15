@@ -430,31 +430,31 @@
         </source>
         <target state="translated">Marque comme traduit</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app\translate-unit\translate-unit.component.ts</context><context context-type="linenumber">68</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app\translate-unit\translate-unit.component.ts</context><context context-type="linenumber">69</context></context-group></trans-unit>
       <trans-unit id="c1ac90520acbce71ffbf35f3b693ae5119944726" datatype="html">
         <source>press to accept the given translation</source>
         <target state="translated">Appuyez sur pour accepter la traduction donnée</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app\translate-unit\translate-unit.component.ts</context><context context-type="linenumber">68</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app\translate-unit\translate-unit.component.ts</context><context context-type="linenumber">69</context></context-group></trans-unit>
       <trans-unit id="c5cf65546dcaf2698e122492511c14bf57b3b68e" datatype="html">
         <source>
           mark as reviewed
         </source>
         <target state="translated">Marque comme examiné</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app\translate-unit\translate-unit.component.ts</context><context context-type="linenumber">76</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app\translate-unit\translate-unit.component.ts</context><context context-type="linenumber">77</context></context-group></trans-unit>
       <trans-unit id="60bb386dc9e8c4a8dbffd7449cac73088f4e5a77" datatype="html">
         <source>press to accept the given translation as reviewed</source>
         <target state="translated">Appuyez sur pour accepter la traduction donnée comme revue</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app\translate-unit\translate-unit.component.ts</context><context context-type="linenumber">76</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app\translate-unit\translate-unit.component.ts</context><context context-type="linenumber">77</context></context-group></trans-unit>
       <trans-unit id="5b117cf9fb2eb651ee9e22bc57a141005f3212ab" datatype="html">
         <source>
       Previous
     </source>
         <target state="translated">précédent</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app\translate-unit\translate-unit.component.ts</context><context context-type="linenumber">93</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app\translate-unit\translate-unit.component.ts</context><context context-type="linenumber">94</context></context-group></trans-unit>
       
       <trans-unit id="c9702419b173fe7ab2aeee4ec1f5857fca1135a1" datatype="html">
         <source>
@@ -462,12 +462,8 @@
     </source>
         <target state="translated">Prochain</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app\translate-unit\translate-unit.component.ts</context><context context-type="linenumber">98</context></context-group></trans-unit>
-      <trans-unit id="c7d43f1354429a28b43c8e301dd65d838d9fd31d" datatype="html">
-        <source>accept translation and go to next unit</source>
-        <target state="translated">Accepter la traduction et passer à l&amp;#39;unité suivante</target>
-        
-      <context-group purpose="location"><context context-type="sourcefile">app\translate-unit\translate-unit.component.ts</context><context context-type="linenumber">98</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app\translate-unit\translate-unit.component.ts</context><context context-type="linenumber">99</context></context-group></trans-unit>
+      
       <trans-unit id="2aba1e87039819aca3b70faa9aa848c12bf139ca" datatype="html">
         <source>Show</source>
         <target state="translated">Montrer</target>
@@ -606,10 +602,10 @@
           mark as translated, but not reviewed
         </source>
         
-      <target state="translated">Marque comme traduit, mais pas revu</target><context-group purpose="location"><context context-type="sourcefile">app\translate-unit\translate-unit.component.ts</context><context context-type="linenumber">84</context></context-group></trans-unit><trans-unit id="eb65966a3dcb1f030925b8b8f630c8a9aa40cadd" datatype="html">
+      <target state="translated">Marque comme traduit, mais pas revu</target><context-group purpose="location"><context context-type="sourcefile">app\translate-unit\translate-unit.component.ts</context><context context-type="linenumber">85</context></context-group></trans-unit><trans-unit id="eb65966a3dcb1f030925b8b8f630c8a9aa40cadd" datatype="html">
         <source>press to reset the reviewed translation to 'translated'</source>
         
-      <target state="translated">Appuyez sur pour réinitialiser la traduction révisée à &amp;quot;traduit&amp;quot;</target><context-group purpose="location"><context context-type="sourcefile">app\translate-unit\translate-unit.component.ts</context><context context-type="linenumber">84</context></context-group></trans-unit><trans-unit id="6a0b35deb3beb0a1c24cd9a1d652f78bd751e851" datatype="html">
+      <target state="translated">Appuyez sur pour réinitialiser la traduction révisée à &amp;quot;traduit&amp;quot;</target><context-group purpose="location"><context context-type="sourcefile">app\translate-unit\translate-unit.component.ts</context><context context-type="linenumber">85</context></context-group></trans-unit><trans-unit id="6a0b35deb3beb0a1c24cd9a1d652f78bd751e851" datatype="html">
         <source>undo changes</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app\translate-unit\translate-unit.component.ts</context>
@@ -617,10 +613,13 @@
         </context-group>
       <target state="translated">annuler les changements</target></trans-unit><trans-unit id="c6c07b1fd57546f8305009fa1b518dfc0d4415c9" datatype="html">
         <source>accept translation and go to previous unit</source>
+        
+      <target state="translated">accepter la traduction et passer à l&amp;#39;unité précédente</target><context-group purpose="location"><context context-type="sourcefile">app\translate-unit\translate-unit.component.ts</context><context context-type="linenumber">94</context></context-group></trans-unit><trans-unit id="97255f8742f6646db3afa3ad100a5fd01ecd2e9f" datatype="html">
+        <source>accept translation and go to next unit (Keyboard shortcut 'Ctrl Enter')</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app\translate-unit\translate-unit.component.ts</context>
-          <context context-type="linenumber">93</context>
+          <context context-type="linenumber">99</context>
         </context-group>
-      <target state="translated">accepter la traduction et passer à l&amp;#39;unité précédente</target></trans-unit></body>
+      <target state="translated">acceptez la traduction et passez à l&amp;#39;unité suivante (raccourci du clavier &amp;#39;Ctrl Enter&amp;#39;)</target></trans-unit></body>
   </file>
 </xliff>
