@@ -1,5 +1,5 @@
 <div id="container" fxLayout="column">
-  <md-toolbar color="primary">
+  <mat-toolbar color="primary">
     <span id="apptitle">Tiny Translator</span>
     <span>&nbsp;</span>
     <div fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="10px" fxLayoutWrap>
@@ -13,40 +13,40 @@
       <app-language code="in" [showCode]="false"></app-language>
       <app-language code="pt-br" [showCode]="false"></app-language>
     </div>
-    <md-toolbar-row>
-      <button md-icon-button [mdMenuTriggerFor]="menu">
-        <md-icon>more_vert</md-icon>
+    <mat-toolbar-row>
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>more_vert</mat-icon>
       </button>
-      <a md-icon-button routerLink="/home" routerLinkActive="active"><md-icon>home</md-icon></a>
-      <a md-icon-button routerLink="/editproject" routerLinkActive="active" mdTooltip="Details of the project (click to open)" i18n-mdTooltip>
-        <md-icon>edit</md-icon>
+      <a mat-icon-button routerLink="/home" routerLinkActive="active"><mat-icon>home</mat-icon></a>
+      <a mat-icon-button routerLink="/editproject" routerLinkActive="active" matTooltip="Details of the project (click to open)" i18n-matTooltip>
+        <mat-icon>edit</mat-icon>
         {{currentProjectName() | abbreviate: 30}}
       </a>
       <!-- main menu -->
-      <md-menu #menu="mdMenu">
-        <button md-menu-item (click)="save()"
-                mdTooltip="export current translation state to file (download)" i18n-mdTooltip>
-          <md-icon>save</md-icon>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="save()"
+                matTooltip="export current translation state to file (download)" i18n-matTooltip>
+          <mat-icon>save</mat-icon>
           <span i18n>Save..</span>
         </button>
-        <button md-menu-item (click)="configureAutoTranslate()"
-                mdTooltip="configure Google Translate API Key" i18n-mdTooltip>
-          <md-icon>settings</md-icon>
+        <button mat-menu-item (click)="configureAutoTranslate()"
+                matTooltip="configure Google Translate API Key" i18n-matTooltip>
+          <mat-icon>settings</mat-icon>
           <span i18n>Google Translate settings..</span>
         </button>
-        <button md-menu-item (click)="autoTranslate()"
-          mdTooltip="Translate all untranslated units with Google Translate" i18n-mdTooltip>
-          <md-icon>g_translate</md-icon>
+        <button mat-menu-item (click)="autoTranslate()"
+          matTooltip="Translate all untranslated units with Google Translate" i18n-matTooltip>
+          <mat-icon>g_translate</mat-icon>
           <span i18n>Google Translate units..</span>
         </button>
-        <button md-menu-item (click)="navigateToAutoTranslateSummary()"
-                mdTooltip="Open summary page of last autotranslate run" i18n-mdTooltip>
-          <md-icon>g_translate</md-icon>
+        <button mat-menu-item (click)="navigateToAutoTranslateSummary()"
+                matTooltip="Open summary page of last autotranslate run" i18n-matTooltip>
+          <mat-icon>g_translate</mat-icon>
           <span i18n>Last results..</span>
         </button>
-      </md-menu>
-    </md-toolbar-row>
-  </md-toolbar>
+      </mat-menu>
+    </mat-toolbar-row>
+  </mat-toolbar>
   <div id="main" fxFlex="1 1 auto" fxLayout="column" fxLayoutAlign="start start">
     <router-outlet></router-outlet>
   </div>

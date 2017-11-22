@@ -1,5 +1,5 @@
 <div fxLayout="row" fxLayoutAlign="start center">
-  <a md-icon-button routerLink="/selectfilter" routerLinkActive="active"><md-icon>filter_list</md-icon>
+  <a mat-icon-button routerLink="/selectfilter" routerLinkActive="active"><mat-icon>filter_list</mat-icon>
     <ng-container [ngSwitch]="currentFilterName()">
       <ng-container *ngSwitchCase="'all'" i18n>All units</ng-container>
       <ng-container *ngSwitchCase="'autotranslated'" i18n>Autotranslated units</ng-container>

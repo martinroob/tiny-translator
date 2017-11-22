@@ -25,11 +25,11 @@ describe('AppComponent', () => {
     expect(app.buildversion()).toMatch(/\d\.\d\.\d/);
   }));
 
-  it('should render md-toolbar', async(() => {
+  it('should render mat-toolbar', async(() => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('md-toolbar')).toBeTruthy();
+    expect(compiled.querySelector('mat-toolbar')).toBeTruthy();
     expect(compiled.querySelector('#apptitle').textContent).toBe('Tiny Translator');
   }));
 

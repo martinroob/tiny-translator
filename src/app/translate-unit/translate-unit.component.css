@@ -1,4 +1,4 @@
-md-card {
+mat-card {
   min-width: 300px;
 }
 
@@ -13,15 +13,15 @@ md-card {
   /* 368 = toolbar 112 + 2 * margin 8 + filter 40 + 2 * card padding 24 + card header 56 + 2 * card content margin 16 + action bar 44 + footer 20 */
 }
 
-md-card-header {
+mat-card-header {
   min-height: 50px;
 }
 
-md-form-field {
+mat-form-field {
   min-width: 250px;
 }
 
-md-card-content {
+mat-card-content {
   overflow: scroll;
 }
 

@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange, SimpleChanges} from '@angular/core';
 import {TranslationUnit} from '../model/translation-unit';
-import {MdDialog, MdSnackBar} from '@angular/material';
+import {MatDialog, MatSnackBar} from '@angular/material';
 import {NormalizedMessage} from '../model/normalized-message';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {Observable} from 'rxjs/Observable';
@@ -58,8 +58,8 @@ export class TranslateUnitComponent implements OnInit, OnChanges {
   private isMarkedAsReviewed = false;
 
   constructor(private formBuilder: FormBuilder,
-              private dialog: MdDialog,
-              private _snackbar: MdSnackBar,
+              private dialog: MatDialog,
+              private _snackbar: MatSnackBar,
               private autoTranslateService: AutoTranslateServiceAPI) {
   }
 
