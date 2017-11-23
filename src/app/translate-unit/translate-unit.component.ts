@@ -246,6 +246,9 @@ export class TranslateUnitComponent implements OnInit, OnChanges {
 
   public isTranslationChanged(): boolean {
     const original = this.translationUnit.targetContent();
+    if (isNullOrUndefined(this._editedTargetMessage)) {
+      return false;
+    }
     return original !== this._editedTargetMessage.nativeString();
   }
 

@@ -16,13 +16,13 @@
     <span i18n>(translation of file {{translationFile?.masterName}})</span>
   </div>
   <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
-    <mat-progress-spinner mode="determinate" [value]="translationFile?.percentageTranslated()" color="accent"></mat-progress-spinner>
+    <mat-progress-spinner mode="determinate" [diameter]="30" [strokeWidth]="5" [value]="translationFile?.percentageTranslated()" color="accent"></mat-progress-spinner>
     <span i18n>{{percentageTranslated()}} % translated</span>
   </div>
 </div>
 <div *ngIf="shortInfo" fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start center">
   <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
-    <mat-progress-spinner mode="determinate" [value]="translationFile?.percentageTranslated()" color="accent"></mat-progress-spinner>
+    <mat-progress-spinner mode="determinate" [diameter]="30" [strokeWidth]="5" [value]="translationFile?.percentageTranslated()" color="accent"></mat-progress-spinner>
     <span i18n>{{percentageTranslated()}} % translated</span>
   </div>
   <p *ngIf="translationFileView?.currentTransUnitIndex() > 0" i18n>current transunit {{translationFileView?.currentTransUnitIndex()}} of {{translationFileView?.scrollabeTransUnitsLength()}}</p>

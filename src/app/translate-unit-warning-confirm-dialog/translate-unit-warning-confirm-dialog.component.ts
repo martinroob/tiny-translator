@@ -1,5 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {MD_DIALOG_DATA, MatDialogRef} from '@angular/material';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 
 /**
  * Dialog used by translate-unit-component to show errors and warning.
@@ -15,7 +15,7 @@ import {MD_DIALOG_DATA, MatDialogRef} from '@angular/material';
 })
 export class TranslateUnitWarningConfirmDialogComponent implements OnInit {
 
-  constructor(public dialogRef: MatDialogRef<TranslateUnitWarningConfirmDialogComponent>, @Inject(MD_DIALOG_DATA) public data: any ) { }
+  constructor(public dialogRef: MatDialogRef<TranslateUnitWarningConfirmDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any ) { }
 
   ngOnInit() {
   }

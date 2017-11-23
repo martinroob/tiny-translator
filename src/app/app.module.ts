@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
+import './rxjs-operators';
+
 import {APP_CONFIG, APP_CONFIG_VALUE} from './app.config';
 import {routing, appRoutingProviders} from './app.routing';
 
