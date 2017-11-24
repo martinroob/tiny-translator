@@ -24,20 +24,20 @@
         <target state="final">Als neues Projekt hinzufügen und mit der Übersetzung beginnen</target>
       <context-group purpose="location"><context context-type="sourcefile">app\project-starter\project-starter.component.ts</context><context context-type="linenumber">71</context></context-group></trans-unit>
       <trans-unit id="92c7024852ec03b5fd29a5e7ecd58ba8b39f5cb3" datatype="html">
-        <source>Translate <x id="START_BOLD_TEXT" ctype="x-b"/>from<x id="CLOSE_BOLD_TEXT" ctype="x-b"/></source>
-        <target state="final">Übersetzung <x id="START_BOLD_TEXT" ctype="x-b"/>von<x id="CLOSE_BOLD_TEXT" ctype="x-b"/></target>
+        <source>Translate <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b>"/>from<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b>"/></source>
+        <target state="translated">Übersetzung <x id="START_BOLD_TEXT" ctype="x-b"/>von<x id="CLOSE_BOLD_TEXT" ctype="x-b"/></target>
       <context-group purpose="location"><context context-type="sourcefile">app\translation-file-status\translation-file-status.component.ts</context><context context-type="linenumber">5</context></context-group></trans-unit>
       <trans-unit id="0f00b1615388646b985be70cbd27f0e94f093976" datatype="html">
-        <source><x id="START_BOLD_TEXT" ctype="x-b"/>to<x id="CLOSE_BOLD_TEXT" ctype="x-b"/></source>
-        <target state="final"><x id="START_BOLD_TEXT" ctype="x-b"/>nach<x id="CLOSE_BOLD_TEXT" ctype="x-b"/></target>
+        <source><x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b>"/>to<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b>"/></source>
+        <target state="translated"><x id="START_BOLD_TEXT" ctype="x-b"/>nach<x id="CLOSE_BOLD_TEXT" ctype="x-b"/></target>
       <context-group purpose="location"><context context-type="sourcefile">app\translation-file-status\translation-file-status.component.ts</context><context context-type="linenumber">6</context></context-group></trans-unit>
       <trans-unit id="17cb0e566c8ae68d987c74444b0ab259f783ee0c" datatype="html">
-        <source><x id="INTERPOLATION"/> bytes, </source>
-        <target state="final"><x id="INTERPOLATION"/> bytes, </target>
+        <source><x id="INTERPOLATION" equiv-text="{{translationFile?.size}}"/> bytes, </source>
+        <target state="translated"><x id="INTERPOLATION"/> bytes, </target>
       <context-group purpose="location"><context context-type="sourcefile">app\translation-file-status\translation-file-status.component.ts</context><context context-type="linenumber">10</context></context-group></trans-unit>
       <trans-unit id="12470b9fe142a72111de02bb045de9c841bce64a" datatype="html">
-        <source><x id="INTERPOLATION"/> entries</source>
-        <target state="final"><x id="INTERPOLATION"/> Einträge</target>
+        <source><x id="INTERPOLATION" equiv-text="{{translationFile?.numberOfTransUnits}}"/> entries</source>
+        <target state="translated"><x id="INTERPOLATION"/> Einträge</target>
       <context-group purpose="location"><context context-type="sourcefile">app\translation-file-status\translation-file-status.component.ts</context><context context-type="linenumber">11</context></context-group></trans-unit>
       <trans-unit id="b0a601002055bb07b804db00cda9cc209f54b5a5" datatype="html">
         <source>There are unpublished changes</source>
@@ -48,8 +48,8 @@
         <target state="final">Sichern des aktuellen Stands (Download)</target>
       <context-group purpose="location"><context context-type="sourcefile">app\translation-file-status\translation-file-status.component.ts</context><context context-type="linenumber">13</context></context-group></trans-unit>
       <trans-unit id="2b5754331bc53b5fed19b7945e81e7dea1fc8221" datatype="html">
-        <source><x id="INTERPOLATION"/> % translated</source>
-        <target state="final"><x id="INTERPOLATION"/> % übersetzt</target>
+        <source><x id="INTERPOLATION" equiv-text="{{percentageTranslated()}}"/> % translated</source>
+        <target state="translated"><x id="INTERPOLATION"/> % übersetzt</target>
       <context-group purpose="location"><context context-type="sourcefile">app\translation-file-status\translation-file-status.component.ts</context><context context-type="linenumber">20</context></context-group><context-group purpose="location"><context context-type="sourcefile">app\translation-file-status\translation-file-status.component.ts</context><context context-type="linenumber">26</context></context-group></trans-unit>
       <trans-unit id="9d306bade90ca878105dfc2772851c5d0fa5fcf2" datatype="html">
         <source>No Translation Unit</source>
@@ -61,8 +61,8 @@
       <context-group purpose="location"><context context-type="sourcefile">app\translate-unit\translate-unit.component.ts</context><context context-type="linenumber">6</context></context-group></trans-unit>
       
       <trans-unit id="95f5a0d1979da3f0b092ffa96e7307e02cc4baee" datatype="html">
-        <source>State <x id="INTERPOLATION"/></source>
-        <target state="final">Status <x id="INTERPOLATION"/></target>
+        <source>State <x id="INTERPOLATION" equiv-text="{{targetState()}}"/></source>
+        <target state="translated">Status <x id="INTERPOLATION"/></target>
       <context-group purpose="location"><context context-type="sourcefile">app\translate-unit\translate-unit.component.ts</context><context context-type="linenumber">12</context></context-group></trans-unit>
 
       <trans-unit id="eec715de352a6b114713b30b640d319fa78207a0" datatype="html">
@@ -113,8 +113,8 @@
         <target state="final">Übersetzungen</target>
       <context-group purpose="location"><context context-type="sourcefile">app\translate-unit-list\translate-unit-list.component.ts</context><context context-type="linenumber">23</context></context-group></trans-unit>
       <trans-unit id="c6b1933d51bc90ad9e1380949873bb09932d448b" datatype="html">
-        <source><x id="START_BOLD_TEXT" ctype="x-b"/>Project <x id="CLOSE_BOLD_TEXT" ctype="x-b"/> <x id="INTERPOLATION"/></source>
-        <target state="final"><x id="START_BOLD_TEXT" ctype="x-b"/>Projekt<x id="CLOSE_BOLD_TEXT" ctype="x-b"/> <x id="INTERPOLATION"/></target>
+        <source><x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b>"/>Project <x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b>"/> <x id="INTERPOLATION" equiv-text="{{project?.name}}"/></source>
+        <target state="translated"><x id="START_BOLD_TEXT" ctype="x-b"/>Projekt<x id="CLOSE_BOLD_TEXT" ctype="x-b"/> <x id="INTERPOLATION"/></target>
       <context-group purpose="location"><context context-type="sourcefile">app\project\project.component.ts</context><context context-type="linenumber">4</context></context-group><context-group purpose="location"><context context-type="sourcefile">app\project-status\project-status.component.ts</context><context context-type="linenumber">2</context></context-group></trans-unit>
       <trans-unit id="d9d8be77cf88cf6bfb0cd5bdfdd3290c58380422" datatype="html">
         <source>Delete Project</source>
@@ -138,8 +138,8 @@
         <target state="final">Übermitteln Sie eine Übersetzungsdatei (xlf, xtb)</target>
 
       <context-group purpose="location"><context context-type="sourcefile">app\project-starter\project-starter.component.ts</context><context context-type="linenumber">16</context></context-group></trans-unit><trans-unit id="42649fcfb37e5731e215dfb39fc060a2cc3d1a7d" datatype="html">
-        <source>You selected an xtb file.<x id="LINE_BREAK" ctype="lb"/>
-        This file type only contains one language, the target language.<x id="LINE_BREAK" ctype="lb"/>
+        <source>You selected an xtb file.<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br/>"/>
+        This file type only contains one language, the target language.<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br/>"/>
         To show you the original source texts, you should also select the master xmb file.</source>
         <target state="translated">Sie haben eine Datei im Format 'xtb' ausgewählt.<x id="LINE_BREAK" ctype="lb"/>Diese Dateien enthalten nur die Zielsprache, aber nicht die Ausgangssprache.<x id="LINE_BREAK" ctype="lb"/>Um auch die Ausgangstexte zu sehen, müssen Sie zusätzliche eine xmb-Datei auswählen.</target>
 
@@ -170,8 +170,8 @@
         <target state="translated">Markieren als "Übersetzt"</target>
 
       <context-group purpose="location"><context context-type="sourcefile">app\translate-unit\translate-unit.component.ts</context><context context-type="linenumber">69</context></context-group></trans-unit><trans-unit id="6ea6fd6e11f219096dc53edcb89479798a1f826b" datatype="html">
-        <source>Select the file you want to translate.<x id="LINE_BREAK" ctype="lb"/>
-        The file can be of format XLIFF 1.2, XLIFF 2.0 or XMB.<x id="LINE_BREAK" ctype="lb"/>
+        <source>Select the file you want to translate.<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br/>"/>
+        The file can be of format XLIFF 1.2, XLIFF 2.0 or XMB.<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br/>"/>
         The file will be stored in your browser local storage until you export the translated version.</source>
         <target state="translated">Wählen Sie die Datei, die übersetzt werden soll.<x id="LINE_BREAK" ctype="lb"/> Mögliche Dateiformate sind XLIFF 1.2, XLIFF 2.0 oder XMB.<x id="LINE_BREAK" ctype="lb"/> Die Datei wird im LocalStorage des Browser gespeichert, bis Sie die übersetzte Version exportieren.</target>
         
@@ -219,18 +219,18 @@
         
         
       <context-group purpose="location"><context context-type="sourcefile">app\project-starter\project-starter.component.ts</context><context context-type="linenumber">61</context></context-group><context-group purpose="location"><context context-type="sourcefile">app\project-editor\project-editor.component.ts</context><context context-type="linenumber">33</context></context-group></trans-unit><trans-unit id="abb32ed4141f1d6669fbd2d7258c33eb8da04119" datatype="html">
-        <source>(translation of file <x id="INTERPOLATION"/>)</source>
-        <target state="final">(Übersetzung der Datei <x id="INTERPOLATION"/>)</target>
+        <source>(translation of file <x id="INTERPOLATION" equiv-text="{{translationFile?.masterName}}"/>)</source>
+        <target state="translated">(Übersetzung der Datei <x id="INTERPOLATION"/>)</target>
         
       <context-group purpose="location"><context context-type="sourcefile">app\translation-file-status\translation-file-status.component.ts</context><context context-type="linenumber">16</context></context-group></trans-unit><trans-unit id="f0a34959bca31a411dabad58e0be83432592163e" datatype="html">
-        <source>current transunit <x id="INTERPOLATION"/> of <x id="INTERPOLATION_1"/></source>
-        <target state="final">aktuelle Übersetzung <x id="INTERPOLATION"/> von <x id="INTERPOLATION_1"/></target>
+        <source>current transunit <x id="INTERPOLATION" equiv-text="{{translationFileView?.currentTransUnitIndex()}}"/> of <x id="INTERPOLATION_1" equiv-text="{{translationFileView?.scrollabeTransUnitsLength()}}"/></source>
+        <target state="translated">aktuelle Übersetzung <x id="INTERPOLATION"/> von <x id="INTERPOLATION_1"/></target>
         
       <context-group purpose="location"><context context-type="sourcefile">app\translation-file-status\translation-file-status.component.ts</context><context context-type="linenumber">28</context></context-group></trans-unit><trans-unit id="5a96c7f7a29ee51b58316aa6cb9f914c10368d95" datatype="html">
         <source>export current translation state to file (download)</source>
         <target state="final">Export der Übersetzungen (download)</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app\app.component.ts</context><context context-type="linenumber">28</context></context-group><context-group purpose="location"><context context-type="sourcefile">app\translation-file-status\translation-file-status.component.ts</context><context context-type="linenumber">30</context></context-group></trans-unit><trans-unit id="5ca62f8d7b9cfe1b70df406e02fb5402cda34782" datatype="html">
+      <context-group purpose="location"><context context-type="sourcefile">app\app.component.ts</context><context context-type="linenumber">30</context></context-group><context-group purpose="location"><context context-type="sourcefile">app\translation-file-status\translation-file-status.component.ts</context><context context-type="linenumber">30</context></context-group></trans-unit><trans-unit id="5ca62f8d7b9cfe1b70df406e02fb5402cda34782" datatype="html">
         <source>In normalization mode all markup contained in the messsages is shown in a simplified, format neutral way.</source>
         <target state="final">Im Normalisierungsmodus werden alle speziellen Markierungen (markup) in den Nachrichten in einer vereinfachten und formatunabhängigen Form angezeigt.</target>
         
@@ -260,7 +260,7 @@
         <source>Details of the project (click to open)</source>
         <target state="final">Details des Projekts (Klicken Sie hier zum Öffnen der Details)</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app\app.component.ts</context><context context-type="linenumber">21</context></context-group><context-group purpose="location"><context context-type="sourcefile">app\project-status\project-status.component.ts</context><context context-type="linenumber">3</context></context-group></trans-unit><trans-unit id="bc1dd546b5bf6ce79f355319167889865afa6be2" datatype="html">
+      <context-group purpose="location"><context context-type="sourcefile">app\app.component.ts</context><context context-type="linenumber">23</context></context-group><context-group purpose="location"><context context-type="sourcefile">app\project-status\project-status.component.ts</context><context context-type="linenumber">3</context></context-group></trans-unit><trans-unit id="bc1dd546b5bf6ce79f355319167889865afa6be2" datatype="html">
         <source>As a reviewer translation is disabled. You can only mark translated units as reviewed</source>
         <target state="final">Als "Reviewer" können Sie keine Übersetzungen eingeben. Sie können nur vohandene Übersetzungen als "reviewed" markieren.</target>
         
@@ -278,8 +278,8 @@
         <target state="final">Änderungen speichern</target>
         
       <context-group purpose="location"><context context-type="sourcefile">app\project-editor\project-editor.component.ts</context><context context-type="linenumber">42</context></context-group></trans-unit><trans-unit id="d04085c5069d49c88f924e788121d4161ffc5bc8" datatype="html">
-        <source>{VAR_PLURAL, plural, =0 {Currently there is no open project.} =1 {Currently there is <x id="START_BOLD_TEXT" ctype="x-b"/>1<x id="CLOSE_BOLD_TEXT" ctype="x-b"/> open project.} other {Currently there are <x id="START_BOLD_TEXT" ctype="x-b"/><x id="INTERPOLATION"/><x id="CLOSE_BOLD_TEXT" ctype="x-b"/> open projects.} }</source>
-        <target state="final">{VAR_PLURAL, plural, =0 {Aktuell gibt es keine offenen Projekte.} =1 {Aktuell gibt es <x id="START_BOLD_TEXT" ctype="x-b"/>1<x id="CLOSE_BOLD_TEXT" ctype="x-b"/> offenes Projekt.} other {Aktuell gibt es <x id="START_BOLD_TEXT" ctype="x-b"/><x id="INTERPOLATION"/><x id="CLOSE_BOLD_TEXT" ctype="x-b"/> offene Projekte.}}</target>
+        <source>{VAR_PLURAL, plural, =0 {Currently there is no open project.} =1 {Currently there is <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b>"/>1<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b>"/> open project.} other {Currently there are <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b>"/><x id="INTERPOLATION" equiv-text="{{projects().length}}"/><x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b>"/> open projects.} }</source>
+        <target state="translated">{VAR_PLURAL, plural, =0 {Aktuell gibt es keine offenen Projekte.} =1 {Aktuell gibt es <x id="START_BOLD_TEXT" ctype="x-b"/>1<x id="CLOSE_BOLD_TEXT" ctype="x-b"/> offenes Projekt.} other {Aktuell gibt es <x id="START_BOLD_TEXT" ctype="x-b"/><x id="INTERPOLATION"/><x id="CLOSE_BOLD_TEXT" ctype="x-b"/> offene Projekte.}}</target>
         
       <context-group purpose="location"><context context-type="sourcefile">app\home-page\home-page.component.ts</context><context context-type="linenumber">2</context></context-group></trans-unit><trans-unit id="2f0d96acbeea1301bcaf29c5b31e1fc9f3ac2d4a" datatype="html">
         <source>Google Translate status for current project</source>
@@ -290,16 +290,16 @@
         <target state="final">Google Translate ist derzeit aus folgendem Grund deaktiviert:</target>
         
       <context-group purpose="location"><context context-type="sourcefile">app\configure-auto-translate-page\configure-auto-translate-page.component.ts</context><context context-type="linenumber">3</context></context-group></trans-unit><trans-unit id="50916de5246890bf2d310c08825546c83749f8ac" datatype="html">
-        <source>Google Translate is ready to translate from <x id="INTERPOLATION"/> to <x id="INTERPOLATION_1"/></source>
-        <target state="final">Google Translate ist bereit, von <x id="INTERPOLATION"/> zu <x id="INTERPOLATION_1"/> zu übersetzen.</target>
+        <source>Google Translate is ready to translate from <x id="INTERPOLATION" equiv-text="{{sourceLanguage()}}"/> to <x id="INTERPOLATION_1" equiv-text="{{targetLanguage()}}"/></source>
+        <target state="translated">Google Translate ist bereit, von <x id="INTERPOLATION"/> zu <x id="INTERPOLATION_1"/> zu übersetzen.</target>
         
       <context-group purpose="location"><context context-type="sourcefile">app\configure-auto-translate-page\configure-auto-translate-page.component.ts</context><context context-type="linenumber">8</context></context-group></trans-unit><trans-unit id="3beb2efd0ff3b845b1a98156562509e7488a737f" datatype="html">
         <source>Google Translate Settings</source>
         <target state="final">Google Translate Einstellungen</target>
         
       <context-group purpose="location"><context context-type="sourcefile">app\configure-auto-translate-page\configure-auto-translate-page.component.ts</context><context context-type="linenumber">11</context></context-group></trans-unit><trans-unit id="afd3ae467f544794a545ef4db4a6f6536736a2dc" datatype="html">
-        <source>To use Google Translate you need an account on <x id="START_LINK" ctype="x-a"/>Google Cloud Platform<x id="CLOSE_LINK" ctype="x-a"/>.</source>
-        <target state="final">Um Google Translate zu verwenden, benötigen Sie ein Konto auf der <x id="START_LINK" ctype="x-a"/>Google Cloud Platform<x id="CLOSE_LINK" ctype="x-a"/> .</target>
+        <source>To use Google Translate you need an account on <x id="START_LINK" ctype="x-a" equiv-text="&lt;a>"/>Google Cloud Platform<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a>"/>.</source>
+        <target state="translated">Um Google Translate zu verwenden, benötigen Sie ein Konto auf der <x id="START_LINK" ctype="x-a"/>Google Cloud Platform<x id="CLOSE_LINK" ctype="x-a"/> .</target>
         
       <context-group purpose="location"><context context-type="sourcefile">app\configure-auto-translate-page\configure-auto-translate-page.component.ts</context><context context-type="linenumber">13</context></context-group></trans-unit><trans-unit id="00405112badd2766d84d9e01ed7f2c002d975d63" datatype="html">
         <source>Then you have to create an API Key.</source>
@@ -329,12 +329,12 @@
         <target state="final">Google Translate Test</target>
         
       <context-group purpose="location"><context context-type="sourcefile">app\configure-auto-translate-page\configure-auto-translate-page.component.ts</context><context context-type="linenumber">27</context></context-group></trans-unit><trans-unit id="c4af0949d56b2c8c6ff7747ddea1dab88d4ab221" datatype="html">
-        <source>Google Translate cannot translate from <x id="INTERPOLATION"/> to <x id="INTERPOLATION_1"/> due to the following reason:</source>
-        <target state="final">Google Translate kann aus dem folgenden Grund nicht von <x id="INTERPOLATION"/> nach <x id="INTERPOLATION_1"/> übersetzen:</target>
+        <source>Google Translate cannot translate from <x id="INTERPOLATION" equiv-text="{{sourceLanguageTest()}}"/> to <x id="INTERPOLATION_1" equiv-text="{{targetLanguageTest()}}"/> due to the following reason:</source>
+        <target state="translated">Google Translate kann aus dem folgenden Grund nicht von <x id="INTERPOLATION"/> nach <x id="INTERPOLATION_1"/> übersetzen:</target>
         
       <context-group purpose="location"><context context-type="sourcefile">app\configure-auto-translate-page\configure-auto-translate-page.component.ts</context><context context-type="linenumber">29</context></context-group></trans-unit><trans-unit id="14d3c10f8e6d51106aae905f1f5bf17406661af7" datatype="html">
-        <source>Google Translate is ready to translate from <x id="INTERPOLATION"/> to <x id="INTERPOLATION_1"/></source>
-        <target state="final">Google Translate ist bereit, von <x id="INTERPOLATION"/> nach <x id="INTERPOLATION_1"/> zu übersetzen.</target>
+        <source>Google Translate is ready to translate from <x id="INTERPOLATION" equiv-text="{{sourceLanguageTest()}}"/> to <x id="INTERPOLATION_1" equiv-text="{{targetLanguageTest()}}"/></source>
+        <target state="translated">Google Translate ist bereit, von <x id="INTERPOLATION"/> nach <x id="INTERPOLATION_1"/> zu übersetzen.</target>
         
       <context-group purpose="location"><context context-type="sourcefile">app\configure-auto-translate-page\configure-auto-translate-page.component.ts</context><context context-type="linenumber">34</context></context-group></trans-unit><trans-unit id="6d3cc7575e90a220bf3e28868846f9b003ad0c8f" datatype="html">
         <source>Source language code</source>
@@ -358,19 +358,19 @@
         <source>Google Translate settings..</source>
         <target state="final">Google Translate Einstellungen ..</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app\app.component.ts</context><context context-type="linenumber">35</context></context-group></trans-unit><trans-unit id="d4b7dbc9a30d91dd5a1b88251d7a654f00e6ef52" datatype="html">
+      <context-group purpose="location"><context context-type="sourcefile">app\app.component.ts</context><context context-type="linenumber">37</context></context-group></trans-unit><trans-unit id="d4b7dbc9a30d91dd5a1b88251d7a654f00e6ef52" datatype="html">
         <source>configure Google Translate API Key</source>
         <target state="final">Konfigurieren Sie den Google Translate API-Schlüssel</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app\app.component.ts</context><context context-type="linenumber">33</context></context-group></trans-unit><trans-unit id="f4b94231ace292964b73b1ba8b77c69ca1d42947" datatype="html">
+      <context-group purpose="location"><context context-type="sourcefile">app\app.component.ts</context><context context-type="linenumber">35</context></context-group></trans-unit><trans-unit id="f4b94231ace292964b73b1ba8b77c69ca1d42947" datatype="html">
         <source>Google Translate units..</source>
         <target state="final">Übersetzen per Google Translate ..</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app\app.component.ts</context><context context-type="linenumber">40</context></context-group></trans-unit><trans-unit id="b3da02a762691a868113c1555c0a74c2252c31d3" datatype="html">
+      <context-group purpose="location"><context context-type="sourcefile">app\app.component.ts</context><context context-type="linenumber">42</context></context-group></trans-unit><trans-unit id="b3da02a762691a868113c1555c0a74c2252c31d3" datatype="html">
         <source>Translate all untranslated units with Google Translate</source>
         <target state="final">Übersetzen Sie alle nicht übersetzten Einheiten mit Google Translate</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app\app.component.ts</context><context context-type="linenumber">38</context></context-group></trans-unit><trans-unit id="84fde7a04ebc8c588e3ff102e614ae5e1ff76b86" datatype="html">
+      <context-group purpose="location"><context context-type="sourcefile">app\app.component.ts</context><context context-type="linenumber">40</context></context-group></trans-unit><trans-unit id="84fde7a04ebc8c588e3ff102e614ae5e1ff76b86" datatype="html">
         <source>press to get a translation suggestion from Google Translate</source>
         <target state="final">Übersetzungsvorschlag von Google Translate</target>
         
@@ -426,11 +426,11 @@
         <source>Last results..</source>
         <target state="final">Ergebnis letzter Lauf..</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app\app.component.ts</context><context context-type="linenumber">45</context></context-group></trans-unit><trans-unit id="199c0c9528e7ded8511f4c5dcceacb0f4de13d15" datatype="html">
+      <context-group purpose="location"><context context-type="sourcefile">app\app.component.ts</context><context context-type="linenumber">47</context></context-group></trans-unit><trans-unit id="199c0c9528e7ded8511f4c5dcceacb0f4de13d15" datatype="html">
         <source>Open summary page of last autotranslate run</source>
         <target state="final">Öffnen Übersicht über die Ergebnisse des letzten Autotranslation-Laufs</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app\app.component.ts</context><context context-type="linenumber">43</context></context-group></trans-unit><trans-unit id="50947a36dc35b04f2f8cef573952d0f2fb69c92e" datatype="html">
+      <context-group purpose="location"><context context-type="sourcefile">app\app.component.ts</context><context context-type="linenumber">45</context></context-group></trans-unit><trans-unit id="50947a36dc35b04f2f8cef573952d0f2fb69c92e" datatype="html">
         <source>Autotranslated units</source>
         <target state="final">Automatisch übersetzte Einheiten</target>
         
@@ -444,11 +444,8 @@
         
       <context-group purpose="location"><context context-type="sourcefile">app\translate-unit-list\translate-unit-list.component.ts</context><context context-type="linenumber">9</context></context-group><context-group purpose="location"><context context-type="sourcefile">app\filter-status\filter-status.component.ts</context><context context-type="linenumber">7</context></context-group></trans-unit><trans-unit id="9d5137b2cf03ba36936c43ab24f1a0f487ffd434" datatype="html">
         <source>Save..</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app\app.component.ts</context>
-          <context context-type="linenumber">30</context>
-        </context-group>
-      <target state="final">Speichern..</target></trans-unit><trans-unit id="0d4e42ed6009feb7b837cf078afdc4cef5dc9699" datatype="html">
+        
+      <target state="final">Speichern..</target><context-group purpose="location"><context context-type="sourcefile">app\app.component.ts</context><context context-type="linenumber">32</context></context-group></trans-unit><trans-unit id="0d4e42ed6009feb7b837cf078afdc4cef5dc9699" datatype="html">
         <source>Normalization mode
           </source>
         <context-group purpose="location">
@@ -472,18 +469,18 @@
         <source>Save project changes</source>
         
       <target state="final">Speichern Projekteinstellungen</target><context-group purpose="location"><context context-type="sourcefile">app\project-editor\project-editor.component.ts</context><context context-type="linenumber">43</context></context-group></trans-unit><trans-unit id="a2c383156fcb90b775ade03de5dd5f02fef96ba2" datatype="html">
-        <source>Substring <x id="INTERPOLATION"/></source>
+        <source>Substring <x id="INTERPOLATION" equiv-text="{{substringFilterPattern()}}"/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">app\filter-status\filter-status.component.ts</context>
           <context context-type="linenumber">10</context>
         </context-group>
-      <target state="final">Substring <x id="INTERPOLATION"/></target></trans-unit><trans-unit id="686d9c1ac5d9d25f430071ccbafb76029834f20b" datatype="html">
-        <source><x id="INTERPOLATION"/> of <x id="INTERPOLATION_1"/></source>
+      <target state="translated">Substring <x id="INTERPOLATION"/></target></trans-unit><trans-unit id="686d9c1ac5d9d25f430071ccbafb76029834f20b" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{translationFileView?.currentTransUnitIndex()}}"/> of <x id="INTERPOLATION_1" equiv-text="{{translationFileView?.scrollabeTransUnitsLength()}}"/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">app\filter-status\filter-status.component.ts</context>
           <context context-type="linenumber">15</context>
         </context-group>
-      <target state="final"><x id="INTERPOLATION"/> von <x id="INTERPOLATION_1"/></target></trans-unit><trans-unit id="b9c64e1452739d7ef2fd47990bb6d73601e78f09" datatype="html">
+      <target state="translated"><x id="INTERPOLATION"/> von <x id="INTERPOLATION_1"/></target></trans-unit><trans-unit id="b9c64e1452739d7ef2fd47990bb6d73601e78f09" datatype="html">
         <source>
           mark as translated, but not reviewed
         </source>
