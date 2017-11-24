@@ -1,3 +1,14 @@
+<a name="0.10.0"></a>
+# [0.10.0](https://github.com/martinroob/tiny-translator/compare/v0.10.0...v0.9.0) (2017-11-24)
+
+### Features
+
+* **internal** Technology update to Angular 5.0 and Material RC 1 ([#44](https://github.com/martinroob/tiny-translator/issues/44)).
+
+### Bugfixes
+
+* **internal** fixed: Cannot find module 'rxjs/observable' ([#43](https://github.com/martinroob/tiny-translator/issues/43)).
+
 <a name="0.9.0"></a>
 # [0.9.0](https://github.com/martinroob/tiny-translator/compare/v0.9.0...v0.8.0) (2017-09-15)
 
