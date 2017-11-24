@@ -1,4 +1,5 @@
 // Observable class extensions
+import 'rxjs/add/observable/combineLatest';
 import 'rxjs/add/observable/defer';
 import 'rxjs/add/observable/from';
 import 'rxjs/add/observable/of';
