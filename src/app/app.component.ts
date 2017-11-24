@@ -2,7 +2,7 @@ import {Component, Inject} from '@angular/core';
 import {AppConfig, APP_CONFIG} from './app.config';
 import {TinyTranslatorService} from './model/tiny-translator.service';
 import {isNullOrUndefined} from 'util';
-import {Observable} from 'rxjs/observable';
+import {Observable} from 'rxjs/Observable';
 import {Router} from '@angular/router';
 
 @Component({

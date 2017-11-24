@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { TranslateUnitComponent } from './translate-unit.component';
 import {NO_ERRORS_SCHEMA} from '@angular/core';
 import {FormBuilder} from '@angular/forms';
-import {MdDialog, MdDialogModule, MdDialogRef, Overlay} from '@angular/material';
+import {MatDialog, MatDialogModule, MatDialogRef} from '@angular/material';
 import {AppModule} from '../app.module';
 
 describe('TranslateUnitComponent', () => {
@@ -13,7 +13,7 @@ describe('TranslateUnitComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [],
-      imports: [AppModule, MdDialogModule],
+      imports: [AppModule, MatDialogModule],
       schemas: [NO_ERRORS_SCHEMA]
     })
     .compileComponents();

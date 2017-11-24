@@ -1,23 +1,23 @@
-<md-card *ngIf="!translationUnit">
-  <md-card-header>
-    <md-card-title i18n>No Translation Unit</md-card-title>
-  </md-card-header>
-  <md-card-content style="overflow: hidden">
+<mat-card *ngIf="!translationUnit">
+  <mat-card-header>
+    <mat-card-title i18n>No Translation Unit</mat-card-title>
+  </mat-card-header>
+  <mat-card-content style="overflow: hidden">
     <p i18n>no content</p>
-  </md-card-content>
-</md-card>
-<md-card *ngIf="translationUnit">
-  <md-card-header>
-    <md-card-title fxLayout="row" fxLayoutAlign="start center">
+  </mat-card-content>
+</mat-card>
+<mat-card *ngIf="translationUnit">
+  <mat-card-header>
+    <mat-card-title fxLayout="row" fxLayoutAlign="start center">
       <ng-container i18n>State {{targetState()}}</ng-container>
-      <md-icon *ngIf="targetState() === 'final'">done</md-icon>
-      <md-icon *ngIf="targetState() === 'translated'">label_outline</md-icon>
-      <md-icon *ngIf="targetState() === 'new'">translate</md-icon>
-      <button md-icon-button (click)="showTransUnitID()" mdTooltip="ID {{transUnitID()}}"><md-icon>info</md-icon></button>
-      <button md-icon-button *ngIf="sourceRef()" (click)="showSourceRefInfo()" mdTooltip="{{sourceRef()}}"><md-icon>location_on</md-icon></button>
-    </md-card-title>
-  </md-card-header>
-  <md-card-content fxLayout="column" fxLayoutGap="5px" [ngClass.gt-sm]="'mdcardcontent_gt'" [ngClass.lt-md]="'mdcardcontent_sm'">
+      <mat-icon *ngIf="targetState() === 'final'">done</mat-icon>
+      <mat-icon *ngIf="targetState() === 'translated'">label_outline</mat-icon>
+      <mat-icon *ngIf="targetState() === 'new'">translate</mat-icon>
+      <button mat-icon-button (click)="showTransUnitID()" matTooltip="ID {{transUnitID()}}"><mat-icon>info</mat-icon></button>
+      <button mat-icon-button *ngIf="sourceRef()" (click)="showSourceRefInfo()" matTooltip="{{sourceRef()}}"><mat-icon>location_on</mat-icon></button>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content fxLayout="column" fxLayoutGap="5px" [ngClass.gt-sm]="'mdcardcontent_gt'" [ngClass.lt-md]="'mdcardcontent_sm'">
     <div>
       <div id="sourcemessage">
         <app-language [code]="sourceLanguage()"></app-language>
@@ -30,74 +30,74 @@
       <p fxLayout="row"><span i18n>Your translation to</span>&nbsp;<app-language [code]="targetLanguage()"></app-language></p>
       <div fxLayout="row" fxLayoutGap="30px" fxFlex="noshrink">
         <div fxLayout="column">
-          <md-slide-toggle formControlName="showNormalized" color="accent"
-                           mdTooltip="In normalization mode all markup contained in the messsages is shown in a simplified, format neutral way."
-                           i18n-mdTooltip i18n>Normalization mode
-          </md-slide-toggle>
+          <mat-slide-toggle formControlName="showNormalized" color="accent"
+                           matTooltip="In normalization mode all markup contained in the messsages is shown in a simplified, format neutral way."
+                           i18n-matTooltip i18n>Normalization mode
+          </mat-slide-toggle>
           <p class="normalizationhint" *ngIf="showNormalized" i18n>(switch off to show native message)</p>
           <p class="normalizationhint" *ngIf="!showNormalized" i18n>(switch on to use normalization)</p>
         </div>
-        <button *ngIf="!reviewMode" md-icon-button
+        <button *ngIf="!reviewMode" mat-icon-button
                 fxFlexAlign="start"
-                md-button color="accent"
+                mat-button color="accent"
                 (click)="undo()"
                 [disabled]="!isTranslationChanged()"
-                mdTooltip="undo changes" i18n-mdTooltip>
-          <md-icon>undo</md-icon>
+                matTooltip="undo changes" i18n-matTooltip>
+          <mat-icon>undo</mat-icon>
         </button>
-        <button *ngIf="!reviewMode" md-mini-fab
+        <button *ngIf="!reviewMode" mat-mini-fab
                 fxFlexAlign="start"
-                md-button color="accent"
+                mat-button color="accent"
                 (click)="autoTranslate()"
                 [disabled]="autoTranslateDisabled() | async"
-                mdTooltip="press to get a translation suggestion from Google Translate" i18n-mdTooltip>
-          <md-icon>g_translate</md-icon>
+                matTooltip="press to get a translation suggestion from Google Translate" i18n-matTooltip>
+          <mat-icon>g_translate</mat-icon>
         </button>
       </div>
       <app-normalized-message-input id="translationinput" [readonly]="reviewMode" [normalized]="showNormalized"
                                     [message]="editedTargetContentNormalized()"
                                     formControlName="_editedTargetMessage"
                                     (accept)="next()"></app-normalized-message-input>
-      <p *ngFor="let w of warnings()" class="warn"><md-icon>warning</md-icon>&nbsp;{{w}}</p>
-      <p *ngFor="let e of errors()" class="error"><md-icon>error</md-icon>&nbsp;{{e}}</p>
+      <p *ngFor="let w of warnings()" class="warn"><mat-icon>warning</mat-icon>&nbsp;{{w}}</p>
+      <p *ngFor="let e of errors()" class="error"><mat-icon>error</mat-icon>&nbsp;{{e}}</p>
       <div fxLayout="row">
         <button *ngIf="!reviewMode"
                 fxFlexAlign="start"
-                md-button color="primary"
+                mat-button color="primary"
                 (click)="markTranslated()"
                 i18n
-                mdTooltip="press to accept the given translation" i18n-mdTooltip>
+                matTooltip="press to accept the given translation" i18n-matTooltip>
           mark as translated
         </button>
         <button *ngIf="reviewMode && targetState() === 'translated'"
                 fxFlexAlign="start"
-                md-button color="primary"
+                mat-button color="primary"
                 (click)="markReviewed()"
                 i18n
-                mdTooltip="press to accept the given translation as reviewed" i18n-mdTooltip>
+                matTooltip="press to accept the given translation as reviewed" i18n-matTooltip>
           mark as reviewed
         </button>
         <button *ngIf="reviewMode && targetState() === 'final'"
                 fxFlexAlign="start"
-                md-button color="primary"
+                mat-button color="primary"
                 (click)="markTranslated()"
                 i18n
-                mdTooltip="press to reset the reviewed translation to 'translated'" i18n-mdTooltip>
+                matTooltip="press to reset the reviewed translation to 'translated'" i18n-matTooltip>
           mark as translated, but not reviewed
         </button>
       </div>
     </form>
-  </md-card-content>
-  <md-card-actions>
-    <button md-button i18n (click)="prev()"
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button i18n (click)="prev()"
             [disabled]="!hasPrev()"
-            mdTooltip="accept translation and go to previous unit" i18n-mdTooltip>
+            matTooltip="accept translation and go to previous unit" i18n-matTooltip>
       Previous
     </button>
-    <button md-button i18n (click)="next()"
+    <button mat-button i18n (click)="next()"
             [disabled]="!hasNext()"
-            mdTooltip="accept translation and go to next unit (Keyboard shortcut 'Ctrl Enter')" i18n-mdTooltip>
+            matTooltip="accept translation and go to next unit (Keyboard shortcut 'Ctrl Enter')" i18n-matTooltip>
       Next
     </button>
-  </md-card-actions>
-</md-card>
+  </mat-card-actions>
+</mat-card>

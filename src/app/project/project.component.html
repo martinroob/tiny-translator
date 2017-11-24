@@ -1,14 +1,14 @@
-<md-card>
-  <md-card-header>
-    <md-card-title>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
       <p i18n><b>Project </b> {{project?.name}}</p>
-    </md-card-title>
-  </md-card-header>
-  <md-card-content>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
     <app-translation-file-status [translationFileView]="project?.translationFileView" [translationFile]="project?.translationFile" (onSave)="save($event)"></app-translation-file-status>
-  </md-card-content>
-  <md-card-actions *ngIf="showActions">
-    <button md-icon-button *ngIf="!project?.translationFile?.isDirty()" (click)="deleteProject()"  mdTooltip="Delete Project" i18n-mdTooltip><md-icon>delete</md-icon></button>
-    <button md-fab *ngIf="project?.canTranslate()" (click)="startWork()" mdTooltip="Start Translation" i18n-mdTooltip><md-icon>translate</md-icon></button>
-  </md-card-actions>
-</md-card>
+  </mat-card-content>
+  <mat-card-actions *ngIf="showActions">
+    <button mat-icon-button *ngIf="!project?.translationFile?.isDirty()" (click)="deleteProject()"  matTooltip="Delete Project" i18n-matTooltip><mat-icon>delete</mat-icon></button>
+    <button mat-fab *ngIf="project?.canTranslate()" (click)="startWork()" matTooltip="Start Translation" i18n-matTooltip><mat-icon>translate</mat-icon></button>
+  </mat-card-actions>
+</mat-card>
