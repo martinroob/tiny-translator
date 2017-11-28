@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import {HttpClientModule} from '@angular/common/http';
 
 import './rxjs-operators';
 
@@ -72,7 +72,7 @@ import { FilterPageComponent } from './filter-page/filter-page.component';
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpModule,
+    HttpClientModule,
     AppMaterialModule,
     routing
   ],
