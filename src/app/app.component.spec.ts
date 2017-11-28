@@ -22,7 +22,7 @@ describe('AppComponent', () => {
   it(`should have a build version`, async(() => {
     const fixture = TestBed.createComponent(AppComponent);
     const app: AppComponent = fixture.debugElement.componentInstance;
-    expect(app.buildversion()).toMatch(/\d\.\d\.\d/);
+    expect(app.buildversion()).toMatch(/\d+\.\d+\.\d+/);
   }));
 
   it('should render mat-toolbar', async(() => {
