@@ -2,6 +2,27 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="en" datatype="plaintext" original="ng2.template">
     <body>
+      <trans-unit id="8305daea742cd945ac4268e5fcf8d30df30c8038" datatype="html">
+        <source>A newer version of the app is available</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\update-available\update-available.component.ts</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="bb239ba357ffecd3a7be3b1f2d4aa9799e6de16e" datatype="html">
+        <source>Refresh Application</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\update-available\update-available.component.ts</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="704b13c5f32d986c19bf803546de5dd0626f8fff" datatype="html">
+        <source>Ignore</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\update-available\update-available.component.ts</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="cecce9108254c2771317c2fd8a6ace406579041d" datatype="html">
         <source>Details of the project (click to open)</source>
         <context-group purpose="location">

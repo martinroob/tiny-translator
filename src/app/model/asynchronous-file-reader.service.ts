@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import {Observable, ReplaySubject, Subject} from 'rxjs';
+import {Observable} from 'rxjs/Observable';
+import {ReplaySubject} from 'rxjs/ReplaySubject';
 
 /**
  * Service to read a file.

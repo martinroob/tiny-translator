@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
+import {ServiceWorkerModule} from '@angular/service-worker';
+import {environment} from '../environments/environment';
 
 import './rxjs-operators';
 
@@ -42,6 +44,7 @@ import { AutoTranslateSummaryPageComponent } from './auto-translate-summary-page
 import { TranslationUnitFilterService } from './model/filters/translation-unit-filter.service';
 import { FilterStatusComponent } from './filter-status/filter-status.component';
 import { FilterPageComponent } from './filter-page/filter-page.component';
+import { UpdateAvailableComponent } from './update-available/update-available.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +68,8 @@ import { FilterPageComponent } from './filter-page/filter-page.component';
     ConfigureAutoTranslatePageComponent,
     AutoTranslateSummaryPageComponent,
     FilterStatusComponent,
-    FilterPageComponent
+    FilterPageComponent,
+    UpdateAvailableComponent
   ],
   imports: [
     BrowserModule,
@@ -74,7 +78,8 @@ import { FilterPageComponent } from './filter-page/filter-page.component';
     ReactiveFormsModule,
     HttpClientModule,
     AppMaterialModule,
-    routing
+    routing,
+    environment.production ? ServiceWorkerModule.register(environment.base_href + 'ngsw-worker.js') : []
   ],
   providers: [
     {provide: APP_CONFIG, useValue: APP_CONFIG_VALUE},
@@ -87,7 +92,7 @@ import { FilterPageComponent } from './filter-page/filter-page.component';
     {provide: AutoTranslateServiceAPI, useClass: AutoTranslateGoogleService},
     TranslationUnitFilterService,
   ],
-  entryComponents: [TranslateUnitWarningConfirmDialogComponent],
+  entryComponents: [TranslateUnitWarningConfirmDialogComponent, UpdateAvailableComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

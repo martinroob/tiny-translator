@@ -521,6 +521,24 @@
           <context context-type="sourcefile">app\translate-unit\translate-unit.component.ts</context>
           <context context-type="linenumber">99</context>
         </context-group>
-      <target state="final">accept translation and go to next unit (Keyboard shortcut 'Ctrl Enter')</target></trans-unit></body>
+      <target state="final">accept translation and go to next unit (Keyboard shortcut 'Ctrl Enter')</target></trans-unit><trans-unit id="8305daea742cd945ac4268e5fcf8d30df30c8038" datatype="html">
+        <source>A newer version of the app is available</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\update-available\update-available.component.ts</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      <target state="final">A newer version of the app is available</target></trans-unit><trans-unit id="bb239ba357ffecd3a7be3b1f2d4aa9799e6de16e" datatype="html">
+        <source>Refresh Application</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\update-available\update-available.component.ts</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      <target state="final">Refresh Application</target></trans-unit><trans-unit id="704b13c5f32d986c19bf803546de5dd0626f8fff" datatype="html">
+        <source>Ignore</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\update-available\update-available.component.ts</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      <target state="final">Ignore</target></trans-unit></body>
   </file>
 </xliff>
