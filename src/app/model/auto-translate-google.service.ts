@@ -5,7 +5,7 @@ import {
 } from './auto-translate-service-api';
 import {APP_CONFIG, AppConfig} from '../app.config';
 import {Observable} from 'rxjs/Observable';
-import {Http, Response} from '@angular/http';
+import {HttpClient} from '@angular/common/http';
 import {isNullOrUndefined} from 'util';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 
@@ -92,7 +92,7 @@ export class AutoTranslateGoogleService extends AutoTranslateServiceAPI {
     return langLower;
   }
 
-  constructor(@Inject(APP_CONFIG) app_config: AppConfig, private httpService: Http) {
+  constructor(@Inject(APP_CONFIG) app_config: AppConfig, private httpClient: HttpClient) {
     super();
     this._rootUrl = app_config.GOOGLETRANSLATE_API_ROOT_URL;
     // API key is secret, normally it is nit configured and will be null
@@ -177,15 +177,15 @@ export class AutoTranslateGoogleService extends AutoTranslateServiceAPI {
       this._subjects[target] = new BehaviorSubject<Language[]>([]);
       if (this._apiKey) {
         const languagesRequestUrl = this._rootUrl + 'language/translate/v2/languages' + '?key=' + this._apiKey + '&target=' + target;
-        this.httpService.get(languagesRequestUrl).catch((error: Response) => {
+        this.httpClient.get<{data: LanguagesListResponse}>(languagesRequestUrl).catch((error: Response) => {
           if (this.isInvalidApiKeyError(error)) {
             this._permanentFailReason = {reason: AutoTranslateDisabledReasonKey.INVALID_KEY};
           } else {
-            this._permanentFailReason = {reason: AutoTranslateDisabledReasonKey.CONNECT_PROBLEM, details: JSON.stringify(error.json())};
+            this._permanentFailReason = {reason: AutoTranslateDisabledReasonKey.CONNECT_PROBLEM, details: JSON.stringify(error.body)};
           }
           return [];
-        }).map((response: Response) => {
-          const result: LanguagesListResponse = response.json().data;
+        }).map((response) => {
+          const result: LanguagesListResponse = response.data;
           return result.languages;
         }).subscribe((languages) => {
           this._subjects[target].next(languages);
@@ -200,7 +200,7 @@ export class AutoTranslateGoogleService extends AutoTranslateServiceAPI {
       return false;
     }
     if (error.status === 400) {
-      const body = error.json();
+      const body = error.body;
       if (body) {
         return JSON.stringify(body).indexOf('API key not valid') >= 0;
       }
@@ -228,8 +228,8 @@ export class AutoTranslateGoogleService extends AutoTranslateServiceAPI {
       // format: TODO useful html or text
     };
     const realUrl = this._rootUrl + 'language/translate/v2' + '?key=' + this._apiKey;
-    return this.httpService.post(realUrl, translateRequest).map((response: Response) => {
-      const result: TranslationsListResponse = response.json().data;
+    return this.httpClient.post<{data: TranslationsListResponse}>(realUrl, translateRequest).map((response) => {
+      const result: TranslationsListResponse = response.data;
       return result.translations[0].translatedText;
     });
   }
@@ -283,8 +283,8 @@ export class AutoTranslateGoogleService extends AutoTranslateServiceAPI {
       // format: TODO useful html or text
     };
     const realUrl = this._rootUrl + 'language/translate/v2' + '?key=' + this._apiKey;
-    return this.httpService.post(realUrl, translateRequest).map((response: Response) => {
-      const result: TranslationsListResponse = response.json().data;
+    return this.httpClient.post<{data: TranslationsListResponse}>(realUrl, translateRequest).map((response) => {
+      const result: TranslationsListResponse = response.data;
       return result.translations.map((translation: TranslationsResource) => {
         // just for tests, provoke errors and warnings, if explicitly wanted
         if (this.failByDesign) {

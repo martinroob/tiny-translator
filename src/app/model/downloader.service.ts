@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import {Headers, Http, RequestMethod, ResponseContentType} from '@angular/http';
 import * as FileSaver from 'file-saver';
 
 @Injectable()

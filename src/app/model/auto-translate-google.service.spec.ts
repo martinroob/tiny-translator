@@ -1,14 +1,14 @@
 import { TestBed, inject, async } from '@angular/core/testing';
 
+import {HttpClientModule} from '@angular/common/http';
 import { AutoTranslateGoogleService } from './auto-translate-google.service';
 import {APP_CONFIG, APP_CONFIG_VALUE} from '../app.config';
-import {ConnectionBackend, Http, HttpModule, RequestOptions} from '@angular/http';
 import {AutoTranslateDisabledReason, AutoTranslateDisabledReasonKey} from './auto-translate-service-api';
 
 describe('AutoTranslateGoogleService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpModule],
+      imports: [HttpClientModule],
       providers: [AutoTranslateGoogleService, {provide: APP_CONFIG, useValue: APP_CONFIG_VALUE}]
     });
   });

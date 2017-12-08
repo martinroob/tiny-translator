@@ -1,20 +1,40 @@
-import {Component, Inject} from '@angular/core';
+import {Component, Inject, OnInit, Optional} from '@angular/core';
 import {AppConfig, APP_CONFIG} from './app.config';
 import {TinyTranslatorService} from './model/tiny-translator.service';
 import {isNullOrUndefined} from 'util';
 import {Observable} from 'rxjs/Observable';
 import {Router} from '@angular/router';
+import {SwUpdate} from '@angular/service-worker';
+import {MatSnackBar} from '@angular/material';
+import {UpdateAvailableEvent} from '@angular/service-worker/src/low_level';
+import {UpdateAvailableComponent} from './update-available/update-available.component';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'app works!';
 
-  constructor(@Inject(APP_CONFIG) private APP_CONFIG: AppConfig, private translatorService: TinyTranslatorService, private router: Router) {
+  constructor(
+    @Inject(APP_CONFIG) private APP_CONFIG: AppConfig,
+    private translatorService: TinyTranslatorService,
+    private router: Router,
+    @Optional() private swUpdate: SwUpdate,
+    private matSnackBar: MatSnackBar
+  ) {
 
+  }
+
+  ngOnInit() {
+    if (this.swUpdate) {
+      this.swUpdate.available.subscribe((event: UpdateAvailableEvent) => {
+        console.log('[App] Update available: current version is', event.current, 'available version is', event.available);
+        this.matSnackBar.openFromComponent(UpdateAvailableComponent, {duration: 3000})
+      });
+    }
+    this.matSnackBar.openFromComponent(UpdateAvailableComponent)
   }
 
   buildtime() {
