@@ -34,7 +34,6 @@ export class AppComponent implements OnInit {
         this.matSnackBar.openFromComponent(UpdateAvailableComponent, {duration: 3000})
       });
     }
-    this.matSnackBar.openFromComponent(UpdateAvailableComponent)
   }
 
   buildtime() {
