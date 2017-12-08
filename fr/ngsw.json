@@ -1,0 +1,60 @@
+{
+  "configVersion": 1,
+  "index": "/tiny-translator/fr/index.html",
+  "appData": {
+    "version": "0.11.0",
+    "message": "Introducing Service Worker"
+  },
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "urls": [
+        "/tiny-translator/fr/favicon.ico",
+        "/tiny-translator/fr/index.html",
+        "/tiny-translator/fr/inline.f271b8f8bb8c6feb4698.bundle.js",
+        "/tiny-translator/fr/main.d8f6a6703cdd06cdf762.bundle.js",
+        "/tiny-translator/fr/polyfills.54fe3ea07e05cf80d217.bundle.js",
+        "/tiny-translator/fr/styles.b46c4641346515b74cbc.bundle.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "urls": [
+        "/tiny-translator/fr/assets/Pirate_Flag.svg",
+        "/tiny-translator/fr/assets/unknowflag.png",
+        "/tiny-translator/fr/assets/icons/launcher-icon-1x.png",
+        "/tiny-translator/fr/assets/icons/launcher-icon-2x.png",
+        "/tiny-translator/fr/assets/icons/launcher-icon-4x.png"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "fonts",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "urls": [],
+      "patterns": [
+        "https:\\/\\/fonts\\.googleapis\\.com\\/.*"
+      ]
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "/tiny-translator/fr/inline.f271b8f8bb8c6feb4698.bundle.js": "b6540c2aef9c7ff85be32ee3353c532266a2bae4",
+    "/tiny-translator/fr/assets/Pirate_Flag.svg": "9acb4f56a50e9a4bf8a82aa2febc1ba564b9e018",
+    "/tiny-translator/fr/main.d8f6a6703cdd06cdf762.bundle.js": "9487afc8809f5d62483e7ed7ffa6c958b3306de7",
+    "/tiny-translator/fr/assets/unknowflag.png": "cc728d91f0714001c4e5f285f744821480ad2303",
+    "/tiny-translator/fr/polyfills.54fe3ea07e05cf80d217.bundle.js": "476411454a14b2aeb8dc0986e0bb08ddf24903fc",
+    "/tiny-translator/fr/assets/icons/launcher-icon-1x.png": "ffa4ce7e04b9c6bbf7cfd4a005b67d52696e3f7e",
+    "/tiny-translator/fr/styles.b46c4641346515b74cbc.bundle.css": "fc00615dd16be6ec28f66cfcabbd5e783602626b",
+    "/tiny-translator/fr/assets/icons/launcher-icon-2x.png": "f377fe37934852f9b9af72cae1610ef4bc497eee",
+    "/tiny-translator/fr/favicon.ico": "84161b857f5c547e3699ddfbffc6d8d737542e01",
+    "/tiny-translator/fr/assets/icons/launcher-icon-4x.png": "69b2166eef189f609fae199e442ff45d063ba848",
+    "/tiny-translator/fr/index.html": "87fe5840c0d65d4038848a9fc92046cef83cb988"
+  }
+}
