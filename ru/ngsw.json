@@ -13,8 +13,8 @@
       "urls": [
         "/tiny-translator/ru/favicon.ico",
         "/tiny-translator/ru/index.html",
-        "/tiny-translator/ru/inline.8f7459a4295f02472ad1.bundle.js",
-        "/tiny-translator/ru/main.b0af2184efe43adfe632.bundle.js",
+        "/tiny-translator/ru/inline.e912be115879c5177637.bundle.js",
+        "/tiny-translator/ru/main.a03bc003c9e9c362261d.bundle.js",
         "/tiny-translator/ru/polyfills.54fe3ea07e05cf80d217.bundle.js",
         "/tiny-translator/ru/styles.b46c4641346515b74cbc.bundle.css"
       ],
@@ -45,9 +45,9 @@
   ],
   "dataGroups": [],
   "hashTable": {
-    "/tiny-translator/ru/inline.8f7459a4295f02472ad1.bundle.js": "0d880b1a56721fbd9ce5a766fdfbb7da02bf1385",
+    "/tiny-translator/ru/inline.e912be115879c5177637.bundle.js": "49f74ccab0cbd0d3d0a2f6f29aa1dd82606978b7",
     "/tiny-translator/ru/assets/Pirate_Flag.svg": "9acb4f56a50e9a4bf8a82aa2febc1ba564b9e018",
-    "/tiny-translator/ru/main.b0af2184efe43adfe632.bundle.js": "932270bbcfa9df8da0c315d092afdc375353f970",
+    "/tiny-translator/ru/main.a03bc003c9e9c362261d.bundle.js": "ba7584ef6b964ff2875cc0b2aa12a25591482a59",
     "/tiny-translator/ru/assets/unknowflag.png": "cc728d91f0714001c4e5f285f744821480ad2303",
     "/tiny-translator/ru/polyfills.54fe3ea07e05cf80d217.bundle.js": "476411454a14b2aeb8dc0986e0bb08ddf24903fc",
     "/tiny-translator/ru/assets/icons/launcher-icon-1x.png": "ffa4ce7e04b9c6bbf7cfd4a005b67d52696e3f7e",
@@ -55,6 +55,6 @@
     "/tiny-translator/ru/assets/icons/launcher-icon-2x.png": "f377fe37934852f9b9af72cae1610ef4bc497eee",
     "/tiny-translator/ru/favicon.ico": "84161b857f5c547e3699ddfbffc6d8d737542e01",
     "/tiny-translator/ru/assets/icons/launcher-icon-4x.png": "69b2166eef189f609fae199e442ff45d063ba848",
-    "/tiny-translator/ru/index.html": "c8127c0364c9d9f4e7f0ee0feca2cebc7c81a612"
+    "/tiny-translator/ru/index.html": "9ebf8ce260068b2e84d1dacbff1268d5a9d11f1e"
   }
 }
