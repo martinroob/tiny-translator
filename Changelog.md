@@ -1,3 +1,13 @@
+<a name="0.11.0"></a>
+# [0.11.0](https://github.com/martinroob/tiny-translator/compare/v0.11.0...v0.10.0) (2017-12-08)
+
+### Features
+
+* **Application** (experimental) Introduce service worker to cache application for offline mode ([#47](https://github.com/martinroob/tiny-translator/issues/47)).
+The Application can now be used offline (loaded from Browser cache then).
+
+* **internal** replace deprecated Http by new Angular HttpClient  ([#46](https://github.com/martinroob/tiny-translator/issues/46)).
+
 <a name="0.10.0"></a>
 # [0.10.0](https://github.com/martinroob/tiny-translator/compare/v0.10.0...v0.9.0) (2017-11-24)
 
