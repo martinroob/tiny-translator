@@ -4,6 +4,11 @@
 A tiny little webapp to quick and dirty translate XLIFF 2.0, XLIFF 1.2 or xmb/xtb files.
 ``
 
+<aside class="notice">
+Starting with v0.13 (2018-11-28) the sources of this project went to the monorepo [ngx-i18nsupport](https://github.com/martinroob/ngx-i18nsupport).
+  So this repo will be deprecated later.
+</aside>
+
 Did you start experimenting with the new `Angular 2` (or even 4) version?
 
 And did you start experimenting with the new `i18n` features of Angular 2?
