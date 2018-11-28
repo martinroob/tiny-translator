@@ -10433,8 +10433,8 @@ var AppConfig = /** @class */ (function () {
 
 var APP_CONFIG_VALUE = {
     // set values here
-    'BUILDVERSION': '0.12.0',
-    'BUILDTIME': '2017-12-08',
+    'BUILDVERSION': '0.13.0',
+    'BUILDTIME': '2018-11-28',
     GOOGLETRANSLATE_API_ROOT_URL: 'https://translation.googleapis.com/',
     GOOGLETRANSLATE_API_KEY: _environments_environment__WEBPACK_IMPORTED_MODULE_1__["environment"].googletranslate_api_key,
     GOOGLETRANSLATE_PROVOKE_FAILURES: _environments_environment__WEBPACK_IMPORTED_MODULE_1__["environment"].googletranslate_provoke_failures
