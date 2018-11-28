@@ -1,0 +1,80 @@
+{
+  "configVersion": 1,
+  "appData": {
+    "version": "0.13.0",
+    "message": "Tiny Translator"
+  },
+  "index": "/tiny-translator/en/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "urls": [
+        "/tiny-translator/en/favicon.ico",
+        "/tiny-translator/en/index.html",
+        "/tiny-translator/en/main.js",
+        "/tiny-translator/en/polyfills.js",
+        "/tiny-translator/en/runtime.js",
+        "/tiny-translator/en/styles.js",
+        "/tiny-translator/en/vendor.js"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "urls": [
+        "/tiny-translator/en/assets/Pirate_Flag.svg",
+        "/tiny-translator/en/assets/icons/launcher-icon-1x.png",
+        "/tiny-translator/en/assets/icons/launcher-icon-2x.png",
+        "/tiny-translator/en/assets/icons/launcher-icon-4x.png",
+        "/tiny-translator/en/assets/unknowflag.png"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "fonts",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "urls": [],
+      "patterns": [
+        "https:\\/\\/fonts\\.googleapis\\.com\\/.*"
+      ]
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "/tiny-translator/en/assets/Pirate_Flag.svg": "9acb4f56a50e9a4bf8a82aa2febc1ba564b9e018",
+    "/tiny-translator/en/assets/icons/launcher-icon-1x.png": "ffa4ce7e04b9c6bbf7cfd4a005b67d52696e3f7e",
+    "/tiny-translator/en/assets/icons/launcher-icon-2x.png": "f377fe37934852f9b9af72cae1610ef4bc497eee",
+    "/tiny-translator/en/assets/icons/launcher-icon-4x.png": "69b2166eef189f609fae199e442ff45d063ba848",
+    "/tiny-translator/en/assets/unknowflag.png": "cc728d91f0714001c4e5f285f744821480ad2303",
+    "/tiny-translator/en/favicon.ico": "84161b857f5c547e3699ddfbffc6d8d737542e01",
+    "/tiny-translator/en/index.html": "ddf83f8fc52b48baa3b3f7cf4df8f5f1e4cb5459",
+    "/tiny-translator/en/main.js": "bbdd6136f0614645009eb86855ca74a0b6522208",
+    "/tiny-translator/en/polyfills.js": "38bcf5aa6cdddcb696d23d0096eb9203cd667d3f",
+    "/tiny-translator/en/runtime.js": "b06ddc772732e66d43856386415cd4d1b89a50b1",
+    "/tiny-translator/en/styles.js": "82174e85b29c59729b435c866c2a0ebd8553de5c",
+    "/tiny-translator/en/vendor.js": "a07ad7f8c4e942232809ac0ddad8edfc3262a74e"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ]
+}
