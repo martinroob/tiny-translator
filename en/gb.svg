@@ -1,15 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" height="480" width="640" id="flag-icon-css-gb">
+<svg xmlns="http://www.w3.org/2000/svg" height="512" width="512" id="flag-icon-css-gb">
   <defs>
     <clipPath id="a">
-      <path fill-opacity=".67" d="M-85.333 0h682.67v512h-682.67z"/>
+      <path fill-opacity=".67" d="M250 0h500v500H250z"/>
     </clipPath>
   </defs>
-  <g clip-path="url(#a)" transform="translate(80) scale(.94)">
+  <g clip-path="url(#a)" transform="translate(-256) scale(1.024)">
     <g stroke-width="1pt">
-      <path fill="#006" d="M-256 0H768.02v512.01H-256z"/>
-      <path d="M-256 0v57.244l909.535 454.768H768.02V454.77L-141.515 0H-256zM768.02 0v57.243L-141.515 512.01H-256v-57.243L653.535 0H768.02z" fill="#fff"/>
-      <path d="M170.675 0v512.01h170.67V0h-170.67zM-256 170.67v170.67H768.02V170.67H-256z" fill="#fff"/>
-      <path d="M-256 204.804v102.402H768.02V204.804H-256zM204.81 0v512.01h102.4V0h-102.4zM-256 512.01L85.34 341.34h76.324l-341.34 170.67H-256zM-256 0L85.34 170.67H9.016L-256 38.164V0zm606.356 170.67L691.696 0h76.324L426.68 170.67h-76.324zM768.02 512.01L426.68 341.34h76.324L768.02 473.848v38.162z" fill="#c00"/>
+      <path fill="#006" d="M0 0h1000.02v500.01H0z"/>
+      <path d="M0 0v55.903l888.218 444.11h111.802V444.11L111.802.003H0zm1000.02 0v55.9L111.802 500.01H0v-55.9L888.218 0h111.802z" fill="#fff"/>
+      <path d="M416.675 0v500.01h166.67V0h-166.67zM0 166.67v166.67h1000.02V166.67H0z" fill="#fff"/>
+      <path d="M0 200.004v100.002h1000.02V200.004H0zM450.01 0v500.01h100V0h-100zM0 500.01l333.34-166.67h74.535L74.535 500.01H0zM0 0l333.34 166.67h-74.535L0 37.27V0zm592.145 166.67L925.485 0h74.535L666.68 166.67h-74.535zm407.875 333.34L666.68 333.34h74.535l258.805 129.403v37.267z" fill="#c00"/>
     </g>
   </g>
 </svg>

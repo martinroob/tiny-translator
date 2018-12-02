@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="480" width="640" id="flag-icon-css-eg">
-  <path d="M0 320h640v160H0z"/>
-  <path fill="#fff" d="M0 160h640v160H0z"/>
-  <path fill="#ce1126" d="M0 0h640v160H0z"/>
-  <g transform="matrix(.8 0 0 .8 -40.004 .002)" fill="#fff" stroke="#c09300">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="512" width="512" id="flag-icon-css-eg">
+  <path d="M0 341.333h512V512H0z"/>
+  <path fill="#fff" d="M0 170.667h512v170.667H0z"/>
+  <path fill="#ce1126" d="M0 0h512v170.667H0z"/>
+  <g transform="translate(-128.004 .002) scale(.85333)" fill="#fff" stroke="#c09300">
     <path d="M450.81 302.4l68.488 63.58-4.876-115.47c-.716-17.5-15.924-13.486-26.97-7.173-11.192 7.172-23.96 7.172-37.447 2.437-13.485 4.735-26.253 4.735-37.444-2.437-11.045-6.313-26.25-10.328-26.97 7.172l-4.878 115.47 70.098-63.58z" stroke-width="1.27" stroke-linejoin="round"/>
     <path d="M393.47 246.49l-4.734 112.32-8.035 7.168 4.88-115.47c2.294-1.578 6.313-4.017 7.89-4.017zm9.62 8.04l-4.017 93.955-8.032 8.22 4.878-108.49c1.58 1.577 6.314 5.45 7.172 6.31zm8.75 7.17l-3.155 78.362-6.455 6.31 4.018-89.406c1.574 1.578 4.73 3.874 5.592 4.734zm9.47 4.02l-3.156 66.787-6.313 5.12 3.157-74.345c1.58.717 4.735 2.438 6.313 2.438zm8.75 0l-2.297 55.657-6.455 6.313 2.44-61.252c1.575 0 5.593 0 6.312-.718z" id="a" fill="#c09300" stroke="none"/>
     <use height="100%" width="100%" xlink:href="#a" transform="matrix(-1 0 0 1 900 0)"/>

@@ -1,10 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" height="480" width="640" id="flag-icon-css-il">
+<svg xmlns="http://www.w3.org/2000/svg" height="512" width="512" id="flag-icon-css-il">
   <defs>
     <clipPath id="a">
-      <path fill-opacity=".67" d="M-87.62 0h682.67v512H-87.62z"/>
+      <path fill-opacity=".67" d="M0 0h512v512H0z"/>
     </clipPath>
   </defs>
-  <g fill-rule="evenodd" clip-path="url(#a)" transform="translate(82.14) scale(.94)">
+  <g fill-rule="evenodd" clip-path="url(#a)">
     <path fill="#fff" d="M619.43 512H-112V0h731.43z"/>
     <path fill="#00c" d="M619.43 115.23H-112V48.003h731.43zm0 350.45H-112v-67.227h731.43zm-483-274.9l110.12 191.54 112.49-190.75-222.61-.79z"/>
     <path d="M225.75 317.81l20.95 35.506 21.4-35.36-42.35-.145z" fill="#fff"/>

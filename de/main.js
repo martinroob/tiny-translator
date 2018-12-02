@@ -10433,8 +10433,8 @@ var AppConfig = /** @class */ (function () {
 
 var APP_CONFIG_VALUE = {
     // set values here
-    'BUILDVERSION': '0.13.0',
-    'BUILDTIME': '2018-11-28',
+    'BUILDVERSION': '0.14.0',
+    'BUILDTIME': '2018-12-02',
     GOOGLETRANSLATE_API_ROOT_URL: 'https://translation.googleapis.com/',
     GOOGLETRANSLATE_API_KEY: _environments_environment__WEBPACK_IMPORTED_MODULE_1__["environment"].googletranslate_api_key,
     GOOGLETRANSLATE_PROVOKE_FAILURES: _environments_environment__WEBPACK_IMPORTED_MODULE_1__["environment"].googletranslate_provoke_failures
@@ -12865,7 +12865,7 @@ var BackendServiceAPI = /** @class */ (function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DownloaderService", function() { return DownloaderService; });
-/* harmony import */ var file_saver__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! file-saver */ "../../node_modules/file-saver/FileSaver.js");
+/* harmony import */ var file_saver__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! file-saver */ "../../node_modules/file-saver/dist/FileSaver.min.js");
 /* harmony import */ var file_saver__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(file_saver__WEBPACK_IMPORTED_MODULE_0__);
 
 var DownloaderService = /** @class */ (function () {
@@ -12873,7 +12873,7 @@ var DownloaderService = /** @class */ (function () {
     }
     DownloaderService.prototype.downloadFile = function (filename, content, filetype) {
         var blob = new Blob([content], { type: filetype });
-        file_saver__WEBPACK_IMPORTED_MODULE_0__["FileSaver"].saveAs(blob, filename);
+        Object(file_saver__WEBPACK_IMPORTED_MODULE_0__["saveAs"])(blob, filename);
     };
     DownloaderService.prototype.downloadXliffFile = function (filename, content) {
         this.downloadFile(filename, content, 'application/xml');

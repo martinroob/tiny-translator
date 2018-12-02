@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="480" width="640" id="flag-icon-css-li">
-  <path fill="#002b7f" d="M0 0h640v240H0z"/>
-  <path fill="#ce1126" d="M0 240h640v240H0z"/>
-  <g transform="scale(.8)" fill="#ffd83d" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="512" width="512" id="flag-icon-css-li">
+  <path fill="#002b7f" d="M0 0h512.1v256H0z"/>
+  <path fill="#ce1126" d="M0 256h512.1v256H0z"/>
+  <g transform="translate(-54) scale(.85333)" fill="#ffd83d" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
     <g id="a">
       <path d="M216.377 122.29l-1.838 62.5h-63.42c-7.803-15.17-14.247-28.053-14.247-45.498 0-14.6 11.483-26.195 28.033-26.195 17.52 0 36.77 5.904 51.47 9.192z" stroke="none"/>
       <g stroke-width="1.5">
