@@ -6,7 +6,7 @@ A tiny little webapp to quick and dirty translate XLIFF 2.0, XLIFF 1.2 or xmb/xt
 
 This project has moved to the monorepo [ngx-i18nsupport](https://github.com/martinroob/ngx-i18nsupport).
 
-This is the actual [Tiny-Translator README](https://github.com/martinroob/ngx-i18nsupport/tree/master/projects/tiny-translator/README.md) c
+Here can find the actual [Tiny-Translator README](https://github.com/martinroob/ngx-i18nsupport/tree/master/projects/tiny-translator/README.md).
 
 The ready to use application can be found on the following GitHubPages:
 * [Tiny Translator (English)](https://martinroob.github.io/tiny-translator/en)
