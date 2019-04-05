@@ -1,5 +1,6 @@
 {
   "configVersion": 1,
+  "timestamp": 1554459248824,
   "appData": {
     "version": "0.13.0",
     "message": "Tiny Translator"
@@ -26,6 +27,7 @@
       "installMode": "lazy",
       "updateMode": "prefetch",
       "urls": [
+        "/tiny-translator/de/assets/Octocat.jpg",
         "/tiny-translator/de/assets/Pirate_Flag.svg",
         "/tiny-translator/de/assets/icons/launcher-icon-1x.png",
         "/tiny-translator/de/assets/icons/launcher-icon-2x.png",
@@ -46,6 +48,7 @@
   ],
   "dataGroups": [],
   "hashTable": {
+    "/tiny-translator/de/assets/Octocat.jpg": "a9ef4b99a3d74ca1718ac4b00e3e4d63447a50a2",
     "/tiny-translator/de/assets/Pirate_Flag.svg": "9acb4f56a50e9a4bf8a82aa2febc1ba564b9e018",
     "/tiny-translator/de/assets/icons/launcher-icon-1x.png": "ffa4ce7e04b9c6bbf7cfd4a005b67d52696e3f7e",
     "/tiny-translator/de/assets/icons/launcher-icon-2x.png": "f377fe37934852f9b9af72cae1610ef4bc497eee",
@@ -53,11 +56,11 @@
     "/tiny-translator/de/assets/unknowflag.png": "cc728d91f0714001c4e5f285f744821480ad2303",
     "/tiny-translator/de/favicon.ico": "84161b857f5c547e3699ddfbffc6d8d737542e01",
     "/tiny-translator/de/index.html": "0f2598ab7f547cdc0bf661746e658ac859e1ee6c",
-    "/tiny-translator/de/main.js": "01dd7d43a9ff48a5607fe005f98ba3b6fe5de8a2",
-    "/tiny-translator/de/polyfills.js": "38bcf5aa6cdddcb696d23d0096eb9203cd667d3f",
+    "/tiny-translator/de/main.js": "d15f8056987b4ec973d35a4adc16a1743ad9a850",
+    "/tiny-translator/de/polyfills.js": "63a3c569c6fd504797f1d2f72f9930da682153c3",
     "/tiny-translator/de/runtime.js": "b06ddc772732e66d43856386415cd4d1b89a50b1",
-    "/tiny-translator/de/styles.js": "82174e85b29c59729b435c866c2a0ebd8553de5c",
-    "/tiny-translator/de/vendor.js": "1bb8174d67231cbeee0a9caac1618b43e75d3681"
+    "/tiny-translator/de/styles.js": "2196de8eeac46610ffbefe115ef0eec7cbe397fb",
+    "/tiny-translator/de/vendor.js": "0a33eb441d3644e1f59cdd9e384b0e68a8b360ba"
   },
   "navigationUrls": [
     {

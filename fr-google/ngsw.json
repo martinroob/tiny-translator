@@ -1,5 +1,6 @@
 {
   "configVersion": 1,
+  "timestamp": 1554459399227,
   "appData": {
     "version": "0.13.0",
     "message": "Tiny Translator"
@@ -26,6 +27,7 @@
       "installMode": "lazy",
       "updateMode": "prefetch",
       "urls": [
+        "/tiny-translator/fr-google/assets/Octocat.jpg",
         "/tiny-translator/fr-google/assets/Pirate_Flag.svg",
         "/tiny-translator/fr-google/assets/icons/launcher-icon-1x.png",
         "/tiny-translator/fr-google/assets/icons/launcher-icon-2x.png",
@@ -46,6 +48,7 @@
   ],
   "dataGroups": [],
   "hashTable": {
+    "/tiny-translator/fr-google/assets/Octocat.jpg": "a9ef4b99a3d74ca1718ac4b00e3e4d63447a50a2",
     "/tiny-translator/fr-google/assets/Pirate_Flag.svg": "9acb4f56a50e9a4bf8a82aa2febc1ba564b9e018",
     "/tiny-translator/fr-google/assets/icons/launcher-icon-1x.png": "ffa4ce7e04b9c6bbf7cfd4a005b67d52696e3f7e",
     "/tiny-translator/fr-google/assets/icons/launcher-icon-2x.png": "f377fe37934852f9b9af72cae1610ef4bc497eee",
@@ -53,11 +56,11 @@
     "/tiny-translator/fr-google/assets/unknowflag.png": "cc728d91f0714001c4e5f285f744821480ad2303",
     "/tiny-translator/fr-google/favicon.ico": "84161b857f5c547e3699ddfbffc6d8d737542e01",
     "/tiny-translator/fr-google/index.html": "dbbda8d0bcedc1d47c50f192c57ab262e8b140a6",
-    "/tiny-translator/fr-google/main.js": "4e23cd3fa53123b4cc1de24612375ac44593aa8a",
-    "/tiny-translator/fr-google/polyfills.js": "38bcf5aa6cdddcb696d23d0096eb9203cd667d3f",
+    "/tiny-translator/fr-google/main.js": "6fffa889a7b54b84c86289b52a7962af5335c0fc",
+    "/tiny-translator/fr-google/polyfills.js": "63a3c569c6fd504797f1d2f72f9930da682153c3",
     "/tiny-translator/fr-google/runtime.js": "b06ddc772732e66d43856386415cd4d1b89a50b1",
-    "/tiny-translator/fr-google/styles.js": "82174e85b29c59729b435c866c2a0ebd8553de5c",
-    "/tiny-translator/fr-google/vendor.js": "2d05490b49b36b6659acbba3f09f18e610cb00ae"
+    "/tiny-translator/fr-google/styles.js": "2196de8eeac46610ffbefe115ef0eec7cbe397fb",
+    "/tiny-translator/fr-google/vendor.js": "50f401b5642b002460881700b95cda6a26dc65a9"
   },
   "navigationUrls": [
     {
