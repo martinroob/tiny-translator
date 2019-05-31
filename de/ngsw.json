@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1559291360761,
+  "timestamp": 1559296490905,
   "appData": {
     "version": "0.13.0",
     "message": "Tiny Translator"
@@ -57,7 +57,7 @@
     "/tiny-translator/de/assets/unknowflag.png": "cc728d91f0714001c4e5f285f744821480ad2303",
     "/tiny-translator/de/favicon.ico": "84161b857f5c547e3699ddfbffc6d8d737542e01",
     "/tiny-translator/de/index.html": "e874f6dbe4dac918ac13c7d4cfc325ff3315f0db",
-    "/tiny-translator/de/main.js": "9b78d72a3e0264fb3303dbef97dc0b5d7d686995",
+    "/tiny-translator/de/main.js": "871c890c807274b54b574a7d555da7c66052fc43",
     "/tiny-translator/de/polyfills-es5.js": "f39cf39c3affe1ff8d531f183ab39713eef56f40",
     "/tiny-translator/de/polyfills.js": "25ae6d2a26f47de3ef6440a1cf35e348e1e719a6",
     "/tiny-translator/de/runtime.js": "b06ddc772732e66d43856386415cd4d1b89a50b1",
