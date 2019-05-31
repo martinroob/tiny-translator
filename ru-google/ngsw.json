@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1554459539028,
+  "timestamp": 1559284269632,
   "appData": {
     "version": "0.13.0",
     "message": "Tiny Translator"
@@ -15,6 +15,7 @@
         "/tiny-translator/ru-google/favicon.ico",
         "/tiny-translator/ru-google/index.html",
         "/tiny-translator/ru-google/main.js",
+        "/tiny-translator/ru-google/polyfills-es5.js",
         "/tiny-translator/ru-google/polyfills.js",
         "/tiny-translator/ru-google/runtime.js",
         "/tiny-translator/ru-google/styles.js",
@@ -55,12 +56,13 @@
     "/tiny-translator/ru-google/assets/icons/launcher-icon-4x.png": "69b2166eef189f609fae199e442ff45d063ba848",
     "/tiny-translator/ru-google/assets/unknowflag.png": "cc728d91f0714001c4e5f285f744821480ad2303",
     "/tiny-translator/ru-google/favicon.ico": "84161b857f5c547e3699ddfbffc6d8d737542e01",
-    "/tiny-translator/ru-google/index.html": "6fc3d8ddf39dd5060cba5fc5ddcf91618e788b52",
-    "/tiny-translator/ru-google/main.js": "00bb8f1fc175c9d89886e8440ae4bb61f0b25260",
-    "/tiny-translator/ru-google/polyfills.js": "63a3c569c6fd504797f1d2f72f9930da682153c3",
+    "/tiny-translator/ru-google/index.html": "9b716cde74e270064237b5a4630f7a44e9fc3042",
+    "/tiny-translator/ru-google/main.js": "22a402b1c1fcbafbf0b1b8e9cecf947351d683c4",
+    "/tiny-translator/ru-google/polyfills-es5.js": "f39cf39c3affe1ff8d531f183ab39713eef56f40",
+    "/tiny-translator/ru-google/polyfills.js": "25ae6d2a26f47de3ef6440a1cf35e348e1e719a6",
     "/tiny-translator/ru-google/runtime.js": "b06ddc772732e66d43856386415cd4d1b89a50b1",
-    "/tiny-translator/ru-google/styles.js": "2196de8eeac46610ffbefe115ef0eec7cbe397fb",
-    "/tiny-translator/ru-google/vendor.js": "298567f6bb957f53deb06bfd94d1ec97dcf8234e"
+    "/tiny-translator/ru-google/styles.js": "7882fc53d14963dd7d6cdb0be24944e8fbbb01c0",
+    "/tiny-translator/ru-google/vendor.js": "4dbd6eb743c01f3b899916cbae8ea27b9e58485b"
   },
   "navigationUrls": [
     {
