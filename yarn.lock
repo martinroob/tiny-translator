@@ -123,11 +123,11 @@
   dependencies:
     tslib "^1.7.1"
 
-"@angular/core@^5.0.3":
-  version "5.0.3"
-  resolved "https://registry.yarnpkg.com/@angular/core/-/core-5.0.3.tgz#2566400f6713bf1c39f7e00bc03a63280a87e66b"
+"@angular/core@^11.0.5":
+  version "11.0.5"
+  resolved "https://registry.yarnpkg.com/@angular/core/-/core-11.0.5.tgz#b8c448c3cd4f6dae7327cc1ba4ee2aa29c8dbc26"
   dependencies:
-    tslib "^1.7.1"
+    tslib "^2.0.0"
 
 "@angular/flex-layout@^2.0.0-beta.10-4905443":
   version "2.0.0-beta.10-4905443"
@@ -5467,6 +5467,10 @@ tsickle@^0.24.0:
 tslib@^1.7.1:
   version "1.7.1"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.7.1.tgz#bc8004164691923a79fe8378bbeb3da2017538ec"
+
+tslib@^2.0.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.4.0.tgz#7cecaa7f073ce680a05847aa77be941098f36dc3"
 
 tslint@^5.8.0:
   version "5.8.0"
